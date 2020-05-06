@@ -2,8 +2,8 @@
 name: Daily Plan
 about: 날마다 기록하는 우리들의 Hackday!
 title: ''
-labels: Daily
-assignees: ''
+labels: "Daily\U0001F4DD"
+assignees: Seogeurim, jeongdaeun98, jominjimail, minsour, ooeunz
 
 ---
 
