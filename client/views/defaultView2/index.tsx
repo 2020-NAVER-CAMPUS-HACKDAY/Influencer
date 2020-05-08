@@ -1,6 +1,6 @@
 import Head from 'next/head';
 // eslint-disable-next-line import/extensions
-import * as S from './styles';
+import useStyles from './styles';
 
 interface DefaultProps {
   data: string;
@@ -8,15 +8,16 @@ interface DefaultProps {
 
 const Home: React.FunctionComponent<DefaultProps> = (props) => {
   const { data } = props;
+  const classes = useStyles(props);
 
   return (
     <>
       <Head>
         <title>Influencer</title>
       </Head>
-      <S.CustomStyle>
+      <div className={classes.root}>
         This is Default 2 - example 1 Page.
-      </S.CustomStyle>
+      </div>
       {data}
     </>
   );

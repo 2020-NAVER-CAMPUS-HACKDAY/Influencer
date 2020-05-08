@@ -1,9 +1,11 @@
-import Document, { DocumentContext } from 'next/document';
+import Document from 'next/document';
 import { createGlobalStyle, ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles'
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
+    const materialUiSheets = new MaterialUiServerStyleSheets()
     const originalRenderPage = ctx.renderPage;
 
     try {
@@ -11,7 +13,7 @@ class CustomDocument extends Document {
         enhanceApp: (App) => (props) => sheet.collectStyles(
             <>
               <GlobalStyle />
-              <App {...props} />
+              materialUiSheets.collect(<App {...props} />)
             </>,
         ),
       });
@@ -23,6 +25,7 @@ class CustomDocument extends Document {
         styles: (
           <>
             {initialProps.styles}
+            {materialUiSheets.getStyleElement()}
             {sheet.getStyleElement()}
           </>
         ),
