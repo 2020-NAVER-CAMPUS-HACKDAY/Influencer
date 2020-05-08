@@ -5,8 +5,13 @@ import Document, {
 import { ServerStyleSheet as StyledComponentsSheet } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 import GlobalStyles from 'components/GlobalStyles';
+import getLocale from 'utils/getLocale';
 
-class CustomDocument extends Document {
+interface Props {
+  locale: string;
+}
+
+class CustomDocument extends Document<Props> {
   public static async getInitialProps(ctx: DocumentContext) {
     const styledComponentsSheet = new StyledComponentsSheet();
     const materialUiSheets = new MaterialUiServerStyleSheets();
@@ -25,9 +30,10 @@ class CustomDocument extends Document {
       });
 
       const initialProps = await Document.getInitialProps(ctx);
-
+      const locale = getLocale(ctx.query);
       return {
         ...initialProps,
+        locale,
         styles: (
           <>
             {initialProps.styles}
@@ -46,7 +52,7 @@ class CustomDocument extends Document {
 
   public render() {
     return (
-      <Html>
+      <Html lang={this.props.locale.split('-')[0]}>
         <Head />
         <body>
         <Main />
