@@ -1,5 +1,6 @@
-import Head from 'next/head';
-// eslint-disable-next-line import/extensions
+import React from 'react';
+import Link from 'next/link';
+
 import Layout from 'components/Layout';
 
 interface DefaultProps {
@@ -11,12 +12,12 @@ const Home: React.FunctionComponent<DefaultProps> = (props) => {
 
   return (
     <Layout>
-      <Head>
-        <title>Influencer</title>
-      </Head>
       <div>
         This is Default 2 - example 1 Page.
       </div>
+      <Link href="/routeExample">
+        <a>back to Page</a>
+      </Link>
       {data}
     </Layout>
   );
