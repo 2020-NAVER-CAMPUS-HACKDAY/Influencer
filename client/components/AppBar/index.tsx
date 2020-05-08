@@ -3,12 +3,8 @@ import useStyles from 'components/AppBar/styles';
 import MaterialAppBar from '@material-ui/core/AppBar';
 import HamburgerMenu from 'svgs/HamburgerMenu';
 
-interface AppBarProps {
-  children?: React.ReactNode;
-}
 
-const AppBar: React.FunctionComponent<AppBarProps> = (props) => {
-  const { children } = props;
+const AppBar: React.FunctionComponent = (props) => {
   const classes = useStyles(props);
 
   return (
