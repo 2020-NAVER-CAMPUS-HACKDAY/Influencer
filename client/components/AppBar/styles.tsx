@@ -22,6 +22,11 @@ const useStyles = makeStyles({
     fontSize: '25px',
     color: '#FFFFFF',
   },
+  button: {
+    background: 'none',
+    border: 'none',
+    outline: 'none',
+  },
 });
 
 export default useStyles;
