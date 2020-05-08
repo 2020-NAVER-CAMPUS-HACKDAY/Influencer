@@ -1,21 +1,26 @@
 import React from 'react';
-import Document from 'next/document';
-import { createGlobalStyle, ServerStyleSheet } from 'styled-components';
+import Document, {
+  Html, Head, Main, NextScript, DocumentContext,
+} from 'next/document';
+import { ServerStyleSheet as StyledComponentsSheet } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
+import GlobalStyles from 'components/GlobalStyles';
 
 class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet();
+  public static async getInitialProps(ctx: DocumentContext) {
+    const styledComponentsSheet = new StyledComponentsSheet();
     const materialUiSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(
+        enhanceApp: (App) => (props) => materialUiSheets.collect(
+          styledComponentsSheet.collectStyles(
             <>
-              <GlobalStyle />
+              <GlobalStyles />
               materialUiSheets.collect(<App {...props} />)
             </>,
+          ),
         ),
       });
 
@@ -27,7 +32,7 @@ class CustomDocument extends Document {
           <>
             {initialProps.styles}
             {materialUiSheets.getStyleElement()}
-            {sheet.getStyleElement()}
+            {styledComponentsSheet.getStyleElement()}
           </>
         ),
       };
@@ -35,17 +40,21 @@ class CustomDocument extends Document {
     } catch (error) {
       throw error;
     } finally {
-      sheet.seal();
+      styledComponentsSheet.seal();
     }
+  }
+
+  public render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+        <Main />
+        <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
 
 export default CustomDocument;
-
-const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;
