@@ -1,13 +1,13 @@
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// eslint-disable-next-line import/extensions
-import useStyles from './styles';
+import useStyles from 'views/defaultView';
 
 interface DefaultProps {
   data: string;
 }
 
-const Home: React.FunctionComponent<DefaultProps> = (props) => {
+const Home: React.FC<DefaultProps> = (props) => {
   const { data } = props;
   const classes = useStyles(props);
 
