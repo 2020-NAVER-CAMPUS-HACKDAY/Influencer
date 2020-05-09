@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.13",
     "dotenv": "^8.2.0",
-    "immutable": "^4.0.0-rc.12",
+    "immer": "^6.0.5",
     "next": "^9.3.6",
     "next-redux-wrapper": "^6.0.0-rc.7",
     "react": "^16.13.1",

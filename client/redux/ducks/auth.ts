@@ -1,5 +1,5 @@
 import { createAction, createReducer } from 'typesafe-actions';
-import { Map } from 'immutable';
+import produce from 'immer';
 
 const SET_USER = 'auth/SET_USER';
 
@@ -16,13 +16,16 @@ export const AuthActions = {
   setUser: createAction(SET_USER)<UserProps>(),
 };
 
-const initialState = Map({
-  user: Map({}),
-});
+const initialState = {
+  user: {
+    id: '',
+    thumbnail: '',
+  },
+};
 
 // Handle success reducer
 export const authReducer = createReducer(initialState)
-  .handleAction(AuthActions.setUser, (state, action) => state.set(
-    ['user'],
-    action.payload,
-  ));
+  .handleAction(AuthActions.setUser, (state, action) => produce(state, (draft) => {
+    draft.user.id = action.payload.id;
+    draft.user.thumbnail = action.payload.thumbnail;
+  }));

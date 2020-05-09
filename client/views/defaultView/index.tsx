@@ -13,10 +13,9 @@ interface DefaultProps extends UserProps, UserMethods {
 const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
 
 const Home: React.FC<DefaultProps> = (props) => {
-  const { data, setUser, user } = props;
+  const { data, setUser } = props;
   const classes = useStyles(props);
   const setUserData = (): void => setUser(userData);
-
   return (
     <>
       <Head>
