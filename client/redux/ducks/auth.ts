@@ -4,19 +4,25 @@ import { Map } from 'immutable';
 const SET_USER = 'auth/SET_USER';
 
 export interface UserProps {
-  thumbnail: string;
-  id: string;
+  user: Map<string, string>;
 }
+
+export interface UserMethods {
+  setUser: (user: {id: string; thumbnail: string}) => void;
+}
+
 // TODO(daeun): Remove sample code
-const setUser = createAction(SET_USER)<UserProps>();
+export const AuthActions = {
+  setUser: createAction(SET_USER)<UserProps>(),
+};
 
 const initialState = Map({
-  user: Map({
-    thumbnail: '',
-    id: '',
-  }),
+  user: Map({}),
 });
 
 // Handle success reducer
 export const authReducer = createReducer(initialState)
-  .handleAction(setUser, (state, action) => ({ ...state, user: state.set('user', Map(action.payload)) }));
+  .handleAction(AuthActions.setUser, (state, action) => state.set(
+    ['user'],
+    action.payload,
+  ));
