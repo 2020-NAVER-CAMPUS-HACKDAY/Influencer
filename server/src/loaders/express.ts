@@ -1,6 +1,8 @@
-import { Application, Request, Response } from 'express';
+import { Application, Request, Response, NextFunction } from 'express';
 import * as bodyParser from 'body-parser';
 import cors from 'cors';
+import { NotFoundError } from '../modules/errors';
+import errorName from '../modules/util/errorName';
 
 export default ({ app }: { app: Application }) => {
   app.get('/status', (req: Request, res: Response) => {
@@ -15,4 +17,30 @@ export default ({ app }: { app: Application }) => {
 
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: false }));
+
+  /// catch 404 and forward to error handler
+  app.use((req: Request, res: Response, next) => {
+    const err = new NotFoundError('Not Found');
+    next(err);
+  });
+
+  /// error handlers
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    switch (err.name) {
+      case errorName.BAD_REQUEST:
+      case errorName.CONFLICT:
+      case errorName.UNAUTHORIZED:
+        return res.status(err.status).send({ message: err.message }).end();
+    }
+    return next(err);
+  });
+
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(err.status || 500);
+    res.json({
+      errors: {
+        message: err.message,
+      },
+    });
+  });
 };
