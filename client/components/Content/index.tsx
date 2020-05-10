@@ -1,11 +1,7 @@
 import React from 'react';
 import useStyles from 'components/Content/styles';
 
-interface ContentProps {
-  children?: React.ReactNode;
-}
-
-const Content: React.FunctionComponent<ContentProps> = (props) => {
+const Content: React.FunctionComponent = (props) => {
   const { children } = props;
   const classes = useStyles(props);
 
