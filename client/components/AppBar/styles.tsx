@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   root: {
-    backgroundImage: 'linear-gradient(to right, #01C73B , #827EDB)',
+    backgroundImage: `linear-gradient(to right, ${AppColor.GREEN} , ${AppColor.PURPLE})`,
     position: 'fixed',
     zIndex: 2,
     boxShadow: 'none',
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: '25px',
-    color: '#FFFFFF',
+    color: AppColor.WHITE,
   },
   button: {
     background: 'none',
