@@ -1,8 +1,9 @@
 import { Application } from 'express';
 import expressLoader from './express';
 import dependencyInjectorLoader from './dependencyInjector';
-import Logger from './logger';
+import swaggerLoader from './swagger';
 import mongooseLoader from './mongoose';
+import Logger from './logger';
 
 export default async ({ expressApp }: { expressApp: Application }) => {
   await mongooseLoader();
@@ -17,6 +18,8 @@ export default async ({ expressApp }: { expressApp: Application }) => {
     models: [productModel],
   });
   Logger.info('Dependency Injector loaded');
+
+  await swaggerLoader({ app: expressApp });
 
   await expressLoader({ app: expressApp });
   Logger.info('Express Intialized');
