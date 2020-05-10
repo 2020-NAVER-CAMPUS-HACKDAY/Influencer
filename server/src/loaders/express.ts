@@ -3,6 +3,8 @@ import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import { NotFoundError } from '../modules/errors';
 import errorName from '../modules/util/errorName';
+import config from '../config';
+import routes from '../api';
 
 export default ({ app }: { app: Application }) => {
   app.get('/status', (req: Request, res: Response) => {
@@ -16,7 +18,8 @@ export default ({ app }: { app: Application }) => {
   app.enable('trust proxy');
 
   app.use(cors());
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(config.api.prefix, routes());
 
   /// catch 404 and forward to error handler
   app.use((req: Request, res: Response, next) => {
