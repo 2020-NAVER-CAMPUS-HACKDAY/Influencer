@@ -1,6 +1,6 @@
+import React from 'react';
 import Head from 'next/head';
-// eslint-disable-next-line import/extensions
-import useStyles from './styles';
+import useStyles from 'views/defaultView2/styles';
 
 interface DefaultProps {
   data: string;

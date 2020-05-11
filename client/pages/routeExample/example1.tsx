@@ -1,2 +1,1 @@
-// eslint-disable-next-line import/extensions
-export { default } from '../../views/defaultView2';
+export { default } from 'views/defaultView2';

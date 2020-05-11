@@ -1,11 +1,12 @@
+import React from 'react';
 import Document from 'next/document';
 import { createGlobalStyle, ServerStyleSheet } from 'styled-components';
-import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles'
+import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const materialUiSheets = new MaterialUiServerStyleSheets()
+    const materialUiSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
