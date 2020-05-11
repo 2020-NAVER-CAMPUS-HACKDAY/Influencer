@@ -8,17 +8,21 @@ const SET_USER = 'auth/SET_USER' as const;
 
 export interface UserProps {
   user: {
-    id: string
-    thumbnail: string
+    id: string;
+    thumbnail: string;
   };
 }
 
-export type UserAction =
- | ActionType<typeof AuthActions.setUser>;
+export interface UserMethods {
+  setUser: (user: {id: string; thumbnail: string}) => void;
+}
 
 export const AuthActions = {
   setUser: createAction(SET_USER)<UserProps>(),
 };
+
+export type UserAction =
+ | ActionType<typeof AuthActions.setUser>;
 
 const initialState = {
   user: {

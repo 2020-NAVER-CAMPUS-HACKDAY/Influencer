@@ -14,8 +14,8 @@ const PageApp = ({
   store,
 }: AppProps & PageAppProps): ReactElement => (
   <Provider store={store}>
-  <Component {...pageProps} />
-</Provider>
+    <Component {...pageProps} />
+  </Provider>
 );
 
 export default withRedux(configStore)(PageApp);

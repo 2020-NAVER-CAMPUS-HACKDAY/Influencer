@@ -10,4 +10,4 @@ export interface Types {
 }
 
 export type Actions =
-| UserAction
+| UserAction;
