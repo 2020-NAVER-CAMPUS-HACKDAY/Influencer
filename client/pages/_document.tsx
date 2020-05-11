@@ -1,33 +1,44 @@
 import React from 'react';
-import Document from 'next/document';
-import { createGlobalStyle, ServerStyleSheet } from 'styled-components';
+import Document, {
+  Html, Head, Main, NextScript, DocumentContext,
+} from 'next/document';
+import { ServerStyleSheet as StyledComponentsSheet } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
+import GlobalStyles from 'components/GlobalStyles';
+import getLocale from 'utils/getLocale';
 
-class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet();
+interface Props {
+  locale: string;
+}
+
+class CustomDocument extends Document<Props> {
+  public static async getInitialProps(ctx: DocumentContext) {
+    const styledComponentsSheet = new StyledComponentsSheet();
     const materialUiSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(
+        enhanceApp: (App) => (props) => materialUiSheets.collect(
+          styledComponentsSheet.collectStyles(
             <>
-              <GlobalStyle />
+              <GlobalStyles />
               materialUiSheets.collect(<App {...props} />)
             </>,
+          ),
         ),
       });
 
       const initialProps = await Document.getInitialProps(ctx);
-
+      const locale = getLocale(ctx.query);
       return {
         ...initialProps,
+        locale,
         styles: (
           <>
             {initialProps.styles}
             {materialUiSheets.getStyleElement()}
-            {sheet.getStyleElement()}
+            {styledComponentsSheet.getStyleElement()}
           </>
         ),
       };
@@ -35,17 +46,21 @@ class CustomDocument extends Document {
     } catch (error) {
       throw error;
     } finally {
-      sheet.seal();
+      styledComponentsSheet.seal();
     }
+  }
+
+  public render() {
+    return (
+      <Html lang={this.props.locale.split('-')[0]}>
+        <Head />
+        <body>
+        <Main />
+        <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
 
 export default CustomDocument;
-
-const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;

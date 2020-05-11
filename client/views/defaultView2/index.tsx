@@ -1,6 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
-import useStyles from 'views/defaultView2/styles';
+import Link from 'next/link';
+import Layout from 'components/Layout';
 
 interface DefaultProps {
   data: string;
@@ -8,18 +8,17 @@ interface DefaultProps {
 
 const Home: React.FunctionComponent<DefaultProps> = (props) => {
   const { data } = props;
-  const classes = useStyles(props);
 
   return (
-    <>
-      <Head>
-        <title>Influencer</title>
-      </Head>
-      <div className={classes.root}>
+    <Layout>
+      <div>
         This is Default 2 - example 1 Page.
       </div>
+      <Link href="/routeExample">
+        <a>back to Page</a>
+      </Link>
       {data}
-    </>
+    </Layout>
   );
 };
 
