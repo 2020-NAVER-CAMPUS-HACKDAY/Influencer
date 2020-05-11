@@ -19,7 +19,7 @@ const Home: React.FC<DefaultProps> = (props) => {
       <div onClick={setUserData}>
         This is Default Page.
       </div>
-      <Link href="/routeExample/example1">
+      <Link href="/interaction">
         <a>go to Next Page</a>
       </Link>
       {data}
