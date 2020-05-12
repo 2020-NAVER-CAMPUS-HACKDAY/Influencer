@@ -13,7 +13,7 @@ const MainHeader: React.FunctionComponent = (props) => {
 
   return (
     <div className={classes.layout}>
-      <AppBar backgroundColor={AppColor.MAIN_HEADER}>
+      <AppBar backgroundImage={AppColor.MAIN_HEADER}>
         <Logo/>
         <SVGButton>
           <HamburgerMenu/>

@@ -5,6 +5,7 @@ import MaterialAppBar from '@material-ui/core/AppBar';
 export interface BarProps {
   isNotFixed?: boolean;
   backgroundColor?: string;
+  backgroundImage?: string;
 }
 
 const AppBar: React.FunctionComponent<BarProps> = (props) => {
