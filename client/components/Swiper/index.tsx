@@ -1,15 +1,4 @@
-import React from 'react';
-import useStyles from 'components/Swiper/styles';
+import SwiperCard from 'components/Swiper/Card';
+import SwiperCardWrapper from 'components/Swiper/CardWrapper';
 
-const Swiper: React.FC = (props) => {
-  const { children } = props;
-  const classes = useStyles(props);
-
-  return (
-    <div className={classes.root}>
-      Swiper
-    </div>
-  );
-};
-
-export default Swiper;
+export default { SwiperCard, SwiperCardWrapper };

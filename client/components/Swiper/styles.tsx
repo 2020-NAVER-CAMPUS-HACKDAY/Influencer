@@ -1,8 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
-  root: {
-    display: 'flex',
+  card: {
+    width: '300px',
+    height: '300px',
+    backgroundColor: AppColor.WHITE,
+    border: '1px solid #EAEAEA',
+    borderRadius: '10px',
+  },
+  product: {
+    color: 'red',
   },
 });
 
