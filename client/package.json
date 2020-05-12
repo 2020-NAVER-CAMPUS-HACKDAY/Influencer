@@ -23,7 +23,7 @@
 		"@types/jest": "^24.0.0",
 		"@types/material-ui": "^0.21.7",
 		"@types/next": "^9.0.0",
-		"@types/node": "^12.0.0",
+		"@types/node": "^13.13.5",
 		"@types/react": "^16.9.34",
 		"@types/react-dom": "^16.9.0",
 		"@typescript-eslint/eslint-plugin": "^2.24.0",
@@ -34,7 +34,7 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
-		"typescript": "~3.7.2"
+		"typescript": "^3.8.3"
 	},
 	"scripts": {
 		"cpenv": "f() { cp ./env/.env.${1:-development}.local env/.env; } ; f",
