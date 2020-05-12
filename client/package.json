@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@material-ui/core": "^4.9.13",
+		"clsx": "^1.1.0",
 		"dotenv": "^8.2.0",
 		"immer": "^6.0.5",
 		"next": "^9.3.6",
