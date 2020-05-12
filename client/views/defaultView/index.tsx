@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
-import Layout from 'components/Layout';
+import MainHeader from 'components/MainHeader';
 
 interface DefaultProps extends UserProps, UserMethods {
   data: string;
@@ -15,7 +15,7 @@ const Home: React.FC<DefaultProps> = (props) => {
   const { data, setUser } = props;
   const setUserData = (): void => setUser(userData);
   return (
-    <Layout>
+    <MainHeader>
       <div>
         This is Default Page.
       </div>
@@ -23,7 +23,7 @@ const Home: React.FC<DefaultProps> = (props) => {
         <a>go to Next Page</a>
       </Link>
       {data}
-    </Layout>
+    </MainHeader>
   );
 };
 

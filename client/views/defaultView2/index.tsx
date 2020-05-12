@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Layout from 'components/Layout';
+import MainHeader from 'components/MainHeader';
 
 interface DefaultProps {
   data: string;
@@ -10,7 +10,7 @@ const Home: React.FunctionComponent<DefaultProps> = (props) => {
   const { data } = props;
 
   return (
-    <Layout>
+    <MainHeader>
       <div>
         This is Default 2 - example 1 Page.
       </div>
@@ -18,7 +18,7 @@ const Home: React.FunctionComponent<DefaultProps> = (props) => {
         <a>back to Page</a>
       </Link>
       {data}
-    </Layout>
+    </MainHeader>
   );
 };
 

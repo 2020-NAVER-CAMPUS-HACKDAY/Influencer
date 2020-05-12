@@ -1,23 +1,20 @@
 import React from 'react';
 import useStyles from 'components/AppBar/styles';
 import MaterialAppBar from '@material-ui/core/AppBar';
-import HamburgerMenu from 'svgs/HamburgerMenu';
 
+export interface BarProps {
+  isNotFixed?: boolean;
+  backgroundColor?: string;
+}
 
-const AppBar: React.FunctionComponent = (props) => {
+const AppBar: React.FunctionComponent<BarProps> = (props) => {
   const classes = useStyles(props);
+  const { children } = props;
 
   return (
   <MaterialAppBar className={classes.root}>
     <div className={classes.container}>
-      <div className={classes.logo}>
-        INFLUENCER
-      </div>
-      <div>
-        <button className={classes.button}>
-          <HamburgerMenu />
-        </button>
-      </div>
+      {children}
     </div>
   </MaterialAppBar>
   );
