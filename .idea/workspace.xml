@@ -171,6 +171,7 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -204,6 +205,28 @@
 =======
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="" />
 >>>>>>> Add Interaction Page and Swiper component
+=======
+    <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Influencer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Swiper/CardWrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/views/InteractionView/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Swiper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/interaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/interaction/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/views/Interaction/index.tsx" beforeDir="false" />
+    </list>
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,10 +240,14 @@
     </option>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1bocvaBgYB8uyUI2l20qaJnxaxy" />
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -265,6 +292,46 @@
   </component>
   <component name="RunManager">
 >>>>>>> Add Interaction Page and Swiper component
+=======
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/components/CardWrapper" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/components/CardWrapper" />
+      <recent name="$PROJECT_DIR$/client/components/Card" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -278,9 +345,13 @@
     <recent_temporary>
       <list>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <item itemvalue="npm.build" />
 =======
 >>>>>>> Add Interaction Page and Swiper component
+=======
+        <item itemvalue="npm.build" />
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -290,6 +361,9 @@
   </component>
   <component name="TaskManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
     <task active="true" id="Default" summary="Default task">
       <changelist id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="" />
       <created>1589302117963</created>
@@ -298,6 +372,7 @@
       <updated>1589302117963</updated>
       <workItem from="1589302119435" duration="10124000" />
     </task>
+<<<<<<< HEAD
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,76 +528,131 @@
       </breakpoints>
     </breakpoint-manager>
 =======
+=======
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1204" height="238" key="GridCell.Tab.0.bottom" timestamp="1589203047736">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom" timestamp="1589302114694">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+    <state width="1201" height="251" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485055" />
     <state width="1204" height="238" key="GridCell.Tab.0.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
-    <state width="1204" height="238" key="GridCell.Tab.0.center" timestamp="1589203047736">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1589211773512" />
+    <state width="1201" height="174" key="GridCell.Tab.0.center" timestamp="1589302114693">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="251" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
-    <state width="1204" height="238" key="GridCell.Tab.0.left" timestamp="1589203047735">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
+    <state width="1201" height="174" key="GridCell.Tab.0.left" timestamp="1589302114693">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="251" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485053" />
     <state width="1204" height="238" key="GridCell.Tab.0.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047735" />
-    <state width="1204" height="238" key="GridCell.Tab.0.right" timestamp="1589203047736">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1589211773510" />
+    <state width="1201" height="174" key="GridCell.Tab.0.right" timestamp="1589302114694">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+    <state width="1201" height="251" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
-    <state width="1204" height="238" key="GridCell.Tab.1.bottom" timestamp="1589203047738">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
+    <state width="1201" height="251" key="GridCell.Tab.1.bottom" timestamp="1589302114678">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.1.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114678" />
+    <state width="1201" height="251" key="GridCell.Tab.1.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485056" />
     <state width="1204" height="238" key="GridCell.Tab.1.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047738" />
-    <state width="1204" height="238" key="GridCell.Tab.1.center" timestamp="1589203047737">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.1.center" timestamp="1589302114676">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.1.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114676" />
+    <state width="1201" height="251" key="GridCell.Tab.1.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485055" />
     <state width="1204" height="238" key="GridCell.Tab.1.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047737" />
-    <state width="1204" height="238" key="GridCell.Tab.1.left" timestamp="1589203047737">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.1.left" timestamp="1589302114676">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.1.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114676" />
+    <state width="1201" height="251" key="GridCell.Tab.1.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485055" />
     <state width="1204" height="238" key="GridCell.Tab.1.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047737" />
-    <state width="1204" height="238" key="GridCell.Tab.1.right" timestamp="1589203047737">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.1.right" timestamp="1589302114677">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.1.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114677" />
+    <state width="1201" height="251" key="GridCell.Tab.1.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485056" />
     <state width="1204" height="238" key="GridCell.Tab.1.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047737" />
-    <state width="1204" height="238" key="GridCell.Tab.2.bottom" timestamp="1589203047739">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.2.bottom" timestamp="1589302114679">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.2.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114679" />
+    <state width="1201" height="251" key="GridCell.Tab.2.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485058" />
     <state width="1204" height="238" key="GridCell.Tab.2.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047739" />
-    <state width="1204" height="238" key="GridCell.Tab.2.center" timestamp="1589203047738">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.2.center" timestamp="1589302114678">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.2.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114678" />
+    <state width="1201" height="251" key="GridCell.Tab.2.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485057" />
     <state width="1204" height="238" key="GridCell.Tab.2.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047738" />
-    <state width="1204" height="238" key="GridCell.Tab.2.left" timestamp="1589203047738">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.2.left" timestamp="1589302114678">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.2.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114678" />
+    <state width="1201" height="251" key="GridCell.Tab.2.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485056" />
     <state width="1204" height="238" key="GridCell.Tab.2.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047738" />
-    <state width="1204" height="238" key="GridCell.Tab.2.right" timestamp="1589203047739">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.2.right" timestamp="1589302114679">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.2.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114679" />
+    <state width="1201" height="251" key="GridCell.Tab.2.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485057" />
     <state width="1204" height="238" key="GridCell.Tab.2.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047739" />
-    <state width="1204" height="238" key="GridCell.Tab.3.bottom" timestamp="1589203047741">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.3.bottom" timestamp="1589302114680">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.3.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114680" />
+    <state width="1201" height="251" key="GridCell.Tab.3.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485059" />
     <state width="1204" height="238" key="GridCell.Tab.3.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047741" />
-    <state width="1204" height="238" key="GridCell.Tab.3.center" timestamp="1589203047740">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.3.center" timestamp="1589302114680">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.3.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114680" />
+    <state width="1201" height="251" key="GridCell.Tab.3.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485059" />
     <state width="1204" height="238" key="GridCell.Tab.3.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047740" />
-    <state width="1204" height="238" key="GridCell.Tab.3.left" timestamp="1589203047739">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.3.left" timestamp="1589302114679">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.3.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114679" />
+    <state width="1201" height="251" key="GridCell.Tab.3.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485058" />
     <state width="1204" height="238" key="GridCell.Tab.3.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047739" />
-    <state width="1204" height="238" key="GridCell.Tab.3.right" timestamp="1589203047740">
-      <screen x="0" y="23" width="1440" height="807" />
+    <state width="1201" height="251" key="GridCell.Tab.3.right" timestamp="1589302114680">
+      <screen x="0" y="23" width="1440" height="799" />
     </state>
+    <state width="1201" height="251" key="GridCell.Tab.3.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114680" />
+    <state width="1201" height="251" key="GridCell.Tab.3.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485059" />
     <state width="1204" height="238" key="GridCell.Tab.3.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047740" />
+<<<<<<< HEAD
 >>>>>>> Add Interaction Page and Swiper component
+=======
+    <state x="343" y="235" key="IDE.errors.dialog" timestamp="1589302284527">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="343" y="235" key="IDE.errors.dialog/0.23.1440.799@0.23.1440.799" timestamp="1589302284527" />
+    <state x="430" y="146" width="670" height="676" key="search.everywhere.popup" timestamp="1589305283928">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="430" y="146" width="670" height="676" key="search.everywhere.popup/0.23.1440.799@0.23.1440.799" timestamp="1589305283928" />
+>>>>>>> Add Swiper Component skeleton code based on react-hammerjs
   </component>
 </project>
