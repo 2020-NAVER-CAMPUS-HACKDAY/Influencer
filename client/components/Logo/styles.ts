@@ -4,7 +4,7 @@ import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   logo: {
-    fontFamily: (props: LogoProps): string => (props.pageName === undefined ? 'Rajdhani' : 'Noto Sans KR'),
+    fontFamily: (props: LogoProps): string => (props.pageName ? 'Noto Sans KR' : 'Rajdhani'),
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: '25px',
