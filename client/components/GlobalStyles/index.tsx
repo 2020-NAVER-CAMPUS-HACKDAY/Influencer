@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { AppColor } from 'constant';
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -13,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     margin: 0;
     font-size: 16px;
+    background-color: ${AppColor.GREY};
   }
   #__next {
     height: 100%;

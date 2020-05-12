@@ -5,7 +5,7 @@ import AppBar from 'components/AppBar';
 import SVGButton from 'components/SVGButton';
 import HamburgerMenu from 'svgs/HamburgerMenu';
 import { AppColor } from 'constant';
-import Logo from 'components/Logo';
+import Label from 'components/Label';
 
 const MainHeader: React.FunctionComponent = (props) => {
   const { children } = props;
@@ -14,7 +14,7 @@ const MainHeader: React.FunctionComponent = (props) => {
   return (
     <div className={classes.layout}>
       <AppBar backgroundImage={AppColor.MAIN_HEADER}>
-        <Logo/>
+        <Label/>
         <SVGButton>
           <HamburgerMenu/>
         </SVGButton>

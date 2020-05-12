@@ -1,6 +1,6 @@
 import React from 'react';
 import AppBar from 'components/AppBar';
-import Logo from 'components/Logo';
+import Label from 'components/Label';
 import { AppColor } from 'constant';
 import SVGButton from 'components/SVGButton';
 import Direction from 'svgs/Direction';
@@ -15,7 +15,7 @@ const DetailHeader: React.FC<DetailHeaderProps> = (props) => (
         <SVGButton>
             <Direction/>
             </SVGButton>
-        <Logo pageName={props.productName}/>
+        <Label name={props.productName}/>
         <SVGButton>
             <HamburgerMenu/>
             </SVGButton>

@@ -1,8 +1,8 @@
-export const addCommaStringFromThreeCntNum = (num: number): string | undefined => {
+export const addCommaStringFromThreeCntNum = (num: number, language): string | undefined => {
   if (isNaN(num) || num < 0) {
     return undefined;
   }
-  return num?.toLocaleString(navigator.language, {
+  return num.toLocaleString(language, {
     minimumFractionDigits: 0,
   });
 };
