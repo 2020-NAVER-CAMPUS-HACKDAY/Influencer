@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import useStyles from './styles';
+import clsx from 'clsx';
 
 interface SVGButtonProps {
   className?: string;
