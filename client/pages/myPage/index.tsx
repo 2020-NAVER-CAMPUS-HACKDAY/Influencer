@@ -1,1 +1,1 @@
-export { default } from 'views/myPage';
+export { default } from 'views/likeList';
