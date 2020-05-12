@@ -39,8 +39,8 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
-		"typescript": "^3.8.3",
-		"string-replace-loader": "^2.3.0"
+		"string-replace-loader": "^2.3.0",
+		"typescript": "^3.8.3"
 	},
 	"scripts": {
 		"cpenv": "f() { cp ./env/.env.${1:-development}.local env/.env; } ; f",
