@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: '25px',
-    color: AppColor.WHITE,
+    color: (props: LogoProps): string => props.color ?? AppColor.WHITE,
   },
 });
 

@@ -1,12 +1,18 @@
 import React from 'react';
 import useStyles from './styles';
+import clsx from 'clsx';
 
-const SVGButton: React.FC = (props) => {
+interface SVGButtonProps {
+  className?: string;
+  handleClick?: ()=> void;
+};
+
+const SVGButton: React.FC<SVGButtonProps> = (props) => {
   const classes = useStyles();
-
+  const { className, handleClick, children } = props;
   return (
-      <button className={classes.button}>
-        {props.children}
+      <button className={clsx(classes.button, className)} onClick={handleClick}>
+        {children}
       </button>
   );
 };
