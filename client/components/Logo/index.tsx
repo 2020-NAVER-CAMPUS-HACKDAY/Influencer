@@ -3,6 +3,7 @@ import useStyles from './styles';
 
 export interface LogoProps {
   pageName?: string;
+  color?: string;
 }
 
 const Logo: React.FC<LogoProps> = (props) => {
