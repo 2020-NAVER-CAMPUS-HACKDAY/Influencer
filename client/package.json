@@ -7,11 +7,13 @@
 		"clsx": "^1.1.0",
 		"@types/react-redux": "^7.1.8",
 		"dotenv": "^8.2.0",
+		"hammerjs": "^2.0.8",
 		"immer": "^6.0.5",
 		"next": "^9.3.6",
 		"next-redux-wrapper": "^6.0.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-hammerjs": "^1.0.1",
 		"react-redux": "^7.2.0",
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.8",
@@ -22,6 +24,7 @@
 	},
 	"devDependencies": {
 		"@types/dotenv": "^8.2.0",
+		"@types/hammerjs": "^2.0.36",
 		"@types/jest": "^24.0.0",
 		"@types/material-ui": "^0.21.7",
 		"@types/next": "^9.0.0",
@@ -36,7 +39,8 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
-		"typescript": "^3.8.3"
+		"typescript": "^3.8.3",
+		"string-replace-loader": "^2.3.0"
 	},
 	"scripts": {
 		"cpenv": "f() { cp ./env/.env.${1:-development}.local env/.env; } ; f",

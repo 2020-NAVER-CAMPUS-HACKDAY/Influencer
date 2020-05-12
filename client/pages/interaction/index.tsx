@@ -1,1 +1,1 @@
-export { default } from 'views/interaction';
+export { default } from 'views/InteractionView';
