@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IProduct, IProductInputDTO } from '../interfaces/product';
+import { IProduct, IProductInputDTO } from '../interfaces';
 import {
   BadRequestError,
   ConflictError,
@@ -76,9 +76,9 @@ export default class ProductService {
     }
   }
 
-  public replace() {}
+  public replace() { }
 
-  public update() {}
+  public update() { }
 
-  public remove() {}
+  public remove() { }
 }

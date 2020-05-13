@@ -1,3 +1,4 @@
+import { IUser } from '../interfaces';
 import mongoose from 'mongoose';
 
 const User = new mongoose.Schema(
@@ -14,7 +15,7 @@ const User = new mongoose.Schema(
       {
         product_id: { type: String, required: true },
         categoryId: { type: String, required: true },
-        raing: { type: Number, required: true },
+        rating: { type: Number, required: true },
         updateDe: { type: Date, default: Date.now() }
       }
     ],
@@ -22,4 +23,4 @@ const User = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<& mongoose.Document>('Product', Product);
+export default mongoose.model<IUser & mongoose.Document>('User', User);
