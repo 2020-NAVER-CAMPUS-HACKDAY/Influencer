@@ -4,6 +4,7 @@ import LikeListBar from 'components/LikeListBar';
 import LikeListItem from 'components/LikeListItem';
 import likeListDummmyDatas from 'views/likeList/likeListDummyData';
 import { orderBy } from 'lodash';
+import TopButton from 'components/TopButton';
 
 const likeListItemList = orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
   .map((likeItem) => (
@@ -15,6 +16,7 @@ const LikeList: React.FC = () => (
       <LikeListHeader/>
       <LikeListBar/>
       {likeListItemList}
+      <TopButton/>
     </>
 );
 

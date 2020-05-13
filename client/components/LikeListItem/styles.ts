@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
   productPrice: {
     fontWeight: 'bold',
-  }
+  },
 });
 
 export default useStyles;
