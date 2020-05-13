@@ -13,7 +13,7 @@ const User = new mongoose.Schema(
     },
     prefer: [
       {
-        product_id: { type: String, required: true },
+        productNo: { type: String, required: true },
         categoryId: { type: String, required: true },
         rating: { type: Number, required: true },
         updateDe: { type: Date, default: Date.now() }
@@ -23,4 +23,4 @@ const User = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IUser & mongoose.Document>('User', User);
+export default mongoose.model<IUser & mongoose.Document>('User', User, 'User');

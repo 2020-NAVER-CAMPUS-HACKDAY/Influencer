@@ -13,8 +13,13 @@ export default async ({ expressApp }: { expressApp: Application }) => {
     model: require('../models/product').default,
   };
 
+  const userModel = {
+    name: 'userModel',
+    model: require('../models/user').default,
+  }
+
   await dependencyInjectorLoader({
-    models: [productModel],
+    models: [productModel, userModel],
   });
   Logger.info('Dependency Injector loaded');
 

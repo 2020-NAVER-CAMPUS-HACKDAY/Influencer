@@ -17,5 +17,6 @@ export default {
     prefix: '/api',
   },
   personaId: process.env.PERSONA_ID,
+  personaNm: process.env.PERSONA_NM,
   clickLog: process.env.CLICK_LOG
 };

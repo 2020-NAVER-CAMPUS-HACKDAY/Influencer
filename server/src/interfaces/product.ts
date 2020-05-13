@@ -1,8 +1,8 @@
 export interface IProduct {
   _id: string;
   name: string;
-  productId: string;
-  categoryId: string;
+  productNo: string;
+  category: Object;
 }
 
 export interface IProductInputDTO {

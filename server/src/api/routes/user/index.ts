@@ -4,20 +4,24 @@ import winston from 'winston';
 import UserService from '../../../services/user';
 
 const userRoute = Router();
-const logger = Container.get('logger') as winston.Logger;
 
 export default (routes: Router) => {
   routes.use('/user', userRoute);
 
   userRoute.put(
-    '/click/:productId',
+    '/click/:productNo',
     async (req: Request, res: Response, next: NextFunction) => {
-      const { productId } = req.params;
-      logger.debug(`PUT /user endpoint with query ${productId}`);
+      const logger = Container.get('logger') as winston.Logger;
+      const { productNo } = req.params;
+      logger.debug(`PUT /user endpoint with query ${productNo}`);
 
       try {
         const userServiceInstance = Container.get(UserService);
-        await userServiceInstance.clickLog(productId);
+        await userServiceInstance.clickLog(productNo);
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
       }
     }
   );

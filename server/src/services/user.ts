@@ -8,6 +8,7 @@ import {
   ConflictError,
   NotFoundError
 } from '../modules/errors';
+import user from '../api/routes/user';
 
 @Service()
 export default class UserService {
@@ -22,37 +23,39 @@ export default class UserService {
   }
 
   public async clickLog(
-    productId: string
+    productNo: string
   ): Promise<void> {
     try {
-      const userRecord = this.userModel.findById(config.personaId);
-      const productRecore = this.productModel.findById(productId);
+      const userRecord = await this.userModel.findOne({ userName: config.personaNm });
+      const productRecord = await this.productModel.findById(productNo);
 
       if (!userRecord) throw new NotFoundError('User is not exist');
-      if (!productRecore) throw new NotFoundError('Product is not exist');
+      if (!productRecord) throw new NotFoundError('Product is not exist');
 
-      const user = (await userRecord).toObject();
-      const product = (await productRecore).toObject();
 
-      const idx = user.prefer.findIndex(i => i.product_id === product.productId);
-      if (idx === undefined) {
-        userRecord.update({
-          prefer: user.prefer.concat({
-            product_id: product.productId,
-            categoryId: product.categoryId,
-            rating: config.clickLog
-          })
-        });
+      // this.logger.info(productRecord.category);
 
-      } else {
-        user.prefer[idx].rating += config.clickLog;
-        userRecord.update({
-          prefer: user.prefer
-        });
-      }
+      // const idx = userRecord.prefer.findIndex((p) => console.log(p));
+      // console.log(idx);
+
+      // if (idx === undefined) {
+      //   userRecord.update({
+      //     prefer: userRecord.prefer.concat({
+      //       productNo: productRecord.productNo,
+      //       categoryId: productRecord.category.categoryId,
+      //       rating: config.clickLog
+      //     })
+      //   });
+
+      // } else {
+      //   userRecord.prefer[idx].rating += config.clickLog;
+      //   userRecord.update({
+      //     prefer: userRecord.prefer
+      //   });
+      // }
 
     } catch (e) {
-      this.logger.error(e);
+      // this.logger.error(e);
       throw e;
     }
   }
