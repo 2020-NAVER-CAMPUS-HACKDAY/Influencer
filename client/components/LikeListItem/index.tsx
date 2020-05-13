@@ -6,6 +6,8 @@ import Label from 'components/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
+import SVGButton from 'components/SVGButton';
+import Delete from 'svgs/Delete';
 
 interface LikeListItemProps {
   item: LikeListProps;
@@ -44,7 +46,7 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
                     image={imageLink}
                     resize={{ width: 95, height: 95 }}
       />
-      <Box className={clsx(classes.spacing, classes.textWrapper)}>
+      <Box className={clsx(classes.spacing, classes.columnDirection)}>
         <Label className={clsx(classes.productText, classes.text)}
                fontSize={18}
                color={AppColor.BLACK}
@@ -66,6 +68,9 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
                name={category.toString()}
         />
       </Box>
+      <SVGButton className={classes.columnDirection}>
+        <Delete />
+      </SVGButton>
     </Box>
   );
 };

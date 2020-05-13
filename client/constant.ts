@@ -7,6 +7,7 @@ export const AppColor = {
   DETAIL_HEADER: '#8452C7',
   BLACK20: 'rgba(0, 0, 0, 0.2)',
   BLACK70: 'rgba(0, 0, 0, 0.7)',
+  BLACK50: 'rgba(0, 0, 0, 0.5)',
   GREY: '#E9ECEF',
 };
 

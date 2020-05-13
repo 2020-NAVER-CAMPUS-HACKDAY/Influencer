@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   imageWrapper: {
     borderRadius: 20,
   },
-  textWrapper: {
+  columnDirection: {
     display: 'flex',
     flexDirection: 'column',
   },
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
   productPrice: {
     fontWeight: 'bold',
-  },
+  }
 });
 
 export default useStyles;
