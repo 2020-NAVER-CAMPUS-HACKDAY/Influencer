@@ -1,9 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
 import MainHeader from 'components/MainHeader';
+import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
+import SelectCategory from 'components/SelectCategory';
+
+interface Category{
+  id: string;
+  name: string;
+}
 
 interface DefaultProps extends UserProps, UserMethods {
   data: string;
@@ -11,18 +17,31 @@ interface DefaultProps extends UserProps, UserMethods {
 
 const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
 
-const Home: React.FC<DefaultProps> = (props) => {
+const MyCategory: React.FC<DefaultProps> = (props) => {
   const { data, setUser } = props;
   const setUserData = (): void => setUser(userData);
+  const [category, setCategory] = useState<Category[]>([]);
+  const dummyData = myCategoryViewDataArray;
+
+  const categoryAddHandler = () => (e: React.MouseEvent<HTMLInputElement>) => {
+    setCategory([
+      ...category,
+      {
+        id: 'newId',
+        name: 'newName',
+      },
+    ]);
+  };
+
   return (
     <MainHeader>
       <div onClick={setUserData}>
         This is my Category setting page.
       </div>
-      <Link href="/routeExample/example1">
-        <a>go to Next Page</a>
-      </Link>
-      {data}
+      <SelectCategory
+        dummyData = {dummyData}
+        categoryAddHandler = {categoryAddHandler}
+      />
     </MainHeader>
   );
 };
@@ -34,4 +53,4 @@ export default connect<UserProps, void>(
   (dispatch) => ({
     setUser: bindActionCreators(AuthActions.setUser, dispatch),
   }),
-)(Home);
+)(MyCategory);
