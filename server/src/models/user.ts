@@ -13,14 +13,14 @@ const User = new mongoose.Schema(
     },
     prefer: [
       {
-        productNo: { type: String, required: true },
+        productNo: { type: Number, required: true },
         categoryId: { type: String, required: true },
         rating: { type: Number, required: true },
         updateDe: { type: Date, default: Date.now() }
       }
-    ],
+    ]
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 export default mongoose.model<IUser & mongoose.Document>('User', User, 'User');

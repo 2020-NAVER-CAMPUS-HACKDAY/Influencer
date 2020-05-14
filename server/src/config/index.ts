@@ -18,5 +18,5 @@ export default {
   },
   personaId: process.env.PERSONA_ID,
   personaNm: process.env.PERSONA_NM,
-  clickLog: process.env.CLICK_LOG
+  clickLog: 0.3
 };

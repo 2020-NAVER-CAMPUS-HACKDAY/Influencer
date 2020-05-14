@@ -1,4 +1,4 @@
-import Container, { Service, Inject, ContainerInstance } from 'typedi'
+import { Service, Inject, ContainerInstance } from 'typedi'
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
 import { IUser, IProduct } from '../interfaces';
@@ -8,7 +8,6 @@ import {
   ConflictError,
   NotFoundError
 } from '../modules/errors';
-import user from '../api/routes/user';
 
 @Service()
 export default class UserService {
@@ -27,35 +26,45 @@ export default class UserService {
   ): Promise<void> {
     try {
       const userRecord = await this.userModel.findOne({ userName: config.personaNm });
-      const productRecord = await this.productModel.findById(productNo);
+      const productRecord = await this.productModel.findOne({ _id: productNo });
 
       if (!userRecord) throw new NotFoundError('User is not exist');
       if (!productRecord) throw new NotFoundError('Product is not exist');
 
+      let users = userRecord.toObject();
+      let products = productRecord.toObject();
 
-      // this.logger.info(productRecord.category);
+      const idx = users.prefer.findIndex((p: any, i: any) => {
+        p.productNo === parseInt(productNo);
+        return i;
+      });
 
-      // const idx = userRecord.prefer.findIndex((p) => console.log(p));
-      // console.log(idx);
+      if (idx < 0) {
+        const result = await userRecord.update({
+          $push: {
+            prefer: {
+              productNo: products.productNo,
+              categoryId: products.category.categoryId,
+              rating: config.clickLog
+            }
+          }
+        });
+        return result;
+      }
 
-      // if (idx === undefined) {
-      //   userRecord.update({
-      //     prefer: userRecord.prefer.concat({
-      //       productNo: productRecord.productNo,
-      //       categoryId: productRecord.category.categoryId,
-      //       rating: config.clickLog
-      //     })
-      //   });
+      if (users.prefer[idx].rating + config.clickLog <= 5) {
+        users.prefer[idx].rating += config.clickLog;
 
-      // } else {
-      //   userRecord.prefer[idx].rating += config.clickLog;
-      //   userRecord.update({
-      //     prefer: userRecord.prefer
-      //   });
-      // }
+        const result = await userRecord.update({
+          prefer: users.prefer
+        });
+        return result;
+      }
+
+      return;
 
     } catch (e) {
-      // this.logger.error(e);
+      this.logger.error(e);
       throw e;
     }
   }

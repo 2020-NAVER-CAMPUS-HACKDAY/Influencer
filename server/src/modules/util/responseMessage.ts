@@ -12,4 +12,8 @@ export default {
   ALREADY_ID: '존재하는 ID 입니다.',
   NO_USER: '존재하지 않는 유저 id 입니다.',
   MISS_MATCH_PW: '비밀번호가 일치하지 않습니다',
+
+  // LOG
+  CLICK_LOG_SUCCESS: '클릭로그 성공',
+  CLICK_LOG_FAIL: '클릭로그 실패',
 };
