@@ -18,7 +18,7 @@ const MainHeader: React.FunctionComponent = (props) => {
         <SVGButton>
           <HamburgerMenu/>
         </SVGButton>
-        </AppBar>
+      </AppBar>
       <Content>{children}</Content>
     </div>
   );

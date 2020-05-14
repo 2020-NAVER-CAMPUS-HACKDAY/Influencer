@@ -10,13 +10,13 @@ const Card: React.FC = (props) => {
   const [rotation, setRotation] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
 
-  function handlePan(event) {
+  function handlePan(event): void {
     setIsMoving(true);
     setOffset([event.deltaX, event.deltaY]);
     setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
   }
 
-  function handlePanEnd(event) {
+  function handlePanEnd(event): void {
     let moveOutWidth = 0;
     let keep = false;
     let [endX, toX, endY, toY] = [0, 0, 0, 0];
@@ -35,8 +35,8 @@ const Card: React.FC = (props) => {
     }
   }
 
-  function handleDoubleTap(event) {
-    alert('You Liked this Product!');
+  function handleDoubleTap(): void {
+    // alert('You Liked this Product!');
     setOffset([0, -(document.body.clientWidth * 0.3) - 100]);
     setRotation(80);
   }

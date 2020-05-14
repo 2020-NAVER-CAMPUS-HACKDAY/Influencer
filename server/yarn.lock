@@ -284,6 +284,13 @@
   dependencies:
     "@types/superagent" "*"
 
+"@types/swagger-ui-express@4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@types/swagger-ui-express/-/swagger-ui-express-4.1.2.tgz#cfc884904a104c3193f46f423d04ee0416be1ef4"
+  dependencies:
+    "@types/express" "*"
+    "@types/serve-static" "*"
+
 "@types/winston@2.4.4":
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.4.4.tgz#48cc744b7b42fad74b9a2e8490e0112bd9a3d08d"
@@ -2502,6 +2509,16 @@ supports-color@^7.1.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-7.1.0.tgz#68e32591df73e25ad1c4b49108a2ec507962bfd1"
   dependencies:
     has-flag "^4.0.0"
+
+swagger-ui-dist@^3.18.1:
+  version "3.25.2"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.25.2.tgz#d973f67051fe7e0c0f118142816e7fd523820a13"
+
+swagger-ui-express@4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.4.tgz#8b814ad998b850a1cf90e71808d6d0a8a8daf742"
+  dependencies:
+    swagger-ui-dist "^3.18.1"
 
 systeminformation@^4.23.3:
   version "4.26.1"

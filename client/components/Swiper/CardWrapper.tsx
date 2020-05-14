@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useStyles from 'components/Swiper/styles';
 
 const CardWrapper: React.FC = (props) => {
   const { children } = props;
   const classes = useStyles(props);
 
-  function setCards() {
+  function setCards(): void {
     // : 예를 들어 10개 데이터 받으면, z-index와 opacity 등등으로 정렬함
   }
 
