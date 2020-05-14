@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from 'components/Swiper/styles';
 
-const SwiperCardWrapper: React.FC = (props) => {
+const CardWrapper: React.FC = (props) => {
   const { children } = props;
   const classes = useStyles(props);
 
@@ -14,6 +14,7 @@ const SwiperCardWrapper: React.FC = (props) => {
   return (
     <div className="container">
       <div className="cards_container">
+        {children}
         {/* Render cards => card container 리턴 (예 : 10개 카드 데이터) */}
         {/* 하위 Card component에선 그것들 가지고 인터랙션 놀이함 */}
       </div>
@@ -21,4 +22,4 @@ const SwiperCardWrapper: React.FC = (props) => {
   );
 };
 
-export default SwiperCardWrapper;
+export default CardWrapper;

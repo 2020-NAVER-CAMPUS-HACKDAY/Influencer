@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Layout from 'components/Layout';
-import SwiperCard from 'components/Swiper/Card';
+import Swiper from 'components/Swiper';
 
 const Interaction: React.FC = (props) => {
   // const { children } = props;
@@ -10,7 +10,7 @@ const Interaction: React.FC = (props) => {
       <div>
         Interaction Page.
       </div>
-      <SwiperCard />
+      <Swiper />
     </Layout>
   );
 };

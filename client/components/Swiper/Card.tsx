@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import useStyles from 'components/Swiper/styles';
 import Hammer from 'react-hammerjs';
 
-export interface CardProps {
-  // xMulti?: number;
-  // yMulti?: number;
-  // rotate?: number;
-}
+// export interface CardProps {
+//   // xMulti?: number;
+//   // yMulti?: number;
+//   // rotate?: number;
+// }
 
-const SwiperCard: React.FC<CardProps> = (props) => {
+const Card: React.FC = (props) => {
   const { children } = props;
   const classes = useStyles(props);
 
@@ -74,16 +74,16 @@ const SwiperCard: React.FC<CardProps> = (props) => {
   }
 
   return (
-    <div>
-      <Hammer
-        onPan={handlePan}
-        onPanEnd={handlePanEnd}
-        onDoubleTap={handleDoubleTap}
-      >
-        <div className={classes.card}>hello</div>
-      </Hammer>
-    </div>
+    <Hammer
+      onPan={handlePan}
+      onPanEnd={handlePanEnd}
+      onDoubleTap={handleDoubleTap}
+    >
+      <div className={classes.card}>
+        {children}
+      </div>
+    </Hammer>
   );
 };
 
-export default SwiperCard;
+export default Card;
