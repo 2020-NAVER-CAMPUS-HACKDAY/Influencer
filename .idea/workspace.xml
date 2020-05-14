@@ -171,24 +171,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Influencer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/Swiper/CardWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/views/InteractionView/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Swiper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/interaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/interaction/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/views/Interaction/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,31 +271,35 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1201" height="174" key="GridCell.Tab.0.bottom" timestamp="1589302114694">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1201" height="203" key="GridCell.Tab.0.bottom" timestamp="1589336137241">
+      <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+    <state width="1201" height="203" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1589336137241" />
     <state width="1201" height="251" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485055" />
     <state width="1204" height="238" key="GridCell.Tab.0.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1589211773512" />
-    <state width="1201" height="174" key="GridCell.Tab.0.center" timestamp="1589302114693">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1201" height="203" key="GridCell.Tab.0.center" timestamp="1589336137241">
+      <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="203" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1589336137241" />
     <state width="1201" height="251" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
-    <state width="1201" height="174" key="GridCell.Tab.0.left" timestamp="1589302114693">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1201" height="203" key="GridCell.Tab.0.left" timestamp="1589336137240">
+      <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="203" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1589336137240" />
     <state width="1201" height="251" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485053" />
     <state width="1204" height="238" key="GridCell.Tab.0.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047735" />
     <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1589211773510" />
-    <state width="1201" height="174" key="GridCell.Tab.0.right" timestamp="1589302114694">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1201" height="203" key="GridCell.Tab.0.right" timestamp="1589336137241">
+      <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+    <state width="1201" height="203" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1589336137241" />
     <state width="1201" height="251" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
@@ -393,5 +383,16 @@
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup/0.23.1440.799@0.23.1440.799" timestamp="1589305283928" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/components/Swiper/CardWrapper.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
