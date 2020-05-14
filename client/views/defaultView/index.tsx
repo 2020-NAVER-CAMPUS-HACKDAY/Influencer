@@ -16,7 +16,7 @@ const Home: React.FC<DefaultProps> = (props) => {
   const setUserData = (): void => setUser(userData);
   return (
     <MainHeader>
-      <div>
+      <div onClick={setUserData}>
         This is Default Page.
       </div>
       <Link href="/routeExample/example1">
@@ -27,7 +27,7 @@ const Home: React.FC<DefaultProps> = (props) => {
   );
 };
 
-export default connect<UserProps, UserMethods, void>(
+export default connect<UserProps, void>(
   (state: UserProps) => ({
     user: state.user,
   }),

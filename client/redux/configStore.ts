@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
+import { createWrapper } from 'next-redux-wrapper';
 import { rootReducer } from './ducks';
 
 // TODO(daeun): specify stricter types
@@ -15,4 +16,4 @@ const configStore = (): Store => {
   return store;
 };
 
-export default configStore;
+export default createWrapper(configStore, { debug: true });
