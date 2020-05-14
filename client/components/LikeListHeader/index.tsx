@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AppBar from 'components/AppBar';
 import { AppColor } from 'constant';
 import Logo from 'components/Logo';
