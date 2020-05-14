@@ -20,22 +20,28 @@ const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
 const MyCategory: React.FC<DefaultProps> = (props) => {
   const { data, setUser } = props;
   const setUserData = (): void => setUser(userData);
-  const [category, setCategory] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const dummyData = myCategoryViewDataArray;
 
   useEffect(() => {
-    console.log(category);
+    console.log(categories);
   });
 
   const categoryAddHandler = (id: string) => {
-    console.log(id);
-    setCategory([
-      ...category,
+    console.log(`ADD: ${id}`);
+    setCategories([
+      ...categories,
       {
         id,
         name: 'newName',
       },
     ]);
+  };
+
+  const categoryDeleteHandler = (id: string) => {
+    console.log(`DELETE: ${id}`);
+    const newCategories = categories.filter((category) => category.id !== id);
+    setCategories(newCategories);
   };
 
   return (
@@ -46,6 +52,7 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
       <SelectCategory
         dummyData = {dummyData}
         categoryAddHandler = {categoryAddHandler}
+        categoryDeleteHandler = {categoryDeleteHandler}
       />
     </MainHeader>
   );
