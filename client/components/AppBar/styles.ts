@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   container: {
     padding: '0 1.5rem',
     display: 'flex',
-    height: '3.5rem',
+    height: (props: BarProps): string => props.height ?? '3.5rem',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
