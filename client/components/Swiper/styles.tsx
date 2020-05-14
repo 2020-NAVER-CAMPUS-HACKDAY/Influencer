@@ -31,6 +31,11 @@ const useStyles = makeStyles({
     transition: 'none',
     cursor: 'grabbing',
   },
+  temp: {
+    position: 'fixed',
+    top: '500px',
+    left: '500px',
+  },
 });
 
 export default useStyles;

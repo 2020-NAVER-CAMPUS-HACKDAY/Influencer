@@ -3,7 +3,14 @@ import useStyles from 'components/Swiper/styles';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
-const Card: React.FC = (props) => {
+export interface CardProps {
+  data: string;
+  onSwipeLeft: (string) => void;
+  onSwipeRight: (string) => void;
+  onDoubleTap: (string) => void;
+}
+
+const Card: React.FC<CardProps> = (props) => {
   const { children } = props;
   const classes = useStyles(props);
   const [offset, setOffset] = useState([0, 0]);
@@ -32,6 +39,11 @@ const Card: React.FC = (props) => {
       toY = event.deltaY > 0 ? endY : -endY;
       setOffset([toX, toY + event.deltaY]);
       setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
+      if (toX < 0) {
+        props.onSwipeLeft(props.data);
+      } else {
+        props.onSwipeRight(props.data);
+      }
     }
   }
 
@@ -39,6 +51,7 @@ const Card: React.FC = (props) => {
     // alert('You Liked this Product!');
     setOffset([0, -(document.body.clientWidth * 0.3) - 100]);
     setRotation(80);
+    props.onDoubleTap(props.data);
   }
 
   return (
