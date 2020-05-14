@@ -61,7 +61,11 @@ export default class UserService {
         return result;
       }
 
-      return;
+      users.prefer[idx].rating = 5.0;
+      const result = await userRecord.update({
+        prefer: users.prefer
+      });
+      return result;
 
     } catch (e) {
       this.logger.error(e);
