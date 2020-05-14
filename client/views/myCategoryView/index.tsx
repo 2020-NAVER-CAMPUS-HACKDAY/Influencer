@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
@@ -18,28 +18,22 @@ interface DefaultProps extends UserProps, UserMethods {
 const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
 
 const MyCategory: React.FC<DefaultProps> = (props) => {
-  const { data, setUser } = props;
+  const { setUser } = props;
   const setUserData = (): void => setUser(userData);
   const [categories, setCategories] = useState<Category[]>([]);
   const dummyData = myCategoryViewDataArray;
 
-  useEffect(() => {
-    console.log(categories);
-  });
-
-  const categoryAddHandler = (id: string) => {
-    console.log(`ADD: ${id}`);
+  const categoryAddHandler = (id: string, name: string) => {
     setCategories([
       ...categories,
       {
         id,
-        name: 'newName',
+        name,
       },
     ]);
   };
 
   const categoryDeleteHandler = (id: string) => {
-    console.log(`DELETE: ${id}`);
     const newCategories = categories.filter((category) => category.id !== id);
     setCategories(newCategories);
   };
