@@ -172,6 +172,7 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -180,6 +181,12 @@
 >>>>>>> Add Interaction Page and Swiper component
 =======
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
+=======
+    <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
       <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/Influencer.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
@@ -198,8 +205,13 @@
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/interaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/interaction/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/views/Interaction/index.tsx" beforeDir="false" />
+<<<<<<< HEAD
     </list>
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
+    </list>
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,13 +226,19 @@
   </component>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1bocvaBgYB8uyUI2l20qaJnxaxy" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -259,6 +277,7 @@
       <envs />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
 =======
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -305,6 +324,8 @@
       <method v="2" />
     </configuration>
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -319,12 +340,16 @@
       <list>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <item itemvalue="npm.build" />
 =======
 >>>>>>> Add Interaction Page and Swiper component
 =======
         <item itemvalue="npm.build" />
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
+=======
+        <item itemvalue="npm.build" />
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -335,8 +360,11 @@
   <component name="TaskManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <task active="true" id="Default" summary="Default task">
       <changelist id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="" />
       <created>1589302117963</created>
@@ -346,11 +374,18 @@
       <workItem from="1589302119435" duration="10124000" />
     </task>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
   <component name="Vcs.Log.History.Properties">
     <option name="SHOW_OTHER_BRANCHES" value="true" />
     <option name="COLUMN_ORDER">
@@ -362,6 +397,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
@@ -369,6 +409,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <state x="373" y="123" width="967" height="594" key="DiffContextDialog" timestamp="1589476147931">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
@@ -402,6 +446,7 @@
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
     <state width="1201" height="203" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1589336137241" />
+<<<<<<< HEAD
     <state width="1201" height="251" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
@@ -515,6 +560,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+=======
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <state width="1201" height="174" key="GridCell.Tab.0.bottom" timestamp="1589302114694">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
@@ -540,6 +588,10 @@
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+<<<<<<< HEAD
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <state width="1201" height="251" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
@@ -616,16 +668,47 @@
     <state width="1201" height="251" key="GridCell.Tab.3.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485059" />
     <state width="1204" height="238" key="GridCell.Tab.3.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047740" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Add Interaction Page and Swiper component
 =======
+=======
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <state x="343" y="235" key="IDE.errors.dialog" timestamp="1589302284527">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="343" y="235" key="IDE.errors.dialog/0.23.1440.799@0.23.1440.799" timestamp="1589302284527" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <state x="660" y="124" key="VCS.ChangeListViewerDialog" timestamp="1589475995271">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="660" y="124" key="VCS.ChangeListViewerDialog/0.23.1440.799@0.23.1440.799" timestamp="1589475995271" />
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup" timestamp="1589305283928">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup/0.23.1440.799@0.23.1440.799" timestamp="1589305283928" />
+<<<<<<< HEAD
 >>>>>>> Add Swiper Component skeleton code based on react-hammerjs
   </component>
+=======
+  </component>
+<<<<<<< HEAD
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/components/Swiper/CardWrapper.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
+>>>>>>> 1b2bcb44f6d0380f75bfe267812478e7eb4f7950
 </project>
