@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from 'components/Swiper/styles';
 import Hammer from 'react-hammerjs';
+import clsx from 'clsx';
 
 const Card: React.FC = (props) => {
   const { children } = props;
@@ -10,11 +11,9 @@ const Card: React.FC = (props) => {
   const [isMoving, setIsMoving] = useState(false);
 
   function handlePan(event) {
-    if (event.deltaX <= 0 || event.deltaX >= 0) {
-      setIsMoving(true);
-      setOffset([event.deltaX, event.deltaY]);
-      setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
-    }
+    setIsMoving(true);
+    setOffset([event.deltaX, event.deltaY]);
+    setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
   }
 
   function handlePanEnd(event) {
@@ -22,19 +21,17 @@ const Card: React.FC = (props) => {
     let keep = false;
     let [endX, toX, endY, toY] = [0, 0, 0, 0];
     setIsMoving(false);
-    if (event.deltaX <= 0 || event.deltaX >= 0) {
-      keep = Math.abs(event.deltaX) < 300;
-      if (keep) {
-        event.target.style.transform = '';
-      } else {
-        moveOutWidth = document.body.clientWidth;
-        endX = event.velocityX > 1 ? Math.abs(event.velocityX) * moveOutWidth : moveOutWidth;
-        toX = event.deltaX > 0 ? endX : -endX;
-        endY = Math.abs(event.velocityY) * moveOutWidth;
-        toY = event.deltaY > 0 ? endY : -endY;
-        setOffset([toX, toY + event.deltaY]);
-        setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
-      }
+    keep = Math.abs(event.deltaX) < 300;
+    if (keep) {
+      event.target.style.transform = '';
+    } else {
+      moveOutWidth = document.body.clientWidth;
+      endX = event.velocityX > 1 ? Math.abs(event.velocityX) * moveOutWidth : moveOutWidth;
+      toX = event.deltaX > 0 ? endX : -endX;
+      endY = Math.abs(event.velocityY) * moveOutWidth;
+      toY = event.deltaY > 0 ? endY : -endY;
+      setOffset([toX, toY + event.deltaY]);
+      setRotation((event.deltaX * 0.03) * (event.deltaY / 80));
     }
   }
 
@@ -51,9 +48,8 @@ const Card: React.FC = (props) => {
       onDoubleTap={handleDoubleTap}
     >
       <div
-        className={classes.card}
+        className={clsx(classes.card, isMoving && classes.card_moving)}
         style={{
-          cursor: (isMoving ? 'grabbing' : 'grab'),
           transform: `translate(${offset[0]}px, ${offset[1]}px) rotate(${rotation}deg)`,
         }}>
         {children}
