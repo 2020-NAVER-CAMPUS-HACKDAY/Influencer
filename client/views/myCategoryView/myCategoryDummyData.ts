@@ -12,4 +12,8 @@ export const myCategoryViewDataArray: Categories[] = [
     id: '600',
     name: '남성의류',
   },
+  {
+    id: '700',
+    name: '아기의류',
+  },
 ];

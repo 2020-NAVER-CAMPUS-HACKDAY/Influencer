@@ -7,11 +7,11 @@ interface Category{
 
 interface SelectCategoryProp {
   dummyData: Category[];
-  categoryAddHandler: () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  categoryAddHandler: (key: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
-  const { dummyData } = props;
+  const { dummyData, categoryAddHandler } = props;
   const categoryElements = dummyData.map((data) => {
     const { id, name } = data;
 
@@ -22,7 +22,8 @@ const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
 
   return (
     <>
-    {categoryElements}
+      {categoryElements}
+      <button onClick={categoryAddHandler('1string')} >👏</button>
     </>
   );
 };

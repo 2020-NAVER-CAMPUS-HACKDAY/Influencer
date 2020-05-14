@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
@@ -23,7 +23,12 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
   const [category, setCategory] = useState<Category[]>([]);
   const dummyData = myCategoryViewDataArray;
 
-  const categoryAddHandler = () => (e: React.MouseEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    console.log(category);
+  });
+
+  const categoryAddHandler = (key: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(key);
     setCategory([
       ...category,
       {
