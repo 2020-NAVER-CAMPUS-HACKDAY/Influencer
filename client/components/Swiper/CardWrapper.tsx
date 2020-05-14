@@ -10,7 +10,6 @@ const CardWrapper: React.FC = (props) => {
   }
 
   useEffect(() => {
-    // componentDidMount, componentDidUpdate
     setCards();
   });
 
