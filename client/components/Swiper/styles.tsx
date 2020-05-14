@@ -2,15 +2,29 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    marginTop: '200px', // 임시
+  },
   card: {
     width: '300px',
     height: '300px',
     backgroundColor: AppColor.WHITE,
-    border: '1px solid #EAEAEA',
+    border: `2px solid ${AppColor.PURPLE}`,
     borderRadius: '10px',
+    position: 'absolute',
+    overflow: 'hidden',
+    willChange: 'transform',
+    transition: 'all 0.3s ease-in-out',
+    cursor: 'grab',
   },
-  product: {
-    color: 'red',
+  card_moving: {
+    transition: 'none',
+    cursor: 'grabbing',
   },
 });
 
