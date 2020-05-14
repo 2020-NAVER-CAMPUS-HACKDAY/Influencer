@@ -6,7 +6,7 @@ const CardWrapper: React.FC = (props) => {
   const classes = useStyles(props);
 
   function setCards(): void {
-    // : 예를 들어 10개 데이터 받으면, z-index와 opacity 등등으로 정렬함
+    // : 예를 들어 10개 데이터 받으면, z-index와 opacity 등등 적용해서 정렬함
   }
 
   useEffect(() => {
@@ -14,8 +14,10 @@ const CardWrapper: React.FC = (props) => {
   });
 
   return (
-    <div className={classes.container}>
-      {children}
+    <div className={classes.containerWrapper}>
+      <div className={classes.container}>
+        {children}
+      </div>
     </div>
   );
 };

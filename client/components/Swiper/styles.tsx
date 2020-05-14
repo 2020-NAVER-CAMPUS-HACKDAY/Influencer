@@ -2,6 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
+  containerWrapper: {
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
