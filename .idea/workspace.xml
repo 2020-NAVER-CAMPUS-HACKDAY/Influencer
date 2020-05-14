@@ -171,10 +171,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,6 +261,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
@@ -271,6 +279,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="373" y="123" width="967" height="594" key="DiffContextDialog" timestamp="1589476147931">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="373" y="123" width="967" height="594" key="DiffContextDialog/0.23.1440.799@0.23.1440.799" timestamp="1589476147931" />
     <state width="1201" height="203" key="GridCell.Tab.0.bottom" timestamp="1589336137241">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
@@ -379,6 +391,10 @@
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="343" y="235" key="IDE.errors.dialog/0.23.1440.799@0.23.1440.799" timestamp="1589302284527" />
+    <state x="660" y="124" key="VCS.ChangeListViewerDialog" timestamp="1589475995271">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="660" y="124" key="VCS.ChangeListViewerDialog/0.23.1440.799@0.23.1440.799" timestamp="1589475995271" />
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup" timestamp="1589305283928">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
