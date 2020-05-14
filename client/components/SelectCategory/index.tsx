@@ -1,4 +1,5 @@
 import React from 'react';
+import CategoryBox from 'components/CategoryBox';
 
 interface Category{
   id: string;
@@ -7,23 +8,28 @@ interface Category{
 
 interface SelectCategoryProp {
   dummyData: Category[];
-  categoryAddHandler: (key: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  categoryAddHandler: (key: string) => void;
 }
 
 const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
   const { dummyData, categoryAddHandler } = props;
+
   const categoryElements = dummyData.map((data) => {
     const { id, name } = data;
 
     return (
-      <div key={id}>{name}</div>
+      <CategoryBox
+        key={id}
+        id={id}
+        name={name}
+        categoryAddHandler={categoryAddHandler}
+      />
     );
   });
 
   return (
     <>
-      {categoryElements}
-      <button onClick={categoryAddHandler('1string')} >👏</button>
+      <div>{categoryElements}</div>
     </>
   );
 };

@@ -27,12 +27,12 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
     console.log(category);
   });
 
-  const categoryAddHandler = (key: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(key);
+  const categoryAddHandler = (id: string) => {
+    console.log(id);
     setCategory([
       ...category,
       {
-        id: 'newId',
+        id,
         name: 'newName',
       },
     ]);

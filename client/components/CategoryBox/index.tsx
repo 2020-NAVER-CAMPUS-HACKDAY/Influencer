@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const CategoryBox: React.FunctionComponent = (props) => {
-  const { children } = props;
+interface CategoryBoxProps {
+  id: string;
+  name: string;
+  categoryAddHandler: (key: string) => void;
+}
+const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
+  const { id, name, categoryAddHandler } = props;
+  const [checked, setChecked] = useState(false);
+
+  const toggleChecked = () => {
+    if (checked === true) {
+      setChecked(false);
+    } else {
+      setChecked(true);
+      categoryAddHandler(id);
+    }
+  };
 
   return (
-    <div >
-      CategoryBox
-    </div>
+    <button key={id} onClick={toggleChecked}>{`${id}/${name}`}</button>
   );
 };
 
