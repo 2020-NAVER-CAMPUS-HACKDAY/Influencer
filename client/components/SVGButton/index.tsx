@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from './styles';
 
-const SVGButton: React.FC = (props) => {
+const SVGButton: FC = (props) => {
   const classes = useStyles();
 
   return (

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from './styles';
 
 export interface LogoProps {
   pageName?: string;
 }
 
-const Logo: React.FC<LogoProps> = (props) => {
+const Logo: FC<LogoProps> = (props) => {
   const classes = useStyles(props);
 
   return (

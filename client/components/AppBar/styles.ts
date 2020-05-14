@@ -3,9 +3,9 @@ import { BarProps } from 'components/AppBar';
 
 const useStyles = makeStyles({
   root: {
-    backgroundImage: (props: BarProps): string => props.backgroundImage ?? undefined,
+    backgroundImage: (props: BarProps): string => props.backgroundImage,
     position: (props: BarProps) => (props.isNotFixed ? 'relative' : 'fixed'),
-    backgroundColor: (props: BarProps): string => props.backgroundColor ?? undefined,
+    backgroundColor: (props: BarProps): string => props.backgroundColor,
     zIndex: 2,
     boxShadow: 'none',
   },
