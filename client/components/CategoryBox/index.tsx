@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 interface CategoryBoxProps {
   id: string;
   name: string;
-  categoryAddHandler: (key: string) => void;
-  categoryDeleteHandler: (key: string) => void;
+  categoryAddHandler: (id: string, name: string) => void;
+  categoryDeleteHandler: (id: string) => void;
 }
 const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
   const {
@@ -18,7 +18,7 @@ const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
       categoryDeleteHandler(id);
     } else {
       setChecked(true);
-      categoryAddHandler(id);
+      categoryAddHandler(id, name);
     }
   };
 

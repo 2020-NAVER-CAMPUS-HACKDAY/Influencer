@@ -27,19 +27,17 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
     console.log(categories);
   });
 
-  const categoryAddHandler = (id: string) => {
-    console.log(`ADD: ${id}`);
+  const categoryAddHandler = (id: string, name: string) => {
     setCategories([
       ...categories,
       {
         id,
-        name: 'newName',
+        name,
       },
     ]);
   };
 
   const categoryDeleteHandler = (id: string) => {
-    console.log(`DELETE: ${id}`);
     const newCategories = categories.filter((category) => category.id !== id);
     setCategories(newCategories);
   };

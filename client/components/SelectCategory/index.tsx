@@ -8,8 +8,8 @@ interface Category{
 
 interface SelectCategoryProp {
   dummyData: Category[];
-  categoryAddHandler: (key: string) => void;
-  categoryDeleteHandler: (key: string) => void;
+  categoryAddHandler: (id: string, name: string) => void;
+  categoryDeleteHandler: (id: string) => void;
 }
 
 const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
@@ -30,7 +30,7 @@ const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
 
   return (
     <>
-      <div>{categoryElements}</div>
+      {categoryElements}
     </>
   );
 };
