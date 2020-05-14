@@ -171,7 +171,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92f79999-8c7b-436b-a655-c6dd1cd71426" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Influencer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Swiper/Card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Swiper/CardWrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/views/InteractionView/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Swiper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Swiper/styles.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/interaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/interaction/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/views/Interaction/index.tsx" beforeDir="false" />
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,6 +282,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.History.Properties">
     <option name="SHOW_OTHER_BRANCHES" value="true" />
     <option name="COLUMN_ORDER">
@@ -272,6 +294,8 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
@@ -279,6 +303,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="373" y="123" width="967" height="594" key="DiffContextDialog" timestamp="1589476147931">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
@@ -312,6 +337,33 @@
     </state>
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
     <state width="1201" height="203" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1589336137241" />
+=======
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom" timestamp="1589302114694">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+    <state width="1201" height="251" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1589205485055" />
+    <state width="1204" height="238" key="GridCell.Tab.0.bottom/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
+    <state width="1201" height="174" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1589211773512" />
+    <state width="1201" height="174" key="GridCell.Tab.0.center" timestamp="1589302114693">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="251" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
+    <state width="1204" height="238" key="GridCell.Tab.0.center/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
+    <state width="1201" height="174" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
+    <state width="1201" height="174" key="GridCell.Tab.0.left" timestamp="1589302114693">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.799@0.23.1440.799" timestamp="1589302114693" />
+    <state width="1201" height="251" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1589205485053" />
+    <state width="1204" height="238" key="GridCell.Tab.0.left/0.23.1440.807@0.23.1440.807" timestamp="1589203047735" />
+    <state width="1201" height="174" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1589211773510" />
+    <state width="1201" height="174" key="GridCell.Tab.0.right" timestamp="1589302114694">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1589302114694" />
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
     <state width="1201" height="251" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1589205485054" />
     <state width="1204" height="238" key="GridCell.Tab.0.right/0.23.1440.807@0.23.1440.807" timestamp="1589203047736" />
     <state width="1201" height="174" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1589211773511" />
@@ -391,15 +443,19 @@
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="343" y="235" key="IDE.errors.dialog/0.23.1440.799@0.23.1440.799" timestamp="1589302284527" />
+<<<<<<< HEAD
     <state x="660" y="124" key="VCS.ChangeListViewerDialog" timestamp="1589475995271">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="660" y="124" key="VCS.ChangeListViewerDialog/0.23.1440.799@0.23.1440.799" timestamp="1589475995271" />
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup" timestamp="1589305283928">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="430" y="146" width="670" height="676" key="search.everywhere.popup/0.23.1440.799@0.23.1440.799" timestamp="1589305283928" />
   </component>
+<<<<<<< HEAD
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -411,4 +467,6 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+=======
+>>>>>>> cb92c21db506f720cf9cd6ae723bdcee17ca357d
 </project>
