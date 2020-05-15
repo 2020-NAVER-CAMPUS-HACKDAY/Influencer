@@ -3,11 +3,11 @@ import useStyles from 'components/Swiper/styles';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
-export interface CardProps {
-  data: string;
-  onSwipeLeft: (data: string) => void;
-  onSwipeRight: (data: string) => void;
-  onDoubleTap: (data: string) => void;
+interface CardProps {
+  productId: number;
+  onSwipeLeft: (productId: number) => void;
+  onSwipeRight: (productId: number) => void;
+  onDoubleTap: (productId: number) => void;
 }
 
 const Card: React.FC<CardProps> = (props) => {
@@ -45,16 +45,16 @@ const Card: React.FC<CardProps> = (props) => {
         (event.deltaX * 0.03) * (event.deltaY / 80),
       ]);
       if (toX < 0) {
-        props.onSwipeLeft(props.data);
+        props.onSwipeLeft(props.productId);
       } else {
-        props.onSwipeRight(props.data);
+        props.onSwipeRight(props.productId);
       }
     }
   }
 
   function handleDoubleTap(): void {
     setMouseState([0, -(document.body.clientWidth * 0.3) - 100, 80]);
-    props.onDoubleTap(props.data);
+    props.onDoubleTap(props.productId);
   }
 
   return (

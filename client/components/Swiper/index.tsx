@@ -1,34 +1,41 @@
 import React, { useState } from 'react';
 import useStyles from 'components/Swiper/styles';
-import Card from 'components/Swiper/Card';
 import CardWrapper from 'components/Swiper/CardWrapper';
-import CardDummyData from 'components/Swiper/CardDummyData';
+import Card from 'components/Swiper/Card';
+import Product from 'components/Product';
+import { ProductProps } from 'components/Product/interface';
 
-const Swiper: React.FC = () => {
+interface SwiperProps {
+  productData: ProductProps[];
+}
+
+const Swiper: React.FC<SwiperProps> = (props) => {
   const classes = useStyles();
   const [userAct, setUserAct] = useState('상태 확인을 위해 임시로 만들어진 부분입니다.');
 
-  function handleSwipeLeft(data: string): void {
-    setUserAct(`당신은 ${data} 를 [싫어요] 하셨습니다.`);
+  function handleSwipeLeft(productId: number): void {
+    setUserAct(`당신은 ${productId} 를 [싫어요] 하셨습니다.`);
   }
 
-  function handleSwipeRight(data: string): void {
-    setUserAct(`당신은 ${data} 를 [좋아요] 하셨습니다.`);
+  function handleSwipeRight(productId: number): void {
+    setUserAct(`당신은 ${productId} 를 [좋아요] 하셨습니다.`);
   }
 
-  function handleDoubleTap(data: string): void {
-    setUserAct(`당신은 ${data} 를 [찜] 하셨습니다.`);
+  function handleDoubleTap(productId: number): void {
+    setUserAct(`당신은 ${productId} 를 [찜] 하셨습니다.`);
   }
 
   function renderCards(): object {
-    return CardDummyData.map((data) => (
+    return props.productData.map((data) => (
       <Card
         key={data.productId}
-        data={data.productName}
+        productId={data.productId}
         onSwipeLeft={handleSwipeLeft}
         onSwipeRight={handleSwipeRight}
         onDoubleTap={handleDoubleTap}>
-        {data.productName} Hello World!
+        <Product
+          product={data}
+        />
       </Card>
     ));
   }
@@ -38,9 +45,6 @@ const Swiper: React.FC = () => {
       <CardWrapper>
         {renderCards()}
       </CardWrapper>
-      <div className={classes.temp}>
-        {userAct}
-      </div>
     </>
   );
 };

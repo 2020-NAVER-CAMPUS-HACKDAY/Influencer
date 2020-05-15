@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@egjs/axes": "^2.6.1",
 		"@material-ui/core": "^4.9.13",
 		"@types/react-redux": "^7.1.8",
 		"clsx": "^1.1.0",

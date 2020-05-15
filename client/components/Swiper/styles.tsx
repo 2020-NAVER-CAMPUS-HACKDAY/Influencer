@@ -6,6 +6,11 @@ const useStyles = makeStyles({
     overflow: 'hidden',
     width: '100%',
     height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'fixed',
+    top: 0,
   },
   container: {
     display: 'flex',
@@ -13,14 +18,12 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    marginTop: '200px', // 임시
   },
   card: {
     width: '300px',
     height: '300px',
     backgroundColor: AppColor.WHITE,
-    border: `2px solid ${AppColor.PURPLE}`,
-    borderRadius: '10px',
+    borderRadius: '7px',
     position: 'absolute',
     overflow: 'hidden',
     willChange: 'transform',
@@ -30,11 +33,6 @@ const useStyles = makeStyles({
   card_moving: {
     transition: 'none',
     cursor: 'grabbing',
-  },
-  temp: {
-    position: 'fixed',
-    top: '500px',
-    left: '500px',
   },
 });
 
