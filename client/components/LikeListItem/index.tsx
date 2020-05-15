@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useStyles from 'components/LikeListItem/styles';
 import { Box } from '@material-ui/core';
 import ProcessImage from 'react-imgpro';
@@ -33,12 +33,8 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
     productPrice,
     category,
   } = props.item;
-  const [price, setPrice] = useState('');
 
-  useEffect(() => {
-    setPrice(addCommaStringFromThreeCntNum(productPrice, navigator.language));
-  }, [productPrice]);
-
+  const price = addCommaStringFromThreeCntNum(productPrice);
 
   return (
     <Box className={classes.root}>
