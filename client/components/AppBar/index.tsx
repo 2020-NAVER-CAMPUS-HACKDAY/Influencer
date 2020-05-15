@@ -6,6 +6,7 @@ export interface BarProps {
   isNotFixed?: boolean;
   backgroundColor?: string;
   backgroundImage?: string;
+  height?: string;
 }
 
 const AppBar: React.FunctionComponent<BarProps> = (props) => {
