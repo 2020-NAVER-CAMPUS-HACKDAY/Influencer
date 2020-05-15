@@ -13,6 +13,8 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'Roboto', sans-serif; */
     width: 100%;
     height: 100%;
+    display: flex;
+    position: relative;
     margin: 0;
     font-size: 16px;
     background-color: ${AppColor.GREY};

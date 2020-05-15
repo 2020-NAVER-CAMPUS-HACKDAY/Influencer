@@ -24,7 +24,7 @@ const DetailPage: FC<ProductProps> = (props) => {
       <DetailHeader productName={detailData?.name}/>
       <img
         src={detailData?.image}
-        width={414}
+        width={'100%'}
         height={414}
       />
       <DetailProductInfo
