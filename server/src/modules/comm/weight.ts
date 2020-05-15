@@ -5,7 +5,8 @@ import productModel from '../../models/product';
 import logger from '../../loaders/logger';
 
 export function selectProduct(
-  productNo: string
+  productNo: string,
+  weight: number
 ): Promise<any> {
 
   return new Promise(async (resolve, reject) => {
@@ -13,12 +14,12 @@ export function selectProduct(
     if (!productRecord) {
       reject('Product is not exist');
     }
-    resolve({ productNo, productRecord });
+    resolve({ productNo, productRecord, weight });
   });
 }
 
 export function selectUser(
-  { productNo, productRecord }: any
+  { productNo, productRecord, weight }: any
 ): Promise<any> {
 
   return new Promise(async (resolve, reject) => {
@@ -26,12 +27,12 @@ export function selectUser(
     if (!userRecord) {
       reject('User is not exist');
     }
-    resolve({ productNo, productRecord, userRecord });
+    resolve({ productNo, productRecord, userRecord, weight });
   });
 }
 
 export function checkExist(
-  { productNo, productRecord, userRecord }: any
+  { productNo, productRecord, userRecord, weight }: any
 ): Promise<any> {
 
   return new Promise(async (resolve, reject) => {
@@ -43,18 +44,18 @@ export function checkExist(
       return i;
     });
 
-    resolve({ userRecord, products, users, idx });
+    resolve({ userRecord, products, users, idx, weight });
   });
 }
 
-export async function addWeight({ userRecord, products, users, idx }: any) {
+export async function addWeight({ userRecord, products, users, idx, weight }: any) {
   if (idx < 0) {
     const result = await userRecord.update({
       $push: {
         prefer: {
           productNo: products.productNo,
           categoryId: products.category.categoryId,
-          rating: config.clicklogWeight
+          rating: weight
         }
       }
     });
@@ -62,8 +63,8 @@ export async function addWeight({ userRecord, products, users, idx }: any) {
     return result
   }
 
-  if (users.prefer[idx].rating + config.clicklogWeight <= 5) {
-    users.prefer[idx].rating += config.clicklogWeight;
+  if (users.prefer[idx].rating + weight <= 5) {
+    users.prefer[idx].rating += weight;
 
     const result = await userRecord.update({
       prefer: users.prefer

@@ -27,7 +27,7 @@ export default class UserService {
   ): Promise<any> {
 
     return await
-      selectProduct(productNo)
+      selectProduct(productNo, config.clicklogWeight)
         .then(selectUser)
         .then(checkExist)
         .then(addWeight)
