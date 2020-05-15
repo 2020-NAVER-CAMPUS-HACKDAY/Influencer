@@ -39,7 +39,7 @@ const LikeListBar: React.FC = () => {
           </SVGButton>
         </div>
       </AppBar>
-      </div>
+    </div>
   );
 };
 

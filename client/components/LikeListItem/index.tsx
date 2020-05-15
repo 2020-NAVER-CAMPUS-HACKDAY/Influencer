@@ -43,29 +43,29 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
   return (
     <Box className={classes.root}>
       <ProcessImage className={clsx(classes.spacing, classes.imageWrapper)}
-                    image={imageLink}
-                    resize={{ width: 95, height: 95 }}
+        image={imageLink}
+        resize={{ width: 95, height: 95 }}
       />
       <Box className={clsx(classes.spacing, classes.columnDirection)}>
         <Label className={clsx(classes.productText, classes.text)}
-               fontSize={18}
-               color={AppColor.BLACK}
-               name={productName}
+          fontSize={18}
+          color={AppColor.BLACK}
+          name={productName}
         />
         <Label className={clsx(classes.productPrice, classes.text)}
-               fontSize={18}
-               color={AppColor.BLACK}
-               name={price === undefined ? '미정' : `${price}원`}
+          fontSize={18}
+          color={AppColor.BLACK}
+          name={price === undefined ? '미정' : `${price}원`}
         />
         <Label className={classes.text}
-               fontSize={13}
-               color={AppColor.BLACK70}
-               name={productCompany}
+          fontSize={13}
+          color={AppColor.BLACK70}
+          name={productCompany}
         />
         <Label className={classes.text}
-               fontSize={16}
-               color={AppColor.BLACK70}
-               name={category.toString()}
+          fontSize={16}
+          color={AppColor.BLACK70}
+          name={category.toString()}
         />
       </Box>
       <SVGButton className={classes.columnDirection}>

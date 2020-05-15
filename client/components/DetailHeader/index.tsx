@@ -11,15 +11,15 @@ interface DetailHeaderProps {
 }
 
 const DetailHeader: React.FC<DetailHeaderProps> = (props) => (
-    <AppBar backgroundColor={AppColor.DETAIL_HEADER}>
-        <SVGButton>
-            <Direction/>
-            </SVGButton>
-        <Label name={props.productName}/>
-        <SVGButton>
-            <HamburgerMenu/>
-            </SVGButton>
-        </AppBar>
+  <AppBar backgroundColor={AppColor.DETAIL_HEADER}>
+    <SVGButton>
+      <Direction/>
+    </SVGButton>
+    <Label name={props.productName}/>
+    <SVGButton>
+      <HamburgerMenu/>
+    </SVGButton>
+  </AppBar>
 );
 
 export default DetailHeader;
