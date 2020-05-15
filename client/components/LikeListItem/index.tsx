@@ -1,7 +1,6 @@
 import React from 'react';
 import useStyles from 'components/LikeListItem/styles';
 import { Box } from '@material-ui/core';
-import ProcessImage from 'react-imgpro';
 import Label from 'components/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
@@ -38,9 +37,10 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
 
   return (
     <Box className={classes.root}>
-      <ProcessImage className={clsx(classes.spacing, classes.imageWrapper)}
-        image={imageLink}
-        resize={{ width: 95, height: 95 }}
+      <img className={clsx(classes.spacing, classes.imageWrapper)}
+        src={imageLink}
+        width={95}
+        height={95}
       />
       <Box className={clsx(classes.spacing, classes.columnDirection)}>
         <Label className={clsx(classes.productText, classes.text)}
