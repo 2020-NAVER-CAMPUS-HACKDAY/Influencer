@@ -3,7 +3,7 @@ import { Model, Document } from 'mongoose';
 import winston from 'winston';
 import { IUser, IProduct } from '../interfaces';
 import config from '../config';
-import { selectProduct, selectUser, checkExist, addWeight, handleClicklogError } from '../modules/comm/weight';
+import { selectProduct, selectUser, checkExist, addWeight, handleClicklogError } from '../modules/common/weight';
 import {
   BadRequestError,
   ConflictError,
