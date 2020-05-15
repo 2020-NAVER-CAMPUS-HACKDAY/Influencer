@@ -51,7 +51,7 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
         <Label className={clsx(classes.productPrice, classes.text)}
           fontSize={18}
           color={AppColor.BLACK}
-          name={price === undefined ? '미정' : `${price}원`}
+          name={price ? `${price}원` : '미정'}
         />
         <Label className={classes.text}
           fontSize={13}
