@@ -65,11 +65,20 @@ export default class UserService {
 
   public async selectLikeList(
   ): Promise<any> {
-    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName }).select('like');
+    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName }).select('like -_id');
+
+    if (!userLikeRecord) {
+      throw new NotFoundError('User is not exist');
+    }
+
     let userLikeList = userLikeRecord.toObject();
 
-    const result = userLikeList.map(async (like: any) => await this.productModel.findOne({ productNo: like }));
-    console.log(result);
+    let result: Array<any> = [];
+    for (let like of userLikeList.like) {
+      const product = await this.productModel.findOne({ productNo: like });
+      result.push(product);
+    }
 
+    return result;
   }
 }

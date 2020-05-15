@@ -53,7 +53,21 @@ export default (routes: Router) => {
   userRoute.get(
     '/likes',
     async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      const { productNo } = req.params;
+      const { exist } = req.body;
+      logger.debug(`GET /user like list endpoint with query`);
 
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = userServiceInstance.selectLikeList();
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
+      }
     }
   );
 };
