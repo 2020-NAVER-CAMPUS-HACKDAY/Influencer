@@ -6,7 +6,7 @@ const CardWrapper: React.FC = (props) => {
   const classes = useStyles(props);
 
   function setCards(): void {
-    // : 예를 들어 10개 데이터 받으면, z-index와 opacity 등등 적용해서 정렬함
+    // TODO(geurim): 데이터 z-index, opacity 등 적용하여 정렬하는 함수
   }
 
   useEffect(() => {

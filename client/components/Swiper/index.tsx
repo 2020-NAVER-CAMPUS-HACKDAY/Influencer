@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useStyles from 'components/Swiper/styles';
 import Card from 'components/Swiper/Card';
 import CardWrapper from 'components/Swiper/CardWrapper';
+import CardDummyData from 'components/Swiper/CardDummyData';
 
 const Swiper: React.FC = () => {
   const classes = useStyles();
@@ -20,15 +21,14 @@ const Swiper: React.FC = () => {
   }
 
   function renderCards(): object {
-    const cardInfo = ['First', 'Second', 'Third', 'Fourth'];
-    return cardInfo.map((data, index) => (
+    return CardDummyData.map((data) => (
       <Card
-        key={index}
-        data={data}
+        key={data.productId}
+        data={data.productName}
         onSwipeLeft={handleSwipeLeft}
         onSwipeRight={handleSwipeRight}
         onDoubleTap={handleDoubleTap}>
-        {data} Hello World!
+        {data.productName} Hello World!
       </Card>
     ));
   }
