@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import useStyles from 'components/LikeList/LikeListBar/styles';
 import AppBar from 'components/Common/AppBar';
 import SVGButton from 'components/Common/SVGButton';

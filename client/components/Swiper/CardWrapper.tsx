@@ -6,7 +6,14 @@ const CardWrapper: React.FC = (props) => {
   const classes = useStyles(props);
 
   function setCards(): void {
-    // TODO(geurim): 데이터 z-index, opacity 등 적용하여 정렬하는 함수
+    const allCards = document.querySelectorAll('.card_container');
+    const newCards = document.querySelectorAll('.card_container:not(.removed)');
+
+    // newCards.forEach((card, index) => {
+    //   card.style.zIndex = allCards.length - index;
+    //   card.style.transform = `scale(${(20 - index) / 20}) translateY(-${30 * index}px)`;
+    //   card.style.opacity = (10 - index) / 10;
+    // });
   }
 
   useEffect(() => {
