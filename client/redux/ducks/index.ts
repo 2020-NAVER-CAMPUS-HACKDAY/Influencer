@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
 import { authReducer, UserProps, UserAction } from './auth';
+import { productReducer, ProductAction, ProductProps } from './product';
 
 export const rootReducer = combineReducers({
   authReducer,
+  productReducer,
 });
 
 export interface Types {
-  auth: UserProps;
+  authReducer: UserProps;
+  productReducer: ProductProps;
 }
 
 export type Actions =
-| UserAction;
+  | UserAction
+  | ProductAction;

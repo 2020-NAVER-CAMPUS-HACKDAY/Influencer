@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/DetailHeader';
+import { useRouter } from 'next/router';
+import { connect } from 'react-redux';
+import { ProductProps, ProductItemProps } from 'redux/ducks/product';
+import { Types } from 'redux/ducks';
 
-// TODO(daeun): modify props when connecting with store
-interface DetailPageProps {
-  category: string;
-  image: string[];
-  productName: string;
-  productCompany: string;
-}
+const DetailPage: FC<ProductProps> = (props) => {
+  const router = useRouter();
+  const { productID } = router.query;
+  const { productArray } = props;
+  const [detailData, setDetailData] = useState<ProductItemProps>();
 
-const DetailPage: React.FC<DetailPageProps> = (props) => {
-  const { productName } = props;
+  useEffect(() => {
+    if (Array.isArray(productID)) return;
+    const productData = productArray.find((product) => product.id === productID);
+    setDetailData(productData);
+  }, [productArray, productID]);
 
   return (
-    <DetailHeader productName={productName}/>
+    <>
+      <DetailHeader productName={detailData?.name}/>
+      <img src={detailData?.image} width={'100%'} height={414}/>
+    </>
   );
 };
 
-export default DetailPage;
+
+export default connect<ProductProps, void>(
+  (state: Types) => ({
+    productArray: state.productReducer.productArray,
+  }),
+  (dispatch) => ({
+  }),
+)(DetailPage);

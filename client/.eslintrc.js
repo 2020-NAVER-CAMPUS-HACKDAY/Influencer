@@ -16,5 +16,20 @@ module.exports = {
     "no-restricted-globals": "off",
     "@typescript-eslint/no-var-requires": "off",
     "import/prefer-default-export": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "FunctionDeclaration": {
+          "body": 1,
+          "parameters": 2
+        },
+        "FunctionExpression": {
+          "body": 1,
+          "parameters": 2
+        }
+      }
+    ],
   }
 };

@@ -16,4 +16,7 @@ export default {
   api: {
     prefix: '/api',
   },
+  personaId: process.env.PERSONA_ID,
+  personaName: process.env.PERSONA_NAME,
+  clicklogWeight: 0.3
 };

@@ -6,6 +6,7 @@ export interface BarProps {
   isNotFixed?: boolean;
   backgroundColor?: string;
   backgroundImage?: string;
+  height?: string;
 }
 
 const AppBar: React.FunctionComponent<BarProps> = (props) => {
@@ -13,11 +14,11 @@ const AppBar: React.FunctionComponent<BarProps> = (props) => {
   const { children } = props;
 
   return (
-  <MaterialAppBar className={classes.root}>
-    <div className={classes.container}>
-      {children}
-    </div>
-  </MaterialAppBar>
+    <MaterialAppBar className={classes.root}>
+      <div className={classes.container}>
+        {children}
+      </div>
+    </MaterialAppBar>
   );
 };
 

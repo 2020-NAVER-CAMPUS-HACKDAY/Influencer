@@ -1,8 +1,8 @@
 export default {
-  successTrue: (message, data) => {
+  successTrue: (message: string, data: any) => {
     return { success: true, message: message, data: data };
   },
-  successFalse: (message) => {
+  successFalse: (message: string) => {
     return { success: false, message: message };
   },
 };

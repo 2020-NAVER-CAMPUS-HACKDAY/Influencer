@@ -6,7 +6,7 @@ const PageApp = ({
   Component,
   pageProps,
 }: AppProps): ReactElement => (
-    <Component {...pageProps} />
+  <Component {...pageProps} />
 );
 
 export default configStore.withRedux(PageApp);
