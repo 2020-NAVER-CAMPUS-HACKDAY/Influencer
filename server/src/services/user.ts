@@ -38,22 +38,26 @@ export default class UserService {
     productNo: string,
     exist: boolean
   ): Promise<any> {
+
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
-    if (!userRecord) {
-      throw new NotFoundError('User is not exist');
-    }
+    if (!userRecord) throw new NotFoundError('User is not exist');
 
     let users = userRecord.toObject();
+    try {
+      if (exist) {
+        userRecord.like = users.like.filter((l: any) => (l !== productNo));
+        return await userRecord.save();
+      }
 
-    if (exist) {
-      userRecord.like = users.like.filter((l: any) => (l !== productNo));
-      return await userRecord.save();
+      users.like.push(productNo);
+
+      userRecord.like = users.like;
+      await userRecord.save();
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
     }
-
-    users.like.push(productNo);
-
-    userRecord.like = users.like;
-    await userRecord.save();
 
     return await
       selectProduct(productNo, config.clicklogWeight)
@@ -66,19 +70,21 @@ export default class UserService {
   public async selectLikeList(
   ): Promise<any> {
     const userLikeRecord = await this.userModel.findOne({ userName: config.personaName }).select('like -_id');
+    if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
-    if (!userLikeRecord) {
-      throw new NotFoundError('User is not exist');
+    try {
+      let userLikeList = userLikeRecord.toObject();
+      let result: Array<any> = [];
+
+      for (let like of userLikeList.like) {
+        const product = await this.productModel.findOne({ productNo: like });
+        result.push(product);
+      }
+      return result;
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
     }
-
-    let userLikeList = userLikeRecord.toObject();
-
-    let result: Array<any> = [];
-    for (let like of userLikeList.like) {
-      const product = await this.productModel.findOne({ productNo: like });
-      result.push(product);
-    }
-
-    return result;
   }
 }

@@ -17,7 +17,7 @@ export default {
   CLICK_LOG_SUCCESS: '클릭로그 성공',
   CLICK_LOG_FAIL: '클릭로그 실패',
 
-  LIKE_SUCCESS: '찜 목록 수정 성공',
-  LIKE_FAIL: '찜 목록 수정 실패',
+  LIKE_SUCCESS: '찜 목록 읽기 || 수정 성공',
+  LIKE_FAIL: '찜 목록 읽기 || 수정 실패',
 };
 

@@ -60,7 +60,7 @@ export default (routes: Router) => {
 
       try {
         const userServiceInstance = Container.get(UserService);
-        const result = userServiceInstance.selectLikeList();
+        const result = await userServiceInstance.selectLikeList();
 
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
