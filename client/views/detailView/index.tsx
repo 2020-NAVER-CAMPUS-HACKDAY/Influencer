@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { ProductProps, ProductItemProps } from 'redux/ducks/product';
 import { Types } from 'redux/ducks';
-import ProcessImage from 'react-imgpro';
+import DetailProductInfo from 'components/DetailProductContent';
+import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
 const DetailPage: FC<ProductProps> = (props) => {
   const router = useRouter();
@@ -21,10 +22,19 @@ const DetailPage: FC<ProductProps> = (props) => {
   return (
     <>
       <DetailHeader productName={detailData?.name}/>
-      <ProcessImage
-        image={detailData?.image}
-        resize={{ width: 414, height: 414 }}
+      <img
+        src={detailData?.image}
+        width={414}
+        height={414}
       />
+      <DetailProductInfo
+        id={detailData?.id}
+        name={detailData?.name}
+        price={addCommaStringFromThreeCntNum(detailData?.price)}
+        modelName={detailData?.modelName}
+        makeCompany={detailData?.makeCompany}
+        brand={detailData?.brand}
+        />
     </>
   );
 };
