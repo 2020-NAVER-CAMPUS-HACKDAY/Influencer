@@ -75,16 +75,16 @@ export default (routes: Router) => {
 
   productRoute.put(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => {}
+    (req: Request, res: Response, next: NextFunction) => { }
   );
 
   productRoute.patch(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => {}
+    (req: Request, res: Response, next: NextFunction) => { }
   );
 
   productRoute.delete(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => {}
+    (req: Request, res: Response, next: NextFunction) => { }
   );
 };

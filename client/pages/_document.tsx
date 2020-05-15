@@ -55,8 +55,8 @@ class CustomDocument extends Document<Props> {
       <Html lang={this.props.locale.split('-')[0]}>
         <Head />
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );
