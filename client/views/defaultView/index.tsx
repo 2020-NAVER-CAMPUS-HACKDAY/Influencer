@@ -17,6 +17,9 @@ const Home: React.FC<DefaultProps> = (props) => {
       <div onClick={() => addProduct(detailViewDataArray)}>
         This is Default Page.
       </div>
+      <Link href="/interaction">
+        <a>go to Interaction Page</a>
+      </Link>
       <Link href="/detail/[productID]" as="/detail/aaaa">
         <a>
         go to Next Page
