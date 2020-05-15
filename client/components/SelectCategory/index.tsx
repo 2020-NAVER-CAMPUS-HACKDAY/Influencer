@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoryBox from 'components/CategoryBox';
+import useStyles from 'components/SelectCategory/styles';
 
 interface Category{
   id: string;
@@ -14,6 +15,7 @@ interface SelectCategoryProp {
 
 const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
   const { dummyData, categoryAddHandler, categoryDeleteHandler } = props;
+  const classes = useStyles();
 
   const categoryElements = dummyData.map((data) => {
     const { id, name } = data;
@@ -29,9 +31,9 @@ const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
   });
 
   return (
-    <>
+    <div className={classes.container}>
       {categoryElements}
-    </>
+    </div>
   );
 };
 

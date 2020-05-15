@@ -21,7 +21,7 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
   const { setUser } = props;
   const setUserData = (): void => setUser(userData);
   const [categories, setCategories] = useState<Category[]>([]);
-  const dummyData = myCategoryViewDataArray;
+  const dummyData: Category[] = myCategoryViewDataArray;
 
   const categoryAddHandler = (id: string, name: string) => {
     setCategories([
@@ -44,9 +44,9 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
         This is my Category setting page.
       </div>
       <SelectCategory
-        dummyData = {dummyData}
-        categoryAddHandler = {categoryAddHandler}
-        categoryDeleteHandler = {categoryDeleteHandler}
+        dummyData={dummyData}
+        categoryAddHandler={categoryAddHandler}
+        categoryDeleteHandler={categoryDeleteHandler}
       />
     </MainHeader>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useStyles from 'components/CategoryBox/styles';
 
 interface CategoryBoxProps {
   id: string;
@@ -11,9 +12,10 @@ const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
     id, name, categoryAddHandler, categoryDeleteHandler,
   } = props;
   const [checked, setChecked] = useState(false);
+  const classes = useStyles();
 
   const toggleChecked = () => {
-    if (checked === true) {
+    if (checked) {
       setChecked(false);
       categoryDeleteHandler(id);
     } else {
@@ -23,7 +25,11 @@ const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
   };
 
   return (
-    <button key={id} onClick={toggleChecked}>{`${id}/${name}`}</button>
+    <div>
+      <button key={id} onClick={toggleChecked} className={classes.button}>
+        {`${id}/${name}`}
+      </button>
+    </div>
   );
 };
 
