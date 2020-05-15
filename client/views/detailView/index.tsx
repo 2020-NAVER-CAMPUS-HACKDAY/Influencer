@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { ProductProps, ProductItemProps } from 'redux/ducks/product';
 import { Types } from 'redux/ducks';
-import ProcessImage from 'react-imgpro';
 
 const DetailPage: FC<ProductProps> = (props) => {
   const router = useRouter();
@@ -21,10 +20,7 @@ const DetailPage: FC<ProductProps> = (props) => {
   return (
     <>
       <DetailHeader productName={detailData?.name}/>
-      <ProcessImage
-        image={detailData?.image}
-        resize={{ width: 414, height: 414 }}
-      />
+      <img src={detailData?.image} width={'100%'} height={414}/>
     </>
   );
 };
