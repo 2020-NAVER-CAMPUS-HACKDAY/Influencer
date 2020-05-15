@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     /* font-family: 'Roboto', sans-serif; */
     height: 100%;
+    margin: 0;
     font-size: 16px;
   }
   #__next {
