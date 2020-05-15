@@ -5,7 +5,7 @@ import Label from 'components/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import SVGButton from 'components/SVGButton';
+import SVGButton from 'components/Common/SVGButton';
 import Delete from 'svgs/Delete';
 
 interface LikeListItemProps {

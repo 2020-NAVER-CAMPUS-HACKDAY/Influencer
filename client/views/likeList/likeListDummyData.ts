@@ -1,4 +1,4 @@
-import { LikeListProps } from 'components/LikeListItem';
+import { LikeListProps } from 'components/LikeList/LikeListItem';
 
 const likeListDummmyDatas: LikeListProps[] = [
   {

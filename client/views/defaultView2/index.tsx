@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 
 interface DefaultProps {
   data: string;

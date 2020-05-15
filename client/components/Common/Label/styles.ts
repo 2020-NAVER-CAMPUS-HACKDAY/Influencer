@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { LogoProps } from 'components/Label';
+import { LogoProps } from 'components/Common/Label';
 import { AppColor } from 'constant';
 
 const useStyles = makeStyles({

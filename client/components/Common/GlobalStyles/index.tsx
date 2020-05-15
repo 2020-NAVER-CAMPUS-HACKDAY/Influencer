@@ -11,13 +11,15 @@ const GlobalStyles = createGlobalStyle`
   html,
   body {
     /* font-family: 'Roboto', sans-serif; */
+    width: 100%;
     height: 100%;
     margin: 0;
     font-size: 16px;
     background-color: ${AppColor.GREY};
-  }
+  },
   #__next {
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
   }
 `;
 

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import { BarProps } from 'components/AppBar';
+import { BarProps } from 'components/Common/AppBar';
 
 const useStyles = makeStyles({
   root: {
