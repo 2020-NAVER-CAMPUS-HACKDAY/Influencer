@@ -54,8 +54,6 @@ export default (routes: Router) => {
     '/likes',
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
-      const { productNo } = req.params;
-      const { exist } = req.body;
       logger.debug(`GET /user like list endpoint with query`);
 
       try {
