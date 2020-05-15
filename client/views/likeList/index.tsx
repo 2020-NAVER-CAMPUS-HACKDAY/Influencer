@@ -12,12 +12,12 @@ const likeListItemList = orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
   ));
 
 const LikeList: React.FC = () => (
-    <>
-      <LikeListHeader/>
-      <LikeListBar/>
-      {likeListItemList}
-      <TopButton/>
-    </>
+  <>
+    <LikeListHeader/>
+    <LikeListBar/>
+    {likeListItemList}
+    <TopButton/>
+  </>
 );
 
 export default LikeList;

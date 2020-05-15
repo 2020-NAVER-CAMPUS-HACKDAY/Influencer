@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useStyles from 'components/LikeListItem/styles';
 import { Box } from '@material-ui/core';
-import ProcessImage from 'react-imgpro';
 import Label from 'components/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
@@ -33,39 +32,36 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
     productPrice,
     category,
   } = props.item;
-  const [price, setPrice] = useState('');
 
-  useEffect(() => {
-    setPrice(addCommaStringFromThreeCntNum(productPrice, navigator.language));
-  }, [productPrice]);
-
+  const price = addCommaStringFromThreeCntNum(productPrice);
 
   return (
     <Box className={classes.root}>
-      <ProcessImage className={clsx(classes.spacing, classes.imageWrapper)}
-                    image={imageLink}
-                    resize={{ width: 95, height: 95 }}
+      <img className={clsx(classes.spacing, classes.imageWrapper)}
+        src={imageLink}
+        width={95}
+        height={95}
       />
       <Box className={clsx(classes.spacing, classes.columnDirection)}>
         <Label className={clsx(classes.productText, classes.text)}
-               fontSize={18}
-               color={AppColor.BLACK}
-               name={productName}
+          fontSize={18}
+          color={AppColor.BLACK}
+          name={productName}
         />
         <Label className={clsx(classes.productPrice, classes.text)}
-               fontSize={18}
-               color={AppColor.BLACK}
-               name={price === undefined ? '미정' : `${price}원`}
+          fontSize={18}
+          color={AppColor.BLACK}
+          name={price === undefined ? '미정' : `${price}원`}
         />
         <Label className={classes.text}
-               fontSize={13}
-               color={AppColor.BLACK70}
-               name={productCompany}
+          fontSize={13}
+          color={AppColor.BLACK70}
+          name={productCompany}
         />
         <Label className={classes.text}
-               fontSize={16}
-               color={AppColor.BLACK70}
-               name={category.toString()}
+          fontSize={16}
+          color={AppColor.BLACK70}
+          name={category.toString()}
         />
       </Box>
       <SVGButton className={classes.columnDirection}>
