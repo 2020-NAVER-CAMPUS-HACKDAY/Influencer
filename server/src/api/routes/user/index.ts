@@ -49,4 +49,11 @@ export default (routes: Router) => {
       }
     }
   );
+
+  userRoute.get(
+    '/likes',
+    async (req: Request, res: Response, next: NextFunction) => {
+
+    }
+  );
 };

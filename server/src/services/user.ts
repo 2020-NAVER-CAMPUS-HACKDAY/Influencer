@@ -62,4 +62,14 @@ export default class UserService {
         .then(addWeight)
         .catch(handleClicklogError);
   }
+
+  public async selectLikeList(
+  ): Promise<any> {
+    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName }).select('like');
+    let userLikeList = userLikeRecord.toObject();
+
+    const result = userLikeList.map(async (like: any) => await this.productModel.findOne({ productNo: like }));
+    console.log(result);
+
+  }
 }
