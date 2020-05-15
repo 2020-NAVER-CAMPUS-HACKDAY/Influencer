@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   align: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles({
   marginTop: {
     marginTop: 10,
   },
+  marginLeft: {
+    marginLeft: 5,
+  },
   marginRight: {
     marginRight: 15,
   },
@@ -34,6 +38,7 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     display: 'flex',
   },
+
 });
 
 export default useStyles;

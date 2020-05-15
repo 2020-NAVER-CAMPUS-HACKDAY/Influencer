@@ -7,6 +7,9 @@ import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import DetailInfo from 'components/Detail/DetailProductContent/DetailInfo';
+import OutlinedButton from 'components/Common/OutlinedButton';
+import Like from 'svgs/Like';
+import Share from 'svgs/Share';
 
 export interface DetailProductContentProps {
   id: string;
@@ -54,12 +57,29 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
       <AppBar
         className={clsx(classes.align, classes.productDetailBar)}
         backgroundColor={AppColor.WHITE}
-        height={'200px'}
+        height={'195px'}
         isNotFixed
       >
         <DetailInfo value={makeCompany} column={'제조사'}/>
         <DetailInfo value={brand} column={'브랜드'}/>
         <DetailInfo value={modelName} column={'모델명'}/>
+      </AppBar>
+      <AppBar
+        className={classes.productInfoBar}
+        backgroundColor={AppColor.DARK_GREY}
+        height={'50px'}
+        isNotFixed
+      >
+        {/* TODO(daeun): add share view */}
+        <OutlinedButton handleClick={() => 0} className={classes.marginRight}>
+          <Share/>
+          <Label className={classes.marginLeft} name={'공유'} color={AppColor.BLACK} fontSize={20}/>
+        </OutlinedButton>
+        {/* TODO(daeun): add like Api */}
+        <OutlinedButton handleClick={() => 0}>
+          <Like/>
+          <Label className={classes.marginLeft} name={'찜'} color={AppColor.BLACK} fontSize={20}/>
+        </OutlinedButton>
       </AppBar>
     </>
   );
