@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import DetailHeader from 'components/DetailHeader';
+import DetailHeader from 'components/Detail/DetailHeader';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { ProductProps, ProductItemProps } from 'redux/ducks/product';
 import { Types } from 'redux/ducks';
-import DetailProductInfo from 'components/DetailProductContent';
+import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
 const DetailPage: FC<ProductProps> = (props) => {

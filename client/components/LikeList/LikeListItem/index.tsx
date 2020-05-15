@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import useStyles from 'components/LikeListItem/styles';
+import useStyles from 'components/LikeList/LikeListItem/styles';
 import { Box } from '@material-ui/core';
-import Label from 'components/Label';
+import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import SVGButton from 'components/SVGButton';
+import SVGButton from 'components/Common/SVGButton';
 import Delete from 'svgs/Delete';
 
 interface LikeListItemProps {

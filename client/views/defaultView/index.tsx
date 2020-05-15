@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ProductProps, productActions, ProductActionsProps } from 'redux/ducks/product';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 import { detailViewDataArray } from 'views/detailView/detailViewDummyData';
 
 interface DefaultProps extends ProductProps, ProductActionsProps {

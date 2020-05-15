@@ -13,9 +13,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'Roboto', sans-serif; */
     width: 100%;
     height: 100%;
-    display: flex;
     margin: 0;
-    position: relative;
     font-size: 16px;
     background-color: ${AppColor.GREY};
   },

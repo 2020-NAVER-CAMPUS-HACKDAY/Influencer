@@ -4,7 +4,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet as StyledComponentsSheet } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
-import GlobalStyles from 'components/GlobalStyles';
+import GlobalStyles from 'components/Common/GlobalStyles';
 import getLocale from 'utils/getLocale';
 
 interface Props {

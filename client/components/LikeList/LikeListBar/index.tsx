@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import useStyles from 'components/LikeListBar/styles';
-import AppBar from 'components/AppBar';
-import SVGButton from 'components/SVGButton';
+import useStyles from 'components/LikeList/LikeListBar/styles';
+import AppBar from 'components/Common/AppBar';
+import SVGButton from 'components/Common/SVGButton';
 import ClickedGrid from 'svgs/ClickedGrid';
 import ClickedList from 'svgs/ClickedList';
 import UnclickedGrid from 'svgs/UnclickedGrid';
 import UnclickedList from 'svgs/UnclickedList';
 import { AppColor } from 'constant';
-import Label from 'components/Label';
+import Label from 'components/Common/Label';
 
 const LikeListBar: React.FC = () => {
   const classes = useStyles();
