@@ -7,15 +7,24 @@ import Logger from './logger';
 
 export default async ({ expressApp }: { expressApp: Application }) => {
   await mongooseLoader();
-  Logger.info('DB loaded and connected!');
 
   const productModel = {
     name: 'productModel',
     model: require('../models/product').default,
   };
 
+  const categoryModel = {
+    name: 'categoryModel',
+    model: require('../models/category').default,
+  };
+
+  const userModel = {
+    name: 'userModel',
+    model: require('../models/user').default,
+  };
+
   await dependencyInjectorLoader({
-    models: [productModel],
+    models: [productModel, categoryModel, userModel],
   });
   Logger.info('Dependency Injector loaded');
 
