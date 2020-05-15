@@ -35,9 +35,31 @@ export default class UserService {
   }
 
   public async setLike(
-    productNo: string
+    productNo: string,
+    exist: boolean
   ): Promise<any> {
-    return;
-  }
+    const userRecord = await this.userModel.findOne({ userName: config.personaName });
+    if (!userRecord) {
+      throw new NotFoundError('User is not exist');
+    }
 
+    let users = userRecord.toObject();
+
+    if (exist) {
+      userRecord.like = users.like.filter((l: any) => (l !== productNo));
+      return await userRecord.save();
+    }
+
+    users.like.push(productNo);
+
+    userRecord.like = users.like;
+    await userRecord.save();
+
+    return await
+      selectProduct(productNo, config.clicklogWeight)
+        .then(selectUser)
+        .then(checkExist)
+        .then(addWeight)
+        .catch(handleClicklogError);
+  }
 }

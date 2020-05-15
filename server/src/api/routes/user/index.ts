@@ -14,13 +14,34 @@ export default (routes: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
       const { productNo } = req.params;
-      logger.debug(`GET /user endpoint with query ${productNo}`);
+      logger.debug(`GET /user click log endpoint with query ${productNo}`);
 
       try {
         const userServiceInstance = Container.get(UserService);
         const result = await userServiceInstance.clickLog(productNo);
 
         res.status(sc.OK).json(au.successTrue(rm.CLICK_LOG_SUCCESS, result));
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
+      }
+    }
+  );
+
+  userRoute.post(
+    '/likes/:productNo',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      const { productNo } = req.params;
+      const { exist } = req.body;
+      logger.debug(`POST /user like endpoint with query ${productNo}`);
+
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = await userServiceInstance.setLike(productNo, exist);
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
       } catch (e) {
         logger.error(`🔥 error: ${e}`);
