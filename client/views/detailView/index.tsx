@@ -34,7 +34,7 @@ const DetailPage: FC<ProductProps> = (props) => {
         modelName={detailData?.modelName}
         makeCompany={detailData?.makeCompany}
         brand={detailData?.brand}
-        />
+      />
     </>
   );
 };

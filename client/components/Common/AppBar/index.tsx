@@ -16,11 +16,11 @@ const AppBar: React.FunctionComponent<BarProps> = (props) => {
   const { children, className } = props;
 
   return (
-  <MaterialAppBar className={classes.root}>
-    <div className={clsx(classes.container, className)}>
-      {children}
-    </div>
-  </MaterialAppBar>
+    <MaterialAppBar className={classes.root}>
+      <div className={clsx(classes.container, className)}>
+        {children}
+      </div>
+    </MaterialAppBar>
   );
 };
 

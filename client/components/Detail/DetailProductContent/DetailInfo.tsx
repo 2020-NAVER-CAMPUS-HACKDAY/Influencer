@@ -17,7 +17,7 @@ const DetailInfo: FC<DetailInfoProps> = (props) => {
       <Label name={column} color={AppColor.BLACK50} fontSize={15}/>
       <div className={classes.marginRight}/>
       <Label name={value} color={AppColor.BLACK} fontSize={20}/>
-   </div>
+    </div>
   );
 };
 

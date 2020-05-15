@@ -37,31 +37,31 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
       >
         <Label name={price} color={AppColor.BLACK} />
         <Label className={classes.paddingTop}
-        name={'원'}
-        fontSize={18}
-        color={AppColor.BLACK}
+          name={'원'}
+          fontSize={18}
+          color={AppColor.BLACK}
         />
       </AppBar>
-        <div className={classes.marginTop}/>
-          <AppBar
-            className={clsx(classes.align, classes.productInfoBar)}
-            backgroundColor={AppColor.WHITE}
-            isNotFixed
-          >
-            <Label name={'상품 정보'} color={AppColor.BLACK} />
-          </AppBar>
-          <Divider />
-          <AppBar
-            className={clsx(classes.align, classes.productDetailBar)}
-            backgroundColor={AppColor.WHITE}
-            height={'200px'}
-            isNotFixed
-          >
-            <DetailInfo value={makeCompany} column={'제조사'}/>
-            <DetailInfo value={brand} column={'브랜드'}/>
-            <DetailInfo value={modelName} column={'모델명'}/>
-          </AppBar>
-        </>
+      <div className={classes.marginTop}/>
+      <AppBar
+        className={clsx(classes.align, classes.productInfoBar)}
+        backgroundColor={AppColor.WHITE}
+        isNotFixed
+      >
+        <Label name={'상품 정보'} color={AppColor.BLACK} />
+      </AppBar>
+      <Divider />
+      <AppBar
+        className={clsx(classes.align, classes.productDetailBar)}
+        backgroundColor={AppColor.WHITE}
+        height={'200px'}
+        isNotFixed
+      >
+        <DetailInfo value={makeCompany} column={'제조사'}/>
+        <DetailInfo value={brand} column={'브랜드'}/>
+        <DetailInfo value={modelName} column={'모델명'}/>
+      </AppBar>
+    </>
   );
 };
 
