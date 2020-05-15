@@ -9,5 +9,5 @@ export interface Types {
   auth: UserProps;
 }
 
-export type Actions =
+export type Reducer =
 | UserAction;
