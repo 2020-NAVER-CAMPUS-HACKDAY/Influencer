@@ -1,8 +1,6 @@
+import { isNumber } from 'util';
+
 export const addCommaStringFromThreeCntNum = (num: number): string | undefined => {
-  if (isNaN(num) || num < 0) {
-    return undefined;
-  }
-  return num?.toLocaleString(navigator.language, {
-    minimumFractionDigits: 0,
-  });
+  if (!isNumber(num)) return null
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
