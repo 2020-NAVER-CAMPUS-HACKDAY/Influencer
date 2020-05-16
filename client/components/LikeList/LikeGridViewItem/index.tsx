@@ -1,10 +1,8 @@
-import React from 'react';
-import AppBar from 'components/Common/AppBar';
-import { AppColor } from 'constant';
+import React, { FC } from 'react';
 import useStyles from 'components/LikeList/LikeGridViewItem/styles';
 import { GridLayout } from '@egjs/react-infinitegrid';
 
-const LikeGridViewItem = (props) => {
+const LikeGridViewItem: FC = (props) => {
   const classes = useStyles();
 
   return (

@@ -30,6 +30,4 @@ export default connect<ProductProps, void>(
   (state: Types) => ({
     productArray: state.productReducer.productArray,
   }),
-  (dispatch) => ({
-  }),
 )(DetailPage);

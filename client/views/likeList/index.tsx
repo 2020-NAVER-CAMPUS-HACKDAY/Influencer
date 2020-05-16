@@ -9,9 +9,9 @@ import { orderBy, uniq } from 'lodash';
 import TopButton from 'components/Common/TopButton';
 import LikeGridViewItem from 'components/LikeList/LikeGridViewItem';
 import { IMAGE_DATA_SIZE } from 'constant';
+import { ImageSizeProps } from 'components/LikeList/LikeGridViewItem/interface';
 
-
-const getImageDataSize = (length: number, index: number) => {
+const getImageDataSize = (length: number, index: number): ImageSizeProps => {
   if (length === 1) return IMAGE_DATA_SIZE[0];
   if (length === 2 || (length === 3 && index === 0)) return IMAGE_DATA_SIZE[1];
   return IMAGE_DATA_SIZE[2];
