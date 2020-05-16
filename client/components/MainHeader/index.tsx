@@ -1,11 +1,11 @@
 import React from 'react';
 import useStyles from 'components/MainHeader/styles';
 import Content from 'components/Content';
-import AppBar from 'components/AppBar';
-import SVGButton from 'components/SVGButton';
+import AppBar from 'components/Common/AppBar';
+import SVGButton from 'components/Common/SVGButton';
 import HamburgerMenu from 'svgs/HamburgerMenu';
 import { AppColor } from 'constant';
-import Label from 'components/Label';
+import Label from 'components/Common/Label';
 
 const MainHeader: React.FunctionComponent = (props) => {
   const { children } = props;

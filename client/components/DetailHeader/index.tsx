@@ -1,8 +1,8 @@
 import React from 'react';
-import AppBar from 'components/AppBar';
-import Label from 'components/Label';
+import AppBar from 'components/Common/AppBar';
+import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
-import SVGButton from 'components/SVGButton';
+import SVGButton from 'components/Common/SVGButton';
 import Direction from 'svgs/Direction';
 import HamburgerMenu from 'svgs/HamburgerMenu';
 

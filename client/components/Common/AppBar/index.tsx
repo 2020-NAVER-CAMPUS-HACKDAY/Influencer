@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from 'components/AppBar/styles';
+import useStyles from 'components/Common/AppBar/styles';
 import MaterialAppBar from '@material-ui/core/AppBar';
 
 export interface BarProps {
