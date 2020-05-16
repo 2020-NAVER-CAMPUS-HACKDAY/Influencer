@@ -21,6 +21,10 @@ export default class UserService {
     this.logger = container.get('logger');
   }
 
+  /**
+   * @param productNo 
+   * @param weight 
+   */
   public async addWeight(
     productNo: string,
     weight: number
@@ -116,6 +120,10 @@ export default class UserService {
         .catch(handleClicklogError);
   }
 
+  /**
+   * 
+   * @param productNo 
+   */
   public async clickLog(
     productNo: string
   ): Promise<any> {
@@ -123,6 +131,11 @@ export default class UserService {
     return await this.addWeight(productNo, config.clicklogWeight);
   }
 
+  /**
+   * 
+   * @param productNo 
+   * @param exist 
+   */
   public async setLike(
     productNo: string,
     exist: boolean
