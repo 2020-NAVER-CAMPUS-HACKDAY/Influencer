@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import useStyles from 'components/Swiper/styles';
 import CardWrapper from 'components/Swiper/CardWrapper';
 import Card from 'components/Swiper/Card';
-import Product from 'components/Product';
-import { ProductProps } from 'components/Product/interface';
+import SwiperItem from 'components/SwiperItem';
+import { ProductProps } from 'components/SwiperItem/interface';
 
 interface SwiperProps {
-  productData: ProductProps[];
+  products: ProductProps[];
 }
 
 const Swiper: React.FC<SwiperProps> = (props) => {
-  const classes = useStyles();
+  const { products } = props;
   const [userAct, setUserAct] = useState('상태 확인을 위해 임시로 만들어진 부분입니다.');
 
   function handleSwipeLeft(productId: number): void {
@@ -26,15 +25,16 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   }
 
   function renderCards(): object {
-    return props.productData.map((data) => (
+    console.log(products);
+    return products.map((data) => (
       <Card
         key={data.productId}
         productId={data.productId}
         onSwipeLeft={handleSwipeLeft}
         onSwipeRight={handleSwipeRight}
         onDoubleTap={handleDoubleTap}>
-        <Product
-          product={data}
+        <SwiperItem
+          productData={data}
         />
       </Card>
     ));
