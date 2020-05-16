@@ -5,19 +5,15 @@ import { ICategory } from '../interfaces/category';
 
 export interface ICategoryModel extends ICategory, Document{}
 
-const CategoryValueObject = new Schema({
-  categoryName: { type: String, required: true },
-  categoryLevel: { type: Number, required: true },
-  parentCategoryId: { type: String, default : null },
-  wholeCategoryId: { type: String, required: true },
-  wholeCategoryName: { type: String, required: true },
-});
-
 const categorySchema = new Schema(
   {
+    _id: { type: String, required: true },
     value: {
-      type: CategoryValueObject,
-      required: true,
+        categoryName: { type: String, required: true },
+        categoryLevel: { type: Number, required: true },
+        parentCategoryId: { type: String, default : null },
+        wholeCategoryId: { type: String, required: true },
+        wholeCategoryName: { type: String, required: true },
     },
   }
 );
