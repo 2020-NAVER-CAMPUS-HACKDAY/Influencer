@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import useStyles from 'components/Product/styles';
-import { ProductProps } from 'components/Product/interface';
+import useStyles from 'components/SwiperItem/styles';
+import { ProductProps } from 'components/SwiperItem/interface';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
-interface ProductDataProps {
-  product: ProductProps;
+interface SwiperItemProps {
+  productData: ProductProps;
 }
 
-const Product: React.FC<ProductDataProps> = (props) => {
-  const { productName, productImages, salePrice } = props.product;
+const SwiperItem: React.FC<SwiperItemProps> = (props) => {
+  const { productName, productImages, salePrice } = props.productData;
   const commaSalePrice = addCommaStringFromThreeCntNum(salePrice);
   const classes = useStyles();
 
@@ -29,4 +29,4 @@ const Product: React.FC<ProductDataProps> = (props) => {
   );
 };
 
-export default Product;
+export default SwiperItem;

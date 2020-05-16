@@ -5,12 +5,11 @@ const useStyles = makeStyles({
   containerWrapper: {
     overflow: 'hidden',
     width: '100%',
-    height: '100%',
+    height: '70%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'fixed',
-    top: 0,
+    borderBottom: `1px solid ${AppColor.WHITE}`,
   },
   container: {
     display: 'flex',
