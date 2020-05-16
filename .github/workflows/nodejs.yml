@@ -20,11 +20,26 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
+    - name: Install dependencies 
       run: yarn install
+      working-directory: ./client
 
     - name: Run lint
       run: yarn lint
+      working-directory: ./client
 
     - name: Run tests
       run: yarn test
+      working-directory: ./client
+      
+    - name: Install dependencies 
+      run: yarn install
+      working-directory: ./server
+
+    - name: Run lint
+      run: yarn lint
+      working-directory: ./server
+
+    - name: Run tests
+      run: yarn test
+      working-directory: ./server
