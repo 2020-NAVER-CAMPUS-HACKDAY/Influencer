@@ -6,14 +6,14 @@ const CardWrapper: React.FC = (props) => {
   const classes = useStyles(props);
 
   function setCards(): void {
-    const allCards = document.querySelectorAll('.card_container');
-    const newCards = document.querySelectorAll('.card_container:not(.removed)');
+    const allCards = document.querySelectorAll('.card');
+    const newCards = document.querySelectorAll('.card:not(.removed)');
 
-    // newCards.forEach((card, index) => {
-    //   card.style.zIndex = allCards.length - index;
-    //   card.style.transform = `scale(${(20 - index) / 20}) translateY(-${30 * index}px)`;
-    //   card.style.opacity = (10 - index) / 10;
-    // });
+    newCards.forEach((card, index) => {
+      card.style.zIndex = allCards.length - index;
+      card.style.transform = `scale(${(20 - index) / 20}) translateY(-${30 * index}px)`;
+      card.style.opacity = (10 - index) / 10;
+    });
   }
 
   useEffect(() => {

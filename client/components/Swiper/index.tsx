@@ -25,7 +25,6 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   }
 
   function renderCards(): object {
-    console.log(products);
     return products.map((data) => (
       <Card
         key={data.productId}
@@ -41,11 +40,9 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   }
 
   return (
-    <>
-      <CardWrapper>
-        {renderCards()}
-      </CardWrapper>
-    </>
+    <CardWrapper>
+      {renderCards()}
+    </CardWrapper>
   );
 };
 
