@@ -13,6 +13,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = (props) => {
   const { children } = props;
   const [isMoving, setIsMoving] = useState(false);
+  const [isSwiped, setIsSwiped] = useState(false);
   const [mouseState, setMouseState] = useState([0, 0, 0]);
   const classes = useStyles();
 
@@ -45,8 +46,10 @@ const Card: React.FC<CardProps> = (props) => {
         (event.deltaX * 0.03) * (event.deltaY / 80),
       ]);
       if (toX < 0) {
+        setIsSwiped(true);
         props.onSwipeLeft(props.productId);
       } else {
+        setIsSwiped(true);
         props.onSwipeRight(props.productId);
       }
     }
@@ -54,6 +57,7 @@ const Card: React.FC<CardProps> = (props) => {
 
   function handleDoubleTap(): void {
     setMouseState([0, -(document.body.clientHeight) - 100, 80]);
+    setIsSwiped(true);
     props.onDoubleTap(props.productId);
   }
 
@@ -64,7 +68,12 @@ const Card: React.FC<CardProps> = (props) => {
       onDoubleTap={handleDoubleTap}
     >
       <div
-        className={clsx(classes.card, isMoving && classes.card_moving)}
+        className={clsx(
+          'card',
+          classes.card,
+          isMoving && classes.card_moving,
+          isSwiped && 'removed',
+        )}
         style={{
           transform: `translate(${mouseState[0]}px, ${mouseState[1]}px) rotate(${mouseState[2]}deg)`,
         }}

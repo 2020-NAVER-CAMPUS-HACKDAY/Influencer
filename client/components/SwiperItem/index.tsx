@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useStyles from 'components/SwiperItem/styles';
 import { ProductProps } from 'components/SwiperItem/interface';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
