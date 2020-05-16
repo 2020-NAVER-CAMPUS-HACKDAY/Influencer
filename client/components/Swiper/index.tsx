@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardWrapper from 'components/Swiper/CardWrapper';
 import Card from 'components/Swiper/Card';
 import SwiperItem from 'components/SwiperItem';
@@ -10,18 +10,13 @@ interface SwiperProps {
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { products } = props;
-  const [userAct, setUserAct] = useState('상태 확인을 위해 임시로 만들어진 부분입니다.');
-
-  function handleSwipeLeft(productId: number): void {
-    setUserAct(`당신은 ${productId} 를 [싫어요] 하셨습니다.`);
-  }
 
   function handleSwipeRight(productId: number): void {
-    setUserAct(`당신은 ${productId} 를 [좋아요] 하셨습니다.`);
+    // TODO(seogeurim) : handle Interaction Log Data
   }
 
   function handleDoubleTap(productId: number): void {
-    setUserAct(`당신은 ${productId} 를 [찜] 하셨습니다.`);
+    // TODO(seogeurim) : handle Like Data
   }
 
   function renderCards(): object {
@@ -29,7 +24,6 @@ const Swiper: React.FC<SwiperProps> = (props) => {
       <Card
         key={data.productId}
         productId={data.productId}
-        onSwipeLeft={handleSwipeLeft}
         onSwipeRight={handleSwipeRight}
         onDoubleTap={handleDoubleTap}>
         <SwiperItem
