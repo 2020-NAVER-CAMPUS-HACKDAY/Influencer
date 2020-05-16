@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     padding: '20px',
   },
-  nextButton: {
+  interactionButton: {
     width: '300px',
     display: 'flex',
     justifyContent: 'space-between',
