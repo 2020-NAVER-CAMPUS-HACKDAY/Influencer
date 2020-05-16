@@ -14,7 +14,7 @@ const Interaction: React.FC = () => {
         <div className={classes.swiper}>
           <Swiper products={InteractionDummyData} />
           <div className={classes.footer}>
-            <div className={classes.nextButton}>
+            <div className={classes.interactionButton}>
               <InteractionButton categoryName={'남성의류'} isPrev={true} />
               <InteractionButton categoryName={'여성의류'} isPrev={false} />
             </div>

@@ -5,12 +5,12 @@ import Label from 'components/Label';
 import Direction from 'svgs/Direction';
 import { AppColor } from 'constant';
 
-interface CategoryNameProps {
+interface InteractionButtonProps {
   categoryName: string;
   isPrev: boolean;
 }
 
-const InteractionButton: React.FC<CategoryNameProps> = (props) => {
+const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
   const classes = useStyles();
   const { categoryName, isPrev } = props;
 
