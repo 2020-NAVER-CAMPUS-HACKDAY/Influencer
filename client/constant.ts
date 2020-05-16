@@ -1,3 +1,5 @@
+import { ImageSizeProps } from 'components/LikeList/LikeGridViewItem/interface';
+
 export const AppColor = {
   BLACK: '#000000',
   WHITE: '#FFFFFF',
@@ -9,6 +11,13 @@ export const AppColor = {
   BLACK70: 'rgba(0, 0, 0, 0.7)',
   BLACK50: 'rgba(0, 0, 0, 0.5)',
   GREY: '#E9ECEF',
+  DARK_GREY: '#C4C4C4',
 };
 
 export const CONSTANT_TAG = 24;
+
+export const IMAGE_DATA_SIZE: ImageSizeProps[] = [
+  { width: 121, height: 121 },
+  { width: 121, height: 60 },
+  { width: 60, height: 60 },
+];

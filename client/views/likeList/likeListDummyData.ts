@@ -1,4 +1,4 @@
-import { LikeListProps } from 'components/LikeListItem';
+import { LikeListProps } from 'components/LikeList/LikeListItem/interface';
 
 const likeListDummmyDatas: LikeListProps[] = [
   {
@@ -7,7 +7,34 @@ const likeListDummmyDatas: LikeListProps[] = [
     productId: 1234566,
     productPrice: 3000,
     productName: '벚꽃나무1',
-    category: 50000000,
+    category: 50000001,
+    likeDate: '2020-02-08T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productCompany: '꽃세상',
+    productId: 1234563,
+    productPrice: 3000,
+    productName: '벚꽃나무1',
+    category: 50000001,
+    likeDate: '2020-02-08T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productCompany: '꽃세상',
+    productId: 1234561,
+    productPrice: 3000,
+    productName: '벚꽃나무1',
+    category: 50000001,
+    likeDate: '2020-02-08T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productCompany: '꽃세상',
+    productId: 1234562,
+    productPrice: 3000,
+    productName: '벚꽃나무1',
+    category: 50000001,
     likeDate: '2020-02-08T15:47:36.479+00:00',
   },
   {
@@ -16,7 +43,7 @@ const likeListDummmyDatas: LikeListProps[] = [
     productId: 1234567,
     productPrice: 3000,
     productName: '벚꽃나무2',
-    category: 50000000,
+    category: 50000001,
     likeDate: '2020-02-07T15:47:36.479+00:00',
   },
   {
