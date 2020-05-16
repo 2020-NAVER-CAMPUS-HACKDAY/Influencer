@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = (props) => {
   }
 
   function handleDoubleTap(): void {
-    setMouseState([0, -(document.body.clientWidth * 0.3) - 100, 80]);
+    setMouseState([0, -(document.body.clientHeight) - 100, 80]);
     props.onDoubleTap(props.productId);
   }
 
