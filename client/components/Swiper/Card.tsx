@@ -5,7 +5,6 @@ import clsx from 'clsx';
 
 interface CardProps {
   productId: number;
-  onSwipeLeft: (productId: number) => void;
   onSwipeRight: (productId: number) => void;
   onDoubleTap: (productId: number) => void;
 }
@@ -47,7 +46,6 @@ const Card: React.FC<CardProps> = (props) => {
       ]);
       if (toX < 0) {
         setIsSwiped(true);
-        props.onSwipeLeft(props.productId);
       } else {
         setIsSwiped(true);
         props.onSwipeRight(props.productId);
