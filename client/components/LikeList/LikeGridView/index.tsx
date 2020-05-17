@@ -1,26 +1,24 @@
 import React, { FC } from 'react';
 import useStyles from 'components/LikeList/LikeGridView/styles';
-import { AppColor, GRID_VIEW_IMAGE_DATA_SIZE, Category } from 'constant';
+import { AppColor, GridImageSize, Category } from 'constant';
 import ImageItem from 'components/LikeList/LikeGridView/ImageItem';
-import { orderBy, uniq } from 'lodash';
+import { orderBy } from 'lodash';
 import Label from 'components/Common/Label';
-import { LikeGridViewProps } from 'components/LikeList/LikeGridView/interface';
+import { LikeGridViewProps, ImageSizeProps } from 'components/LikeList/LikeGridView/interface';
 import clsx from 'clsx';
 
-const getImageDataSize = (gridViewDataArrayLength: number, index: number) => {
-  if (gridViewDataArrayLength === 1) return GRID_VIEW_IMAGE_DATA_SIZE[0];
-  if (gridViewDataArrayLength === 2) return GRID_VIEW_IMAGE_DATA_SIZE[1];
-  if (gridViewDataArrayLength === 3 && index === 0) return GRID_VIEW_IMAGE_DATA_SIZE[2];
-  return GRID_VIEW_IMAGE_DATA_SIZE[3];
+const getImageDataSize = (gridViewDataArrayLength: number, index: number): ImageSizeProps => {
+  if (gridViewDataArrayLength === 1) return GridImageSize.FULL_IMAGE;
+  if (gridViewDataArrayLength === 2) return GridImageSize.VERTICAL_HALF_IMAGE;
+  if (gridViewDataArrayLength === 3 && index === 0) return GridImageSize.HORIZONTAL_HALF_IMAGE;
+  return GridImageSize.QUARTER_IMAGE;
 };
 
 const LikeGridView: FC<LikeGridViewProps> = (props) => {
   const classes = useStyles();
-  const { itemArray } = props;
+  const { itemArray, handleItemClick, categoryArray } = props;
 
-  const categoryInDataArray = uniq(itemArray.map((item) => item.category));
-
-  const GridViewItem = categoryInDataArray.map((category) => {
+  const GridViewItem = categoryArray.map((category) => {
     const GridViewItemData = orderBy(
       itemArray
         .filter((item) => item.category === category),
@@ -30,10 +28,11 @@ const LikeGridView: FC<LikeGridViewProps> = (props) => {
 
     // TODO(daeun): add Link to go to the category
     return (
-      <li className={classes.root} key={category}>
+      <li className={classes.root} id={Category[category]} key={category} onClick={handleItemClick}>
         <div className={clsx(classes.images, classes.marginLeft)}>
           {GridViewItemData
             .map((item, index) => <ImageItem
+              id={Category[category]}
               key={item.productId}
               item={item}
               imageSize={getImageDataSize(GridViewItemData.length, index)}

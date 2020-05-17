@@ -12,6 +12,6 @@ const useStyles = makeStyles({
     backgroundColor: AppColor.WHITE,
     padding: 15,
   },
-})
+});
 
 export default useStyles;
