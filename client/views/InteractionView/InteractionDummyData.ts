@@ -5,7 +5,7 @@ export const InteractionDummyData: ProductProps[] = [
     productId: 1,
     productName: '린넨 여성 롱 원피스',
     productImages: {
-      url: 'https://lh3.googleusercontent.com/proxy/LHaro80Txp0CNInxWLE-_lMiwsVkDnTKwG_eFRnPZDI6w4X_N_p7i5mF40K46wK6ZnSXngi16gI3NWU0ALs3hntWzbvBNXMqRDMsQm2bQclv3-6n',
+      url: 'https://ccimg.hellomarket.com/images/2018/item/08/09/23/0243_3334803_1.jpg?size=s6',
       width: 120,
       height: 120,
     },
@@ -15,7 +15,7 @@ export const InteractionDummyData: ProductProps[] = [
     productId: 2,
     productName: 'USB 8기가',
     productImages: {
-      url: 'https://lh3.googleusercontent.com/proxy/1GBjdzpvjeX7ciuX9jLrjNCDEJTDX286UTS4fUuB1V1x1LLeUPj9lXGRABDC6yDkgL93RAQuRwwl_ttGh5Q6H2XwoiWriWUR1eXzhHrJwbCkBaaC',
+      url: 'https://ae01.alicdn.com/kf/HTB1xMtxNXXXXXXDapXXq6xXFXXXK/Usb-3-0-usb-8-16-32-64-pendrive.jpg',
       width: 120,
       height: 120,
     },
