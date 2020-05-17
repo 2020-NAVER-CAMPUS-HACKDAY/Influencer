@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
 import SelectCategory from 'components/SelectCategory';
 
@@ -23,7 +23,7 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const dummyData: Category[] = myCategoryViewDataArray;
 
-  const categoryAddHandler = (id: string, name: string) => {
+  const categoryAddHandler = (id: string, name: string): void => {
     setCategories([
       ...categories,
       {
@@ -33,7 +33,7 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
     ]);
   };
 
-  const categoryDeleteHandler = (id: string) => {
+  const categoryDeleteHandler = (id: string): void => {
     const newCategories = categories.filter((category) => category.id !== id);
     setCategories(newCategories);
   };
