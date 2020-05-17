@@ -14,7 +14,7 @@ const Label: React.FC<LogoProps> = (props) => {
   const { name, className } = props;
 
   return (
-    <div className={clsx(classes.logo, className)}>
+    <div id={name} className={clsx(classes.logo, className)}>
       {name ?? 'INFLUENCER'}
     </div>
   );

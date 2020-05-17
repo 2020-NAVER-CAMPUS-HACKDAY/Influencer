@@ -7,21 +7,7 @@ import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 import SVGButton from 'components/Common/SVGButton';
 import Delete from 'svgs/Delete';
-
-interface LikeListItemProps {
-  item: LikeListProps;
-}
-
-// TODO(daeun): modify listProps when connecting with api
-export interface LikeListProps {
-  productId: number;
-  productCompany: string;
-  productPrice: number;
-  productName: string;
-  category: number;
-  imageLink: string;
-  likeDate: string;
-}
+import { LikeListItemProps } from 'components/LikeList/LikeListItem/interface';
 
 const LikeListItem: React.FC<LikeListItemProps> = (props) => {
   const classes = useStyles();
