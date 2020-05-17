@@ -13,6 +13,7 @@ const Card: React.FC<CardProps> = (props) => {
   const { children } = props;
   const [isMoving, setIsMoving] = useState(false);
   const [mouseState, setMouseState] = useState([0, 0, 0]);
+  const [swipeAction, setSwipeAction] = useState('');
   const classes = useStyles();
 
   function handlePan(event): void {
@@ -22,6 +23,11 @@ const Card: React.FC<CardProps> = (props) => {
       event.deltaY,
       (event.deltaX * 0.03) * (event.deltaY / 80),
     ]);
+    if (event.deltaX > 0) {
+      setSwipeAction('좋아요');
+    } else if (event.deltaX < 0) {
+      setSwipeAction('싫어요');
+    }
   }
 
   function handlePanEnd(event): void {
@@ -32,6 +38,7 @@ const Card: React.FC<CardProps> = (props) => {
     keep = Math.abs(event.deltaX) < 300;
     if (keep) {
       event.target.style.transform = '';
+      setSwipeAction('');
     } else {
       endX = event.velocityX > 1 ? Math.abs(event.velocityX) * windowWidth : windowWidth;
       toX = event.deltaX > 0 ? endX : -endX;
@@ -69,6 +76,16 @@ const Card: React.FC<CardProps> = (props) => {
           transform: `translate(${mouseState[0]}px, ${mouseState[1]}px) rotate(${mouseState[2]}deg)`,
         }}
       >
+        <div
+          className={clsx(
+            classes.action,
+            swipeAction === '좋아요' && classes.action_good,
+            swipeAction === '싫어요' && classes.action_bad,
+          )}>
+          <span>
+            {swipeAction}
+          </span>
+        </div>
         {children}
       </div>
     </Hammer>
