@@ -19,17 +19,20 @@ export default class CategoryService {
   }
 
   public async list(
-      limit: string,
       page: string,
+      limit: string,
+      level: string,
   ): Promise<{ categories: ICategory[] }> {
     try {
       const take = parseInt(limit || '10', 10);
       const skip = take * (parseInt(page || '1', 10) - 1);
-      if (Number.isNaN(take) || Number.isNaN(skip)) {
+      const categoryLevel = parseInt(level || '1', 10);
+      if (Number.isNaN(take) || Number.isNaN(skip) || Number.isNaN(categoryLevel)) {
         throw new BadRequestError('take, limit and categoryLevel must be number');
       }
+
       const categoryRecords = await this.categoryModel
-        .find()
+        .find({'value.categoryLevel': categoryLevel})
         .limit(take)
         .skip(skip);
 
@@ -45,7 +48,7 @@ export default class CategoryService {
       try {
         const categoryRecord = await this.categoryModel.findOne({ _id: id });
         if (!categoryRecord) {
-          throw new NotFoundError('Product is not exist');
+          throw new NotFoundError('Category is not exist');
         }
         const category = categoryRecord.toObject();
         return { category };
