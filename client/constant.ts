@@ -39,3 +39,9 @@ export const Category = {
   50000009: '여가/생활편의',
   50000010: '면세점',
 };
+
+export const SwipeAction = {
+  DEFAULT: '',
+  LIKE: '좋아요',
+  UNLIKE: '싫어요',
+};

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CardProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
+import { SwipeAction } from 'constant';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
@@ -8,7 +9,7 @@ const Card: React.FC<CardProps> = (props) => {
   const { children } = props;
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const [mouseState, setMouseState] = useState<[number, number, number]>([0, 0, 0]);
-  const [swipeAction, setSwipeAction] = useState<number>(0);
+  const [swipeAction, setSwipeAction] = useState<string>(SwipeAction.DEFAULT);
   const classes = useStyles();
 
   function handlePan(event): void {
@@ -18,12 +19,12 @@ const Card: React.FC<CardProps> = (props) => {
       event.deltaY,
       (event.deltaX * 0.03) * (event.deltaY / 80),
     ]);
-    if (event.deltaX < 0) {
-      setSwipeAction(1);
-    } else if (event.deltaX > 0) {
-      setSwipeAction(2);
+    if (event.deltaX > 0) {
+      setSwipeAction(SwipeAction.LIKE);
+    } else if (event.deltaX < 0) {
+      setSwipeAction(SwipeAction.UNLIKE);
     } else {
-      setSwipeAction(0);
+      setSwipeAction(SwipeAction.DEFAULT);
     }
   }
 
@@ -35,7 +36,7 @@ const Card: React.FC<CardProps> = (props) => {
     keep = Math.abs(event.deltaX) < 200;
     if (keep) {
       event.target.style.transform = '';
-      setSwipeAction(0);
+      setSwipeAction(SwipeAction.DEFAULT);
     } else {
       endX = event.velocityX > 1 ? Math.abs(event.velocityX) * windowWidth : windowWidth;
       toX = event.deltaX > 0 ? endX : -endX;
@@ -76,12 +77,11 @@ const Card: React.FC<CardProps> = (props) => {
         <div
           className={clsx(
             classes.action,
-            swipeAction === 1 && classes.action_bad,
-            swipeAction === 2 && classes.action_good,
+            swipeAction === SwipeAction.LIKE && classes.action_good,
+            swipeAction === SwipeAction.UNLIKE && classes.action_bad,
           )}>
           <span>
-            {swipeAction === 1 && '싫어요'}
-            {swipeAction === 2 && '좋아요'}
+            {swipeAction}
           </span>
         </div>
         {children}
