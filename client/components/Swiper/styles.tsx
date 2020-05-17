@@ -33,6 +33,36 @@ const useStyles = makeStyles({
     transition: 'none',
     cursor: 'grabbing',
   },
+  action: {
+    pointerEvents: 'none',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    '& span': {
+      display: 'inline-block',
+      padding: '7px 15px',
+      margin: '20px',
+      fontSize: '1.8rem',
+      fontWeight: 600,
+    },
+  },
+  action_good: {
+    backgroundColor: 'rgba(255, 178, 217, 0.3)',
+    '& span': {
+      color: AppColor.RED,
+      backgroundColor: 'rgba(255, 178, 217, 0.5)',
+    },
+  },
+  action_bad: {
+    backgroundColor: 'rgba(178, 204, 255, 0.3)',
+    '& span': {
+      color: AppColor.BLUE,
+      backgroundColor: 'rgba(178, 204, 255, 0.5)',
+    },
+  },
 });
 
 export default useStyles;
