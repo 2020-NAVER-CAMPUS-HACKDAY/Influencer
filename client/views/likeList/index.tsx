@@ -2,48 +2,15 @@ import React, { useState } from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';
 import LikeListItem from 'components/LikeList/LikeListItem';
-import ImageItem from 'components/LikeList/LikeGridViewItem/ImageItem';
-import LikeGridViewItemWrapper from 'components/LikeList/LikeGridViewItem/LikeGridViewItemWrapper';
 import likeListDummmyDatas from 'views/likeList/likeListDummyData';
-import { orderBy, uniq } from 'lodash';
+import { orderBy } from 'lodash';
 import TopButton from 'components/Common/TopButton';
-import LikeGridViewItem from 'components/LikeList/LikeGridViewItem';
-import { IMAGE_DATA_SIZE } from 'constant';
-
-
-const getImageDataSize = (length: number, index: number) => {
-  if (length === 1) return IMAGE_DATA_SIZE[0];
-  if (length === 2 || (length === 3 && index === 0)) return IMAGE_DATA_SIZE[1];
-  return IMAGE_DATA_SIZE[2];
-};
-
-const GridViewItem = uniq(likeListDummmyDatas.map((item) => item.category))
-  .map((category) => {
-    const GridViewItemData = orderBy(
-      likeListDummmyDatas
-        .filter((item) => item.category === category),
-      ['likeDate'],
-      ['desc'],
-    ).filter((item, index) => index < 4);
-
-    return (
-      <LikeGridViewItemWrapper key={category}>
-        {GridViewItemData
-          .map((item, index) => <ImageItem
-            key={item.productId}
-            item={item}
-            imageSize={getImageDataSize(GridViewItemData.length, index)}
-          />)}
-      </LikeGridViewItemWrapper>
-    );
-  });
-
+import LikeGridView from 'components/LikeList/LikeGridView';
 
 const likeListItemList = orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
   .map((likeItem) => (
     <LikeListItem key={likeItem.productId} item={likeItem}/>
   ));
-
 
 const LikeList: React.FC = () => {
   const [listClicked, setListClicked] = useState(true);
@@ -72,7 +39,7 @@ const LikeList: React.FC = () => {
         handleGridClicked={handleGridClicked}
       />
       {listClicked && likeListItemList}
-      {gridClicked && <LikeGridViewItem>{GridViewItem}</LikeGridViewItem>}
+      {gridClicked && <LikeGridView itemArray={likeListDummmyDatas} />}
       <TopButton/>
     </>
   );
