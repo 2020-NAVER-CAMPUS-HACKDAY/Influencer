@@ -30,17 +30,15 @@ const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
       variant='contained'
       size='small'
       disabled={isPrev}>
-      {isPrev
-        ? <div className={classes.prev}>
+      {isPrev && (
+        <div className={classes.prev}>
           <Direction />
-        </div>
-        : null}
+        </div>)}
       <Label name={categoryName} fontSize={22} color={AppColor.WHITE} />
-      {!isPrev
-        ? <div className={classes.next}>
+      {!isPrev && (
+        <div className={classes.next}>
           <Direction />
-        </div>
-        : null}
+        </div>)}
     </StyledButton>
   );
 };
