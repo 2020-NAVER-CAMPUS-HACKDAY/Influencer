@@ -87,51 +87,58 @@ export const likeListDummmyDatas: LikeListProps[] = [
 
 export const likeGridViewDummyData: LikeGridViewItemProps[] = [
   {
-    productId: '1234570',
     imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000002',
-    likeDate: '2020-02-20T15:47:36.479+00:00',
-  },
-  {
-    productId: '1234571',
-    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000002',
-    likeDate: '2020-02-20T15:47:36.479+00:00',
-  },
-  {
-    productId: '1234572',
-    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000002',
-    likeDate: '2020-02-20T15:47:36.479+00:00',
-  },
-  {
-    productId: '1234573',
-    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000002',
-    likeDate: '2020-03-30T15:47:36.479+00:00',
-  },
-  {
-    productId: '1234574',
-    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000000',
-    likeDate: '2020-02-21T15:47:36.479+00:00',
-  },
-  {
-    productId: '1234575',
-    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234566',
     category: '50000001',
-    likeDate: '2020-02-19T15:47:36.479+00:00',
+    likeDate: '2020-02-08T15:47:36.479+00:00',
   },
   {
-    productId: '1234576',
     imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000003',
-    likeDate: '2020-02-19T15:47:36.479+00:00',
+    productId: '1234563',
+    category: '50000001',
+    likeDate: '2020-02-08T15:47:36.479+00:00',
   },
   {
-    productId: '1234577',
     imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
-    category: '50000004',
-    likeDate: '2020-02-19T15:47:36.479+00:00',
+    productId: '1234561',
+    category: '50000001',
+    likeDate: '2020-02-08T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234562',
+    category: '50000001',
+    likeDate: '2020-02-08T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234568',
+    category: '50000000',
+    likeDate: '2020-02-11T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234569',
+    category: '50000000',
+    likeDate: '2020-02-01T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234570',
+
+    category: '50000000',
+    likeDate: '2020-02-20T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234571',
+    category: '50000002',
+    likeDate: '2020-02-20T15:47:36.479+00:00',
+  },
+  {
+    imageLink: 'https://i.postimg.cc/cHkk4h1H/Kakao-Talk-Photo-2020-04-07-08-43-53.jpg',
+    productId: '1234572',
+    category: '50000002',
+    likeDate: '2020-02-20T15:47:36.479+00:00',
   },
 ];
