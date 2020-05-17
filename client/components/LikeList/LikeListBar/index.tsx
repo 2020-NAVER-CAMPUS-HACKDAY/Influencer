@@ -20,7 +20,7 @@ const LikeListBar: React.FC<LikeListBarProps> = (props) => {
   } = props;
 
   return (
-    <div className={classes.marginBottom}>
+    <div>
       <AppBar height={'3.7rem'} backgroundColor={AppColor.WHITE} isNotFixed>
         <Label name={'찜한 상품'} color={AppColor.BLACK} fontSize={20}/>
         <div className={classes.rightPosition}>

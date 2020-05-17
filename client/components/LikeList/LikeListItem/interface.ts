@@ -1,10 +1,10 @@
 // TODO(daeun): modify listProps when connecting with api
 export interface LikeListProps {
-  productId: number;
+  productId: string;
   productCompany: string;
   productPrice: number;
   productName: string;
-  category: number;
+  category: string;
   imageLink: string;
   likeDate: string;
 }
