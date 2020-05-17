@@ -43,17 +43,18 @@ const useStyles = makeStyles({
     alignItems: 'flex-end',
     '& span': {
       display: 'inline-block',
-      padding: '7px 15px',
+      borderRadius: '10px',
+      padding: '8px 18px',
       margin: '20px',
       fontSize: '1.8rem',
       fontWeight: 600,
     },
   },
   action_good: {
-    backgroundColor: 'rgba(255, 178, 217, 0.3)',
+    backgroundColor: 'rgba(255, 167, 167, 0.3)',
     '& span': {
       color: AppColor.RED,
-      backgroundColor: 'rgba(255, 178, 217, 0.5)',
+      backgroundColor: 'rgba(255, 167, 167, 0.5)',
     },
   },
   action_bad: {
