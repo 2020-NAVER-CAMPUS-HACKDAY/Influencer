@@ -1,40 +1,32 @@
 import React, { useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
-import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
 import SelectCategory from 'components/SelectCategory';
-
-interface Category{
-  id: string;
-  name: string;
-}
+import { Category } from 'components/SelectCategory/types';
 
 interface MyCategoryViewProps {
-  data: string;
+  categoryData: Category[];
 }
 
 const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const dummyData: Category[] = myCategoryViewDataArray;
+  const { categoryData } = props;
 
-  const categoryAddHandler = (id: string, name: string): void => {
+  const categoryAddHandler = (newCategory: Category): void => {
     setCategories([
       ...categories,
-      {
-        id,
-        name,
-      },
+      newCategory,
     ]);
   };
 
   const categoryDeleteHandler = (id: string): void => {
-    const newCategories = categories.filter((category) => category.id !== id);
+    const newCategories = categories.filter((category) => category._id !== id);
     setCategories(newCategories);
   };
 
   return (
     <MainHeader>
       <SelectCategory
-        dummyData={dummyData}
+        categoryData={categoryData}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
