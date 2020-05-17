@@ -1,4 +1,4 @@
-import { ImageSizeProps } from 'components/LikeList/LikeGridViewItem/interface';
+import { ImageSizeProps } from 'components/LikeList/LikeGridView/interface';
 
 export const AppColor = {
   BLACK: '#000000',
@@ -16,8 +16,23 @@ export const AppColor = {
 
 export const CONSTANT_TAG = 24;
 
-export const IMAGE_DATA_SIZE: ImageSizeProps[] = [
-  { width: 121, height: 121 },
-  { width: 121, height: 60 },
-  { width: 60, height: 60 },
+export const GRID_VIEW_IMAGE_DATA_SIZE: ImageSizeProps[] = [
+  { width: 161, height: 161 },
+  { width: 80, height: 161 },
+  { width: 161, height: 80 },
+  { width: 80, height: 80 },
 ];
+
+export const Category = {
+  50000000: '패션의류',
+  50000001: '패션잡화',
+  50000002: '화장품/미용',
+  50000003: '디지털/가전',
+  50000004: '가구/인테리어',
+  50000005: '출산/육아',
+  50000006: '식품',
+  50000007: '스포츠/레저',
+  50000008: '생활/건강',
+  50000009: '여가/생활편의',
+  50000010: '면세점',
+};
