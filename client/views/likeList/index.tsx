@@ -13,8 +13,8 @@ const likeListItemList = orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
   ));
 
 const LikeList: React.FC = () => {
-  const [listClicked, setListClicked] = useState(true);
-  const [gridClicked, setGridClicked] = useState(false);
+  const [listClicked, setListClicked] = useState<boolean>(true);
+  const [gridClicked, setGridClicked] = useState<boolean>(false);
 
   const handleListClicked = (): void => {
     if (!listClicked && gridClicked) {
