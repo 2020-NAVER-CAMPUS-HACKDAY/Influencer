@@ -35,7 +35,7 @@ const Card: React.FC<CardProps> = (props) => {
     let [endX, toX, endY, toY] = [0, 0, 0, 0];
     const windowWidth = document.body.clientWidth;
     setIsMoving(false);
-    keep = Math.abs(event.deltaX) < 300;
+    keep = Math.abs(event.deltaX) < 200;
     if (keep) {
       event.target.style.transform = '';
       setSwipeAction('');
