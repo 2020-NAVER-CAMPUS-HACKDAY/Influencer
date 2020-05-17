@@ -8,6 +8,7 @@ const ImageItem: FC<ImageItemProps> = (props) => {
 
   return (
     <img className={classes.data}
+      id={props.id}
       key={productId}
       src={imageLink}
       width={props.imageSize.width}

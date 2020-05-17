@@ -1,4 +1,4 @@
-import { ImageSizeProps } from 'components/LikeList/LikeGridView/interface';
+import { GridViewImageSize } from 'components/LikeList/LikeGridView/interface';
 
 export const AppColor = {
   BLACK: '#000000',
@@ -16,12 +16,13 @@ export const AppColor = {
 
 export const CONSTANT_TAG = 24;
 
-export const GRID_VIEW_IMAGE_DATA_SIZE: ImageSizeProps[] = [
-  { width: 161, height: 161 },
-  { width: 80, height: 161 },
-  { width: 161, height: 80 },
-  { width: 80, height: 80 },
-];
+export const GridImageSize: GridViewImageSize = {
+  FULL_IMAGE: { width: 161, height: 161 },
+  VERTICAL_HALF_IMAGE: { width: 80, height: 161 },
+  HORIZONTAL_HALF_IMAGE: { width: 161, height: 80 },
+  QUARTER_IMAGE: { width: 80, height: 80 },
+};
+
 
 export const Category = {
   50000000: '패션의류',

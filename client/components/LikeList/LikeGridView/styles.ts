@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   },
   label: {
     marginTop: 10,
-    fontSize: 16,
+    fontSize: '16px !important',
   },
   countLabel: {
     fontSize: 13,
