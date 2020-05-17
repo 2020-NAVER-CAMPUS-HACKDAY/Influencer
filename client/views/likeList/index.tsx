@@ -1,10 +1,10 @@
 import React from 'react';
-import LikeListHeader from 'components/LikeListHeader';
-import LikeListBar from 'components/LikeListBar';
-import LikeListItem from 'components/LikeListItem';
+import LikeListHeader from 'components/LikeList/LikeListHeader';
+import LikeListBar from 'components/LikeList/LikeListBar';
+import LikeListItem from 'components/LikeList/LikeListItem';
 import likeListDummmyDatas from 'views/likeList/likeListDummyData';
 import { orderBy } from 'lodash';
-import TopButton from 'components/TopButton';
+import TopButton from 'components/Common/TopButton';
 
 const likeListItemList = orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
   .map((likeItem) => (

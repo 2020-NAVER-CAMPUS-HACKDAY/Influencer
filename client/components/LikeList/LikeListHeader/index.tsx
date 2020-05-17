@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import AppBar from 'components/AppBar';
+import AppBar from 'components/Common/AppBar';
 import { AppColor } from 'constant';
-import Label from 'components/Label';
+import Label from 'components/Common/Label';
 
 const LikeListHeader: React.FC = () => (
   <>

@@ -1,11 +1,11 @@
 import React from 'react';
-import useStyles from 'components/LikeListItem/styles';
+import useStyles from 'components/LikeList/LikeListItem/styles';
 import { Box } from '@material-ui/core';
-import Label from 'components/Label';
+import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import SVGButton from 'components/SVGButton';
+import SVGButton from 'components/Common/SVGButton';
 import Delete from 'svgs/Delete';
 
 interface LikeListItemProps {
@@ -51,7 +51,7 @@ const LikeListItem: React.FC<LikeListItemProps> = (props) => {
         <Label className={clsx(classes.productPrice, classes.text)}
           fontSize={18}
           color={AppColor.BLACK}
-          name={price === undefined ? '미정' : `${price}원`}
+          name={price ? `${price}원` : '미정'}
         />
         <Label className={classes.text}
           fontSize={13}
