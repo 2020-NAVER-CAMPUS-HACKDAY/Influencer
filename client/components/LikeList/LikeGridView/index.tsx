@@ -26,8 +26,9 @@ const LikeGridView: FC<LikeGridViewProps> = (props) => {
         .filter((item) => item.category === category),
       ['likeDate'],
       ['desc'],
-    ).filter((item, index) => index < 4);
+    );
 
+    // TODO(daeun): add Link to go to the category
     return (
       <li className={classes.root} key={category}>
         <div className={clsx(classes.images, classes.marginLeft)}>
