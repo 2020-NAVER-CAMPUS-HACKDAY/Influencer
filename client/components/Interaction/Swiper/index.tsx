@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from 'components/Swiper/styles';
-import Card from 'components/Swiper/Card';
-import SwiperItem from 'components/SwiperItem';
-import { ProductProps } from 'components/SwiperItem/interface';
+import useStyles from 'components/Interaction/Swiper/styles';
+import Card from 'components/Interaction/Swiper/Card';
+import SwiperItem from 'components/Interaction/SwiperItem';
+import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
 interface SwiperProps {
   products: ProductProps[];

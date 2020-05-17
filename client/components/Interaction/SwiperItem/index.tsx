@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from 'components/SwiperItem/styles';
-import { ProductProps } from 'components/SwiperItem/interface';
+import useStyles from 'components/Interaction/SwiperItem/styles';
+import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
 interface SwiperItemProps {

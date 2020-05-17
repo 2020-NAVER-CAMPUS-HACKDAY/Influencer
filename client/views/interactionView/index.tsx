@@ -1,9 +1,9 @@
 import React from 'react';
-import useStyles from 'views/InteractionView/styles';
+import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
-import Swiper from 'components/Swiper';
-import InteractionButton from 'components/InteractionButton';
-import { InteractionDummyData } from 'views/InteractionView/InteractionDummyData';
+import Swiper from 'components/Interaction/Swiper';
+import InteractionButton from 'components/Interaction/InteractionButton';
+import { InteractionDummyData } from 'views/interactionView/InteractionDummyData';
 
 const Interaction: React.FC = () => {
   const classes = useStyles();

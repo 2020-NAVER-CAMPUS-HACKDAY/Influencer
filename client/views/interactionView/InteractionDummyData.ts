@@ -1,4 +1,4 @@
-import { ProductProps } from 'components/SwiperItem/interface';
+import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
 export const InteractionDummyData: ProductProps[] = [
   {

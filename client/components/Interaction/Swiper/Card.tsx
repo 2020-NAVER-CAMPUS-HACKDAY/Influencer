@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useStyles from 'components/Swiper/styles';
+import useStyles from 'components/Interaction/Swiper/styles';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 

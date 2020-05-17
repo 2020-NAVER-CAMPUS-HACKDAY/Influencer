@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from 'components/InteractionButton/styles';
+import useStyles from 'components/Interaction/InteractionButton/styles';
 import Button from '@material-ui/core/Button';
 import Label from 'components/Label';
 import Direction from 'svgs/Direction';
