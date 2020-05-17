@@ -1,15 +1,11 @@
 import React from 'react';
+import InteractionButtonProps from 'components/Interaction/InteractionButton/interface';
 import useStyles from 'components/Interaction/InteractionButton/styles';
 import { withStyles } from '@material-ui/core/styles';
+import { AppColor } from 'constant';
 import Button from '@material-ui/core/Button';
 import Label from 'components/Common/Label';
 import Direction from 'svgs/Direction';
-import { AppColor } from 'constant';
-
-interface InteractionButtonProps {
-  categoryName: string;
-  isPrev: boolean;
-}
 
 const StyledButton = withStyles({
   root: {

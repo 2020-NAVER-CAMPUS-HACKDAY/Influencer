@@ -1,12 +1,8 @@
 import React from 'react';
+import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
-import { ProductProps } from 'components/Interaction/SwiperItem/interface';
-
-interface SwiperProps {
-  products: ProductProps[];
-}
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { products } = props;

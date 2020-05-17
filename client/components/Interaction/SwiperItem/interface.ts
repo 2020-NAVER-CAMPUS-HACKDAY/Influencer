@@ -10,3 +10,7 @@ export interface ProductProps {
   productImages: ProductImage;
   salePrice: number;
 }
+
+export interface SwiperItemProps {
+  productData: ProductProps;
+}

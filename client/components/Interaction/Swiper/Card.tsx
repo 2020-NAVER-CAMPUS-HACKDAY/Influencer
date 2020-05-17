@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
+import { CardProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
-interface CardProps {
-  productId: number;
-  onSwipeRight: (productId: number) => number;
-  onDoubleTap: (productId: number) => number;
-}
-
 const Card: React.FC<CardProps> = (props) => {
   const { children } = props;
-  const [isMoving, setIsMoving] = useState(false);
-  const [mouseState, setMouseState] = useState([0, 0, 0]);
-  const [swipeAction, setSwipeAction] = useState('');
+  const [isMoving, setIsMoving] = useState<boolean>(false);
+  const [mouseState, setMouseState] = useState<[number, number, number]>([0, 0, 0]);
+  const [swipeAction, setSwipeAction] = useState<string>('');
   const classes = useStyles();
 
   function handlePan(event): void {
@@ -27,6 +22,8 @@ const Card: React.FC<CardProps> = (props) => {
       setSwipeAction('좋아요');
     } else if (event.deltaX < 0) {
       setSwipeAction('싫어요');
+    } else {
+      setSwipeAction('');
     }
   }
 
