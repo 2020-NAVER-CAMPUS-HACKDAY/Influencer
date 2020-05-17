@@ -1,5 +1,5 @@
 import React from 'react';
-import CardWrapper from 'components/Swiper/CardWrapper';
+import useStyles from 'components/Swiper/styles';
 import Card from 'components/Swiper/Card';
 import SwiperItem from 'components/SwiperItem';
 import { ProductProps } from 'components/SwiperItem/interface';
@@ -10,6 +10,7 @@ interface SwiperProps {
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { products } = props;
+  const classes = useStyles();
 
   function handleSwipeRight(productId: number): void {
     // TODO(seogeurim) : handle Interaction Log Data
@@ -34,9 +35,11 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   }
 
   return (
-    <CardWrapper>
-      {renderCards()}
-    </CardWrapper>
+    <div className={classes.containerWrapper}>
+      <div className={classes.container}>
+        {renderCards()}
+      </div>
+    </div>
   );
 };
 
