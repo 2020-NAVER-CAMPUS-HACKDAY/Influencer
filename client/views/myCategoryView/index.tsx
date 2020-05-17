@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
 import MainHeader from 'components/Main/MainHeader';
 import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
 import SelectCategory from 'components/SelectCategory';
@@ -11,15 +8,11 @@ interface Category{
   name: string;
 }
 
-interface DefaultProps extends UserProps, UserMethods {
+interface MyCategoryViewProps {
   data: string;
 }
 
-const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
-
-const MyCategory: React.FC<DefaultProps> = (props) => {
-  const { setUser } = props;
-  const setUserData = (): void => setUser(userData);
+const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const dummyData: Category[] = myCategoryViewDataArray;
 
@@ -40,9 +33,6 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
 
   return (
     <MainHeader>
-      <div onClick={setUserData}>
-        This is my Category setting page.
-      </div>
       <SelectCategory
         dummyData={dummyData}
         categoryAddHandler={categoryAddHandler}
@@ -52,11 +42,4 @@ const MyCategory: React.FC<DefaultProps> = (props) => {
   );
 };
 
-export default connect<UserProps, void>(
-  (state: UserProps) => ({
-    user: state.user,
-  }),
-  (dispatch) => ({
-    setUser: bindActionCreators(AuthActions.setUser, dispatch),
-  }),
-)(MyCategory);
+export default MyCategoryView;
