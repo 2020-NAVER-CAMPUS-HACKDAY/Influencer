@@ -5,8 +5,8 @@ import clsx from 'clsx';
 
 interface CardProps {
   productId: number;
-  onSwipeRight: (productId: number) => void;
-  onDoubleTap: (productId: number) => void;
+  onSwipeRight: (productId: number) => number;
+  onDoubleTap: (productId: number) => number;
 }
 
 const Card: React.FC<CardProps> = (props) => {

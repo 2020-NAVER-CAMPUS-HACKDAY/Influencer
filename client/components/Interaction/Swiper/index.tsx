@@ -12,12 +12,14 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   const { products } = props;
   const classes = useStyles();
 
-  function handleInteraction(productId: number): void {
+  function handleInteraction(productId: number): number {
     // TODO(seogeurim) : handle Interaction Log Data
+    return productId;
   }
 
-  function handleLike(productId: number): void {
+  function handleLike(productId: number): number {
     // TODO(seogeurim) : handle Like Data
+    return productId;
   }
 
   function renderCards(): object {
