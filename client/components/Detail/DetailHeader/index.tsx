@@ -13,7 +13,7 @@ interface DetailHeaderProps {
 
 const DetailHeader: React.FC<DetailHeaderProps> = (props) => (
   <AppBar backgroundColor={AppColor.DETAIL_HEADER}>
-    <SVGButton handleClick={(): void => Router.back()}>
+    <SVGButton handleClick={() => Router.back()}>
       <Direction/>
     </SVGButton>
     <Label name={props.productName}/>
