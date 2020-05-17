@@ -8,7 +8,7 @@ import Logger from './logger';
 export default async ({ expressApp }: { expressApp: Application }) => {
   await mongooseLoader();
   Logger.info('DB loaded and connected!');
-  Logger.debug(`${process.env.DB_URI}${process.env.DB_NAME}`);
+  Logger.debug(`${process.env.DB_URI}/${process.env.DB_NAME}`);
 
   const productModel = {
     name: 'productModel',
