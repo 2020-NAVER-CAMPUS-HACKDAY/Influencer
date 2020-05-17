@@ -836,28 +836,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@egjs/agent@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@egjs/agent/-/agent-2.1.5.tgz#692d2c92b1d8b6f36d0ceccc627199490b445698"
-
-"@egjs/axes@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-2.6.1.tgz#d6faa1d3e06b32eaa30762c40019db5dd7911eae"
-  dependencies:
-    "@egjs/agent" "^2.1.5"
-    "@egjs/component" "^2.1.2"
-    "@egjs/hammerjs" "^2.0.15"
-
-"@egjs/component@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@egjs/component/-/component-2.1.2.tgz#c466a0a6fc6ba2d479814dcbe6ee4643c25a2e5b"
-
-"@egjs/hammerjs@^2.0.15":
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
-  dependencies:
-    "@types/hammerjs" "^2.0.36"
-
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
@@ -1023,10 +1001,6 @@
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
-
-"@types/hammerjs@^2.0.36":
-  version "2.0.36"
-  resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.36.tgz#17ce0a235e9ffbcdcdf5095646b374c2bf615a4c"
 
 "@types/hoist-non-react-statics@^3.3.0":
   version "3.3.1"
