@@ -7,7 +7,7 @@ interface SVGButtonProps {
   handleClick?: () => void;
 }
 
-const SVGButton: React.FC<SVGButtonProps> = (props) => {
+const SVGButton: FC<SVGButtonProps> = (props) => {
   const classes = useStyles();
   const { className, handleClick, children } = props;
   return (

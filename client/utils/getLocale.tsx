@@ -22,7 +22,7 @@ function sanitizeLocale(value?: string): string {
   return DEFAULT_LOCALE;
 }
 
-function getLocale(query: any) {
+function getLocale(query): string {
   return sanitizeLocale(query.hl);
 }
 
