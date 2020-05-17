@@ -1,5 +1,5 @@
 import React from 'react';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Swiper';
 
 const Interaction: React.FC = () => (

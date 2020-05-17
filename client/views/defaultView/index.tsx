@@ -8,7 +8,7 @@ import {
   ProductActionsProps,
   ProductItemProps,
 } from 'redux/ducks/product';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 import { detailViewDataArray } from 'views/detailView/detailViewDummyData';
 import { PayloadAction } from 'typesafe-actions';
 
