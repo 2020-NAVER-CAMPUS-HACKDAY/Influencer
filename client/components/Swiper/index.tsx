@@ -12,11 +12,11 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   const { products } = props;
   const classes = useStyles();
 
-  function handleSwipeRight(productId: number): void {
+  function handleInteraction(productId: number): void {
     // TODO(seogeurim) : handle Interaction Log Data
   }
 
-  function handleDoubleTap(productId: number): void {
+  function handleLike(productId: number): void {
     // TODO(seogeurim) : handle Like Data
   }
 
@@ -25,8 +25,8 @@ const Swiper: React.FC<SwiperProps> = (props) => {
       <Card
         key={data.productId}
         productId={data.productId}
-        onSwipeRight={handleSwipeRight}
-        onDoubleTap={handleDoubleTap}>
+        onSwipeRight={handleInteraction}
+        onDoubleTap={handleLike}>
         <SwiperItem
           productData={data}
         />
