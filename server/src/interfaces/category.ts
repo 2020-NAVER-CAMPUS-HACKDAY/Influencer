@@ -5,7 +5,7 @@ export interface ICategory {
 export interface ICategoryValueObject {
   categoryName: string,
   categoryLevel: number,
-  parentCategoryId: string | null,
+  parentCategoryId?: string,
   wholeCategoryId: string,
   wholeCategoryName: string,
 };
