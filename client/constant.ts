@@ -9,6 +9,7 @@ export const AppColor = {
   BLACK70: 'rgba(0, 0, 0, 0.7)',
   BLACK50: 'rgba(0, 0, 0, 0.5)',
   GREY: '#E9ECEF',
+  DARK_GREY: '#C4C4C4',
 };
 
 export const CONSTANT_TAG = 24;

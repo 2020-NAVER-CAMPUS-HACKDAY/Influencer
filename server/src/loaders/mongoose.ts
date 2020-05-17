@@ -4,7 +4,7 @@ import config from '../config';
 
 export default async (): Promise<Db> => {
   const connection = await mongoose.connect(config.databaseURI as string, {
-    dbName: 'shopping',
+    dbName: process.env.DB_NAME,
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

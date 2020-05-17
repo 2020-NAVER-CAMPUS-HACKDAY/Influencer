@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
-import MainHeader from 'components/MainHeader';
+import MainHeader from 'components/Main/MainHeader';
 import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
 import SelectCategory from 'components/SelectCategory';
 
