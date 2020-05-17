@@ -18,6 +18,6 @@ const categorySchema = new Schema(
   }
 );
 
-const Category: Model<ICategoryModel> = model<ICategoryModel>('category', categorySchema, 'Category');
+const Category: Model<ICategoryModel> = model<ICategoryModel>('category', categorySchema, 'CategoryLevel');
 
 export default Category;

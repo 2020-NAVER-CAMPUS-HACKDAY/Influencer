@@ -4,6 +4,7 @@ import winston from 'winston';
 import { ICategory } from '../interfaces/category';
 import { ICategoryModel } from '../models/category';
 import {
+  BadRequestError,
   NotFoundError,
 } from '../modules/errors';
 
@@ -19,14 +20,18 @@ export default class CategoryService {
 
   public async list(
       limit: string,
-      level: string,
+      page: string,
   ): Promise<{ categories: ICategory[] }> {
     try {
       const take = parseInt(limit || '10', 10);
-      const categoryLevel = parseInt(level || '1', 10);
+      const skip = take * (parseInt(page || '1', 10) - 1);
+      if (Number.isNaN(take) || Number.isNaN(skip)) {
+        throw new BadRequestError('take, limit and categoryLevel must be number');
+      }
       const categoryRecords = await this.categoryModel
-        .find({ "value.categoryLevel": categoryLevel })
-        .limit(take);
+        .find()
+        .limit(take)
+        .skip(skip);
 
       const categories = categoryRecords.map((category) => category.toObject());
       return { categories };
