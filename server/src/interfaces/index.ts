@@ -1,4 +1,4 @@
-import { IProduct, IProductInputDTO } from './product';
+import { IProduct, IProductDTO } from './product';
 import { IUser } from './user';
 
-export { IProduct, IProductInputDTO, IUser };
+export { IProduct, IProductDTO, IUser };

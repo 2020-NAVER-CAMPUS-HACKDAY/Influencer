@@ -3,7 +3,7 @@ import { Container } from 'typedi';
 import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
-import { IProductInputDTO } from '../../../interfaces/product';
+import { IProductDTO } from '../../../interfaces/product';
 
 const productRoute = Router();
 
@@ -63,7 +63,7 @@ export default (routes: Router) => {
       try {
         const productServiceInstance = Container.get(ProductService);
         const { product } = await productServiceInstance.create(
-          req.body as IProductInputDTO
+          req.body as IProductDTO
         );
         return res.status(201).json({ product });
       } catch (e) {
@@ -75,16 +75,16 @@ export default (routes: Router) => {
 
   productRoute.put(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {}
   );
 
   productRoute.patch(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {}
   );
 
   productRoute.delete(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {}
   );
 };
