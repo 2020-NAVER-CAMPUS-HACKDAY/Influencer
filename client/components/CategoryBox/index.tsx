@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useStyles from 'components/CategoryBox/styles';
-import { Category } from '../SelectCategory/types';
+import { Category } from 'components/SelectCategory/types';
 
 interface CategoryBoxProps {
   category: Category;
