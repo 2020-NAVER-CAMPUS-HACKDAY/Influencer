@@ -37,3 +37,7 @@ export const Category = {
   50000009: '여가/생활편의',
   50000010: '면세점',
 };
+
+export const TITLE_ADD = '&title=';
+
+export const SHARE_TITLE = '상품';
