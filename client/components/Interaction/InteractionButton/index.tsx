@@ -36,9 +36,9 @@ const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
       variant='contained'
       size='small'
       disabled={isPrev}>
-      {getDirection(isPrev)}
+      {isPrev ? getDirection(isPrev) : null}
       <Label name={categoryName} fontSize={22} color={AppColor.WHITE} />
-      {getDirection(isPrev)}
+      {!isPrev ? getDirection(isPrev) : null}
     </StyledButton>
   );
 };
