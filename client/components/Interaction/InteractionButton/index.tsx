@@ -25,20 +25,25 @@ const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
   const classes = useStyles();
   const { categoryName, isPrev } = props;
 
-  const getDirection = (isLeft: boolean): ReactElement => (
-    <div className={isLeft ? classes.prev : classes.next}>
-      <Direction/>
-    </div>
-  );
+  const getDirection = (position: string): ReactElement => {
+    if ((isPrev && (position === 'left')) || (!isPrev && (position === 'right'))) {
+      return (
+        <div className={isPrev ? classes.prev : classes.next}>
+          <Direction/>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <StyledButton
       variant='contained'
       size='small'
       disabled={isPrev}>
-      {isPrev ? getDirection(isPrev) : null}
+      {getDirection('left')}
       <Label name={categoryName} fontSize={22} color={AppColor.WHITE} />
-      {!isPrev ? getDirection(isPrev) : null}
+      {getDirection('right')}
     </StyledButton>
   );
 };
