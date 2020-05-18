@@ -13,13 +13,11 @@ interface DefaultProps extends ProductProps, ProductActionsProps {
   data: string;
 }
 
-const Home: React.FC<DefaultProps> = (props) => {
-  return (
-    <MainHeader>
-      <ProductListView />
-    </MainHeader>
-  );
-};
+const Home: React.FC<DefaultProps> = () => (
+  <MainHeader>
+    <ProductListView />
+  </MainHeader>
+);
 
 export default connect<ProductProps, void>(
   (state: ProductProps) => ({
@@ -27,5 +25,5 @@ export default connect<ProductProps, void>(
   }),
   (dispatch) => ({
     addProduct: bindActionCreators(productActions.addProduct, dispatch),
-  })
+  }),
 )(Home);

@@ -27,7 +27,9 @@ const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
   };
 
   const onLayoutComplete = ({ isLayout, endLoading }) => {
-    !isLayout && endLoading();
+    if (!isLayout) {
+      endLoading();
+    }
   };
 
   return (
