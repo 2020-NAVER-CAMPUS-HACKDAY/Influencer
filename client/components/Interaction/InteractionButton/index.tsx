@@ -1,4 +1,5 @@
 import React, { FC, ReactElement } from 'react';
+import Router from 'next/router';
 import InteractionButtonProps from 'components/Interaction/InteractionButton/interface';
 import useStyles from 'components/Interaction/InteractionButton/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,28 +24,31 @@ const StyledButton = withStyles({
 
 const InteractionButton: FC<InteractionButtonProps> = (props) => {
   const classes = useStyles();
-  const { categoryName, isPrev } = props;
-
-  const getDirection = (position: string): ReactElement => {
-    if ((isPrev && (position === 'left')) || (!isPrev && (position === 'right'))) {
-      return (
-        <div className={isPrev ? classes.prev : classes.next}>
-          <Direction/>
-        </div>
-      );
-    }
-    return null;
-  };
+  const {
+    category, categoryIndex, isPrev, handleClick,
+  } = props;
 
   return (
-    <StyledButton
-      variant='contained'
-      size='small'
-      disabled={isPrev}>
-      {getDirection('left')}
-      <Label name={categoryName} fontSize={22} color={AppColor.WHITE} />
-      {getDirection('right')}
-    </StyledButton>
+    <div className={classes.wrapper}>
+      {category
+      && <StyledButton
+        variant='contained'
+        size='small'
+        startIcon={isPrev && <Direction />}
+        endIcon={isPrev === false && <div className={classes.next}><Direction /></div>}
+        disabled={isPrev === undefined}
+        onClick={() => handleClick(categoryIndex)}>
+        <Label name={category.categoryName} fontSize={22} color={AppColor.WHITE} />
+      </StyledButton>}
+
+      {(!category && !isPrev)
+      && <StyledButton
+        variant='contained'
+        size='small'
+        onClick={() => Router.push('/')}>
+        <Label name='끝내기' fontSize={22} color={AppColor.WHITE} />
+      </StyledButton>}
+    </div>
   );
 };
 
