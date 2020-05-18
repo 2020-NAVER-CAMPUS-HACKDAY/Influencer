@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import InteractionButtonProps from 'components/Interaction/InteractionButton/interface';
 import useStyles from 'components/Interaction/InteractionButton/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,20 +25,20 @@ const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
   const classes = useStyles();
   const { categoryName, isPrev } = props;
 
+  const getDirection = (isLeft: boolean): ReactElement => (
+    <div className={isLeft ? classes.prev : classes.next}>
+      <Direction/>
+    </div>
+  );
+
   return (
     <StyledButton
       variant='contained'
       size='small'
       disabled={isPrev}>
-      {isPrev && (
-        <div className={classes.prev}>
-          <Direction />
-        </div>)}
+      {getDirection(isPrev)}
       <Label name={categoryName} fontSize={22} color={AppColor.WHITE} />
-      {!isPrev && (
-        <div className={classes.next}>
-          <Direction />
-        </div>)}
+      {getDirection(isPrev)}
     </StyledButton>
   );
 };
