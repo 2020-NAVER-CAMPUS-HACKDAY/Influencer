@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import InteractionButtonProps from 'components/Interaction/InteractionButton/interface';
 import useStyles from 'components/Interaction/InteractionButton/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,7 +21,7 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-const InteractionButton: React.FC<InteractionButtonProps> = (props) => {
+const InteractionButton: FC<InteractionButtonProps> = (props) => {
   const classes = useStyles();
   const { categoryName, isPrev } = props;
 

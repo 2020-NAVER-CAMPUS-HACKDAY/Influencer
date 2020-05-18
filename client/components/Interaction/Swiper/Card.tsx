@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { CardProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import { SwipeAction } from 'constant';
 import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
-const Card: React.FC<CardProps> = (props) => {
+const Card: FC<CardProps> = (props) => {
   const { children } = props;
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const [mouseState, setMouseState] = useState<[number, number, number]>([0, 0, 0]);

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { SwiperItemProps } from 'components/Interaction/SwiperItem/interface';
 import useStyles from 'components/Interaction/SwiperItem/styles';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
-const SwiperItem: React.FC<SwiperItemProps> = (props) => {
+const SwiperItem: FC<SwiperItemProps> = (props) => {
   const { productName, productImages, salePrice } = props.productData;
   const commaSalePrice = addCommaStringFromThreeCntNum(salePrice);
   const classes = useStyles();
