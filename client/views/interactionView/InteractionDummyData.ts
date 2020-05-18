@@ -1,5 +1,11 @@
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
+// Category Interface는 민지님께서 작성해주신다고 하셔서, 임시 선언입니다.
+export interface Category{
+  categoryId: string;
+  categoryName: string;
+}
+
 export const InteractionDummyData: ProductProps[] = [
   {
     productId: 1,
@@ -50,5 +56,20 @@ export const InteractionDummyData: ProductProps[] = [
       height: 330,
     },
     salePrice: 3100,
+  },
+];
+
+export const SelectedCategoryDummyData: Category[] = [
+  {
+    categoryId: '50000808',
+    categoryName: '스커트',
+  },
+  {
+    categoryId: '50000815',
+    categoryName: '재킷',
+  },
+  {
+    categoryId: '50000806',
+    categoryName: '카디건',
   },
 ];
