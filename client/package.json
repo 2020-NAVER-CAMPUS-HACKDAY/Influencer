@@ -23,6 +23,8 @@
 		"webpack": "^4.43.0"
 	},
 	"devDependencies": {
+		"@testing-library/jest-dom": "^5.7.0",
+		"@testing-library/react": "^10.0.4",
 		"@types/dotenv": "^8.2.0",
 		"@types/jest": "^24.0.0",
 		"@types/material-ui": "^0.21.7",
@@ -33,12 +35,14 @@
 		"@types/styled-components": "^5.1.0",
 		"@typescript-eslint/eslint-plugin": "^2.24.0",
 		"@typescript-eslint/parser": "^2.31.0",
+		"babel-jest": "^26.0.1",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb-typescript": "^7.2.1",
 		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
+		"jest": "^26.0.1",
 		"typescript": "^3.8.3"
 	},
 	"scripts": {
@@ -47,6 +51,8 @@
 		"buildAndStart": "f() { yarn cpenv ${1:-development} && next build && next start; } ; f",
 		"dev": "f() { yarn cpenv ${1:-development} && next dev; } ; f",
 		"build": "f() { yarn cpenv ${1:-development} && next build; } ; f",
+		"buildInAction": "next build",
+		"test": "jest",
 		"lint": "eslint . --ext .ts,.tsx,.js,.jsx && tsc --noEmit",
 		"format": "eslint . --ext .ts,.tsx,.js,.jsx --fix"
 	},
