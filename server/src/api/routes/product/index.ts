@@ -18,7 +18,7 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { products } = await productServiceInstance.list(
+        const { products } = await productServiceInstance.getProducts(
           req.query.page as string,
           req.query.limit as string
         );
@@ -38,7 +38,7 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { product } = await productServiceInstance.get(
+        const { product } = await productServiceInstance.getProduct(
           req.params.id as string
         );
         return res.status(200).json({ product });

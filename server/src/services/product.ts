@@ -18,7 +18,7 @@ export default class ProductService {
     this.logger = container.get('logger');
   }
 
-  public async list(
+  public async getProducts(
     page: string,
     limit: string
   ): Promise<{ products: IProductDTO[] }> {
@@ -53,7 +53,7 @@ export default class ProductService {
     }
   }
 
-  public async get(id: string): Promise<{ product: IProductDTO }> {
+  public async getProduct(id: string): Promise<{ product: IProductDTO }> {
     try {
       const productRecord = await this.productModel.findOne({ _id: id });
       if (!productRecord) {
