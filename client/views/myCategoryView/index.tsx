@@ -11,14 +11,15 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const { categoryData } = props;
 
-  const categoryAddHandler = (newCategory: Category) => {
+  const categoryAddHandler = (newCategory: Category): void => {
     setCategories([
       ...categories,
       newCategory,
     ]);
   };
 
-  const categoryDeleteHandler = (id: string) => {
+  const categoryDeleteHandler = (id: string): void => {
+    // eslint-disable-next-line no-underscore-dangle
     const newCategories = categories.filter((category) => category._id !== id);
     setCategories(newCategories);
   };

@@ -15,7 +15,7 @@ const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
 
-  const toggleChecked = () => {
+  const toggleChecked = (): void => {
     if (checked) {
       setChecked(false);
       categoryDeleteHandler(_id);
