@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GetStaticProps } from 'next';
 import { Category } from 'components/SelectCategory/types';
 import MyCategoryView from 'views/myCategoryView';
