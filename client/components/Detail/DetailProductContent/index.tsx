@@ -70,7 +70,6 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
         height={'50px'}
         isNotFixed
       >
-        {/* TODO(daeun): add share view */}
         <OutlinedButton handleClick={() => 0} className={classes.marginRight}>
           <Share/>
           <Label className={classes.marginLeft} name={'공유'} color={AppColor.BLACK} fontSize={20}/>
