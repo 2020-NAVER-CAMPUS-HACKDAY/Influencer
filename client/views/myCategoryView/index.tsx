@@ -19,6 +19,7 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   };
 
   const categoryDeleteHandler = (id: string): void => {
+    // eslint-disable-next-line no-underscore-dangle
     const newCategories = categories.filter((category) => category._id !== id);
     setCategories(newCategories);
   };
