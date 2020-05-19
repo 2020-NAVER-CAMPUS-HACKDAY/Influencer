@@ -55,3 +55,5 @@ export const PAGE_ADD = '?page=';
 export const LIMIT_ADD = '&limit=';
 
 export const PRODUCT_LIMIT = '200';
+
+export const NOT_FOUND = 404;
