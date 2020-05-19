@@ -15,9 +15,9 @@ export interface DetailProductContentProps {
   id: string;
   name: string;
   price: string;
-  modelName: string;
-  makeCompany: string;
-  brand: string;
+  country?: string;
+  material?: string;
+  color?: string;
 }
 const DetailProductContent: FC<DetailProductContentProps> = (props) => {
   const classes = useStyles();
@@ -25,9 +25,9 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
     id,
     name,
     price,
-    modelName,
-    makeCompany,
-    brand,
+    country,
+    material,
+    color,
   } = props;
 
   const handleShareButtonClick = (): string => {
@@ -73,9 +73,9 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
         height={'195px'}
         isNotFixed
       >
-        <DetailInfo value={makeCompany} column={'제조사'}/>
-        <DetailInfo value={brand} column={'브랜드'}/>
-        <DetailInfo value={modelName} column={'모델명'}/>
+        {country && <DetailInfo value={country} column={'제조국'}/>}
+        {material && <DetailInfo value={material} column={'소재'}/>}
+        {color && <DetailInfo value={color} column={'색상'}/>}
       </AppBar>
       <AppBar
         className={classes.productInfoBar}
