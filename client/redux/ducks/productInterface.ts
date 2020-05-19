@@ -3,8 +3,11 @@ export interface ProductDataProps {
   name: string;
   category: CategoryProps;
   salePrice: number;
-  productImages: ProductImageProps;
+  productImages: ProductImageProps[];
   productInfoProvidedNoticeView: ProductInfoProvidedNoticeViewProps;
+}
+export interface ProductDetailProps {
+  product: ProductDataProps;
 }
 
 interface CategoryProps {

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { ProductDataProps } from 'redux/ducks/productInterface';
+import { ProductDataProps, ProductDetailProps } from 'redux/ducks/productInterface';
 import {
   PRODUCT_PAGE_API,
   PAGE_ADD,
@@ -14,6 +14,6 @@ ProductDataProps[])>> => axios.get(
 );
 export const getProductDataForProductId = (productId): Promise<AxiosResponse <(
 Error |
-ProductDataProps)>> => axios.get(
-  `${process.env.SEVER_URL}${PRODUCT_PAGE_API}/${productId}`,
+ProductDetailProps)>> => axios.get(
+  `${process.env.SERVER_URL}${PRODUCT_PAGE_API}${productId}`,
 );
