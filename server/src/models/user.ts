@@ -7,9 +7,38 @@ const User = new mongoose.Schema(
       type: String,
       required: true,
     },
-    like: {
-      type: [],
-      required: true
+    clothLike: {
+      type: []
+    },
+    accessaryLike: {
+      type: []
+    },
+    beautyLike: {
+      type: []
+    },
+    digitalLike: {
+      type: []
+    },
+    interialLike: {
+      type: []
+    },
+    babyLiike: {
+      type: []
+    },
+    footLike: {
+      type: []
+    },
+    sportLike: {
+      type: []
+    },
+    lifeLike: {
+      type: []
+    },
+    leisureLike: {
+      type: []
+    },
+    dutyFreeLike: {
+      type: []
     },
     prefer: [
       {
