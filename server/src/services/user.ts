@@ -1,13 +1,27 @@
 import { Service, Inject, ContainerInstance } from 'typedi'
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct } from '../interfaces';
+import { IUser, IProduct, UserLike } from '../interfaces';
 import config from '../config';
 import {
   BadRequestError,
   ConflictError,
   NotFoundError
 } from '../modules/errors';
+
+const categoryCode: any = {
+  '50000000': 'clothLike',
+  '50000001': 'accessaryLike',
+  '50000002': 'beautyLike',
+  '50000003': 'digitalLike',
+  '50000004': 'interialLike',
+  '50000005': 'babyLiike',
+  '50000006': 'footLike',
+  '50000007': 'sportLike',
+  '50000008': 'lifeLike',
+  '50000009': 'leisureLike',
+  '50000010': 'dutyFreeLike',
+}
 
 @Service()
 export default class UserService {
@@ -137,31 +151,49 @@ export default class UserService {
    * @param exist 
    */
   public async setLike(
-    productNo: string,
+    productNo: Array<string>,
     exist: boolean
   ): Promise<any> {
 
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
+    const productRecord = await this.productModel.findOne({ productNo: productNo[productNo.length - 1] })
+
     if (!userRecord) throw new NotFoundError('User is not exist');
+    if (!productRecord) throw new NotFoundError('Product is not exist');
 
-    let users = userRecord.toObject();
-    try {
-      if (exist) {
-        userRecord.like = users.like.filter((l: any) => (l !== productNo));
-        return await userRecord.save();
-      }
+    const category1Id = categoryCode[productNo[0]];
 
-      users.like.push(productNo);
 
-      userRecord.like = users.like;
-      await userRecord.save();
+    console.log(userRecord);
 
-    } catch (e) {
-      this.logger.error(e);
-      throw e;
-    }
+    // let users = userRecord.toObject();
+    // let products = productRecord.toObject();
 
-    return await this.addWeight(productNo, config.likeWeight);
+    // try {
+    //   const category1Id = categoryCode[productNo[0]];
+    //   if (exist) {
+    //     userRecord[category1Id] = users[category1Id].filter((l: any) => (l !== productNo));
+    //     return await userRecord.save();
+    //   }
+
+    //   let userLike: UserLike;
+    //   userLike.id = productNo[productNo.length - 1];
+    //   userLike.category = productNo[0];
+    //   userLike.modelName = products.name;
+    //   userLike.price = products.salePrise;
+    //   userLike.updateDe = new Date();
+
+    //   users[category1Id].push(userLike);
+
+    //   userRecord[category1Id] = users[category1Id];
+    //   await userRecord.save();
+
+    // } catch (e) {
+    //   this.logger.error(e);
+    //   throw e;
+    // }
+
+    // return await this.addWeight(productNo[productNo.length - 1], config.likeWeight);
   }
 
   public async selectLikeList(
