@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import SelectCategory from 'components/SelectCategory';
 import { Category } from 'components/SelectCategory/types';
+import { CategoryProps, categoryActions } from 'redux/ducks/category';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { PayloadActionCreator } from 'typesafe-actions';
+import { Types } from '../../redux/ducks';
 
-interface MyCategoryViewProps {
+interface MyCategoryViewProps extends CategoryProps {
   categoryData: Category[];
+  setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
 // TODO(jominjimail): data management with redux or hook
 const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const { categoryData } = props;
+  const { categoryData, setCategory } = props;
 
   const categoryAddHandler = (newCategory: Category): void => {
     setCategories([
@@ -26,6 +32,10 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
     setCategories(newCategories);
   };
 
+  const setCategoryArray = (): void => {
+    setCategory(categories);
+  };
+
   return (
     <MainHeader>
       <SelectCategory
@@ -33,8 +43,16 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
+      <button onClick={setCategoryArray}>다음 페이지</button>
     </MainHeader>
   );
 };
 
-export default MyCategoryView;
+export default connect<CategoryProps, void>(
+  (state: Types) => ({
+    categoryArray: state.categoryReducer.categoryArray,
+  }),
+  (dispatch) => ({
+    setCategory: bindActionCreators(categoryActions.setCategory, dispatch),
+  }),
+)(MyCategoryView);
