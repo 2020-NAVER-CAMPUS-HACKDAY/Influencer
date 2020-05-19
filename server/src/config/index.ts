@@ -18,5 +18,6 @@ export default {
   },
   personaId: process.env.PERSONA_ID,
   personaName: process.env.PERSONA_NAME,
-  clicklogWeight: 0.3
+  clicklogWeight: 0.3,
+  likeWeight: 3.0
 };
