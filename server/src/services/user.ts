@@ -148,26 +148,28 @@ export default class UserService {
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
 
-
     let users = userRecord.toObject();
     let products = productRecord.toObject();
 
     try {
-      const category1Id = categoryCode[wholeCategoryId[0]];
+
       if (exist) {
-        userRecord[category1Id] = users[category1Id].filter((l: any) => (l !== productNo));
+        users.like[wholeCategoryId[0]].likeList =
+          users.like[wholeCategoryId[0]].likeList.filter((l: string) => (l !== productNo));
+
+        userRecord.like = users.like
         return await userRecord.save();
       }
 
-      users[category1Id].push({
+      users.like[wholeCategoryId[0]].likeList.push({
         id: productNo,
         category: wholeCategoryId[0],
         modelName: products.name,
-        price: products.salePrise,
+        price: products.salePrice,
         updateDe: new Date()
       });
 
-      userRecord[category1Id] = users[category1Id];
+      userRecord.like = users.like;
       await userRecord.save();
 
     } catch (e) {
