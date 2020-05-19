@@ -194,17 +194,15 @@ export default class UserService {
 
   public async selectLikeList(
   ): Promise<any> {
-    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName }).select('like -_id');
+    const userLikeRecord =
+      await this.userModel
+        .findOne({ userName: config.personaName })
+        .select('-prefer -updatedAt -createdAt -userName -_id');
+
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
     try {
-      let userLikeList = userLikeRecord.toObject();
-      let result: Array<any> = [];
-
-      for (let like of userLikeList.like) {
-        const product = await this.productModel.findOne({ productNo: like });
-        result.push(product);
-      }
+      const result = userLikeRecord.toObject();
       return result;
 
     } catch (e) {
