@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import SelectCategory from 'components/SelectCategory';
 import { Category } from 'components/SelectCategory/types';
-import { CategoryProps, categoryActions } from 'redux/ducks/category';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { CategoryProps } from 'redux/ducks/category';
 import { PayloadActionCreator } from 'typesafe-actions';
-import { Types } from '../../redux/ducks';
 
 interface MyCategoryViewProps extends CategoryProps {
   categoryData: Category[];
+  categoryArray: Category[];
   setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-// TODO(jominjimail): data management with redux or hook
 const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const { categoryData, setCategory } = props;
@@ -48,11 +45,4 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   );
 };
 
-export default connect<CategoryProps, void>(
-  (state: Types) => ({
-    categoryArray: state.categoryReducer.categoryArray,
-  }),
-  (dispatch) => ({
-    setCategory: bindActionCreators(categoryActions.setCategory, dispatch),
-  }),
-)(MyCategoryView);
+export default MyCategoryView;
