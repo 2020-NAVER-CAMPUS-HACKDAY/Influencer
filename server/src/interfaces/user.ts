@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 interface Prefer {
   productNo: string
   categoryId: string;
@@ -6,14 +8,14 @@ interface Prefer {
 }
 
 export interface IUser {
-  _id: string;
+  _id: mongoose.Schema.Types.ObjectId;
   userName: string;
   clothLike: Array<UserLike>,
   accessaryLike: Array<UserLike>,
   beautyLike: Array<UserLike>,
   digitalLike: Array<UserLike>,
   interialLike: Array<UserLike>,
-  babyLiike: Array<UserLike>,
+  babyLike: Array<UserLike>,
   footLike: Array<UserLike>,
   sportLike: Array<UserLike>,
   lifeLike: Array<UserLike>,

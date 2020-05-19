@@ -151,20 +151,27 @@ export default class UserService {
    * @param exist 
    */
   public async setLike(
-    productNo: Array<string>,
+    productNo: string,
+    wholeCategoryId: Array<string>,
     exist: boolean
   ): Promise<any> {
 
+    console.log(productNo[productNo.length - 1]);
+
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
-    const productRecord = await this.productModel.findOne({ productNo: productNo[productNo.length - 1] })
+    const productRecord = await this.productModel.findOne({ productNo: productNo })
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
 
-    const category1Id = categoryCode[productNo[0]];
+    const category1Id: string = categoryCode[productNo[0]];
+    const users = userRecord.toObject();
 
+    console.log(users[category1Id]);
 
-    console.log(userRecord);
+    // console.log(typeof category1Id);
+
+    // console.log(userRecord[category1Id]);
 
     // let users = userRecord.toObject();
     // let products = productRecord.toObject();
