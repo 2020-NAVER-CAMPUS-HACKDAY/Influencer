@@ -11,10 +11,7 @@ const MyCategory: React.FC<MyCategoryProps> = (props) => {
   const { categoryData } = props;
 
   return (
-    <MyCategoryView
-      categoryData={categoryData}
-    >
-    </MyCategoryView>
+    <MyCategoryView categoryData={categoryData}></MyCategoryView>
   );
 };
 
