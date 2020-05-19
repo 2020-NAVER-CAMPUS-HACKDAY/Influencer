@@ -1,37 +1,52 @@
 import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
-import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import { ProductProps, ProductDataProps } from 'redux/ducks/productInterface';
+import { useRouter } from 'next/router';
+import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/productInterface';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
+import { getProductDataForProductId } from 'network/productApi';
+import { NOT_FOUND } from 'constant';
+import { AxiosResponse } from 'axios';
 
-const DetailPage: FC<ProductProps> = (props) => {
-  const router = useRouter();
-  const { productID } = router.query;
+const DetailView: FC<ProductProps> = (props) => {
   const { products } = props;
   const [detailData, setDetailData] = useState<ProductDataProps>();
+  const router = useRouter();
+  const { ProductID } = router.query;
 
   useEffect(() => {
-    if (Array.isArray(productID)) return;
-    const productData = products.find(
-      (product) => product.productNo.toString() === productID,
+    const searchProductItem = products.find(
+      (product) => product.productNo.toString() === ProductID,
     );
-    setDetailData(productData);
-  }, [products, productID]);
+    if (searchProductItem === undefined) {
+      const getProductDataForId = async (): Promise<void> => {
+        await getProductDataForProductId(ProductID)
+          .then((response: AxiosResponse<ProductDetailProps>) => {
+            setDetailData(response.data.product);
+          })
+          .catch((error) => error);
+      };
+      getProductDataForId();
+    } else {
+      setDetailData(searchProductItem);
+    }
+  }, [products, setDetailData, ProductID]);
+
+  if (detailData === undefined) return <div>{NOT_FOUND}</div>;
 
   return (
     <>
-      <DetailHeader productName={detailData?.name}/>
+      <DetailHeader productName={detailData.name}/>
       <img
-        src={detailData.productImages.url}
-        width={detailData.productImages.width}
-        height={detailData.productImages.height}
+        src={detailData.productImages[0].url}
+        width={detailData.productImages[0].width}
+        height={detailData.productImages[0].height}
       />
       <DetailProductInfo
         id={detailData.productNo.toString()}
-        name={detailData?.name}
+        name={detailData.name}
         price={addCommaStringFromThreeCntNum(detailData.salePrice)}
         country={detailData?.productInfoProvidedNoticeView.제조국}
         material={detailData?.productInfoProvidedNoticeView.소재}
@@ -41,9 +56,9 @@ const DetailPage: FC<ProductProps> = (props) => {
   );
 };
 
-
 export default connect<ProductProps, void>(
   (state: Types) => ({
     products: state.productReducer.products,
+    selectedProduct: state.productReducer.selectedProduct,
   }),
-)(DetailPage);
+)(DetailView);
