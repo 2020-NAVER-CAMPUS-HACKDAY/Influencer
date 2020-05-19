@@ -1,37 +1,31 @@
 import React from 'react';
-import Link from 'next/link';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
-import MainHeader from 'components/MainHeader';
+import {
+  ProductProps,
+  productActions,
+  ProductActionsProps,
+} from 'redux/ducks/product';
+import MainHeader from 'components/Main/MainHeader';
+import { detailViewDataArray } from 'views/detailView/detailViewDummyData';
+import { PayloadAction } from 'typesafe-actions';
+import ProductListView from 'components/ProductListView';
 
-interface DefaultProps extends UserProps, UserMethods {
+interface DefaultProps extends ProductProps, ProductActionsProps {
   data: string;
 }
 
-const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
+const Home: React.FC<DefaultProps> = () => (
+  <MainHeader>
+    <ProductListView />
+  </MainHeader>
+);
 
-const Home: React.FC<DefaultProps> = (props) => {
-  const { data, setUser } = props;
-  const setUserData = (): void => setUser(userData);
-  return (
-    <MainHeader>
-      <div onClick={setUserData}>
-        This is Default Page.
-      </div>
-      <Link href="/routeExample/example1">
-        <a>go to Next Page</a>
-      </Link>
-      {data}
-    </MainHeader>
-  );
-};
-
-export default connect<UserProps, void>(
-  (state: UserProps) => ({
-    user: state.user,
+export default connect<ProductProps, void>(
+  (state: ProductProps) => ({
+    productArray: state.productArray,
   }),
   (dispatch) => ({
-    setUser: bindActionCreators(AuthActions.setUser, dispatch),
+    addProduct: bindActionCreators(productActions.addProduct, dispatch),
   }),
 )(Home);
