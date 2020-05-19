@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import { ProductProps, ProductItemProps } from 'redux/ducks/product';
+import { ProductProps, ProductDataProps } from 'redux/ducks/productInterface';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
@@ -10,30 +10,32 @@ import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 const DetailPage: FC<ProductProps> = (props) => {
   const router = useRouter();
   const { productID } = router.query;
-  const { productArray } = props;
-  const [detailData, setDetailData] = useState<ProductItemProps>();
+  const { products } = props;
+  const [detailData, setDetailData] = useState<ProductDataProps>();
 
   useEffect(() => {
     if (Array.isArray(productID)) return;
-    const productData = productArray.find((product) => product.id === productID);
+    const productData = products.find(
+      (product) => product.productNo.toString() === productID,
+    );
     setDetailData(productData);
-  }, [productArray, productID]);
+  }, [products, productID]);
 
   return (
     <>
       <DetailHeader productName={detailData?.name}/>
       <img
-        src={detailData?.image}
-        width={'100%'}
-        height={414}
+        src={detailData.productImages.url}
+        width={detailData.productImages.width}
+        height={detailData.productImages.height}
       />
       <DetailProductInfo
-        id={detailData?.id}
+        id={detailData.productNo.toString()}
         name={detailData?.name}
-        price={addCommaStringFromThreeCntNum(detailData?.price)}
-        modelName={detailData?.modelName}
-        makeCompany={detailData?.makeCompany}
-        brand={detailData?.brand}
+        price={addCommaStringFromThreeCntNum(detailData.salePrice)}
+        country={detailData?.productInfoProvidedNoticeView.제조국}
+        material={detailData?.productInfoProvidedNoticeView.소재}
+        color={detailData?.productInfoProvidedNoticeView.색상}
       />
     </>
   );
@@ -42,6 +44,6 @@ const DetailPage: FC<ProductProps> = (props) => {
 
 export default connect<ProductProps, void>(
   (state: Types) => ({
-    productArray: state.productReducer.productArray,
+    products: state.productReducer.products,
   }),
 )(DetailPage);
