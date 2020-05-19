@@ -39,6 +39,9 @@ const Swiper: FC<SwiperProps> = (props) => {
     <div className={classes.containerWrapper}>
       <div className={classes.container}>
         {renderCards()}
+        <div className={classes.card_end}>
+          <span>더이상 표시할 카드가 없습니다.</span>
+        </div>
       </div>
     </div>
   );
