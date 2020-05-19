@@ -49,3 +49,9 @@ export const SwipeAction = {
 export const TITLE_ADD = '&title=';
 
 export const SHARE_TITLE = '상품';
+
+export const PRODUCT_PAGE_API = '/api/product/';
+export const PAGE_ADD = '?page=';
+export const LIMIT_ADD = '&limit=';
+
+export const PRODUCT_LIMIT = '200';
