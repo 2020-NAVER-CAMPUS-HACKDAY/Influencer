@@ -2,28 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  ProductProps,
   productActions,
   ProductActionsProps,
 } from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
-import ProductListView from 'components/ProductListView';
+import { ProductProps } from 'redux/ducks/productInterface';
 
 interface DefaultProps extends ProductProps, ProductActionsProps {
   data: string;
 }
 
-const Home: React.FC<DefaultProps> = () => (
-  <MainHeader>
-    <ProductListView dummy={'dg'} />
-  </MainHeader>
-);
+const Home: React.FC<DefaultProps> = (props) => {
+  const { fetchAndAddProduct, getProductForId } = props;
+  return (
+    <MainHeader>
+      <div onClick={() => fetchAndAddProduct(1)}>hello</div>
+      <div onClick={() => getProductForId(100003)}>hi</div>
+    </MainHeader>
+  );
+};
 
 export default connect<ProductProps, void>(
   (state: ProductProps) => ({
-    productArray: state.productArray,
+    products: state.products,
+    selectedProduct: state.selectedProduct,
   }),
   (dispatch) => ({
-    addProduct: bindActionCreators(productActions.addProduct, dispatch),
+    fetchAndAddProduct: bindActionCreators(productActions.fetchAndAddProduct.request, dispatch),
+    getProductForId: bindActionCreators(productActions.getProductForId, dispatch),
   }),
 )(Home);
