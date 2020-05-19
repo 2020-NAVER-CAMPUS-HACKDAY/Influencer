@@ -1,12 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
 
 const Swiper: FC<SwiperProps> = (props) => {
-  const { products } = props;
   const classes = useStyles();
+  const { products } = props;
 
   function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data

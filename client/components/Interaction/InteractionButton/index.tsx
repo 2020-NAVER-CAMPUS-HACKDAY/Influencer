@@ -37,7 +37,7 @@ const InteractionButton: FC<InteractionButtonProps> = (props) => {
         startIcon={isPrev && <Direction />}
         endIcon={isPrev === false && <div className={classes.next}><Direction /></div>}
         disabled={isPrev === undefined}
-        onClick={() => handleClick(categoryIndex)}>
+        onClick={(): void => handleClick(categoryIndex)}>
         <Label name={category.value.categoryName} fontSize={22} color={AppColor.WHITE} />
       </StyledButton>}
 
@@ -45,7 +45,7 @@ const InteractionButton: FC<InteractionButtonProps> = (props) => {
       && <StyledButton
         variant='contained'
         size='small'
-        onClick={() => Router.push('/')}>
+        onClick={(): Promise<boolean> => Router.push('/')}>
         <Label name='끝내기' fontSize={22} color={AppColor.WHITE} />
       </StyledButton>}
     </div>

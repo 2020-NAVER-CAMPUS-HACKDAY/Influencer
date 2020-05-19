@@ -13,7 +13,6 @@ interface InteractionProps {
 const Interaction: FC<InteractionProps> = (props) => {
   const { categoryData, productData, errors } = props;
   if (errors) {
-    // TODO(seogeurim) error 화면
     return (
       <InteractionPage categoryData={[]} productData={[]} />
     );

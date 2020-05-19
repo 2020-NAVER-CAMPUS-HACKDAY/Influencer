@@ -1,4 +1,4 @@
-// TODO(seogeurim) Category Interface는 민지님께서 작성해주신 것과 연결할 예정입니다.
+// TODO(seogeurim) Category Interface는 민지님께서 작성해주신 것과 연결할 예정
 // TODO(seogeurim) 민지님과 상의하여 categoryData의 _id => id로
 export interface Category{
   id: string;
