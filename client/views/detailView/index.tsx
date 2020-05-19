@@ -41,7 +41,7 @@ const DetailView: FC<ProductProps> = (props) => {
       <DetailHeader productName={detailData.name}/>
       <img
         src={detailData.productImages[0].url}
-        width={detailData.productImages[0].width}
+        width={'100%'}
         height={detailData.productImages[0].height}
       />
       <DetailProductInfo

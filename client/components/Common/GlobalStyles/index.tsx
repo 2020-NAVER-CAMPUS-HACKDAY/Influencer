@@ -14,7 +14,6 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: 100%;
     position: relative;
-    display: flex;
     margin: 0;
     font-size: 16px;
     background-color: ${AppColor.GREY};
