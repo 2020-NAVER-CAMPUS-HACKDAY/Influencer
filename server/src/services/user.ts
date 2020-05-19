@@ -156,51 +156,40 @@ export default class UserService {
     exist: boolean
   ): Promise<any> {
 
-    console.log(productNo[productNo.length - 1]);
-
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
     const productRecord = await this.productModel.findOne({ productNo: productNo })
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
 
-    const category1Id: string = categoryCode[productNo[0]];
-    const users = userRecord.toObject();
 
-    console.log(users[category1Id]);
+    let users = userRecord.toObject();
+    let products = productRecord.toObject();
 
-    // console.log(typeof category1Id);
+    try {
+      const category1Id = categoryCode[wholeCategoryId[0]];
+      if (exist) {
+        userRecord[category1Id] = users[category1Id].filter((l: any) => (l !== productNo));
+        return await userRecord.save();
+      }
 
-    // console.log(userRecord[category1Id]);
+      users[category1Id].push({
+        id: productNo,
+        category: wholeCategoryId[0],
+        modelName: products.name,
+        price: products.salePrise,
+        updateDe: new Date()
+      });
 
-    // let users = userRecord.toObject();
-    // let products = productRecord.toObject();
+      userRecord[category1Id] = users[category1Id];
+      await userRecord.save();
 
-    // try {
-    //   const category1Id = categoryCode[productNo[0]];
-    //   if (exist) {
-    //     userRecord[category1Id] = users[category1Id].filter((l: any) => (l !== productNo));
-    //     return await userRecord.save();
-    //   }
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
 
-    //   let userLike: UserLike;
-    //   userLike.id = productNo[productNo.length - 1];
-    //   userLike.category = productNo[0];
-    //   userLike.modelName = products.name;
-    //   userLike.price = products.salePrise;
-    //   userLike.updateDe = new Date();
-
-    //   users[category1Id].push(userLike);
-
-    //   userRecord[category1Id] = users[category1Id];
-    //   await userRecord.save();
-
-    // } catch (e) {
-    //   this.logger.error(e);
-    //   throw e;
-    // }
-
-    // return await this.addWeight(productNo[productNo.length - 1], config.likeWeight);
+    return await this.addWeight(productNo, config.likeWeight);
   }
 
   public async selectLikeList(

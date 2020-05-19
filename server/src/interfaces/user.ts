@@ -8,6 +8,7 @@ interface Prefer {
 }
 
 export interface IUser {
+  [index: string]: Object;
   _id: mongoose.Schema.Types.ObjectId;
   userName: string;
   clothLike: Array<UserLike>,
