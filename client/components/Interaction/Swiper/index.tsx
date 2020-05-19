@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
@@ -8,23 +8,26 @@ const Swiper: FC<SwiperProps> = (props) => {
   const { products } = props;
   const classes = useStyles();
 
-  function handleInteraction(productId: number): number {
+  function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
     return productId;
   }
 
-  function handleLike(productId: number): number {
+  function handleLike(productId: string): string {
     // TODO(seogeurim) : handle Like Data
     return productId;
   }
 
   function renderCards(): object {
-    return products.map((data) => (
+    return products.map((data, index) => (
       <Card
         key={data.productId}
         productId={data.productId}
         onSwipeRight={handleInteraction}
-        onDoubleTap={handleLike}>
+        onDoubleTap={handleLike}
+        cardIndex={index}
+        totalCard={10}
+      >
         <SwiperItem
           productData={data}
         />

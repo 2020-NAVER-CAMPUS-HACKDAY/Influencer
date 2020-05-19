@@ -72,6 +72,7 @@ const Card: FC<CardProps> = (props) => {
         )}
         style={{
           transform: `translate(${mouseState[0]}px, ${mouseState[1]}px) rotate(${mouseState[2]}deg)`,
+          zIndex: props.totalCard - props.cardIndex,
         }}
       >
         <div

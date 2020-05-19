@@ -1,9 +1,11 @@
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
 export interface CardProps {
-  productId: number;
-  onSwipeRight: (productId: number) => number;
-  onDoubleTap: (productId: number) => number;
+  productId: string;
+  onSwipeRight: (productId: string) => string;
+  onDoubleTap: (productId: string) => string;
+  cardIndex: number;
+  totalCard?: number;
 }
 
 export interface SwiperProps {

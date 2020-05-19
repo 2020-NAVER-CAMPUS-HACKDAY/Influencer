@@ -26,7 +26,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
 
   function handleClick(index: number): void {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
-    // fetchProductData(SelectedCategoryDummyData[index].categoryId);
+    // TODO(seogeurim) current index의 카테고리 id에 따른 상품 데이터 받아오기
   }
 
   return (
