@@ -190,7 +190,17 @@ export default class UserService {
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
     try {
-      const result = userLikeRecord.toObject();
+      const uesrs = userLikeRecord.toObject();
+      let result: { [index: string]: Object } = {};
+
+      for (let categoryId of Object.keys(uesrs.like)) {
+        if (uesrs.like[categoryId].likeList.length < 1) {
+          result[uesrs.like[categoryId].categoryName] = [];
+
+        } else {
+          result[uesrs.like[categoryId].categoryName] = uesrs.like[categoryId].likeList
+        }
+      }
       return result;
 
     } catch (e) {
