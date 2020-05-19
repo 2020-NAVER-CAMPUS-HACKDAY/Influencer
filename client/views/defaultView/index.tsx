@@ -7,8 +7,6 @@ import {
   ProductActionsProps,
 } from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
-import { detailViewDataArray } from 'views/detailView/detailViewDummyData';
-import { PayloadAction } from 'typesafe-actions';
 import ProductListView from 'components/ProductListView';
 
 interface DefaultProps extends ProductProps, ProductActionsProps {
@@ -17,7 +15,7 @@ interface DefaultProps extends ProductProps, ProductActionsProps {
 
 const Home: React.FC<DefaultProps> = () => (
   <MainHeader>
-    <ProductListView />
+    <ProductListView dummy={'dg'} />
   </MainHeader>
 );
 

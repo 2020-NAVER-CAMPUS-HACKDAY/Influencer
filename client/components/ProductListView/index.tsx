@@ -25,9 +25,11 @@ interface ProductItemProps {
   dummy: string;
 }
 
-const ProductListView: FC<ProductItemProps> = () => <InfinityList
-  loadItems={fakeFetch
-  } ItemComponent={ProductItem}
-/>;
+const ProductListView: FC<ProductItemProps> = () => (
+  <InfinityList
+    loadItems={fakeFetch}
+    ItemComponent={ProductItem}
+  />
+);
 
 export default ProductListView;

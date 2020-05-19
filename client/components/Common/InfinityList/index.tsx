@@ -1,25 +1,34 @@
-import React, { useState, FC, ComponentType } from 'react';
+import React, {
+  useState, FC, ComponentType, ReactElement,
+} from 'react';
 import { GridLayout } from '@egjs/react-infinitegrid';
 import Loading from 'components/Common/InfinityList/Loading';
 import useStyles from 'components/Common/InfinityList/styles';
 
+// TODO(minsoo): modify interface
+interface LoadItemsProps {
+  groupKey: number;
+  key: number;
+}
+
 // TODO(minsoo): modify lint error
 interface InfinityListProps {
-  loadItems: () => Promise<any>;
-  ItemComponent: ComponentType<any>;
+  loadItems: () => Promise<Array<LoadItemsProps>>;
+  ItemComponent: ComponentType<object>;
 }
 
 const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
   const classes = useStyles();
 
-  const [list, setList] = useState<Array<ComponentType>>([]);
+  // TODO(minsoo): modify type
+  const [list, setList] = useState<Array<object>>([]);
   const [start, setStart] = useState<number>(0);
 
-  const onAppend = async ({ groupKey, startLoading }) => {
+  const onAppend = async ({ groupKey, startLoading }): void => {
     startLoading();
 
     const res = await loadItems();
-    const items = res.map((item, i) => (
+    const items = res.map((item, i): ReactElement => (
       <ItemComponent groupKey={groupKey + 1} key={start + i} {...item} />
     ));
 
@@ -27,7 +36,7 @@ const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
     setStart(start + 30);
   };
 
-  const onLayoutComplete = ({ isLayout, endLoading }) => {
+  const onLayoutComplete = ({ isLayout, endLoading }): void => {
     if (!isLayout) {
       endLoading();
     }
