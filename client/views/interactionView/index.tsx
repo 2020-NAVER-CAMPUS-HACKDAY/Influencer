@@ -4,7 +4,7 @@ import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
-import { SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
+import { Category } from 'views/interactionView/interactionDummyData';
 
 interface CategoryStateIndex {
   prev: number;
@@ -13,13 +13,13 @@ interface CategoryStateIndex {
 }
 
 interface InteractionPageProps {
-  categoryId: string;
+  categoryData: Category[];
   productData: ProductProps[];
 }
 
 const InteractionPage: FC<InteractionPageProps> = (props) => {
   const classes = useStyles();
-  const { productData } = props;
+  const { categoryData, productData } = props;
   const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
     prev: null, current: 0, next: 1,
   });
@@ -37,14 +37,14 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
           <div className={classes.footer}>
             <div className={classes.interactionButton}>
               <InteractionButton
-                category={SelectedCategoryDummyData[categoryState.prev]}
+                category={categoryData[categoryState.prev]}
                 categoryIndex={categoryState.prev}
                 isPrev={true}
                 handleClick={handleClick} />
               <InteractionButton
-                category={SelectedCategoryDummyData[categoryState.current]} />
+                category={categoryData[categoryState.current]} />
               <InteractionButton
-                category={SelectedCategoryDummyData[categoryState.next]}
+                category={categoryData[categoryState.next]}
                 categoryIndex={categoryState.next}
                 isPrev={false}
                 handleClick={handleClick} />

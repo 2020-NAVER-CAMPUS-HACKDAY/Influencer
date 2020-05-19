@@ -1,8 +1,4 @@
-// Category Interface는 민지님께서 작성해주신다고 하셔서, 임시 선언입니다.
-interface Category{
-  categoryId: string;
-  categoryName: string;
-}
+import { Category } from 'views/interactionView/interactionDummyData';
 
 interface InteractionButtonProps {
   category: Category;

@@ -2,26 +2,31 @@ import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 import InteractionPage from 'views/interactionView';
+import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
 
 interface InteractionProps {
+  categoryData: Category[];
   productData?: ProductProps[];
   errors?: string;
 }
 
-const Interaction: FC<InteractionProps> = ({ productData, errors }) => {
+const Interaction: FC<InteractionProps> = (props) => {
+  const { categoryData, productData, errors } = props;
   if (errors) {
+    // TODO(seogeurim) error 화면
     return (
-      <InteractionPage categoryId={''} productData={[]} />
+      <InteractionPage categoryData={[]} productData={[]} />
     );
   }
   return (
-    <InteractionPage categoryId={'50000808'} productData={productData} />
+    <InteractionPage categoryData={categoryData} productData={productData} />
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const categoryData = SelectedCategoryDummyData;
   try {
-    const response = await fetch('http://localhost:5000/api/products/category/50000808?page=2&limit=10', {
+    const response = await fetch(`http://localhost:5000/api/products/category/${categoryData[0].id}?page=1&limit=10`, {
       method: 'GET',
     });
     const result = await response.json();
@@ -33,7 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
       productImages: productImages[0],
       salePrice: Number(salePrice.$numberDecimal),
     }));
-    return { props: { productData } };
+    return { props: { categoryData, productData } };
   } catch (err) {
     return { props: { errors: err.message } };
   }

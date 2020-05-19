@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC } from 'react';
 import Router from 'next/router';
 import InteractionButtonProps from 'components/Interaction/InteractionButton/interface';
 import useStyles from 'components/Interaction/InteractionButton/styles';
@@ -38,7 +38,7 @@ const InteractionButton: FC<InteractionButtonProps> = (props) => {
         endIcon={isPrev === false && <div className={classes.next}><Direction /></div>}
         disabled={isPrev === undefined}
         onClick={() => handleClick(categoryIndex)}>
-        <Label name={category.categoryName} fontSize={22} color={AppColor.WHITE} />
+        <Label name={category.value.categoryName} fontSize={22} color={AppColor.WHITE} />
       </StyledButton>}
 
       {(!category && !isPrev)
