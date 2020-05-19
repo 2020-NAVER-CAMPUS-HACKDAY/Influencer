@@ -4,7 +4,7 @@ import { Divider } from '@material-ui/core';
 import useStyles from 'components/Detail/DetailProductContent/styles';
 import AppBar from 'components/Common/AppBar';
 import Label from 'components/Common/Label';
-import { AppColor } from 'constant';
+import { AppColor, TITLE_ADD } from 'constant';
 import clsx from 'clsx';
 import DetailInfo from 'components/Detail/DetailProductContent/DetailInfo';
 import OutlinedButton from 'components/Common/OutlinedButton';
@@ -22,8 +22,21 @@ export interface DetailProductContentProps {
 const DetailProductContent: FC<DetailProductContentProps> = (props) => {
   const classes = useStyles();
   const {
-    name, price, modelName, makeCompany, brand,
+    id,
+    name,
+    price,
+    modelName,
+    makeCompany,
+    brand,
   } = props;
+
+  const handleShareButtonClick = (): string => {
+    const url = encodeURI(encodeURIComponent(`${process.env.PROJECT_URL}${id}`));
+    const title = encodeURI(encodeURIComponent(name));
+    return `${process.env.SHARE_LINK}${url}${TITLE_ADD}${title}`;
+  };
+
+
   return (
     <>
       <AppBar
@@ -70,12 +83,14 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
         height={'50px'}
         isNotFixed
       >
-        <OutlinedButton handleClick={() => 0} className={classes.marginRight}>
-          <Share/>
-          <Label className={classes.marginLeft} name={'공유'} color={AppColor.BLACK} fontSize={20}/>
-        </OutlinedButton>
+        <a href={handleShareButtonClick()} className={classes.link}>
+          <OutlinedButton className={classes.marginRight}>
+            <Share/>
+            <Label className={classes.marginLeft} name={'공유'} color={AppColor.BLACK} fontSize={20}/>
+          </OutlinedButton>
+        </a>
         {/* TODO(daeun): add like Api */}
-        <OutlinedButton handleClick={() => 0}>
+        <OutlinedButton handleClick={(): number => 0}>
           <Like/>
           <Label className={classes.marginLeft} name={'찜'} color={AppColor.BLACK} fontSize={20}/>
         </OutlinedButton>

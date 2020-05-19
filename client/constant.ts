@@ -45,3 +45,7 @@ export const SwipeAction = {
   LIKE: '좋아요',
   UNLIKE: '싫어요',
 };
+
+export const TITLE_ADD = '&title=';
+
+export const SHARE_TITLE = '상품';

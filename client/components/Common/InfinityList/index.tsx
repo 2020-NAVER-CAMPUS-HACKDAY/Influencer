@@ -3,6 +3,7 @@ import { GridLayout } from '@egjs/react-infinitegrid';
 import Loading from 'components/Common/InfinityList/Loading';
 import useStyles from 'components/Common/InfinityList/styles';
 
+// TODO(minsoo): modify lint error
 interface InfinityListProps {
   loadItems: () => Promise<any>;
   ItemComponent: ComponentType<any>;
