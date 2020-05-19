@@ -3,18 +3,35 @@ import { GridLayout } from '@egjs/react-infinitegrid';
 import Loading from 'components/Common/InfinityList/Loading';
 import useStyles from 'components/Common/InfinityList/styles';
 
+interface ItemProps {
+  groupKey?: number;
+}
+
 interface InfinityListProps {
-  loadItems: () => Promise<any>;
-  ItemComponent: ComponentType<any>;
+  loadItems: () => Promise<object[]>;
+  ItemComponent: ComponentType<object | ItemProps>;
+}
+
+interface OnAppendParams {
+  groupKey: number;
+  startLoading: (loadingStyle?: object) => void;
+}
+
+interface OnLayoutCompleteParams {
+  isLayout: boolean;
+  endLoading: (loadginStyle?: object) => void;
 }
 
 const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
   const classes = useStyles();
 
-  const [list, setList] = useState<Array<ComponentType>>([]);
+  const [list, setList] = useState<JSX.Element[]>([]);
   const [start, setStart] = useState<number>(0);
 
-  const onAppend = async ({ groupKey, startLoading }) => {
+  const onAppend: (params: OnAppendParams) => Promise<void> = async ({
+    groupKey,
+    startLoading,
+  }) => {
     startLoading();
 
     const res = await loadItems();
@@ -22,11 +39,14 @@ const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
       <ItemComponent groupKey={groupKey + 1} key={start + i} {...item} />
     ));
 
-    setList([...list, items]);
+    setList([...list].concat(items));
     setStart(start + 30);
   };
 
-  const onLayoutComplete = ({ isLayout, endLoading }) => {
+  const onLayoutComplete: (params: OnLayoutCompleteParams) => void = ({
+    isLayout,
+    endLoading,
+  }) => {
     if (!isLayout) {
       endLoading();
     }
