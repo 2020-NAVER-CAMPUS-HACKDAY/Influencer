@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async () => {
       productId: _id,
       productName: name,
       productImages: productImages[0],
-      salePrice: salePrice.$numberDecimal,
+      salePrice: Number(salePrice.$numberDecimal),
     }));
     return { props: { productData } };
   } catch (err) {
