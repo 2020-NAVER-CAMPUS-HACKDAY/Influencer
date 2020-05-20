@@ -47,7 +47,6 @@ export function* fetchAndAddProduct(action): Generator<
   | PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_FAIL', Error>>
   | CallEffect<AxiosResponse<ProductDataProps[] | Error>>
 )
-
 > {
   try {
     const productArray: ProductDataProps[] | unknown = yield call(

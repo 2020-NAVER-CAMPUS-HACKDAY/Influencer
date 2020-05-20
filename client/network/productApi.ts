@@ -8,8 +8,8 @@ import {
 } from 'constant';
 
 export const getProductDataArray = (pageId): Promise<AxiosResponse <(
-Error |
-ProductDataProps[])>> => axios.get(
+Error
+| ProductDataProps[])>> => axios.get(
   `${process.env.SERVER_URL}${PRODUCT_PAGE_API}${PAGE_ADD}${pageId}${LIMIT_ADD}${PRODUCT_LIMIT}`,
 );
 export const getProductDataForProductId = (productId): Promise<AxiosResponse <(

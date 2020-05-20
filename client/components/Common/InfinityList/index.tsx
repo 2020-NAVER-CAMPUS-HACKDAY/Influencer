@@ -1,6 +1,4 @@
-import React, {
-  useState, FC, ComponentType, ReactElement,
-} from 'react';
+import React, { useState, FC, ComponentType } from 'react';
 import { GridLayout } from '@egjs/react-infinitegrid';
 import Loading from 'components/Common/InfinityList/Loading';
 import useStyles from 'components/Common/InfinityList/styles';
@@ -37,7 +35,7 @@ const InfinityList: FC<InfinityListProps> = ({ ItemComponent, loadItems }) => {
     startLoading();
 
     const res = await loadItems();
-    const items = res.map((item, i): ReactElement => (
+    const items = res.map((item, i) => (
       <ItemComponent groupKey={groupKey + 1} key={start + i} {...item} />
     ));
 
