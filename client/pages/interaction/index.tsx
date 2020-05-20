@@ -11,12 +11,7 @@ interface InteractionProps {
 }
 
 const Interaction: FC<InteractionProps> = (props) => {
-  const { categoryData, productData, errors } = props;
-  if (errors) {
-    return (
-      <InteractionPage categoryData={[]} productData={[]} />
-    );
-  }
+  const { categoryData = [], productData = [] } = props;
   return (
     <InteractionPage categoryData={categoryData} productData={productData} />
   );
@@ -29,7 +24,7 @@ export const getStaticProps: GetStaticProps = async () => {
       method: 'GET',
     });
     const result = await response.json();
-    const productData = await result.products.map(({
+    const productData = result.products.map(({
       _id, name, salePrice, productImages,
     }) => ({
       productId: _id,
