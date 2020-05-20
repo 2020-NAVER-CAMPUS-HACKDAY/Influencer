@@ -72,4 +72,26 @@ export default (routes: Router) => {
       }
     }
   );
+
+  userRoute.get(
+    '/recommend',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      let { page } = req.query;
+      logger.debug(`GET /user like list endpoint with query`);
+
+      if (page === undefined) page = '0';
+
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = await userServiceInstance.recommendItem(String(page));
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
+      }
+    }
+  );
 };

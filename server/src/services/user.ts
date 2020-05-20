@@ -3,6 +3,7 @@ import { Model, Document } from 'mongoose';
 import winston from 'winston';
 import { IUser, IProduct, UserLike } from '../interfaces';
 import config from '../config';
+const ContentBasedRecommender = require('content-based-recommender');
 import {
   BadRequestError,
   ConflictError,
@@ -206,6 +207,37 @@ export default class UserService {
         }
       }
       return result;
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async recommendItem(
+    page: string
+  ): Promise<any> {
+
+    const userRecord = await this.userModel.find();
+
+    if (!userRecord) throw new NotFoundError('User is not exist!');
+
+
+    const recommender = new ContentBasedRecommender({
+      minScore: 0.1,
+      maxSimilarDocuments: 100
+    });
+
+    try {
+      const documents = userRecord.map((user: any) => ({ id: user.userName, content: user.prefer }));
+      console.log(documents);
+
+      recommender.train(documents);
+
+      const result = recommender.getSimilarDocuments(config.personaName, 0, 10);
+      console.log(result);
+      return result;
+
 
     } catch (e) {
       this.logger.error(e);
