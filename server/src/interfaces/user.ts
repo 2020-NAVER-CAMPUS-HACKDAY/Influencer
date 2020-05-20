@@ -74,5 +74,8 @@ export interface UserLike {
 }
 
 export interface UserLikeListVerGrid {
-
+  id: string;
+  image: string;
+  category: string;
+  updateDate: Date;
 }
