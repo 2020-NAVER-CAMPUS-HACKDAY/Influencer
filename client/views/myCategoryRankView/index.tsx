@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import { CategoryProps, categoryActions } from 'redux/ducks/category';
 import { Category } from 'components/SelectCategory/types';
@@ -11,7 +11,7 @@ interface MyCategoryRankProps extends CategoryProps {
   categoryArray: Category[];
 }
 
-const MyCategoryRankView: React.FC<MyCategoryRankProps> = (props) => {
+const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   const { categoryArray } = props;
 
   return (

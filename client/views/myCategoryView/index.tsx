@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import SelectCategory from 'components/SelectCategory';
 import { Category } from 'components/SelectCategory/types';
@@ -12,7 +12,7 @@ interface MyCategoryViewProps extends CategoryProps {
   setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
+const MyCategoryView: FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const { categoryData, setCategory } = props;
 

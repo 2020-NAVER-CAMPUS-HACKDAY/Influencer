@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import useStyles from 'components/CategoryBox/styles';
 import { Category } from 'components/SelectCategory/types';
 
@@ -7,7 +7,7 @@ interface CategoryBoxProps {
   categoryAddHandler: (category: Category) => void;
   categoryDeleteHandler: (id: string) => void;
 }
-const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
+const CategoryBox: FC<CategoryBoxProps> = (props) => {
   const {
     category, categoryAddHandler, categoryDeleteHandler,
   } = props;
