@@ -19,14 +19,17 @@ export default class ProductService {
   }
 
   public async getProducts(
-    page: string,
-    limit: string
+    page: string = '10',
+    limit: string = '1',
   ): Promise<{ products: IProductDTO[] }> {
     try {
-      const take = parseInt(limit || '10', 10);
-      const skip = take * (parseInt(page || '1', 10) - 1);
+      const take = parseInt(limit, 10);
+      const skip = take * (parseInt(page, 10) - 1);
       if (Number.isNaN(take) || Number.isNaN(skip)) {
         throw new BadRequestError('take and limit must be number');
+      }
+      if (take > 30) {
+        throw new BadRequestError('limit cannot exceed 30');
       }
 
       const productRecords = await this.productModel
