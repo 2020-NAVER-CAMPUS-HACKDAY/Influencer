@@ -6,6 +6,14 @@ import CategoryRankBox from 'components/CategoryRankBox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Types } from 'redux/ducks';
+import {
+  GridContextProvider,
+  GridDropZone,
+  GridItem,
+  swap,
+  move,
+} from 'react-grid-dnd';
+import useStyles from 'views/myCategoryRankView/styles';
 
 interface MyCategoryRankProps extends CategoryProps {
   categoryArray: Category[];
@@ -13,6 +21,40 @@ interface MyCategoryRankProps extends CategoryProps {
 
 const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   const { categoryArray } = props;
+  const classes = useStyles();
+  const [items, setItems] = React.useState({
+    left: [
+      { id: 1, name: 'ben' },
+      { id: 2, name: 'joe' },
+      { id: 3, name: 'jason' },
+      { id: 4, name: 'chris' },
+      { id: 5, name: 'heather' },
+      { id: 6, name: 'Richard' },
+    ],
+  });
+
+  function onChange(sourceId, sourceIndex, targetIndex, targetId) {
+    if (targetId) {
+      const result = move(
+        items[sourceId],
+        items[targetId],
+        sourceIndex,
+        targetIndex,
+      );
+      return setItems({
+        ...items,
+        [sourceId]: result[0],
+        [targetId]: result[1],
+      });
+    }
+
+    const result = swap(items[sourceId], sourceIndex, targetIndex);
+    return setItems({
+      ...items,
+      [sourceId]: result,
+    });
+  }
+
 
   return (
     <MainHeader>
@@ -20,6 +62,26 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
       {categoryArray && categoryArray.map((category) => (
         <CategoryRankBox key={category.value.wholeCategoryId} {...{ category }} />
       ))}
+      <GridContextProvider onChange={onChange}>
+        <div className={classes.container}>
+          <GridDropZone
+            className={classes.dropZone}
+            id="left"
+            boxesPerRow={3}
+            rowHeight={70}
+          >
+            {items.left.map((item) => (
+              <GridItem key={item.name}>
+                <div className={classes.gridItem}>
+                  <div className={classes.gridItemContent}>
+                    {item.name[0].toUpperCase()}
+                  </div>
+                </div>
+              </GridItem>
+            ))}
+          </GridDropZone>
+        </div>
+      </GridContextProvider>
     </MainHeader>
   );
 };
