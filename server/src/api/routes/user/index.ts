@@ -58,7 +58,7 @@ export default (routes: Router) => {
       let { page } = req.query;
       logger.debug(`GET /user like list endpoint with query`);
 
-      if (page === undefined) page = '1';
+      if (page === undefined) page = '0';
 
       try {
         const userServiceInstance = Container.get(UserService);

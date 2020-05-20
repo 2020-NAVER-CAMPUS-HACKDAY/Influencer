@@ -57,7 +57,6 @@ export default class UserService {
       });
     };
 
-
     const checkExist = (
       { productNo, productRecord, userRecord, weight }: any
     ): Promise<any> => {
@@ -195,12 +194,11 @@ export default class UserService {
         } else {
           let productList = [];
 
-          for (let like of uesrs.like[categoryId].likeList) {
+          for (let like of uesrs.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
             const product =
               await this.productModel
                 .findOne({ productNo: like })
                 .select('productNo name productImages category salePrice saleStartDate')
-                .limit(parseInt(page) * 10);
             productList.push(product);
           }
 
