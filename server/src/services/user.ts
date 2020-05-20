@@ -211,7 +211,7 @@ export default class UserService {
     }
   }
 
-  public async listGet(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
+  public async productListGet(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
     try {
       const productArrayRecord = await this.productModel.find()
         .in('_id', idArray).limit(4);
@@ -247,7 +247,7 @@ export default class UserService {
       let result: { [index: string]: ProductVerGridView[] } = {};
 
       for (let category of Object.keys(userLikeList)) {
-        const CategoryLikeProductList = await this.listGet(
+        const CategoryLikeProductList = await this.productListGet(
           userLikeList[category]
             .map(( likeProductId ) => likeProductId.toString()));
         result[category] = CategoryLikeProductList.products;
