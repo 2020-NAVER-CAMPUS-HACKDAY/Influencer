@@ -18,8 +18,6 @@ export default (routes: Router) => {
       try {
         const categoryServiceInstance = Container.get(CategoryService);
         const { categories } = await categoryServiceInstance.list(
-          req.query.page as string,
-          req.query.limit as string,
           req.query.level as string,
         );
         return res.status(200).json({ categories });

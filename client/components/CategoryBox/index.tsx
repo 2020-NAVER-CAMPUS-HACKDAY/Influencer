@@ -27,7 +27,8 @@ const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
 
   return (
     <div>
-      <button key={_id} onClick={toggleChecked} className={classes.button}>
+      <button key={_id} onClick={toggleChecked}
+        className={checked ? classes.active : classes.inactive}>
         {`${value.wholeCategoryName}`}
       </button>
     </div>
