@@ -1,7 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  button: {
+  inactive: {
+    background: 'grey',
+    width: '7rem',
+    height: '7rem',
+    color: 'black',
+    border: 'none',
+    cursor: 'pointer',
+    outline: 'none',
+  },
+  active: {
     background: 'yellow',
     width: '7rem',
     height: '7rem',
