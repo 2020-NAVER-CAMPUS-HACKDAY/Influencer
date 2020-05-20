@@ -69,4 +69,22 @@ export default (routes: Router) => {
       }
     }
   );
+
+  userRoute.get(
+    '/likes/grid-view',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      logger.debug('GET /user grid view like list');
+
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = await userServiceInstance.selectLikeListForGridView();
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_VER_GRID_VIEW_SUCCESS, result));
+      } catch (e) {
+        logger.error(`error: ${e}`);
+        return next(e);
+      }
+    }
+  )
 };

@@ -72,3 +72,7 @@ export interface UserLike {
   price: number;
   updateDe: Date;
 }
+
+export interface UserLikeListVerGrid {
+
+}

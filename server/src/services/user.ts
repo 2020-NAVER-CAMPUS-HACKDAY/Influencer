@@ -22,8 +22,8 @@ export default class UserService {
   }
 
   /**
-   * @param productNo 
-   * @param weight 
+   * @param productNo
+   * @param weight
    */
   public async addWeight(
     productNo: string,
@@ -121,8 +121,8 @@ export default class UserService {
   }
 
   /**
-   * 
-   * @param productNo 
+   *
+   * @param productNo
    */
   public async clickLog(
     productNo: string
@@ -132,9 +132,9 @@ export default class UserService {
   }
 
   /**
-   * 
-   * @param productNo 
-   * @param exist 
+   *
+   * @param productNo
+   * @param exist
    */
   public async setLike(
     productNo: string,
@@ -207,5 +207,10 @@ export default class UserService {
       this.logger.error(e);
       throw e;
     }
+  }
+
+  // TODO(daeun): add user query
+  public async selectLikeListForGridView(): Promise<  > {
+    const userLikeRecord = await this.userModel
   }
 }
