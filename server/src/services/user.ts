@@ -161,13 +161,7 @@ export default class UserService {
         return await userRecord.save();
       }
 
-      users.like[wholeCategoryId[0]].likeList.push({
-        id: productNo,
-        category: wholeCategoryId[0],
-        modelName: products.name,
-        price: products.salePrice,
-        updateDe: new Date()
-      });
+      users.like[wholeCategoryId[0]].likeList.push(productNo);
 
       userRecord.like = users.like;
       await userRecord.save();
@@ -181,6 +175,7 @@ export default class UserService {
   }
 
   public async selectLikeList(
+    page: string
   ): Promise<any> {
     const userLikeRecord =
       await this.userModel
@@ -198,7 +193,18 @@ export default class UserService {
           result[uesrs.like[categoryId].categoryName] = [];
 
         } else {
-          result[uesrs.like[categoryId].categoryName] = uesrs.like[categoryId].likeList
+          let productList = [];
+
+          for (let like of uesrs.like[categoryId].likeList) {
+            const product =
+              await this.productModel
+                .findOne({ productNo: like })
+                .select('-prefer -updatedAt -createdAt -userName -_id')
+                .limit(parseInt(page) * 10);
+            productList.push(product);
+          }
+
+          result[uesrs.like[categoryId].categoryName] = productList;
         }
       }
       return result;
@@ -208,4 +214,13 @@ export default class UserService {
       throw e;
     }
   }
+}
+
+export interface UserLike {
+  id: string;
+  image: string;
+  modelName: string;
+  category: string;
+  price: number;
+  updateDe: Date;
 }
