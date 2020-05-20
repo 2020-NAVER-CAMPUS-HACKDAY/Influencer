@@ -4,6 +4,7 @@ import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
 import { IProductInputDTO } from '../../../interfaces/product';
+import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
 
 const productRoute = Router();
 
@@ -87,4 +88,5 @@ export default (routes: Router) => {
     '/:id',
     (req: Request, res: Response, next: NextFunction) => { }
   );
+
 };
