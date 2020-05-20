@@ -8,7 +8,6 @@ import {
   fetchProductSaga,
 } from 'redux/ducks/product';
 import { authReducer, UserProps, UserAction } from './auth';
-import { productReducer, ProductAction, ProductProps } from './product';
 import { categoryReducer, CategoryAction, CategoryProps } from './category';
 import { ProductProps } from './productInterface';
 

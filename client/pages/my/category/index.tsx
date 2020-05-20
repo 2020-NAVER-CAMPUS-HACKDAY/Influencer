@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { Category } from 'components/SelectCategory/types';
 import MyCategoryView from 'views/myCategoryView';
@@ -14,7 +14,7 @@ interface MyCategoryProps extends CategoryProps {
   setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-const MyCategory: React.FC<MyCategoryProps> = (props) => {
+const MyCategory: FC<MyCategoryProps> = (props) => {
   const { categoryData, categoryArray, setCategory } = props;
 
   return (
