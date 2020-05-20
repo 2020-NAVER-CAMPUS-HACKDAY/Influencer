@@ -199,7 +199,7 @@ export default class UserService {
             const product =
               await this.productModel
                 .findOne({ productNo: like })
-                .select('-prefer -updatedAt -createdAt -userName -_id')
+                .select('productNo name productImages category salePrice saleStartDate')
                 .limit(parseInt(page) * 10);
             productList.push(product);
           }
@@ -214,13 +214,4 @@ export default class UserService {
       throw e;
     }
   }
-}
-
-export interface UserLike {
-  id: string;
-  image: string;
-  modelName: string;
-  category: string;
-  price: number;
-  updateDe: Date;
 }
