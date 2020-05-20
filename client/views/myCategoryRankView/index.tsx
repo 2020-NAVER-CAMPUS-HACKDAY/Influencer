@@ -17,11 +17,8 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   return (
     <MainHeader>
       <div>카테고리 랭킹 페이지</div>
-      {categoryArray && categoryArray.map((data) => (
-        // eslint-disable-next-line react/jsx-key
-        <CategoryRankBox
-          category={data}>
-        </CategoryRankBox>
+      {categoryArray && categoryArray.map((category) => (
+        <CategoryRankBox key={category.value.wholeCategoryId} {...{ category }} />
       ))}
     </MainHeader>
   );
