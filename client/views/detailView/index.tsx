@@ -1,47 +1,64 @@
 import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
-import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import { ProductProps, ProductItemProps } from 'redux/ducks/product';
+import { useRouter } from 'next/router';
+import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/productInterface';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
+import { getProductDataForProductId } from 'network/productApi';
+import { NOT_FOUND } from 'constant';
+import { AxiosResponse } from 'axios';
 
-const DetailPage: FC<ProductProps> = (props) => {
+const DetailView: FC<ProductProps> = (props) => {
+  const { products } = props;
+  const [detailData, setDetailData] = useState<ProductDataProps>();
   const router = useRouter();
-  const { productID } = router.query;
-  const { productArray } = props;
-  const [detailData, setDetailData] = useState<ProductItemProps>();
+  const { ProductID } = router.query;
 
   useEffect(() => {
-    if (Array.isArray(productID)) return;
-    const productData = productArray.find((product) => product.id === productID);
-    setDetailData(productData);
-  }, [productArray, productID]);
+    const searchProductItem = products.find(
+      (product) => product.productNo.toString() === ProductID,
+    );
+    if (searchProductItem === undefined) {
+      const getProductDataForId = async (): Promise<void> => {
+        await getProductDataForProductId(ProductID)
+          .then((response: AxiosResponse<ProductDetailProps>) => {
+            setDetailData(response.data.product);
+          })
+          .catch((error) => error);
+      };
+      getProductDataForId();
+    } else {
+      setDetailData(searchProductItem);
+    }
+  }, [products, setDetailData, ProductID]);
+
+  if (detailData === undefined) return <div>{NOT_FOUND}</div>;
 
   return (
     <>
-      <DetailHeader productName={detailData?.name}/>
+      <DetailHeader productName={detailData.name}/>
       <img
-        src={detailData?.image}
+        src={detailData.productImages[0].url}
         width={'100%'}
-        height={414}
+        height={detailData.productImages[0].height}
       />
       <DetailProductInfo
-        id={detailData?.id}
-        name={detailData?.name}
-        price={addCommaStringFromThreeCntNum(detailData?.price)}
-        modelName={detailData?.modelName}
-        makeCompany={detailData?.makeCompany}
-        brand={detailData?.brand}
+        id={detailData.productNo.toString()}
+        name={detailData.name}
+        price={addCommaStringFromThreeCntNum(detailData.salePrice)}
+        country={detailData?.productInfoProvidedNoticeView.제조국}
+        material={detailData?.productInfoProvidedNoticeView.소재}
+        color={detailData?.productInfoProvidedNoticeView.색상}
       />
     </>
   );
 };
 
-
 export default connect<ProductProps, void>(
   (state: Types) => ({
-    productArray: state.productReducer.productArray,
+    products: state.productReducer.products,
+    selectedProduct: state.productReducer.selectedProduct,
   }),
-)(DetailPage);
+)(DetailView);
