@@ -45,3 +45,15 @@ export const SwipeAction = {
   LIKE: '좋아요',
   UNLIKE: '싫어요',
 };
+
+export const TITLE_ADD = '&title=';
+
+export const SHARE_TITLE = '상품';
+
+export const PRODUCT_PAGE_API = '/api/product/';
+export const PAGE_ADD = '?page=';
+export const LIMIT_ADD = '&limit=';
+
+export const PRODUCT_LIMIT = '200';
+
+export const NOT_FOUND = 404;

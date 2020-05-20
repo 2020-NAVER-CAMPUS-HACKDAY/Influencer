@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 interface OutlinedButtonProps {
   className?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 const OutlinedButton: FC<OutlinedButtonProps> = (props) => {
