@@ -34,6 +34,7 @@ export default class ProductService {
 
       const productRecords = await this.productModel
         .find()
+        .sort({ modDate: -1 })
         .limit(take)
         .skip(skip);
 
