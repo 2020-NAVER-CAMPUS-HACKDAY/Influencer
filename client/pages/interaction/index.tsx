@@ -26,12 +26,9 @@ export const getStaticProps: GetStaticProps = async () => {
     });
     const result = await response.json();
     const productData = result.products.map(({
-      _id, name, salePrice, productImages,
+      productId, productName, productImages, salePrice,
     }) => ({
-      productId: _id,
-      productName: name,
-      productImages: productImages[0],
-      salePrice: Number(salePrice.$numberDecimal),
+      productId, productName, productImages, salePrice,
     }));
     return { props: { categoryData, productData } };
   } catch (err) {

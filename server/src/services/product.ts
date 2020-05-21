@@ -60,7 +60,14 @@ export default class ProductService {
         .select({ name: 1, productImages: 1, salePrice: 1 })
         .limit(take)
         .skip(skip);
-      const products = productRecords.map((record) => record.toObject());
+      const products = productRecords
+        .map((record) => record.toObject())
+        .map((product) => ({
+          productId: product._id,
+          productName: product.name,
+          productImages: product.productImages[0],
+          salePrice: Number(product.salePrice),
+        }));
       return { products };
     } catch (e) {
       this.logger.error(e);

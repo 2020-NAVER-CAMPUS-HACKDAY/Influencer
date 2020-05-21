@@ -1,8 +1,8 @@
 export interface IProduct {
-  _id: string;
-  name: string;
-  productNo: string;
-  category: Object;
+  productId: string;
+  productName: string;
+  productImages: Object;
+  salePrice: number;
 }
 
 export interface IProductInputDTO {
