@@ -23,11 +23,12 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   const classes = useStyles();
   const [items, setItems] = React.useState(categoryArray);
 
-  function onChange(sourceId, sourceIndex, targetIndex) {
+  const onChange = (sourceId, sourceIndex, targetIndex): void => {
     const nextState = swap(items, sourceIndex, targetIndex);
     setItems(nextState);
-  }
+  };
 
+  const getRankNum = (item: Category): number => items.indexOf(item) + 1;
 
   return (
     <MainHeader>
@@ -43,7 +44,7 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
             {items.map((item) => (
               <GridItem key={item.value.wholeCategoryId}>
                 <div className={classes.gridItem}>
-                  <div className={classes.rankNum}>1</div>
+                  <div className={classes.rankNum}>{getRankNum(item)}</div>
                   <div className={classes.gridItemContent}>
                     {item.value.wholeCategoryName}
                   </div>
