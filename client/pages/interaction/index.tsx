@@ -20,6 +20,7 @@ const Interaction: FC<InteractionProps> = (props) => {
 export const getStaticProps: GetStaticProps = async () => {
   const categoryData = SelectedCategoryDummyData;
   try {
+    // TODO(seogeurim) replace hard coding server URL
     const response = await fetch(`http://localhost:5000/api/products/category/${categoryData[0].id}?page=1&limit=10`, {
       method: 'GET',
     });

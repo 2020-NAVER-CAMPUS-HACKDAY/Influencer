@@ -5,7 +5,7 @@ export interface CardProps {
   onSwipeRight: (productId: string) => string;
   onDoubleTap: (productId: string) => string;
   cardIndex: number;
-  totalCard?: number;
+  totalCard: number;
 }
 
 export interface SwiperProps {

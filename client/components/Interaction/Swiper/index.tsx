@@ -19,17 +19,17 @@ const Swiper: FC<SwiperProps> = (props) => {
   }
 
   function renderCards(): object {
-    return products.map((data, index) => (
+    return products.map((product, index) => (
       <Card
-        key={data.productId}
-        productId={data.productId}
+        key={product.productId}
+        productId={product.productId}
         onSwipeRight={handleInteraction}
         onDoubleTap={handleLike}
         cardIndex={index}
         totalCard={10}
       >
         <SwiperItem
-          productData={data}
+          productData={product}
         />
       </Card>
     ));
