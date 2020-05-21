@@ -11,7 +11,6 @@ import {
   GridDropZone,
   GridItem,
   swap,
-  move,
 } from 'react-grid-dnd';
 import useStyles from 'views/myCategoryRankView/styles';
 
@@ -22,14 +21,7 @@ interface MyCategoryRankProps extends CategoryProps {
 const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   const { categoryArray } = props;
   const classes = useStyles();
-  const [items, setItems] = React.useState([
-    { id: 1, name: 'ben' },
-    { id: 2, name: 'joe' },
-    { id: 3, name: 'jason' },
-    { id: 4, name: 'chris' },
-    { id: 5, name: 'heather' },
-    { id: 6, name: 'Richard' },
-  ]);
+  const [items, setItems] = React.useState(categoryArray);
 
   function onChange(sourceId, sourceIndex, targetIndex, targetId) {
     const nextState = swap(items, sourceIndex, targetIndex);
@@ -52,10 +44,10 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
             rowHeight={70}
           >
             {items.map((item) => (
-              <GridItem key={item.name}>
+              <GridItem key={item.value.wholeCategoryId}>
                 <div className={classes.gridItem}>
                   <div className={classes.gridItemContent}>
-                    {item.name[0].toUpperCase()}
+                    {item.value.wholeCategoryName}
                   </div>
                 </div>
               </GridItem>
