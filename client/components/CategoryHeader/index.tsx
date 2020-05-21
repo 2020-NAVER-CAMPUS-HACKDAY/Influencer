@@ -8,17 +8,25 @@ interface CategoryHeaderProps {
 const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
   const { categoryData } = props;
 
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const categoryId: string = event.currentTarget.value;
+  };
+
   const categoryElements = categoryData.map((category) => {
     const { categoryId } = category;
     return (
-      <div key={categoryId}>{category.value.categoryName}</div>
+      <button
+        key={categoryId}
+        onClick={setCategory}
+        value={categoryId}>{category.value.categoryName}
+      </button>
     );
   });
 
   return (
-    <button>
+    <div>
       {categoryElements}
-    </button>
+    </div>
   );
 };
 
