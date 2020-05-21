@@ -61,3 +61,21 @@ interface Like {
     likeList: Array<string>
   },
 }
+
+
+
+export interface UserLike {
+  id: string;
+  image: string;
+  modelName: string;
+  category: string;
+  price: number;
+  updateDe: Date;
+}
+
+export interface UserLikeListVerGrid {
+  id: string;
+  image: string;
+  category: string;
+  updateDate: Date;
+}

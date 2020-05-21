@@ -19,5 +19,8 @@ export default {
 
   LIKE_SUCCESS: '찜 목록 읽기 || 수정 성공',
   LIKE_FAIL: '찜 목록 읽기 || 수정 실패',
+
+  LIKE_VER_GRID_VIEW_SUCCESS: '찜목록 그리드뷰 전달버전 읽기 성공',
+  LIKE_VER_GRID_VIEW_FAIL: '찜목록 그리드뷰 전달버전 읽기 실패',
 };
 
