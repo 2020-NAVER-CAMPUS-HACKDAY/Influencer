@@ -1,7 +1,7 @@
 export interface IProduct {
   _id: string;
   category: Object;
-  productNo: Number;
+  productNo: String;
   name: String;
   salePrice: Number;
   productImages: Object;
@@ -10,7 +10,7 @@ export interface IProduct {
 
 export interface IProductDTO {
   category: Object;
-  productNo: Number;
+  productNo: String;
   name: String;
   salePrice: Number;
   productImages: Object;
