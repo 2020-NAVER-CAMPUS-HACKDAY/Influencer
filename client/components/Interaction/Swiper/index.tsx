@@ -6,7 +6,7 @@ import SwiperItem from 'components/Interaction/SwiperItem';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
-  const { products, setPage, page } = props;
+  const { products, setPage, page, isLoading } = props;
 
   function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
@@ -49,6 +49,11 @@ const Swiper: FC<SwiperProps> = (props) => {
         <div className={classes.card_end}>
           <span>더이상 표시할 카드가 없습니다.</span>
         </div>
+        {isLoading && (
+          <div className={classes.card_end}>
+            <span>로딩 중</span>
+          </div>
+        )}
       </div>
     </div>
   );

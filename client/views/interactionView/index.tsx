@@ -39,6 +39,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
     prev: null, current: 0, next: 1,
   });
   const [productData, setProductData] = useState<ProductProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchProductData = async (categoryId: string, pageNo: number) => {
     try {
@@ -49,9 +50,11 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
       const result = await response.json();
       const data = productData.concat(result.products);
       setProductData(data);
+      setIsLoading(false);
     } catch (err) {
       const data = [];
       setProductData(data);
+      setIsLoading(false);
     }
   };
 
@@ -63,10 +66,8 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
     setCurrentCategory(categoryData[index]);
     setProductData([]);
+    setIsLoading(true);
   }
-
-  console.log(currentCategory, page);
-  console.log(productData);
 
   return (
     <div className={classes.root}>
@@ -76,6 +77,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
             products={productData}
             setPage={setPage}
             page={page}
+            isLoading={isLoading}
           />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>

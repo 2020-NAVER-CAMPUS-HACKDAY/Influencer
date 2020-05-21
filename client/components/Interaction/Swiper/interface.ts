@@ -13,4 +13,5 @@ export interface SwiperProps {
   products: ProductProps[];
   setPage: () => void;
   page: number;
+  isLoading: boolean;
 }
