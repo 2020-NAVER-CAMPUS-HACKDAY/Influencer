@@ -185,17 +185,17 @@ export default class UserService {
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
     try {
-      const uesrs = userLikeRecord.toObject();
+      const users = userLikeRecord.toObject();
       let result: { [index: string]: Object } = {};
 
-      for (let categoryId of Object.keys(uesrs.like)) {
-        if (uesrs.like[categoryId].likeList.length < 1) {
-          result[uesrs.like[categoryId].categoryName] = [];
+      for (let categoryId of Object.keys(users.like)) {
+        if (users.like[categoryId].likeList.length < 1) {
+          result[users.like[categoryId].categoryName] = [];
 
         } else {
-          let productList = [];
+          const productList = [];
 
-          for (let like of uesrs.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
+          for (let like of users.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
             const product =
               await this.productModel
                 .findOne({ productNo: like })
@@ -203,7 +203,7 @@ export default class UserService {
             productList.push(product);
           }
 
-          result[uesrs.like[categoryId].categoryName] = productList;
+          result[users.like[categoryId].categoryName] = productList;
         }
       }
       return result;
