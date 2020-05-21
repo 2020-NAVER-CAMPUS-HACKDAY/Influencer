@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import { CategoryProps, categoryActions } from 'redux/ducks/category';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 import CategoryRankBox from 'components/CategoryRankBox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

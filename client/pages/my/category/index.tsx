@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 import MyCategoryView from 'views/myCategoryView';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
