@@ -76,7 +76,7 @@ export default (routes: Router) => {
     '/recommend',
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
-      const { page = '0' } = req.query;
+      const { page = 0 } = req.query;
       logger.debug(`GET /user like list endpoint with query`);
 
       try {

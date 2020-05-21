@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi'
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct, Prefer, IProductDTO } from '../interfaces';
+import { IUser, IProduct, Prefer, IProductDTO, RecommenderResult } from '../interfaces';
 import config from '../config';
 const ContentBasedRecommender = require('content-based-recommender');
 import {
@@ -149,7 +149,6 @@ export default class UserService {
     if (!productRecord) throw new NotFoundError('Product is not exist');
 
     let users = userRecord.toObject();
-    let products = productRecord.toObject();
 
     try {
 
@@ -226,11 +225,6 @@ export default class UserService {
       minScore: 0.1,
       maxSimilarDocuments: 100
     });
-
-    type RecommenderResult = {
-      id: string,
-      score: number
-    };
 
     const addRemainder = async (remainder: number, result: Array<IProductDTO>) => {
       const filtering = result.map((r: any) => r.productNo);

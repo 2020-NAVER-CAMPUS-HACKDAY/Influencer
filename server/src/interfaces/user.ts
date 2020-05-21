@@ -15,6 +15,11 @@ export interface Prefer {
   updateDe: Date;
 }
 
+export interface RecommenderResult {
+  id: string;
+  score: number;
+};
+
 interface Like {
   50000000: {
     categoryName: string,
