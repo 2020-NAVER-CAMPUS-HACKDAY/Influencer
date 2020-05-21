@@ -43,12 +43,7 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
           >
             {items.map((item) => (
               <GridItem key={item.value.wholeCategoryId}>
-                <div className={classes.gridItem}>
-                  <div className={classes.rankNum}>{getRankNum(item)}</div>
-                  <div className={classes.gridItemContent}>
-                    {item.value.wholeCategoryName}
-                  </div>
-                </div>
+                <CategoryRankBox category={item} rankNum={getRankNum(item)}/>
               </GridItem>
             ))}
           </GridDropZone>
