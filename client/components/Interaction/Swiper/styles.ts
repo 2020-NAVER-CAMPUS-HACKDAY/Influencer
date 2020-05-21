@@ -64,6 +64,23 @@ const useStyles = makeStyles({
       backgroundColor: 'rgba(178, 204, 255, 0.5)',
     },
   },
+  card_end: {
+    width: '300px',
+    height: '300px',
+    backgroundColor: AppColor.WHITE,
+    borderRadius: '7px',
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    pointerEvents: 'none',
+    '& > span': {
+      textAlign: 'center',
+      fontSize: '2rem',
+      fontWeight: '800',
+      color: AppColor.DARK_GREY,
+    },
+  },
 });
 
 export default useStyles;

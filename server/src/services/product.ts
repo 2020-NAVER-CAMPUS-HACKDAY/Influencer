@@ -59,6 +59,38 @@ export default class ProductService {
     }
   }
 
+  public async listCategory(
+    id: string,
+    page: string = '1',
+    limit: string = '10',
+  ): Promise<{ products: IProduct[] }> {
+    try {
+      const take = parseInt(limit, 10);
+      const skip = take * (parseInt(page, 10) - 1);
+      if (Number.isNaN(take) || Number.isNaN(skip)) {
+        throw new BadRequestError('take and limit must be number');
+      }
+
+      const productRecords = await this.productModel
+        .find({"category.categoryId": id})
+        .select({ name: 1, productImages: 1, salePrice: 1 })
+        .limit(take)
+        .skip(skip);
+      const products = productRecords
+        .map((record) => record.toObject())
+        .map((product) => ({
+          productId: product._id,
+          productName: product.name,
+          productImages: product.productImages[0],
+          salePrice: Number(product.salePrice),
+        }));
+      return { products };
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
   public async getProduct(id: string): Promise<{ product: IProductDTO }> {
     try {
       const productRecord = await this.productModel.findOne({ _id: id });

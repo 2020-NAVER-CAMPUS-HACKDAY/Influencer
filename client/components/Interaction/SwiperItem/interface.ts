@@ -1,11 +1,13 @@
 interface ProductImage{
+  imageType: string;
+  order: number;
   url: string;
   width: number;
   height: number;
 }
 
 export interface ProductProps {
-  productId: number;
+  productId: string;
   productName: string;
   productImages: ProductImage;
   salePrice: number;
