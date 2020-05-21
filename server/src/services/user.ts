@@ -266,7 +266,7 @@ export default class UserService {
         result.push(productRecord);
       }
 
-      const remainder = 10 - result.length;
+      const remainder = 30 - result.length;
 
       if (remainder) return await addRemainder(remainder, result);
       return result;
