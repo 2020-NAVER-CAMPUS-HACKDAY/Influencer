@@ -7,6 +7,7 @@ import {
   ConflictError,
   NotFoundError,
 } from '../modules/errors';
+import {IProductforView} from "../interfaces/product";
 
 @Service()
 export default class ProductService {
@@ -63,7 +64,7 @@ export default class ProductService {
     id: string,
     page: string = '1',
     limit: string = '10',
-  ): Promise<{ products: IProduct[] }> {
+  ): Promise<{ products: IProductforView[] }> {
     try {
       const take = parseInt(limit, 10);
       const skip = take * (parseInt(page, 10) - 1);
