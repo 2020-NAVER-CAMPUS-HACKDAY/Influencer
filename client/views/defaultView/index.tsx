@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -14,7 +14,7 @@ interface DefaultProps extends ProductProps, ProductActionsProps {
   data: string;
 }
 
-const Home: React.FC<DefaultProps> = (props) => {
+const Home: FC<DefaultProps> = (props) => {
   const { fetchAndAddProduct, getProductForId } = props;
   return (
     <MainHeader>

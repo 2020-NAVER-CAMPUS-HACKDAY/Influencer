@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/LikeList/LikeListItem/styles';
 import { Box } from '@material-ui/core';
 import Label from 'components/Common/Label';
@@ -9,7 +9,7 @@ import SVGButton from 'components/Common/SVGButton';
 import Delete from 'svgs/Delete';
 import { LikeListItemProps } from 'components/LikeList/LikeListItem/interface';
 
-const LikeListItem: React.FC<LikeListItemProps> = (props) => {
+const LikeListItem: FC<LikeListItemProps> = (props) => {
   const classes = useStyles();
   const {
     imageLink,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import CategoryBox from 'components/CategoryBox';
 import useStyles from 'components/SelectCategory/styles';
 import { Category } from 'components/SelectCategory/types';
@@ -9,7 +9,7 @@ interface SelectCategoryProp {
   categoryDeleteHandler: (id: string) => void;
 }
 
-const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
+const SelectCategory: FC<SelectCategoryProp> = (props) => {
   const { categoryData, categoryAddHandler, categoryDeleteHandler } = props;
   const classes = useStyles();
 

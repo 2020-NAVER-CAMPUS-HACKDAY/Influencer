@@ -3,8 +3,7 @@ import { Container } from 'typedi';
 import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
-import { IProductInputDTO } from '../../../interfaces';
-import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
+import { IProductDTO } from '../../../interfaces';
 
 const productRoute = Router();
 
@@ -19,16 +18,16 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { products } = await productServiceInstance.list(
+        const { products } = await productServiceInstance.getProducts(
           req.query.page as string,
-          req.query.limit as string
+          req.query.limit as string,
         );
         return res.status(200).json({ products });
       } catch (e) {
         logger.error('🔥 error: %o', e);
         return next(e);
       }
-    }
+    },
   );
 
   productRoute.get(
@@ -60,15 +59,15 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { product } = await productServiceInstance.get(
-          req.params.id as string
+        const { product } = await productServiceInstance.getProduct(
+          req.params.id as string,
         );
         return res.status(200).json({ product });
       } catch (e) {
         logger.error('🔥 error: %o', e);
         return next(e);
       }
-    }
+    },
   );
 
   productRoute.post(
@@ -85,29 +84,28 @@ export default (routes: Router) => {
       try {
         const productServiceInstance = Container.get(ProductService);
         const { product } = await productServiceInstance.create(
-          req.body as IProductInputDTO
+          req.body as IProductDTO,
         );
         return res.status(201).json({ product });
       } catch (e) {
         logger.error('🔥 error: %o', e);
         return next(e);
       }
-    }
+    },
   );
 
   productRoute.put(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {},
   );
 
   productRoute.patch(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {},
   );
 
   productRoute.delete(
     '/:id',
-    (req: Request, res: Response, next: NextFunction) => { }
+    (req: Request, res: Response, next: NextFunction) => {},
   );
-
 };

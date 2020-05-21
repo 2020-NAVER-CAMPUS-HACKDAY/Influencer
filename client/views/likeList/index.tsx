@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';
 import LikeListItem from 'components/LikeList/LikeListItem';
@@ -9,7 +9,7 @@ import LikeGridView from 'components/LikeList/LikeGridView';
 import LikeListCategory from 'components/LikeList/LikeListCategory';
 import { Category } from 'constant';
 
-const LikeList: React.FC = () => {
+const LikeList: FC = () => {
   const orderedLikeCategoryList = uniq(likeGridViewDummyData.map((item) => item.category)).sort();
   const [listClicked, setListClicked] = useState<boolean>(true);
   const [gridClicked, setGridClicked] = useState<boolean>(false);
