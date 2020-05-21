@@ -26,7 +26,7 @@ interface InteractionPageProps extends InteractionProps{
 }
 
 const InteractionPage: FC<InteractionPageProps> = (props) => {
-  // TODO(seogeurim) 민지님 카테고리 화면과 합치기
+  // TODO(seogeurim) 민지님 카테고리와 합치기
   const categoryData = SelectedCategoryDummyData;
   const classes = useStyles();
   const {
@@ -50,14 +50,14 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
       const data = productData.concat(result.products);
       setProductData(data);
     } catch (err) {
-      //
+      const data = [];
+      setProductData(data);
     }
   };
 
   useEffect(() => {
-    // setCurrentCategory(categoryData[categoryState.current]);
     fetchProductData(currentCategory.id, page);
-  }, [categoryData, categoryState, setCurrentCategory, currentCategory, page]);
+  }, [currentCategory, page]);
 
   function handleClick(index: number): void {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
