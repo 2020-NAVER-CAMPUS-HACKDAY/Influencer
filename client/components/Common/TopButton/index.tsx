@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/Common/TopButton/styles';
 import MaterialAppBar from '@material-ui/core/AppBar';
 import Label from 'components/Common/Label';
 import TopDirection from 'svgs/TopDirection';
 import { AppColor } from 'constant';
 
-const TopButton: React.FC = () => {
+const TopButton: FC = () => {
   const classes = useStyles();
 
   return (

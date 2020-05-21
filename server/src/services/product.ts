@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IProduct, IProductDTO } from '../interfaces';
+import { IProduct, IProductDTO, IUser } from '../interfaces';
 import {
   BadRequestError,
   ConflictError,
@@ -11,11 +11,13 @@ import {
 @Service()
 export default class ProductService {
   private productModel: Model<IProduct & Document>;
+  private userModel: Model<IUser & Document>;
   private logger: winston.Logger;
 
   constructor(@Inject() container: ContainerInstance) {
     this.productModel = container.get('productModel');
     this.logger = container.get('logger');
+    this.userModel = container.get('userModel');
   }
 
   public async getProducts(

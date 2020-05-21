@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import useStyles from 'components/CategoryBox/styles';
+import { Category } from 'components/SelectCategory/types';
 
 interface CategoryBoxProps {
-  id: string;
-  name: string;
-  categoryAddHandler: (id: string, name: string) => void;
+  category: Category;
+  categoryAddHandler: (category: Category) => void;
   categoryDeleteHandler: (id: string) => void;
 }
-const CategoryBox: React.FunctionComponent<CategoryBoxProps> = (props) => {
+const CategoryBox: FC<CategoryBoxProps> = (props) => {
   const {
-    id, name, categoryAddHandler, categoryDeleteHandler,
+    category, categoryAddHandler, categoryDeleteHandler,
   } = props;
+  const { _id, value } = category;
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
 
   const toggleChecked = (): void => {
     if (checked) {
       setChecked(false);
-      categoryDeleteHandler(id);
+      categoryDeleteHandler(_id);
     } else {
       setChecked(true);
-      categoryAddHandler(id, name);
+      categoryAddHandler(category);
     }
   };
 
   return (
     <div>
-      <button key={id} onClick={toggleChecked} className={classes.button}>
-        {`${id}/${name}`}
+      <button key={_id} onClick={toggleChecked}
+        className={checked ? classes.active : classes.inactive}>
+        {`${value.wholeCategoryName}`}
       </button>
     </div>
   );

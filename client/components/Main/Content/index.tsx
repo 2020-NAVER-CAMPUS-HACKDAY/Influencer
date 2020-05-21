@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/Main/Content/styles';
 
-const Content: React.FunctionComponent = (props) => {
+const Content: FC = (props) => {
   const { children } = props;
   const classes = useStyles();
 

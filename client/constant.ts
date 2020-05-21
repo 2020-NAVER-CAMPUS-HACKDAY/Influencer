@@ -5,6 +5,8 @@ export const AppColor = {
   WHITE: '#FFFFFF',
   GREEN: '#01C73B',
   PURPLE: '#827EDB',
+  RED: '#ff1616',
+  BLUE: '#0012c4',
   MAIN_HEADER: 'linear-gradient(to right, #01C73B, #827EDB)',
   DETAIL_HEADER: '#8452C7',
   BLACK20: 'rgba(0, 0, 0, 0.2)',
@@ -37,3 +39,21 @@ export const Category = {
   50000009: '여가/생활편의',
   50000010: '면세점',
 };
+
+export const SwipeAction = {
+  DEFAULT: '',
+  LIKE: '좋아요',
+  UNLIKE: '싫어요',
+};
+
+export const TITLE_ADD = '&title=';
+
+export const SHARE_TITLE = '상품';
+
+export const PRODUCT_PAGE_API = '/api/product/';
+export const PAGE_ADD = '?page=';
+export const LIMIT_ADD = '&limit=';
+
+export const PRODUCT_LIMIT = '200';
+
+export const NOT_FOUND = 404;

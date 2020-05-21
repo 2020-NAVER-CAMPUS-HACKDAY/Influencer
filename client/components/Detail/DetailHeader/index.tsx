@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AppBar from 'components/Common/AppBar';
 import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
@@ -11,9 +11,9 @@ interface DetailHeaderProps {
   productName: string;
 }
 
-const DetailHeader: React.FC<DetailHeaderProps> = (props) => (
+const DetailHeader: FC<DetailHeaderProps> = (props) => (
   <AppBar backgroundColor={AppColor.DETAIL_HEADER}>
-    <SVGButton handleClick={() => Router.back()}>
+    <SVGButton handleClick={(): void => Router.back()}>
       <Direction/>
     </SVGButton>
     <Label name={props.productName}/>

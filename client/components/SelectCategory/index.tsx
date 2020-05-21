@@ -1,29 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import CategoryBox from 'components/CategoryBox';
 import useStyles from 'components/SelectCategory/styles';
-
-interface Category{
-  id: string;
-  name: string;
-}
+import { Category } from 'components/SelectCategory/types';
 
 interface SelectCategoryProp {
-  dummyData: Category[];
-  categoryAddHandler: (id: string, name: string) => void;
+  categoryData: Category[];
+  categoryAddHandler: (category: Category) => void;
   categoryDeleteHandler: (id: string) => void;
 }
 
-const SelectCategory: React.FunctionComponent<SelectCategoryProp> = (props) => {
-  const { dummyData, categoryAddHandler, categoryDeleteHandler } = props;
+const SelectCategory: FC<SelectCategoryProp> = (props) => {
+  const { categoryData, categoryAddHandler, categoryDeleteHandler } = props;
   const classes = useStyles();
 
-  const categoryElements = dummyData.map((data) => {
-    const { id, name } = data;
+  const categoryElements = categoryData.map((category) => {
+    const { _id } = category;
     return (
       <CategoryBox
-        key={id}
-        id={id}
-        name={name}
+        key={_id}
+        category={category}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />

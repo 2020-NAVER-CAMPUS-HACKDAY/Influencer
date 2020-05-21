@@ -1,14 +1,15 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import InfinityList from 'components/Common/InfinityList';
 import ProductItem from 'components/ProductListView/ProductItem';
 
-const fakeFetch = () => {
+const fakeFetch: () => Promise<object[]> = () => {
+  const imageNums = new Array(30)
+    .fill(null)
+    .map(() => (1 + Math.random() * 59).toFixed(0));
+
   return new Promise((res) => {
-    const fakeProducts = new Array(30).fill(null).map((_) => ({
-      imageUri: `https://naver.github.io/egjs-infinitegrid/assets/image/${(
-        Math.random() * 59 +
-        1
-      ).toFixed(0)}.jpg`,
+    const fakeProducts = new Array(30).fill(null).map((el, i) => ({
+      imageUri: `https://naver.github.io/egjs-infinitegrid/assets/image/${imageNums[i]}.jpg`,
       company: '꽃세상컴퍼니',
       id: 1234563,
       price: 3000,
@@ -21,10 +22,8 @@ const fakeFetch = () => {
   });
 };
 
-interface ProductItemProps {}
-
-const ProductListView: FC<ProductItemProps> = () => {
-  return <InfinityList loadItems={fakeFetch} ItemComponent={ProductItem} />;
-};
+const ProductListView: FC = () => (
+  <InfinityList loadItems={fakeFetch} ItemComponent={ProductItem} />
+);
 
 export default ProductListView;

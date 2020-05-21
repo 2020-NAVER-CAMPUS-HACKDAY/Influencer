@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/LikeList/LikeListBar/styles';
 import AppBar from 'components/Common/AppBar';
 import SVGButton from 'components/Common/SVGButton';
@@ -10,7 +10,7 @@ import Label from 'components/Common/Label';
 import LikeListBarProps from 'components/LikeList/LikeListBar/interface';
 import { AppColor } from 'constant';
 
-const LikeListBar: React.FC<LikeListBarProps> = (props) => {
+const LikeListBar: FC<LikeListBarProps> = (props) => {
   const classes = useStyles();
   const {
     listClicked,

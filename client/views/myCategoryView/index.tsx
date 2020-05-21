@@ -1,62 +1,51 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { UserProps, UserMethods, AuthActions } from 'redux/ducks/auth';
+import React, { FC, useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
-import { myCategoryViewDataArray } from 'views/myCategoryView/myCategoryDummyData';
 import SelectCategory from 'components/SelectCategory';
+import { Category } from 'components/SelectCategory/types';
+import { CategoryProps } from 'redux/ducks/category';
+import { PayloadActionCreator } from 'typesafe-actions';
+import Router from 'next/router';
 
-interface Category{
-  id: string;
-  name: string;
+interface MyCategoryViewProps extends CategoryProps {
+  categoryData: Category[];
+  categoryArray: Category[];
+  setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-interface DefaultProps extends UserProps, UserMethods {
-  data: string;
-}
-
-const userData = { id: 'dgsda', thumbnail: 'dgsadg' };
-
-const MyCategory: React.FC<DefaultProps> = (props) => {
-  const { setUser } = props;
-  const setUserData = (): void => setUser(userData);
+const MyCategoryView: FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const dummyData: Category[] = myCategoryViewDataArray;
+  const { categoryData, setCategory } = props;
 
-  const categoryAddHandler = (id: string, name: string): void => {
+  const categoryAddHandler = (newCategory: Category): void => {
     setCategories([
       ...categories,
-      {
-        id,
-        name,
-      },
+      newCategory,
     ]);
   };
 
   const categoryDeleteHandler = (id: string): void => {
-    const newCategories = categories.filter((category) => category.id !== id);
+    // TODO(jominjimail): remove this lint error
+    // eslint-disable-next-line no-underscore-dangle
+    const newCategories = categories.filter((category) => category._id !== id);
     setCategories(newCategories);
+  };
+
+  const setCategoryArray = (): void => {
+    setCategory(categories);
+    // TODO(jominjimail): check the categoryArray size
+    Router.push('/my/category/rank');
   };
 
   return (
     <MainHeader>
-      <div onClick={setUserData}>
-        This is my Category setting page.
-      </div>
       <SelectCategory
-        dummyData={dummyData}
+        categoryData={categoryData}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
+      <button onClick={setCategoryArray}>다음 페이지</button>
     </MainHeader>
   );
 };
 
-export default connect<UserProps, void>(
-  (state: UserProps) => ({
-    user: state.user,
-  }),
-  (dispatch) => ({
-    setUser: bindActionCreators(AuthActions.setUser, dispatch),
-  }),
-)(MyCategory);
+export default MyCategoryView;

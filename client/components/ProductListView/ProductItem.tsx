@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/ProductListView/styles';
 
 interface ProductItemProps {
