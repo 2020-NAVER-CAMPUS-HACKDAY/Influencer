@@ -1,4 +1,5 @@
 import productPath from './routes/product/product.swagger';
+import userPath from './routes/user/user.swagger';
 
 export default {
   openapi: '3.0.1',
@@ -47,7 +48,7 @@ export default {
     },
   ],
   paths: {
-    ...productPath,
+    ...productPath, ...userPath
   },
   components: {
     schemas: {
