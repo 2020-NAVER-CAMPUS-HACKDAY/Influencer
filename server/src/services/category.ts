@@ -49,7 +49,11 @@ export default class CategoryService {
         if (!categoryRecord) {
           throw new NotFoundError('Category is not exist');
         }
-        const category = categoryRecord.toObject();
+        // TODO(jominjimail): is there anything better than this
+        let category = categoryRecord.toObject();
+        category['categoryId'] = category['_id'];
+        delete category['_id'];
+
         return { category };
       } catch (e) {
         this.logger.error(e);
