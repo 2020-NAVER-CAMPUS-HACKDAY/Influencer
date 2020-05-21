@@ -27,17 +27,17 @@ export default class UserService {
    * @param weight 
    */
   public async addWeight(
-    productNo: string,
+    productNo: number,
     weight: number
   ): Promise<any> {
 
     const selectProduct = (
-      productNo: string,
+      productNo: number,
       weight: number
     ): Promise<any> => {
 
       return new Promise(async (resolve, reject) => {
-        const productRecord = await this.productModel.findOne({ _id: productNo });
+        const productRecord = await this.productModel.findOne({ productNo: productNo });
         if (!productRecord) {
           reject('Product is not exist');
         }
@@ -67,7 +67,7 @@ export default class UserService {
         let users = userRecord.toObject();
 
         const idx = users.prefer.findIndex((p: any, i: any) => {
-          p.productNo === parseInt(productNo);
+          p.productNo === productNo;
           return i;
         });
 
@@ -125,7 +125,7 @@ export default class UserService {
    * @param productNo 
    */
   public async clickLog(
-    productNo: string
+    productNo: number
   ): Promise<any> {
 
     return await this.addWeight(productNo, config.clicklogWeight);
@@ -137,13 +137,13 @@ export default class UserService {
    * @param exist 
    */
   public async setLike(
-    productNo: string,
+    productNo: number,
     wholeCategoryId: Array<string>,
     exist: boolean
   ): Promise<any> {
 
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
-    const productRecord = await this.productModel.findOne({ productNo: parseInt(productNo) })
+    const productRecord = await this.productModel.findOne({ productNo: productNo })
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
@@ -154,7 +154,7 @@ export default class UserService {
 
       if (exist) {
         users.like[wholeCategoryId[0]].likeList =
-          users.like[wholeCategoryId[0]].likeList.filter((l: string) => (l !== productNo));
+          users.like[wholeCategoryId[0]].likeList.filter((l: number) => (l !== productNo));
 
         userRecord.like = users.like
         return await userRecord.save();
@@ -174,7 +174,7 @@ export default class UserService {
   }
 
   public async selectLikeList(
-    page: string
+    page: number
   ): Promise<any> {
     const userLikeRecord =
       await this.userModel
@@ -194,7 +194,7 @@ export default class UserService {
         } else {
           const productList = [];
 
-          for (let like of users.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
+          for (let like of users.like[categoryId].likeList.slice(page * 10, page * 10 + 10)) {
             const product =
               await this.productModel
                 .findOne({ productNo: like })
@@ -214,7 +214,7 @@ export default class UserService {
   }
 
   public async recommendItem(
-    page: string
+    page: number
   ): Promise<any> {
 
     const userRecord = await this.userModel.find();
@@ -248,9 +248,9 @@ export default class UserService {
       collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
 
       const result: Array<IProductDTO> = [];
-      if (collaborators.length <= parseInt(page)) return await addRemainder(10, result);
+      if (collaborators.length <= page) return await addRemainder(10, result);
 
-      const similarData = collaborators[parseInt(page)];
+      const similarData = collaborators[page];
       const similarRecord = await this.userModel.findOne().where('userName').equals(similarData.id);
 
       if (!similarRecord) throw new NotFoundError('Similar is not exist!');
