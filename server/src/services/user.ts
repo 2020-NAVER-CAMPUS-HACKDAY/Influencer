@@ -232,6 +232,18 @@ export default class UserService {
       score: number
     };
 
+    const addRemainder = async (remainder: number, result: Array<IProductDTO>) => {
+      const filtering = result.map((r: any) => r.productNo);
+      const productRecord =
+        await this.productModel.find()
+          .where('productNo').nin(filtering)
+          .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView')
+          .limit(remainder);
+
+      result.push(...productRecord);
+      return result;
+    };
+
     try {
       userRecord.forEach((user: IUser) => (user.prefer.sort((a: Prefer, b: Prefer) => b.rating - a.rating)));
 
@@ -241,12 +253,14 @@ export default class UserService {
       const collaborators = recommender.getSimilarDocuments(config.personaName, 0, 10);
       collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
 
+      const result: Array<IProductDTO> = [];
+      if (collaborators.length <= parseInt(page)) return await addRemainder(10, result);
+
       const similarData = collaborators[parseInt(page)];
       const similarRecord = await this.userModel.findOne().where('userName').equals(similarData.id);
 
       if (!similarRecord) throw new NotFoundError('Similar is not exist!');
 
-      const result: Array<IProductDTO> = [];
       for (const preference of similarRecord.prefer) {
         const productRecord =
           await this.productModel.findOne()
@@ -260,17 +274,7 @@ export default class UserService {
 
       const remainder = 10 - result.length;
 
-      if (remainder) {
-        const filtering = result.map((r: any) => r.productNo);
-        const productRecord =
-          await this.productModel.find()
-            .where('productNo').nin(filtering)
-            .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView')
-            .limit(remainder);
-
-        result.push(...productRecord);
-      }
-
+      if (remainder) return await addRemainder(remainder, result);
       return result;
 
     } catch (e) {
