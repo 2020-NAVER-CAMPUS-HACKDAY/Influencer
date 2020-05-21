@@ -13,6 +13,7 @@ import {
 } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
 import { ProductDataProps, ProductProps } from './productInterface';
+import { cloneDeep } from 'lodash';
 
 const FETCH_AND_ADD_PRODUCT_REQUEST = 'product/FETCH_AND_ADD_PRODUCT_REQUEST' as const;
 const FETCH_AND_ADD_PRODUCT_SUCCESS = 'product/FETCH_AND_ADD_PRODUCT_SUCCESS' as const;
@@ -78,6 +79,6 @@ export const productReducer = createReducer(initialState)
         const selectedProduct = draft.products.find(
           (product) => product.productNo === action.payload,
         );
-        draft.selectedProduct = JSON.parse(JSON.stringify(selectedProduct));
+        draft.selectedProduct = cloneDeep(selectedProduct);
       },
     ));
