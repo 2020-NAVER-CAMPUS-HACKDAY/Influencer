@@ -57,7 +57,6 @@ export default class UserService {
       });
     };
 
-
     const checkExist = (
       { productNo, productRecord, userRecord, weight }: any
     ): Promise<any> => {
@@ -161,13 +160,7 @@ export default class UserService {
         return await userRecord.save();
       }
 
-      users.like[wholeCategoryId[0]].likeList.push({
-        id: productNo,
-        category: wholeCategoryId[0],
-        modelName: products.name,
-        price: products.salePrice,
-        updateDe: new Date()
-      });
+      users.like[wholeCategoryId[0]].likeList.push(productNo);
 
       userRecord.like = users.like;
       await userRecord.save();
@@ -181,6 +174,7 @@ export default class UserService {
   }
 
   public async selectLikeList(
+    page: string
   ): Promise<any> {
     const userLikeRecord =
       await this.userModel
@@ -198,7 +192,17 @@ export default class UserService {
           result[uesrs.like[categoryId].categoryName] = [];
 
         } else {
-          result[uesrs.like[categoryId].categoryName] = uesrs.like[categoryId].likeList
+          let productList = [];
+
+          for (let like of uesrs.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
+            const product =
+              await this.productModel
+                .findOne({ productNo: like })
+                .select('productNo name productImages category salePrice saleStartDate')
+            productList.push(product);
+          }
+
+          result[uesrs.like[categoryId].categoryName] = productList;
         }
       }
       return result;
