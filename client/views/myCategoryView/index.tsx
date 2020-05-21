@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import SelectCategory from 'components/SelectCategory';
 import { Category } from 'components/SelectCategory/types';
+import { CategoryProps } from 'redux/ducks/category';
+import { PayloadActionCreator } from 'typesafe-actions';
 
-interface MyCategoryViewProps {
+interface MyCategoryViewProps extends CategoryProps {
   categoryData: Category[];
+  categoryArray: Category[];
+  setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-// TODO(jominjimail): data management with redux or hook
 const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const { categoryData } = props;
+  const { categoryData, setCategory } = props;
 
   const categoryAddHandler = (newCategory: Category): void => {
     setCategories([
@@ -26,6 +29,10 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
     setCategories(newCategories);
   };
 
+  const setCategoryArray = (): void => {
+    setCategory(categories);
+  };
+
   return (
     <MainHeader>
       <SelectCategory
@@ -33,6 +40,7 @@ const MyCategoryView: React.FC<MyCategoryViewProps> = (props) => {
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
+      <button onClick={setCategoryArray}>다음 페이지</button>
     </MainHeader>
   );
 };
