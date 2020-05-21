@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi'
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct, Prefer } from '../interfaces';
+import { IUser, IProduct, Prefer, IProductDTO } from '../interfaces';
 import config from '../config';
 const ContentBasedRecommender = require('content-based-recommender');
 import {
@@ -143,7 +143,7 @@ export default class UserService {
   ): Promise<any> {
 
     const userRecord = await this.userModel.findOne({ userName: config.personaName });
-    const productRecord = await this.productModel.findOne({ productNo: productNo })
+    const productRecord = await this.productModel.findOne({ productNo: parseInt(productNo) })
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
@@ -246,12 +246,15 @@ export default class UserService {
 
       if (!similarRecord) throw new NotFoundError('Similar is not exist!');
 
-      const result = [];
+      const result: Array<IProductDTO> = [];
       for (const preference of similarRecord.prefer) {
         const productRecord =
           await this.productModel.findOne()
             .where('productNo').equals(preference.productNo)
-            .select('-_id name productNo salePrice productImages');
+            .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView');
+
+        if (!productRecord) throw new NotFoundError('User is not exist!');
+
         result.push(productRecord);
       }
 
@@ -262,10 +265,10 @@ export default class UserService {
         const productRecord =
           await this.productModel.find()
             .where('productNo').nin(filtering)
-            .select('-_id name productNo salePrice')
+            .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView')
             .limit(remainder);
 
-        result.push(productRecord);
+        result.push(...productRecord);
       }
 
       return result;

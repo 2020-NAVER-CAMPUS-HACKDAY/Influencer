@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IProduct, IProductInputDTO, IUser } from '../interfaces';
+import { IProduct, IProductDTO, IUser } from '../interfaces';
 import {
   BadRequestError,
   ConflictError,
@@ -58,7 +58,7 @@ export default class ProductService {
   }
 
   public async create(
-    userInputDTO: IProductInputDTO
+    userInputDTO: IProductDTO
   ): Promise<{ product: IProduct }> {
     try {
       this.logger.silly('Creating user db record');
