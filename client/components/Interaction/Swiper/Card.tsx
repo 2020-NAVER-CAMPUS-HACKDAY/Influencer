@@ -62,6 +62,7 @@ const Card: FC<CardProps> = (props) => {
     const windowHeight = document.body.clientHeight;
     setMouseState([0, -(windowHeight) - 100, 80]);
     onDoubleTap(productId);
+    onSwiped(cardIndex);
   }
 
   return (
