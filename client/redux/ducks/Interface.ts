@@ -6,6 +6,7 @@ export interface ProductDataProps {
   productImages: ProductImageProps[];
   productInfoProvidedNoticeView: ProductInfoProvidedNoticeViewProps;
 }
+
 export interface ProductDetailProps {
   product: ProductDataProps;
 }
@@ -39,4 +40,18 @@ export interface ProductInfoProvidedNoticeViewProps {
 export interface ProductProps {
   products: ProductDataProps[];
   selectedProduct: ProductDataProps;
+}
+
+export interface LikeListDataProps {
+  clothLike: ProductDataProps[];
+  accessaryLike: ProductDataProps[];
+  beautyLike: ProductDataProps[];
+  digitalLike: ProductDataProps[];
+  interialLike: ProductDataProps[];
+  babyLike: ProductDataProps[];
+  footLike: ProductDataProps[];
+  sportLike: ProductDataProps[];
+  lifeLike: ProductDataProps[];
+  leisureLike: ProductDataProps[];
+  dutyFreeLike: ProductDataProps[];
 }
