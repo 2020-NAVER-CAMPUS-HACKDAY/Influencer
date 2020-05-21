@@ -8,7 +8,7 @@ export interface IUser {
   prefer: Array<Prefer>
 }
 
-interface Prefer {
+export interface Prefer {
   productNo: string
   categoryId: string;
   rating: number;

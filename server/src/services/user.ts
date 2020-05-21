@@ -1,7 +1,7 @@
 import { Service, Inject, ContainerInstance } from 'typedi'
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct, UserLike } from '../interfaces';
+import { IUser, IProduct, Prefer } from '../interfaces';
 import config from '../config';
 const ContentBasedRecommender = require('content-based-recommender');
 import {
@@ -219,6 +219,7 @@ export default class UserService {
   ): Promise<any> {
 
     const userRecord = await this.userModel.find();
+    // const productRecord = await this.productModel.find({category: {categoryId: }})
 
     if (!userRecord) throw new NotFoundError('User is not exist!');
 
@@ -228,15 +229,58 @@ export default class UserService {
       maxSimilarDocuments: 100
     });
 
+    type RecommenderResult = {
+      id: string,
+      score: number
+    };
+
     try {
-      const documents = userRecord.map((user: any) => ({ id: user.userName, content: user.prefer }));
-      console.log(documents);
+      userRecord.forEach((user: IUser) => (user.prefer.sort((a: Prefer, b: Prefer) => b.rating - a.rating)));
 
-      recommender.train(documents);
+      const documents = userRecord.map((user: IUser) => ({ id: user.userName, content: user.prefer }));
 
-      const result = recommender.getSimilarDocuments(config.personaName, 0, 10);
-      console.log(result);
+      recommender.train(documents)
+      const collaborators = recommender.getSimilarDocuments(config.personaName, 0, 10);
+      console.log(collaborators);
+
+      const similar = collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
+
+      console.log(similar);
+
+
+      const result = [];
+      for (const preference of similar[parseInt(page)].prefer) {
+        const productRecord =
+          await this.productModel.findOne()
+            .where('productNo').equals(preference.productNo)
+            .select('-_id name productNo salePrice');
+        result.push(productRecord);
+      }
+
+      const remainder = 10 - result.length;
+      if (remainder) {
+        const filtering = result.map((r: any) => r.productNo);
+        const productRecord =
+          await this.productModel.find()
+            .where('productNo').nin(filtering)
+            .select('-_id name productNo salePrice')
+            .limit(remainder);
+        result.push(productRecord);
+      }
+
       return result;
+
+
+
+
+      // const documents = userRecord.map((user: any) => ({ id: user.userName, content: user.prefer }));
+      // console.log(documents);
+
+      // recommender.train(documents);
+
+      // const result = recommender.getSimilarDocuments(config.personaName, 0, 10);
+      // console.log(result);
+      // return result;
 
 
     } catch (e) {
