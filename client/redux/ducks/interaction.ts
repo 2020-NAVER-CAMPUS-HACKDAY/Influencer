@@ -42,4 +42,8 @@ export const interactionReducer = createReducer(initialState)
         draft.currentCategory = action.payload;
         draft.page = 1;
       },
-    ));
+    ))
+  .handleAction(interactionActions.setPage, (state) => ({
+    currentCategory: state.currentCategory,
+    page: state.page + 1,
+  }));

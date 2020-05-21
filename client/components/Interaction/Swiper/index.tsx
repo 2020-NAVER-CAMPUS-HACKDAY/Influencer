@@ -3,10 +3,15 @@ import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
+// REDUX
+import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
+import { connect } from 'react-redux';
+import { Types } from 'redux/ducks';
+import { bindActionCreators } from 'redux';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
-  const { products } = props;
+  const { products, setPage, page } = props;
 
   function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
@@ -18,6 +23,12 @@ const Swiper: FC<SwiperProps> = (props) => {
     return productId;
   }
 
+  function handlePage(cardIndex: number): void {
+    if (cardIndex % 10 === 7) {
+      setPage();
+    }
+  }
+
   function renderCards(): object {
     return products.map((product, index) => (
       <Card
@@ -25,8 +36,9 @@ const Swiper: FC<SwiperProps> = (props) => {
         productId={product.productId}
         onSwipeRight={handleInteraction}
         onDoubleTap={handleLike}
+        onSwiped={handlePage}
         cardIndex={index}
-        totalCard={10}
+        totalCard={page * 10}
       >
         <SwiperItem
           productData={product}
@@ -47,4 +59,12 @@ const Swiper: FC<SwiperProps> = (props) => {
   );
 };
 
-export default Swiper;
+export default connect<InteractionProps, void>(
+  (state: Types) => ({
+    currentCategory: state.interactionReducer.currentCategory,
+    page: state.interactionReducer.page,
+  }),
+  (dispatch) => ({
+    setPage: bindActionCreators(interactionActions.setPage, dispatch),
+  }),
+)(Swiper);

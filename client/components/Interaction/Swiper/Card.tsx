@@ -8,7 +8,7 @@ import clsx from 'clsx';
 const Card: FC<CardProps> = (props) => {
   const classes = useStyles();
   const {
-    children, productId, onSwipeRight, onDoubleTap, cardIndex, totalCard,
+    children, productId, onSwipeRight, onDoubleTap, onSwiped, cardIndex, totalCard,
   } = props;
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const [mouseState, setMouseState] = useState<[number, number, number]>([0, 0, 0]);
@@ -52,6 +52,9 @@ const Card: FC<CardProps> = (props) => {
     }
     if (toX >= windowWidth) {
       onSwipeRight(productId);
+    }
+    if (Math.abs(toX) >= windowWidth) {
+      onSwiped(cardIndex);
     }
   }
 

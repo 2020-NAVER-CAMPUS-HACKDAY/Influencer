@@ -32,7 +32,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
     prev: null, current: 0, next: 1,
   });
-  const [productData, setProductData] = useState<ProductProps[]>();
+  const [productData, setProductData] = useState<ProductProps[]>([]);
 
   const fetchProductData = async (categoryId: string, pageNo: number) => {
     try {
@@ -41,26 +41,26 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
         method: 'GET',
       });
       const result = await response.json();
-      const products = result.products.map(({
-        productId, productName, productImages, salePrice,
-      }) => ({
-        productId, productName, productImages, salePrice,
-      }));
-      setProductData(products);
+      const data = productData.concat(result.products);
+      setProductData(data);
     } catch (err) {
-      setProductData([]);
+      //
     }
   };
 
   useEffect(() => {
-    setCurrentCategory(categoryData[categoryState.current]);
+    // setCurrentCategory(categoryData[categoryState.current]);
     fetchProductData(currentCategory.id, page);
   }, [categoryData, categoryState, setCurrentCategory, currentCategory, page]);
 
   function handleClick(index: number): void {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
     setCurrentCategory(categoryData[index]);
+    setProductData([]);
   }
+
+  console.log(currentCategory, page);
+  console.log(productData);
 
   return (
     <div className={classes.root}>
