@@ -144,7 +144,7 @@ export default class UserService {
       userName: config.personaName,
     });
     const productRecord = await this.productModel.findOne({
-      productNo: productNo,
+      productNo: Number(productNo),
     });
 
     if (!userRecord) throw new NotFoundError('User is not exist');
