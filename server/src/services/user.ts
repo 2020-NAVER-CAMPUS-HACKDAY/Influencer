@@ -248,7 +248,7 @@ export default class UserService {
       collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
 
       const result: Array<IProductDTO> = [];
-      if (collaborators.length <= page) return await addRemainder(10, result);
+      if (collaborators.length <= page) return await addRemainder(config.pagination, result);
 
       const similarData = collaborators[page];
       const similarRecord = await this.userModel.findOne().where('userName').equals(similarData.id);
@@ -266,7 +266,7 @@ export default class UserService {
         result.push(productRecord);
       }
 
-      const remainder = 30 - result.length;
+      const remainder = config.pagination - result.length;
 
       if (remainder) return await addRemainder(remainder, result);
       return result;
