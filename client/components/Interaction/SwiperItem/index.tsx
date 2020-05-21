@@ -4,9 +4,9 @@ import useStyles from 'components/Interaction/SwiperItem/styles';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
 const SwiperItem: FC<SwiperItemProps> = (props) => {
+  const classes = useStyles();
   const { productName, productImages, salePrice } = props.productData;
   const commaSalePrice = addCommaStringFromThreeCntNum(salePrice);
-  const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>

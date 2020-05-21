@@ -6,11 +6,13 @@ import Hammer from 'react-hammerjs';
 import clsx from 'clsx';
 
 const Card: FC<CardProps> = (props) => {
-  const { children } = props;
+  const classes = useStyles();
+  const {
+    children, productId, onSwipeRight, onDoubleTap, cardIndex, totalCard,
+  } = props;
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const [mouseState, setMouseState] = useState<[number, number, number]>([0, 0, 0]);
   const [swipeAction, setSwipeAction] = useState<string>(SwipeAction.DEFAULT);
-  const classes = useStyles();
 
   function handlePan(event): void {
     setIsMoving(true);
@@ -49,14 +51,14 @@ const Card: FC<CardProps> = (props) => {
       ]);
     }
     if (toX >= windowWidth) {
-      props.onSwipeRight(props.productId);
+      onSwipeRight(productId);
     }
   }
 
   function handleDoubleTap(): void {
     const windowHeight = document.body.clientHeight;
     setMouseState([0, -(windowHeight) - 100, 80]);
-    props.onDoubleTap(props.productId);
+    onDoubleTap(productId);
   }
 
   return (
@@ -72,6 +74,7 @@ const Card: FC<CardProps> = (props) => {
         )}
         style={{
           transform: `translate(${mouseState[0]}px, ${mouseState[1]}px) rotate(${mouseState[2]}deg)`,
+          zIndex: totalCard - cardIndex,
         }}
       >
         <div

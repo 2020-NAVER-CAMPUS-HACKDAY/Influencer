@@ -16,3 +16,10 @@ export interface IProductDTO {
   productImages: Object;
   productInfoProvidedNoticeView: Object;
 }
+
+export interface IProductforView {
+  productId: string;
+  productName: string;
+  productImages: Object;
+  salePrice: number;
+}
