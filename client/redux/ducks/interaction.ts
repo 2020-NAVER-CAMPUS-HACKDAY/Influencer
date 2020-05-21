@@ -16,32 +16,30 @@ export interface InteractionProps{
 }
 
 export const interactionActions = {
-  currentCategory: createAction(SET_CURRENT_CATEGORY)<Category>(),
-  page: createAction(SET_PAGE)<number>(),
+  setCurrentCategory: createAction(SET_CURRENT_CATEGORY)<Category, number>(),
+  setPage: createAction(SET_PAGE)<number>(),
 };
 
 export interface InteractionActionsProps {
-  currentCategory: PayloadAction<'interaction/SET_CURRENT_CATEGORY', Category>;
-  page: PayloadAction<'interaction/SET_PAGE', number>;
+  setCurrentCategory: PayloadAction<'interaction/SET_CURRENT_CATEGORY', Category>;
+  setPage: PayloadAction<'interaction/SET_PAGE', number>;
 }
 
 export type InteractionAction =
-  | ActionType<typeof interactionActions.currentCategory>
-  | ActionType<typeof interactionActions.page>;
+  | ActionType<typeof interactionActions.setCurrentCategory>
+  | ActionType<typeof interactionActions.setPage>;
 
 const initialState = {
-  currentCategory: undefined,
+  currentCategory: {},
   page: 1,
 };
 
 export const interactionReducer = createReducer(initialState)
-  .handleAction(interactionActions.currentCategory, (state: InteractionProps, action) => produce(
-    state,
-    (draft) => {
-      draft.currentCategory = action.payload;
-      draft.page = 1;
-    },
-  ))
-  .handleAction(interactionActions.page, (state: InteractionProps) => ({
-    page: state.page + 1,
-  }));
+  .handleAction(interactionActions.setCurrentCategory,
+    (state: InteractionProps, action) => produce(
+      state,
+      (draft) => {
+        draft.currentCategory = action.payload;
+        draft.page = 1;
+      },
+    ));
