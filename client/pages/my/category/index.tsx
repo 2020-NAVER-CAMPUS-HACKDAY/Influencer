@@ -29,8 +29,7 @@ const MyCategory: FC<MyCategoryProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   // TODO(jominjimail): replace hard coding server address with .env parameter
-  // TODO(jominjimail): for easy developing ill change it level=2 later*/}
-  const res = await fetch('http://localhost:5000/api/categories?level=1');
+  const res = await fetch('http://localhost:5000/api/categories?level=2');
   const { categories } = await res.json();
 
   return {

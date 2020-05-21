@@ -38,13 +38,12 @@ const MyCategoryView: FC<MyCategoryViewProps> = (props) => {
 
   return (
     <MainHeader>
-      {/* TODO(jominjimail): for easy developing */}
-      <button onClick={setCategoryArray}>다음 페이지</button>
       <SelectCategory
         categoryData={categoryData}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
+      <button onClick={setCategoryArray}>다음 페이지</button>
     </MainHeader>
   );
 };
