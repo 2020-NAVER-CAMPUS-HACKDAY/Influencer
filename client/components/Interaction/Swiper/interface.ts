@@ -1,5 +1,4 @@
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
-import { Category } from 'views/interactionView/interactionDummyData';
 
 export interface CardProps {
   productId: string;
@@ -13,6 +12,5 @@ export interface CardProps {
 export interface SwiperProps {
   products: ProductProps[];
   setPage: () => void;
-  currentCategory: Category;
   page: number;
 }

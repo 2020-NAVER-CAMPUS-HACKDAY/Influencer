@@ -20,15 +20,21 @@ interface CategoryStateIndex {
 
 interface InteractionPageProps extends InteractionProps{
   setCurrentCategory: PayloadActionCreator<'interaction/SET_CURRENT_CATEGORY', Category>;
+  setPage: () => void;
   currentCategory: Category;
   page: number;
 }
 
 const InteractionPage: FC<InteractionPageProps> = (props) => {
-  const classes = useStyles();
   // TODO(seogeurim) 민지님 카테고리 화면과 합치기
   const categoryData = SelectedCategoryDummyData;
-  const { setCurrentCategory, currentCategory, page } = props;
+  const classes = useStyles();
+  const {
+    setCurrentCategory,
+    setPage,
+    currentCategory,
+    page,
+  } = props;
   const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
     prev: null, current: 0, next: 1,
   });
@@ -66,7 +72,11 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
     <div className={classes.root}>
       <MainHeader>
         <div className={classes.swiper}>
-          <Swiper products={productData} />
+          <Swiper
+            products={productData}
+            setPage={setPage}
+            page={page}
+          />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>
               <InteractionButton
@@ -96,5 +106,6 @@ export default connect<InteractionProps, void>(
   }),
   (dispatch) => ({
     setCurrentCategory: bindActionCreators(interactionActions.setCurrentCategory, dispatch),
+    setPage: bindActionCreators(interactionActions.setPage, dispatch),
   }),
 )(InteractionPage);
