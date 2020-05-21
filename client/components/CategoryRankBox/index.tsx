@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 import useStyles from 'components/CategoryRankBox/styles';
 
 interface CategoryBoxProps {
