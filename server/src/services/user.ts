@@ -187,14 +187,14 @@ export default class UserService {
       const users = userLikeRecord.toObject();
       let result: { [index: string]: Object } = {};
 
-      for (let categoryId of Object.keys(users.like)) {
+      for (const categoryId of Object.keys(users.like)) {
         if (users.like[categoryId].likeList.length < 1) {
           result[users.like[categoryId].categoryName] = [];
 
         } else {
           const productList = [];
 
-          for (let like of users.like[categoryId].likeList.slice(page * 10, page * 10 + 10)) {
+          for (const like of users.like[categoryId].likeList.slice(page * 10, page * 10 + 10)) {
             const product =
               await this.productModel
                 .findOne({ productNo: like })
@@ -245,7 +245,7 @@ export default class UserService {
 
       recommender.train(documents)
       const collaborators = recommender.getSimilarDocuments(config.personaName, 0, 10);
-      collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
+      collaborators.sort((first: RecommenderResult, second: RecommenderResult) => second.score - first.score);
 
       const result: Array<IProductDTO> = [];
       if (collaborators.length <= page) return await addRemainder(config.pagination, result);
