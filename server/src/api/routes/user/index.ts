@@ -78,8 +78,6 @@ export default (routes: Router) => {
       const logger = Container.get('logger') as winston.Logger;
       const { page = '0' } = req.query;
       logger.debug(`GET /user like list endpoint with query`);
-      console.log(page);
-
 
       try {
         const userServiceInstance = Container.get(UserService);

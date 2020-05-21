@@ -219,10 +219,8 @@ export default class UserService {
   ): Promise<any> {
 
     const userRecord = await this.userModel.find();
-    // const productRecord = await this.productModel.find({category: {categoryId: }})
 
     if (!userRecord) throw new NotFoundError('User is not exist!');
-
 
     const recommender = new ContentBasedRecommender({
       minScore: 0.1,
@@ -241,23 +239,24 @@ export default class UserService {
 
       recommender.train(documents)
       const collaborators = recommender.getSimilarDocuments(config.personaName, 0, 10);
-      console.log(collaborators);
+      collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
 
-      const similar = collaborators.sort((a: RecommenderResult, b: RecommenderResult) => b.score - a.score);
+      const similarData = collaborators[parseInt(page)];
+      const similarRecord = await this.userModel.findOne().where('userName').equals(similarData.id);
 
-      console.log(similar);
-
+      if (!similarRecord) throw new NotFoundError('Similar is not exist!');
 
       const result = [];
-      for (const preference of similar[parseInt(page)].prefer) {
+      for (const preference of similarRecord.prefer) {
         const productRecord =
           await this.productModel.findOne()
             .where('productNo').equals(preference.productNo)
-            .select('-_id name productNo salePrice');
+            .select('-_id name productNo salePrice productImages');
         result.push(productRecord);
       }
 
       const remainder = 10 - result.length;
+
       if (remainder) {
         const filtering = result.map((r: any) => r.productNo);
         const productRecord =
@@ -265,23 +264,11 @@ export default class UserService {
             .where('productNo').nin(filtering)
             .select('-_id name productNo salePrice')
             .limit(remainder);
+
         result.push(productRecord);
       }
 
       return result;
-
-
-
-
-      // const documents = userRecord.map((user: any) => ({ id: user.userName, content: user.prefer }));
-      // console.log(documents);
-
-      // recommender.train(documents);
-
-      // const result = recommender.getSimilarDocuments(config.personaName, 0, 10);
-      // console.log(result);
-      // return result;
-
 
     } catch (e) {
       this.logger.error(e);
