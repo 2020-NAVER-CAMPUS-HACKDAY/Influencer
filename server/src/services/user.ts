@@ -1,12 +1,12 @@
-import { Service, Inject, ContainerInstance } from 'typedi'
+import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct, UserLike } from '../interfaces';
+import { IUser, IProduct } from '../interfaces';
 import config from '../config';
 import {
   BadRequestError,
   ConflictError,
-  NotFoundError
+  NotFoundError,
 } from '../modules/errors';
 
 @Service()
@@ -22,21 +22,15 @@ export default class UserService {
   }
 
   /**
-   * @param productNo 
-   * @param weight 
+   * @param productNo
+   * @param weight
    */
-  public async addWeight(
-    productNo: string,
-    weight: number
-  ): Promise<any> {
-
-    const selectProduct = (
-      productNo: string,
-      weight: number
-    ): Promise<any> => {
-
+  public async addWeight(productNo: string, weight: number): Promise<any> {
+    const selectProduct = (productNo: string, weight: number): Promise<any> => {
       return new Promise(async (resolve, reject) => {
-        const productRecord = await this.productModel.findOne({ _id: productNo });
+        const productRecord = await this.productModel.findOne({
+          _id: productNo,
+        });
         if (!productRecord) {
           reject('Product is not exist');
         }
@@ -44,12 +38,15 @@ export default class UserService {
       });
     };
 
-    const selectUser = (
-      { productNo, productRecord, weight }: any
-    ): Promise<any> => {
-
+    const selectUser = ({
+      productNo,
+      productRecord,
+      weight,
+    }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
-        const userRecord = await this.userModel.findOne({ userName: config.personaName });
+        const userRecord = await this.userModel.findOne({
+          userName: config.personaName,
+        });
         if (!userRecord) {
           reject('User is not exist');
         }
@@ -57,10 +54,12 @@ export default class UserService {
       });
     };
 
-    const checkExist = (
-      { productNo, productRecord, userRecord, weight }: any
-    ): Promise<any> => {
-
+    const checkExist = ({
+      productNo,
+      productRecord,
+      userRecord,
+      weight,
+    }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         let products = productRecord.toObject();
         let users = userRecord.toObject();
@@ -74,34 +73,39 @@ export default class UserService {
       });
     };
 
-    const addWeight = async ({ userRecord, products, users, idx, weight }: any) => {
+    const addWeight = async ({
+      userRecord,
+      products,
+      users,
+      idx,
+      weight,
+    }: any) => {
       if (idx < 0) {
         const result = await userRecord.update({
           $push: {
             prefer: {
               productNo: products.productNo,
               categoryId: products.category.categoryId,
-              rating: weight
-            }
-          }
+              rating: weight,
+            },
+          },
         });
 
-        return result
+        return result;
       }
 
       if (users.prefer[idx].rating + weight <= 5) {
         users.prefer[idx].rating += weight;
 
         const result = await userRecord.update({
-          prefer: users.prefer
+          prefer: users.prefer,
         });
         return result;
-
       }
 
       users.prefer[idx].rating = 5.0;
       const result = await userRecord.update({
-        prefer: users.prefer
+        prefer: users.prefer,
       });
       return result;
     };
@@ -111,38 +115,37 @@ export default class UserService {
       throw e;
     };
 
-    return await
-      selectProduct(productNo, weight)
-        .then(selectUser)
-        .then(checkExist)
-        .then(addWeight)
-        .catch(handleClicklogError);
+    return await selectProduct(productNo, weight)
+      .then(selectUser)
+      .then(checkExist)
+      .then(addWeight)
+      .catch(handleClicklogError);
   }
 
   /**
-   * 
-   * @param productNo 
+   *
+   * @param productNo
    */
-  public async clickLog(
-    productNo: string
-  ): Promise<any> {
-
+  public async clickLog(productNo: string): Promise<any> {
     return await this.addWeight(productNo, config.clicklogWeight);
   }
 
   /**
-   * 
-   * @param productNo 
-   * @param exist 
+   *
+   * @param productNo
+   * @param exist
    */
   public async setLike(
     productNo: string,
     wholeCategoryId: Array<string>,
-    exist: boolean
+    exist: boolean,
   ): Promise<any> {
-
-    const userRecord = await this.userModel.findOne({ userName: config.personaName });
-    const productRecord = await this.productModel.findOne({ productNo: productNo })
+    const userRecord = await this.userModel.findOne({
+      userName: config.personaName,
+    });
+    const productRecord = await this.productModel.findOne({
+      productNo: productNo,
+    });
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
@@ -151,12 +154,12 @@ export default class UserService {
     let products = productRecord.toObject();
 
     try {
-
       if (exist) {
-        users.like[wholeCategoryId[0]].likeList =
-          users.like[wholeCategoryId[0]].likeList.filter((l: string) => (l !== productNo));
+        users.like[wholeCategoryId[0]].likeList = users.like[
+          wholeCategoryId[0]
+        ].likeList.filter((l: string) => l !== productNo);
 
-        userRecord.like = users.like
+        userRecord.like = users.like;
         return await userRecord.save();
       }
 
@@ -164,7 +167,6 @@ export default class UserService {
 
       userRecord.like = users.like;
       await userRecord.save();
-
     } catch (e) {
       this.logger.error(e);
       throw e;
@@ -173,13 +175,10 @@ export default class UserService {
     return await this.addWeight(productNo, config.likeWeight);
   }
 
-  public async selectLikeList(
-    page: string
-  ): Promise<any> {
-    const userLikeRecord =
-      await this.userModel
-        .findOne({ userName: config.personaName })
-        .select('-prefer -updatedAt -createdAt -userName -_id');
+  public async selectLikeList(page: string): Promise<any> {
+    const userLikeRecord = await this.userModel
+      .findOne({ userName: config.personaName })
+      .select('-prefer -updatedAt -createdAt -userName -_id');
 
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
@@ -190,15 +189,18 @@ export default class UserService {
       for (let categoryId of Object.keys(uesrs.like)) {
         if (uesrs.like[categoryId].likeList.length < 1) {
           result[uesrs.like[categoryId].categoryName] = [];
-
         } else {
           let productList = [];
 
-          for (let like of uesrs.like[categoryId].likeList.slice(parseInt(page) * 10, parseInt(page) * 10 + 10)) {
-            const product =
-              await this.productModel
-                .findOne({ productNo: like })
-                .select('productNo name productImages category salePrice saleStartDate')
+          for (let like of uesrs.like[categoryId].likeList.slice(
+            parseInt(page) * 10,
+            parseInt(page) * 10 + 10,
+          )) {
+            const product = await this.productModel
+              .findOne({ productNo: like })
+              .select(
+                'productNo name productImages category salePrice saleStartDate',
+              );
             productList.push(product);
           }
 
@@ -206,7 +208,6 @@ export default class UserService {
         }
       }
       return result;
-
     } catch (e) {
       this.logger.error(e);
       throw e;
