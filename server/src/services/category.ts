@@ -56,4 +56,27 @@ export default class CategoryService {
         throw e;
       }
     }
+
+    public async getChildren(id: string): Promise<{ categories: ICategory[] }> {
+          try {
+            const categoryRecords = await this.categoryModel
+              .find({ 'value.parentCategoryId': id })
+              .limit(10);
+
+            if (!categoryRecords) {
+              throw new NotFoundError('Category is not exist');
+            }
+
+            const categories = categoryRecords
+              .map((record) => record.toObject())
+              .map((category) => ({
+                categoryId: category._id,
+                value: category.value,
+              }));
+            return { categories };
+          } catch (e) {
+            this.logger.error(e);
+            throw e;
+          }
+        }
 }
