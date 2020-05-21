@@ -8,6 +8,7 @@ import { PayloadActionCreator } from 'typesafe-actions';
 import { categoryActions, CategoryProps } from '../../../redux/ducks/category';
 import { Types } from '../../../redux/ducks';
 
+// TODO(jominjimail): remove redux call in here
 interface MyCategoryProps extends CategoryProps {
   categoryData: Category[];
   categoryArray: Category[];
