@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
 export interface CardProps {
@@ -14,4 +15,5 @@ export interface SwiperProps {
   setPage: () => void;
   page: number;
   isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }

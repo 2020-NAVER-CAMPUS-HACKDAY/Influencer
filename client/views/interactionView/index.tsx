@@ -41,24 +41,22 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   const [productData, setProductData] = useState<ProductProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchProductData = async (categoryId: string, pageNo: number) => {
-    try {
-      // TODO(seogeurim) replace hard coding server URL
-      const response = await fetch(`http://localhost:5000/api/products/category/${categoryId}?page=${pageNo}&limit=10`, {
-        method: 'GET',
-      });
-      const result = await response.json();
-      const data = productData.concat(result.products);
-      setProductData(data);
-      setIsLoading(false);
-    } catch (err) {
-      const data = [];
-      setProductData(data);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
+      try {
+        // TODO(seogeurim) replace hard coding server URL
+        const response = await fetch(`http://localhost:5000/api/products/category/${categoryId}?page=${pageNo}&limit=10`, {
+          method: 'GET',
+        });
+        const result = await response.json();
+        setProductData(result.products);
+        setIsLoading(false);
+      } catch (err) {
+        setProductData([]);
+        setIsLoading(false);
+      }
+    }
+
     fetchProductData(currentCategory.id, page);
   }, [currentCategory, page]);
 
@@ -78,6 +76,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
             setPage={setPage}
             page={page}
             isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>

@@ -6,7 +6,9 @@ import SwiperItem from 'components/Interaction/SwiperItem';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
-  const { products, setPage, page, isLoading } = props;
+  const {
+    products, setPage, page, isLoading, setIsLoading,
+  } = props;
 
   function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
@@ -20,6 +22,9 @@ const Swiper: FC<SwiperProps> = (props) => {
 
   function handlePage(cardIndex: number): void {
     if (cardIndex % 10 === 7) {
+      setIsLoading(true);
+    }
+    if (cardIndex % 10 === 9) {
       setPage();
     }
   }
