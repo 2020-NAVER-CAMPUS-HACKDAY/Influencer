@@ -23,7 +23,7 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   const classes = useStyles();
   const [items, setItems] = React.useState(categoryArray);
 
-  function onChange(sourceId, sourceIndex, targetIndex, targetId) {
+  function onChange(sourceId, sourceIndex, targetIndex) {
     const nextState = swap(items, sourceIndex, targetIndex);
     setItems(nextState);
   }
@@ -32,20 +32,18 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
   return (
     <MainHeader>
       <div>카테고리 랭킹 페이지</div>
-      {categoryArray && categoryArray.map((category) => (
-        <CategoryRankBox key={category.value.wholeCategoryId} {...{ category }} />
-      ))}
       <GridContextProvider onChange={onChange}>
         <div className={classes.container}>
           <GridDropZone
             className={classes.dropZone}
-            id="left"
+            id="CategoryRank"
             boxesPerRow={3}
-            rowHeight={70}
+            rowHeight={100}
           >
             {items.map((item) => (
               <GridItem key={item.value.wholeCategoryId}>
                 <div className={classes.gridItem}>
+                  <div className={classes.rankNum}>1</div>
                   <div className={classes.gridItemContent}>
                     {item.value.wholeCategoryName}
                   </div>
