@@ -63,6 +63,15 @@ export default (routes: Router) => {
         const userServiceInstance = Container.get(UserService);
         const result = await userServiceInstance.selectLikeList(Number(page));
 
+        const likeLength =
+          Object.keys(result)
+            .map((key: string) => result[key].length)
+            .reduce((first: number, second: number) => (first + second));
+
+        if (!likeLength) {
+          return res.status(sc.BAD_REQUEST).json(au.successFalse(rm.NULL_VALUE));
+        }
+
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
       } catch (e) {
