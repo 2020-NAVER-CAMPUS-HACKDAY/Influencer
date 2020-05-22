@@ -4,6 +4,7 @@ import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
+import { PRODUCTS_BY_CATEGORY_API, PAGE_ADD, LIMIT_ADD } from 'constant';
 import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
 // REDUX
 import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
@@ -45,7 +46,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
     async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
       try {
         // TODO(seogeurim) replace hard coding server URL
-        const response = await fetch(`http://localhost:5000/api/products/category/${categoryId}?page=${pageNo}&limit=10`, {
+        const response = await fetch(`${process.env.SERVER_URL}${PRODUCTS_BY_CATEGORY_API}${categoryId}${PAGE_ADD}${pageNo}${LIMIT_ADD}10`, {
           method: 'GET',
         });
         const result = await response.json();
