@@ -16,6 +16,8 @@ module.exports = {
     "no-restricted-globals": "off",
     "@typescript-eslint/no-var-requires": "off",
     "import/prefer-default-export": "off",
+    "consistent-return": "off",
+
     "@typescript-eslint/indent": [
       "error",
       2,
