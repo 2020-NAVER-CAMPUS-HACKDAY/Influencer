@@ -1,13 +1,14 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IProduct, IProductDTO, IUser } from '../interfaces';
+import { IProduct, IProductDTO, IUser, CategoryLike } from '../interfaces';
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
 } from '../modules/errors';
-import {IProductforView} from "../interfaces/product";
+import { IProductforView } from '../interfaces/product';
+import config from '../config';
 
 @Service()
 export default class ProductService {
@@ -73,7 +74,7 @@ export default class ProductService {
       }
 
       const productRecords = await this.productModel
-        .find({"category.categoryId": id})
+        .find({ 'category.categoryId': id })
         .select({ name: 1, productImages: 1, salePrice: 1 })
         .limit(take)
         .skip(skip);
@@ -117,9 +118,43 @@ export default class ProductService {
     }
   }
 
-  public async create(
-    productDTO: IProductDTO
-  ): Promise<{ product: IProduct }> {
+  public async addLikeField(products: IProductDTO[]): Promise<IProductDTO[]> {
+    try {
+      const userLikeRecord = await this.userModel
+        .findOne({
+          userName: config.personaName,
+        })
+        .select({ like: 1 });
+
+      if (!userLikeRecord) {
+        throw Error();
+      }
+
+      const userLike = (await userLikeRecord.toObject().like) as CategoryLike[];
+      const likeList = Object.values(userLike).reduce(
+        (acc: number[], el: CategoryLike) => {
+          return [...acc, ...el.likeList];
+        },
+        [],
+      );
+      const likeSet = new Set<number>(likeList);
+
+      products = products.map((product) => {
+        product.like = likeSet.has(product.productNo as number) ? true : false;
+        return product as IProductDTO;
+      });
+      console.log(products[8].like);
+      console.log(products[8]);
+      return products;
+
+      // console.log(products);
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async create(productDTO: IProductDTO): Promise<{ product: IProduct }> {
     try {
       this.logger.silly('Creating user db record');
       const productRecord = await this.productModel.create({
