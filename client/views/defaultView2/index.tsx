@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import MainHeader from 'components/Main/MainHeader';
 
@@ -6,7 +6,7 @@ interface DefaultProps {
   data: string;
 }
 
-const Home: React.FunctionComponent<DefaultProps> = (props) => {
+const Home: FC<DefaultProps> = (props) => {
   const { data } = props;
 
   return (

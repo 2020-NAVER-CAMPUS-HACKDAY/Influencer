@@ -1,13 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  wrapper: {
-    width: '140px',
-  },
-  next: {
+  container: {
     display: 'flex',
-    alignItems: 'center',
-    transform: 'rotate(-180deg)',
+    touchAction: 'none',
+    width: '100%',
+    margin: '1rem auto',
+  },
+  dropZone: {
+    flex: 1,
+    height: '600px',
   },
 });
 

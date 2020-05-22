@@ -1,31 +1,5 @@
 export default {
-  '/api/product/:id': {
-    get: {
-      tags: ['Product'],
-      description: 'Get product',
-      operationId: 'getProduct',
-      parameters: [
-        {
-          name: 'id',
-          in: 'params',
-          description: `product's id`,
-        },
-      ],
-      responses: {
-        '200': {
-          description: 'Product was obtained',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/Product',
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  '/api/product': {
+  '/api/products': {
     get: {
       tags: ['Product'],
       description: 'Get products',
@@ -91,6 +65,79 @@ export default {
       responses: {
         '200': {
           description: 'New Product was created',
+        },
+      },
+    },
+  },
+  '/api/products/category/{id}': {
+    get: {
+      tags: ['Product'],
+      description: 'Get products By Category',
+      operationId: 'getProductsByCategory',
+      parameters: [
+        {
+          name: 'id',
+          in: 'path',
+          schema: {
+            type: 'integer',
+          },
+          description: `category's id`,
+        },
+        {
+          name: 'page',
+          in: 'query',
+          schema: {
+            type: 'integer',
+            default: 1,
+          },
+          required: false,
+        },
+        {
+          name: 'limit',
+          in: 'query',
+          schema: {
+            type: 'integer',
+            default: 10,
+          },
+          required: false,
+        },
+      ],
+      responses: {
+        '200': {
+          description: 'Product was obtained',
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Product',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  '/api/products/{id}': {
+    get: {
+      tags: ['Product'],
+      description: 'Get product',
+      operationId: 'getProduct',
+      parameters: [
+        {
+          name: 'id',
+          in: 'path',
+          description: `product's id`,
+        },
+      ],
+      responses: {
+        '200': {
+          description: 'Product was obtained',
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Product',
+              },
+            },
+          },
         },
       },
     },

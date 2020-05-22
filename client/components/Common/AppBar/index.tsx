@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/Common/AppBar/styles';
 import MaterialAppBar from '@material-ui/core/AppBar';
 import clsx from 'clsx';
@@ -11,7 +11,7 @@ export interface BarProps {
   className?: string;
 }
 
-const AppBar: React.FunctionComponent<BarProps> = (props) => {
+const AppBar: FC<BarProps> = (props) => {
   const classes = useStyles(props);
   const { children, className } = props;
 

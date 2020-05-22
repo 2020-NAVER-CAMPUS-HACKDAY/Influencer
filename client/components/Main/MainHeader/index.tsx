@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useStyles from 'components/Main/MainHeader/styles';
 import Content from 'components/Main/Content';
 import AppBar from 'components/Common/AppBar';
@@ -7,7 +7,7 @@ import HamburgerMenu from 'svgs/HamburgerMenu';
 import { AppColor } from 'constant';
 import Label from 'components/Common/Label';
 
-const MainHeader: React.FunctionComponent = (props) => {
+const MainHeader: FC = (props) => {
   const { children } = props;
   const classes = useStyles(props);
 

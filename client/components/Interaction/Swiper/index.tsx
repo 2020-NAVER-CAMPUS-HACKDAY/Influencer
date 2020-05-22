@@ -5,28 +5,31 @@ import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
 
 const Swiper: FC<SwiperProps> = (props) => {
-  const { products } = props;
   const classes = useStyles();
+  const { products } = props;
 
-  function handleInteraction(productId: number): number {
+  function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
     return productId;
   }
 
-  function handleLike(productId: number): number {
+  function handleLike(productId: string): string {
     // TODO(seogeurim) : handle Like Data
     return productId;
   }
 
   function renderCards(): object {
-    return products.map((data) => (
+    return products.map((product, index) => (
       <Card
-        key={data.productId}
-        productId={data.productId}
+        key={product.productId}
+        productId={product.productId}
         onSwipeRight={handleInteraction}
-        onDoubleTap={handleLike}>
+        onDoubleTap={handleLike}
+        cardIndex={index}
+        totalCard={10}
+      >
         <SwiperItem
-          productData={data}
+          productData={product}
         />
       </Card>
     ));
@@ -36,6 +39,9 @@ const Swiper: FC<SwiperProps> = (props) => {
     <div className={classes.containerWrapper}>
       <div className={classes.container}>
         {renderCards()}
+        <div className={classes.card_end}>
+          <span>더이상 표시할 카드가 없습니다.</span>
+        </div>
       </div>
     </div>
   );

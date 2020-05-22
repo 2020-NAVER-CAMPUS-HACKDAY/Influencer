@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 import MyCategoryView from 'views/myCategoryView';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,7 @@ interface MyCategoryProps extends CategoryProps {
   setCategory: PayloadActionCreator<'category/SET_CATEGORY', Category | Category[]>;
 }
 
-const MyCategory: React.FC<MyCategoryProps> = (props) => {
+const MyCategory: FC<MyCategoryProps> = (props) => {
   const { categoryData, categoryArray, setCategory } = props;
 
   return (
@@ -29,7 +29,8 @@ const MyCategory: React.FC<MyCategoryProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   // TODO(jominjimail): replace hard coding server address with .env parameter
-  const res = await fetch('http://localhost:5000/api/categories?level=2');
+  // TODO(jominjimail): for easy developing ill change it level=2 later*/}
+  const res = await fetch('http://localhost:5000/api/categories?level=1');
   const { categories } = await res.json();
 
   return {
