@@ -13,6 +13,7 @@ import {
   swap,
 } from 'react-grid-dnd';
 import useStyles from 'views/myCategoryRankView/styles';
+import Router from 'next/router';
 
 interface MyCategoryRankProps extends CategoryProps {
   categoryArray: Category[];
@@ -28,11 +29,16 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
     setItems(nextState);
   };
 
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    Router.push('/interaction');
+  };
+
   const getRankNum = (item: Category): number => items.indexOf(item) + 1;
 
   return (
     <MainHeader>
       <div>카테고리 랭킹 페이지</div>
+      <button onClick={setCategory}>인터렉션 화면으로 전환</button>
       <GridContextProvider onChange={onChange}>
         <div className={classes.container}>
           <GridDropZone
