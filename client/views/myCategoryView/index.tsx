@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import SelectCategory from 'components/SelectCategory';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 import { CategoryProps } from 'redux/ducks/category';
 import { PayloadActionCreator } from 'typesafe-actions';
 import Router from 'next/router';
@@ -24,9 +24,7 @@ const MyCategoryView: FC<MyCategoryViewProps> = (props) => {
   };
 
   const categoryDeleteHandler = (id: string): void => {
-    // TODO(jominjimail): remove this lint error
-    // eslint-disable-next-line no-underscore-dangle
-    const newCategories = categories.filter((category) => category._id !== id);
+    const newCategories = categories.filter((category) => category.categoryId !== id);
     setCategories(newCategories);
   };
 
@@ -38,12 +36,13 @@ const MyCategoryView: FC<MyCategoryViewProps> = (props) => {
 
   return (
     <MainHeader>
+      {/* TODO(jominjimail): for easy developing */}
+      <button onClick={setCategoryArray}>다음 페이지</button>
       <SelectCategory
         categoryData={categoryData}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
       />
-      <button onClick={setCategoryArray}>다음 페이지</button>
     </MainHeader>
   );
 };

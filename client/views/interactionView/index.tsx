@@ -1,22 +1,53 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
-import { InteractionDummyData } from 'views/interactionView/InteractionDummyData';
+import { Category } from 'views/interactionView/interactionDummyData';
 
-const Interaction: FC = () => {
+interface CategoryStateIndex {
+  prev: number;
+  current: number;
+  next: number;
+}
+
+interface InteractionPageProps {
+  categoryData: Category[];
+  productData: ProductProps[];
+}
+
+const InteractionPage: FC<InteractionPageProps> = (props) => {
   const classes = useStyles();
+  const { categoryData, productData } = props;
+  const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
+    prev: null, current: 0, next: 1,
+  });
+
+  function handleClick(index: number): void {
+    setCategoryState({ prev: index - 1, current: index, next: index + 1 });
+    // TODO(seogeurim) current index의 카테고리 id에 따른 상품 데이터 받아오기
+  }
 
   return (
     <div className={classes.root}>
       <MainHeader>
         <div className={classes.swiper}>
-          <Swiper products={InteractionDummyData} />
+          <Swiper products={productData} />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>
-              <InteractionButton categoryName={'남성의류'} isPrev={true} />
-              <InteractionButton categoryName={'여성의류'} isPrev={false} />
+              <InteractionButton
+                category={categoryData[categoryState.prev]}
+                categoryIndex={categoryState.prev}
+                isPrev={true}
+                handleClick={handleClick} />
+              <InteractionButton
+                category={categoryData[categoryState.current]} />
+              <InteractionButton
+                category={categoryData[categoryState.next]}
+                categoryIndex={categoryState.next}
+                isPrev={false}
+                handleClick={handleClick} />
             </div>
           </div>
         </div>
@@ -25,4 +56,4 @@ const Interaction: FC = () => {
   );
 };
 
-export default Interaction;
+export default InteractionPage;
