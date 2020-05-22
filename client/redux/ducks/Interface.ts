@@ -5,6 +5,7 @@ export interface ProductDataProps {
   salePrice: number;
   productImages: ProductImageProps[];
   productInfoProvidedNoticeView: ProductInfoProvidedNoticeViewProps;
+  modeDate: Date;
 }
 
 export interface ProductDetailProps {
@@ -54,4 +55,12 @@ export interface LikeListDataProps {
   lifeLike: ProductDataProps[];
   leisureLike: ProductDataProps[];
   dutyFreeLike: ProductDataProps[];
+}
+
+export interface LikeListProductProps {
+  data: LikeListDataProps;
+}
+
+export interface LikeListDucksProps extends LikeListProductProps {
+  pageId: number;
 }

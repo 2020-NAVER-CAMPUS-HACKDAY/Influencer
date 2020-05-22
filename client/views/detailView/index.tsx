@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/productInterface';
+import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/Interface';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
