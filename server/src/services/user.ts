@@ -1,22 +1,22 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { 
-  IUser, 
-  IProduct, 
-  ProductVerGridView, 
-  FetchProductForGridView, 
-  Prefer, 
-  IProductDTO, 
-  RecommenderResult 
+import {
+  IUser,
+  IProduct,
+  ProductVerGridView,
+  FetchProductForGridView,
+  Prefer,
+  IProductDTO,
+  RecommenderResult
 } from '../interfaces';
 import config from '../config';
-const ContentBasedRecommender = require('content-based-recommender');
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
-
+} from '../modules/errors';
+const ContentBasedRecommender = require('content-based-recommender');
 
 @Service()
 export default class UserService {
@@ -24,7 +24,7 @@ export default class UserService {
   private productModel: Model<IProduct & Document>;
   private logger: winston.Logger;
 
-  constructor( @Inject() container: ContainerInstance ) {
+  constructor(@Inject() container: ContainerInstance) {
     this.userModel = container.get('userModel');
     this.productModel = container.get('productModel');
     this.logger = container.get('logger');
@@ -126,7 +126,7 @@ export default class UserService {
       return result;
     };
 
-    const handleClicklogError = ( e: Error ) => {
+    const handleClicklogError = (e: Error) => {
       this.logger.error(e);
       throw e;
     };
@@ -162,9 +162,7 @@ export default class UserService {
     const userRecord = await this.userModel.findOne({
       userName: config.personaName,
     });
-    const productRecord = await this.productModel.findOne({
-      productNo: parseInt(productNo),
-    });
+    const productRecord = await this.productModel.findOne({ productNo: productNo });
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
@@ -299,5 +297,77 @@ export default class UserService {
       throw e;
     }
   }
-}
 
+  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
+    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
+    try {
+
+      if (userLikeRecord === null) throw new NotFoundError('User is not exist');
+
+      const users = userLikeRecord.toObject();
+      let result: { [index: string]: number[] } = {};
+
+      for (let categoryId of Object.keys(users.like)) {
+        if (users.like[categoryId].likeList.length < 1) {
+          result[users.like[categoryId].categoryName] = [];
+        } else {
+          result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
+        }
+      }
+      return result;
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async getProductListSortedByModDate(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
+    try {
+      const productArrayRecord = await this.productModel.find()
+        .in('_id', idArray).sort('modDate').limit(4);
+
+      if (!productArrayRecord) {
+        throw new NotFoundError('Product is not exist');
+      }
+
+      const fetchedProducts = productArrayRecord.map((record) => record.toObject());
+
+      const products: ProductVerGridView[] = fetchedProducts.map((product: FetchProductForGridView) => {
+        return {
+          productId: product._id,
+          imageLink: product.productImages[0].url,
+          category: product.category.category1Id,
+          likeDate: product.modDate,
+        }
+      })
+
+      return { products };
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async selectLikeListForGridView(
+  ): Promise<{ [index: string]: ProductVerGridView[] }> {
+    try {
+      const userLikeList: { [index: string]: number[] } = await this.selectUserLikeList();
+
+      let result: { [index: string]: ProductVerGridView[] } = {};
+
+      for (let category of Object.keys(userLikeList)) {
+        const CategoryLikeProductList = await this.getProductListSortedByModDate(
+          userLikeList[category]
+            .map((likeProductId) => likeProductId.toString()));
+        result[category] = CategoryLikeProductList.products;
+      }
+
+      return result;
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+}
