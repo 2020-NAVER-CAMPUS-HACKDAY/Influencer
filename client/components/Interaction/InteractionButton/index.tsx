@@ -41,7 +41,7 @@ const InteractionButton: FC<InteractionButtonProps> = (props) => {
         <Label name={category.value.categoryName} fontSize={22} color={AppColor.WHITE} />
       </StyledButton>}
 
-      {(!category && !isPrev)
+      {(!category && isPrev === false)
       && <StyledButton
         variant='contained'
         size='small'

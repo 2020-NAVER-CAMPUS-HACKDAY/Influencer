@@ -32,7 +32,7 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
     setItems(nextState);
   };
 
-  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const setCategory = (): void => {
     setCurrentCategory(categoryArray[0]);
     Router.push('/interaction');
   };
