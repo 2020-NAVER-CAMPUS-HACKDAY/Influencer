@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import { CategoryProps, categoryActions } from 'redux/ducks/category';
+import { interactionActions } from 'redux/ducks/interaction';
 import { Category } from 'interfaces/category';
 import CategoryRankBox from 'components/CategoryRankBox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Types } from 'redux/ducks';
+import { PayloadActionCreator } from 'typesafe-actions';
 import {
   GridContextProvider,
   GridDropZone,
@@ -17,10 +19,11 @@ import Router from 'next/router';
 
 interface MyCategoryRankProps extends CategoryProps {
   categoryArray: Category[];
+  setCurrentCategory: PayloadActionCreator<'interaction/SET_CURRENT_CATEGORY', Category>;
 }
 
 const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
-  const { categoryArray } = props;
+  const { categoryArray, setCurrentCategory } = props;
   const classes = useStyles();
   const [items, setItems] = React.useState(categoryArray);
 
@@ -29,7 +32,8 @@ const MyCategoryRankView: FC<MyCategoryRankProps> = (props) => {
     setItems(nextState);
   };
 
-  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const setCategory = (): void => {
+    setCurrentCategory(categoryArray[0]);
     Router.push('/interaction');
   };
 
@@ -65,5 +69,6 @@ export default connect<CategoryProps, void>(
   }),
   (dispatch) => ({
     setCategory: bindActionCreators(categoryActions.setCategory, dispatch),
+    setCurrentCategory: bindActionCreators(interactionActions.setCurrentCategory, dispatch),
   }),
 )(MyCategoryRankView);

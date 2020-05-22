@@ -5,7 +5,7 @@ import {
   createAction,
 } from 'typesafe-actions';
 import produce from 'immer';
-import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
 
 const SET_CURRENT_CATEGORY = 'interaction/SET_CURRENT_CATEGORY' as const;
 const SET_PAGE = 'interaction/SET_PAGE' as const;
@@ -30,8 +30,7 @@ export type InteractionAction =
   | ActionType<typeof interactionActions.setPage>;
 
 const initialState = {
-  // TODO(seogeurim) 민지님 카테고리와 합치기
-  currentCategory: SelectedCategoryDummyData[0],
+  currentCategory: {},
   page: 1,
 };
 

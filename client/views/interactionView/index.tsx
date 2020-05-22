@@ -4,7 +4,7 @@ import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
-import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
 // REDUX
 import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
 import { connect } from 'react-redux';
@@ -26,17 +26,17 @@ interface InteractionPageProps extends InteractionProps{
   setPage: () => void;
   currentCategory: Category;
   page: number;
+  categoryArray: Category[];
 }
 
 const InteractionPage: FC<InteractionPageProps> = (props) => {
-  // TODO(seogeurim) 민지님 카테고리와 합치기
-  const categoryData = SelectedCategoryDummyData;
   const classes = useStyles();
   const {
     setCurrentCategory,
     setPage,
     currentCategory,
     page,
+    categoryArray,
   } = props;
   const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
     prev: null, current: 0, next: 1,
@@ -61,12 +61,12 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
       }
     }
 
-    fetchProductData(currentCategory.id, page);
+    fetchProductData(currentCategory.categoryId, page);
   }, [currentCategory, page]);
 
   function handleClick(index: number): void {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
-    setCurrentCategory(categoryData[index]);
+    setCurrentCategory(categoryArray[index]);
     setProductData([]);
     setIsLoading(true);
   }
@@ -85,14 +85,14 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
           <div className={classes.footer}>
             <div className={classes.interactionButton}>
               <InteractionButton
-                category={categoryData[categoryState.prev]}
+                category={categoryArray[categoryState.prev]}
                 categoryIndex={categoryState.prev}
                 isPrev={true}
                 handleClick={handleClick} />
               <InteractionButton
-                category={categoryData[categoryState.current]} />
+                category={categoryArray[categoryState.current]} />
               <InteractionButton
-                category={categoryData[categoryState.next]}
+                category={categoryArray[categoryState.next]}
                 categoryIndex={categoryState.next}
                 isPrev={false}
                 handleClick={handleClick} />
@@ -108,6 +108,7 @@ export default connect<InteractionProps, void>(
   (state: Types) => ({
     currentCategory: state.interactionReducer.currentCategory,
     page: state.interactionReducer.page,
+    categoryArray: state.categoryReducer.categoryArray,
   }),
   (dispatch) => ({
     setCurrentCategory: bindActionCreators(interactionActions.setCurrentCategory, dispatch),
