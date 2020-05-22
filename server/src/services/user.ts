@@ -1,12 +1,18 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IUser, IProduct, ProductVerGridView, FetchProductForGridView } from '../interfaces';
+import {
+  IUser,
+  IProduct,
+  ProductVerGridView,
+  FetchProductForGridView,
+} from '../interfaces';
 import config from '../config';
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
+
 } from '../modules/errors';
 
 @Service()
@@ -74,12 +80,12 @@ export default class UserService {
     };
 
     const addWeight = async ({
-                               userRecord,
-                               products,
-                               users,
-                               idx,
-                               weight,
-                             }: any) => {
+      userRecord,
+      products,
+      users,
+      idx,
+      weight,
+    }: any) => {
       if (idx < 0) {
         const result = await userRecord.update({
           $push: {
@@ -205,29 +211,6 @@ export default class UserService {
           }
 
           result[users.like[categoryId].categoryName] = productList;
-        }
-      }
-      return result;
-    } catch (e) {
-      this.logger.error(e);
-      throw e;
-    }
-  }
-
-  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
-    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
-    try {
-
-      if(userLikeRecord === null) throw new NotFoundError('User is not exist');
-
-      const users = userLikeRecord.toObject();
-      let result: { [index: string]: number[] } = {};
-
-      for (let categoryId of Object.keys(users.like)) {
-        if (users.like[categoryId].likeList.length < 1) {
-          result[users.like[categoryId].categoryName] = [];
-        } else {
-          result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
         }
       }
       return result;
