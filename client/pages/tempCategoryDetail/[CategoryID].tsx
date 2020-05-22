@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import { CategoryProps } from 'redux/ducks/category';
 import { Category } from 'interfaces/category';
 import { CATEGORY_API, CATEGORY_CHILDREN_API } from 'constant';
+import Router from 'next/router';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
@@ -12,6 +13,11 @@ interface DetailCategoryProps extends CategoryProps {
 
 const DetailCategory: FC<DetailCategoryProps> = (props) => {
   const { categoryData, categoryChildrenData } = props;
+
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    const categoryId: string = event.currentTarget.value;
+    Router.push(`/tempCategoryDetail/${categoryId}`);
+  };
 
   return (
     <MainHeader>
@@ -22,7 +28,7 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
       {categoryChildrenData && categoryChildrenData.map((child) => (
         <React.Fragment key={child.categoryId}>
           <div>{child.value.categoryName}</div>
-          <div>{child.categoryId}</div>
+          <button onClick={setCategory} value={child.categoryId}>{child.categoryId}</button>
         </React.Fragment>
       ))}
     </MainHeader>
