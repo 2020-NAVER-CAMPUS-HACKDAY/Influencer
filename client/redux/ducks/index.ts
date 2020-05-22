@@ -5,12 +5,12 @@ import {
 import {
   productReducer,
   ProductAction,
+  ProductProps,
   fetchProductSaga,
 } from 'redux/ducks/product';
 import { interactionReducer, InteractionAction, InteractionProps } from 'redux/ducks/interaction';
-import { authReducer, UserProps, UserAction } from './auth';
-import { categoryReducer, CategoryAction, CategoryProps } from './category';
-import { ProductProps } from './productInterface';
+import { authReducer, UserProps, UserAction } from 'redux/ducks/auth';
+import { categoryReducer, CategoryAction, CategoryProps } from 'redux/ducks/category';
 
 export const rootReducer = combineReducers({
   authReducer,

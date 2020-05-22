@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import {
   productActions,
   ProductActionsProps,
+  ProductProps,
 } from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
-import { ProductProps } from 'redux/ducks/productInterface';
+import ProductListView from 'components/ProductListView';
 import { PayloadAction } from 'typesafe-actions';
 
 interface DefaultProps extends ProductProps, ProductActionsProps {
@@ -15,6 +16,7 @@ interface DefaultProps extends ProductProps, ProductActionsProps {
 
 const Home: FC<DefaultProps> = (props) => {
   const { fetchAndAddProduct, getProductForId } = props;
+
   return (
     <MainHeader>
       <div onClick={(): PayloadAction<

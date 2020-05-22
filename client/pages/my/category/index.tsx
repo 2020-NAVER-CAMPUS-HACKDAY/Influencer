@@ -5,9 +5,10 @@ import MyCategoryView from 'views/myCategoryView';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PayloadActionCreator } from 'typesafe-actions';
-import { categoryActions, CategoryProps } from '../../../redux/ducks/category';
-import { Types } from '../../../redux/ducks';
+import { categoryActions, CategoryProps } from 'redux/ducks/category';
+import { Types } from 'redux/ducks';
 
+// TODO(jominjimail): remove redux call in here
 interface MyCategoryProps extends CategoryProps {
   categoryData: Category[];
   categoryArray: Category[];
