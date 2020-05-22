@@ -5,6 +5,7 @@ import { CategoryProps } from 'redux/ducks/category';
 import { Category } from 'interfaces/category';
 import { CATEGORY_API, CATEGORY_CHILDREN_API } from 'constant';
 import Router from 'next/router';
+import WholeCategoryName from 'components/CategoryHeader/WholeCategoryName';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
@@ -21,8 +22,7 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
 
   return (
     <MainHeader>
-      <div>카테고리 상세 페이지</div>
-      <div>{categoryData.value.wholeCategoryName}</div>
+      <WholeCategoryName data={categoryData.value.wholeCategoryName}></WholeCategoryName>
       <div>{categoryData.categoryId}</div>
       <div>자식들</div>
       {categoryChildrenData && categoryChildrenData.map((child) => (
