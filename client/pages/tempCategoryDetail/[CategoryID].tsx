@@ -3,6 +3,7 @@ import MainHeader from 'components/Main/MainHeader';
 import { GetServerSideProps } from 'next';
 import { CategoryProps } from 'redux/ducks/category';
 import { Category } from 'interfaces/category';
+import { CATEGORY_API, CATEGORY_CHILDREN_API } from 'constant';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
@@ -19,20 +20,23 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
       <div>{categoryData.categoryId}</div>
       <div>자식들</div>
       {categoryChildrenData && categoryChildrenData.map((child) => (
-        <>
+        <React.Fragment key={child.categoryId}>
           <div>{child.value.categoryName}</div>
           <div>{child.categoryId}</div>
-        </>
+        </React.Fragment>
       ))}
     </MainHeader>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  // TODO(jominjimail): replace hard coding server address with .env parameter
-  const res = await fetch(`http://localhost:5000/api/categories/${query.CategoryID}`);
+  const baseUrl = process.env.SERVER_URL;
+  const getCategoryInfoUrl = baseUrl + CATEGORY_API + query.CategoryID;
+  const getCategoryChildrenUrl = baseUrl + CATEGORY_API + CATEGORY_CHILDREN_API + query.CategoryID;
+
+  const res = await fetch(getCategoryInfoUrl);
   const { category } = await res.json();
-  const res2 = await fetch(`http://localhost:5000/api/categories/children/${query.CategoryID}`);
+  const res2 = await fetch(getCategoryChildrenUrl);
   const { categories } = await res2.json();
 
   return {

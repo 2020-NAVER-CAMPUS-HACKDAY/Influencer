@@ -9,7 +9,7 @@ interface CategoryHeaderProps {
 const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
   const { categoryData } = props;
 
-  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
     Router.push(`/tempCategoryDetail/${categoryId}`);
   };
