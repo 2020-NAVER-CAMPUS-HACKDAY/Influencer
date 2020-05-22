@@ -7,6 +7,7 @@ import {
   ProductProps,
 } from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
+import ProductListView from 'components/ProductListView';
 import { PayloadAction } from 'typesafe-actions';
 
 interface DefaultProps extends ProductProps, ProductActionsProps {

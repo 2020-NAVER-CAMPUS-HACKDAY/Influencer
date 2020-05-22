@@ -1,4 +1,28 @@
-import { IProduct, IProductInputDTO } from './product';
-import { IUser, UserLike } from './user';
+import {
+  IProduct,
+  IProductDTO,
+  IProductInputDTO,
+  ProductVerGridView,
+  FetchProductForGridView
+} from './product';
 
-export { IProduct, IProductInputDTO, IUser, UserLike };
+import {
+  IUser,
+  UserLike,
+  UserLikeListVerGrid,
+  Prefer,
+  RecommenderResult
+} from './user';
+
+export {
+  IProduct,
+  IProductDTO,
+  IProductInputDTO,
+  IUser,
+  UserLike,
+  UserLikeListVerGrid,
+  ProductVerGridView,
+  FetchProductForGridView,
+  Prefer,
+  RecommenderResult
+};
