@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import { CategoryProps } from 'redux/ducks/category';
 import { Category } from 'interfaces/category';
 import { CATEGORY_API, CATEGORY_CHILDREN_API } from 'constant';
+import ChildrenCard from 'components/CategoryHeader/ChildrenCard';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
@@ -17,14 +18,7 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
     <MainHeader>
       <div>카테고리 상세 페이지</div>
       <div>{categoryData.value.wholeCategoryName}</div>
-      <div>{categoryData.categoryId}</div>
-      <div>자식들</div>
-      {categoryChildrenData && categoryChildrenData.map((child) => (
-        <React.Fragment key={child.categoryId}>
-          <div>{child.value.categoryName}</div>
-          <div>{child.categoryId}</div>
-        </React.Fragment>
-      ))}
+      <ChildrenCard childreanData={categoryChildrenData}></ChildrenCard>
     </MainHeader>
   );
 };
