@@ -3,6 +3,7 @@ import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
+import { USER_API, USER_PREFER_API } from 'constant';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
@@ -11,7 +12,7 @@ const Swiper: FC<SwiperProps> = (props) => {
   } = props;
 
   async function handleInteraction(productId: string): Promise<void> {
-    await fetch(`http://localhost:5000/api/users/prefer/${productId}`, {
+    await fetch(`${process.env.SERVER_URL}${USER_API}${USER_PREFER_API}${productId}`, {
       method: 'POST',
     });
   }
