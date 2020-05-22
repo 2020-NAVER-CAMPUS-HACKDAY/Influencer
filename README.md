@@ -80,7 +80,7 @@
 \
 []()
 ## ⚙️ Dependencies
-**Front-end**
+### Front-end
 ```json
 "dependencies": {
 		"@egjs/react-infinitegrid": "3.0.4",
@@ -129,7 +129,7 @@
 
 \
 []()
-**Back-end**
+### Back-end
 ```json
 "dependencies": {
     "celebrate": "12.1.1",
