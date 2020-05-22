@@ -5,7 +5,8 @@ import {
   createAction,
 } from 'typesafe-actions';
 import produce from 'immer';
-import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
+import { SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
 
 const SET_CURRENT_CATEGORY = 'interaction/SET_CURRENT_CATEGORY' as const;
 const SET_PAGE = 'interaction/SET_PAGE' as const;

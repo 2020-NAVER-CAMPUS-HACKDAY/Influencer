@@ -4,7 +4,8 @@ import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
-import { Category, SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
+import { SelectedCategoryDummyData } from 'views/interactionView/interactionDummyData';
 // REDUX
 import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
 import { connect } from 'react-redux';
@@ -61,7 +62,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
       }
     }
 
-    fetchProductData(currentCategory.id, page);
+    fetchProductData(currentCategory.categoryId, page);
   }, [currentCategory, page]);
 
   function handleClick(index: number): void {
