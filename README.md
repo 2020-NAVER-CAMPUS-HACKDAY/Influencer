@@ -73,7 +73,7 @@
 ||👩‍💻[정다은](https://github.com/jeongdaeun98)|
 ||👩‍💻[조민지](https://github.com/jominjimail) |
 ||👨‍💻[신윤재](https://github.com/ooeunz)|
-||👨‍💻[서민수](https://github.com/minsour)|
+||👨‍💻[박민수](https://github.com/minsour)|
 
 
 \
