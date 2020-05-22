@@ -42,7 +42,7 @@ export default class ProductService {
         .limit(take)
         .skip(skip);
 
-      const products = productRecords
+      let products: IProductDTO[] = productRecords
         .map((record) => record.toObject())
         .map((product) => ({
           productNo: product.productNo,
@@ -53,6 +53,8 @@ export default class ProductService {
           productInfoProvidedNoticeView:
             product.productInfoProvidedNoticeView.basic,
         }));
+
+      products = await this.addLikeField(products);
 
       return { products };
     } catch (e) {
