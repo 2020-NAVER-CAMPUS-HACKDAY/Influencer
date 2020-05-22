@@ -2,7 +2,12 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { Container } from 'typedi';
 import winston from 'winston';
 import UserService from '../../../services/user';
-import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
+import {
+  StatusCode as sc,
+  ResponseMessage as rm,
+  AuthUtil as au,
+} from '../../../modules/util';
+import { IProductDTO } from '../../../interfaces';
 
 const userRoute = Router();
 
@@ -14,21 +19,24 @@ export default (routes: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
       const { wholeCategoryId } = req.params;
-      logger.debug(`GET /user click log endpoint with query ${wholeCategoryId}`);
+      logger.debug(
+        `GET /user click log endpoint with query ${wholeCategoryId}`,
+      );
 
       try {
         const category3Id = wholeCategoryId.split('>');
 
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.clickLog(Number(category3Id[category3Id.length - 1]));
+        const result = await userServiceInstance.clickLog(
+          Number(category3Id[category3Id.length - 1]),
+        );
 
         res.status(sc.OK).json(au.successTrue(rm.CLICK_LOG_SUCCESS, result));
-
       } catch (e) {
         logger.error(`🔥 error: ${e}`);
         return next(e);
       }
-    }
+    },
   );
 
   userRoute.post(
@@ -40,15 +48,18 @@ export default (routes: Router) => {
 
       try {
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.setLike(Number(productNo), wholeCategoryId.split('>'), exist);
+        const result = await userServiceInstance.setLike(
+          Number(productNo),
+          wholeCategoryId.split('>'),
+          exist,
+        );
 
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
-
       } catch (e) {
         logger.error(`🔥 error: ${e}`);
         return next(e);
       }
-    }
+    },
   );
 
   userRoute.get(
@@ -63,22 +74,22 @@ export default (routes: Router) => {
         const userServiceInstance = Container.get(UserService);
         const result = await userServiceInstance.selectLikeList(Number(page));
 
-        const likeLength =
-          Object.keys(result)
-            .map((key: string) => result[key].length)
-            .reduce((first: number, second: number) => (first + second));
+        const likeLength = Object.keys(result)
+          .map((key: string) => result[key].length)
+          .reduce((first: number, second: number) => first + second);
 
         if (!likeLength) {
-          return res.status(sc.BAD_REQUEST).json(au.successFalse(rm.NULL_VALUE));
+          return res
+            .status(sc.BAD_REQUEST)
+            .json(au.successFalse(rm.NULL_VALUE));
         }
 
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
-
       } catch (e) {
         logger.error(`🔥 error: ${e}`);
         return next(e);
       }
-    }
+    },
   );
 
   userRoute.get(
@@ -90,15 +101,15 @@ export default (routes: Router) => {
 
       try {
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.recommendItem(Number(page));
-
+        const result: IProductDTO[] = await userServiceInstance.recommendItem(
+          Number(page),
+        );
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
-
       } catch (e) {
         logger.error(`🔥 error: ${e}`);
         return next(e);
       }
-    }
+    },
   );
 
   userRoute.get(
@@ -111,11 +122,13 @@ export default (routes: Router) => {
         const userServiceInstance = Container.get(UserService);
         const result = await userServiceInstance.selectLikeListForGridView();
 
-        res.status(sc.OK).json(au.successTrue(rm.LIKE_VER_GRID_VIEW_SUCCESS, result));
+        res
+          .status(sc.OK)
+          .json(au.successTrue(rm.LIKE_VER_GRID_VIEW_SUCCESS, result));
       } catch (e) {
         logger.error(`error: ${e}`);
         return next(e);
       }
-    }
-  )
+    },
+  );
 };
