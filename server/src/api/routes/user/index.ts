@@ -17,10 +17,10 @@ export default (routes: Router) => {
       logger.debug(`GET /user click log endpoint with query ${wholeCategoryId}`);
 
       try {
-        const productNo = wholeCategoryId.split('>');
+        const category3Id = wholeCategoryId.split('>');
 
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.clickLog(productNo[productNo.length - 1]);
+        const result = await userServiceInstance.clickLog(Number(category3Id[category3Id.length - 1]));
 
         res.status(sc.OK).json(au.successTrue(rm.CLICK_LOG_SUCCESS, result));
 
@@ -40,7 +40,7 @@ export default (routes: Router) => {
 
       try {
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.setLike(productNo, wholeCategoryId.split('>'), exist);
+        const result = await userServiceInstance.setLike(Number(productNo), wholeCategoryId.split('>'), exist);
 
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
@@ -55,14 +55,42 @@ export default (routes: Router) => {
     '/likes',
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
-      let { page } = req.query;
-      logger.debug(`GET /user like list endpoint with query`);
+      const { page = 0 } = req.query;
 
-      if (page === undefined) page = '0';
+      logger.debug(`GET /user like list endpoint with query`);
 
       try {
         const userServiceInstance = Container.get(UserService);
-        const result = await userServiceInstance.selectLikeList(String(page));
+        const result = await userServiceInstance.selectLikeList(Number(page));
+
+        const likeLength =
+          Object.keys(result)
+            .map((key: string) => result[key].length)
+            .reduce((first: number, second: number) => (first + second));
+
+        if (!likeLength) {
+          return res.status(sc.BAD_REQUEST).json(au.successFalse(rm.NULL_VALUE));
+        }
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
+      }
+    }
+  );
+
+  userRoute.get(
+    '/recommend',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      const { page = 0 } = req.query;
+      logger.debug(`GET /user like list endpoint with query`);
+
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = await userServiceInstance.recommendItem(Number(page));
 
         res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
