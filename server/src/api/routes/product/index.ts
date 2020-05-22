@@ -3,7 +3,9 @@ import { Container } from 'typedi';
 import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
-import { IProductDTO } from '../../../interfaces';
+import { IProductDTO } from '../../../interfaces/product';
+import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
+
 
 const productRoute = Router();
 
@@ -84,7 +86,7 @@ export default (routes: Router) => {
       try {
         const productServiceInstance = Container.get(ProductService);
         const { product } = await productServiceInstance.create(
-          req.body as IProductDTO,
+          req.body as IProductDTO
         );
         return res.status(201).json({ product });
       } catch (e) {

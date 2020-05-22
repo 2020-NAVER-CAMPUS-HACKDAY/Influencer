@@ -8,12 +8,17 @@ export interface IUser {
   prefer: Array<Prefer>
 }
 
-interface Prefer {
+export interface Prefer {
   productNo: string
   categoryId: string;
   rating: number;
   updateDe: Date;
 }
+
+export interface RecommenderResult {
+  id: string;
+  score: number;
+};
 
 interface Like {
   50000000: {
@@ -60,4 +65,22 @@ interface Like {
     categoryName: string,
     likeList: Array<string>
   },
+}
+
+
+
+export interface UserLike {
+  id: string;
+  image: string;
+  modelName: string;
+  category: string;
+  price: number;
+  updateDe: Date;
+}
+
+export interface UserLikeListVerGrid {
+  id: string;
+  image: string;
+  category: string;
+  updateDate: Date;
 }

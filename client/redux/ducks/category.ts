@@ -2,7 +2,7 @@ import {
   createAction, createReducer, ActionType, PayloadActionCreator,
 } from 'typesafe-actions';
 import produce from 'immer';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 
 const SET_CATEGORY = 'category/SET_CATEGORY' as const;
 

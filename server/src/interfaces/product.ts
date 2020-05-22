@@ -23,3 +23,33 @@ export interface IProductforView {
   productImages: Object;
   salePrice: number;
 }
+
+export interface FetchProductForGridView extends IProduct {
+  modDate: Date;
+  productImages: Image[];
+  category: Category;
+}
+
+export interface ProductVerGridView {
+  productId: string;
+  imageLink: string;
+  category: string;
+  likeDate: Date;
+}
+
+export interface Image {
+  url: string;
+  width: string;
+  height: string;
+}
+
+export interface Category {
+  category1Id: string;
+}
+
+export interface IProductforView {
+  productId: string;
+  productName: string;
+  productImages: Object;
+  salePrice: number;
+}
