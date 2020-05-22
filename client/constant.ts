@@ -50,7 +50,7 @@ export const TITLE_ADD = '&title=';
 
 export const SHARE_TITLE = '상품';
 
-export const PRODUCT_PAGE_API = '/api/product/';
+export const PRODUCT_PAGE_API = '/api/products/';
 export const PAGE_ADD = '?page=';
 export const LIMIT_ADD = '&limit=';
 
@@ -59,7 +59,7 @@ export const PRODUCT_LIMIT = '200';
 export const NOT_FOUND = 404;
 
 export const LIKE_LIST_API = '/api/users/likes/';
-
+export const GRID_VIEW = 'grid-view';
 export const CategoryString = [
   'clothLike',
   'accessaryLike',

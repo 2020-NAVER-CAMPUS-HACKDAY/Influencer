@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import useStyles from 'components/LikeList/LikeGridView/styles';
 import { AppColor, GridImageSize, Category } from 'constant';
 import ImageItem from 'components/LikeList/LikeGridView/ImageItem';
-import { orderBy } from 'lodash';
 import Label from 'components/Common/Label';
 import { LikeGridViewProps, ImageSizeProps } from 'components/LikeList/LikeGridView/interface';
 import clsx from 'clsx';
@@ -18,33 +17,23 @@ const LikeGridView: FC<LikeGridViewProps> = (props) => {
   const classes = useStyles();
   const { itemArray, handleItemClick, categoryArray } = props;
 
-  const GridViewItem = categoryArray.map((category) => {
-    const GridViewItemData = orderBy(
-      itemArray
-        .filter((item) => item.category === category),
-      ['likeDate'],
-      ['desc'],
-    );
-
-    // TODO(daeun): add Link to go to the category
-    return (
-      <li className={classes.root} id={Category[category]} key={category} onClick={handleItemClick}>
-        <div className={clsx(classes.images, classes.marginLeft)}>
-          {GridViewItemData
-            .map((item, index) => <ImageItem
-              id={Category[category]}
-              key={item.productId}
-              item={item}
-              imageSize={getImageDataSize(GridViewItemData.length, index)}
-            />)}
-        </div>
-        <Label className={clsx(classes.label, classes.marginLeft)}
-          name={Category[category]}
-          color={AppColor.BLACK}
-        />
-      </li>
-    );
-  });
+  const GridViewItem = categoryArray.map((category) => (
+    <li className={classes.root} id={Category[category]} key={category} onClick={handleItemClick}>
+      <div className={clsx(classes.images, classes.marginLeft)}>
+        {itemArray[category]
+          .map((item, index) => <ImageItem
+            id={Category[category]}
+            key={item.productId}
+            item={item}
+            imageSize={getImageDataSize(itemArray[category].length, index)}
+          />)}
+      </div>
+      <Label className={clsx(classes.label, classes.marginLeft)}
+        name={Category[category]}
+        color={AppColor.BLACK}
+      />
+    </li>
+  ));
   return (
     <ul className={classes.content}>
       {GridViewItem}

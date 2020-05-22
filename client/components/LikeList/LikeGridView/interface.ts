@@ -23,7 +23,7 @@ export interface LikeViewProps {
   categoryArray: string[];
 }
 export interface LikeGridViewProps extends LikeViewProps {
-  itemArray: LikeGridViewItemProps[];
+  itemArray: LikeGridViewProductProps;
 }
 
 export interface LikeGridViewItemProps {
@@ -35,4 +35,22 @@ export interface LikeGridViewItemProps {
 
 export interface LikeListCategoryProps extends LikeViewProps {
   clickedCategory: string;
+}
+
+export interface LikeGridViewProductProps {
+  clothLike: LikeGridViewItemProps[];
+  accessaryLike: LikeGridViewItemProps[];
+  beautyLike: LikeGridViewItemProps[];
+  digitalLike: LikeGridViewItemProps[];
+  interialLike: LikeGridViewItemProps[];
+  babyLike: LikeGridViewItemProps[];
+  footLike: LikeGridViewItemProps[];
+  sportLike: LikeGridViewItemProps[];
+  lifeLike: LikeGridViewItemProps[];
+  leisureLike: LikeGridViewItemProps[];
+  dutyFreeLike: LikeGridViewItemProps[];
+}
+
+export interface FetchGridViewProps {
+  data: LikeGridViewProductProps;
 }
