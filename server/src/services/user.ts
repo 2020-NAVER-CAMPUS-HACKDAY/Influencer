@@ -190,7 +190,7 @@ export default class UserService {
         if (uesrs.like[categoryId].likeList.length < 1) {
           result[uesrs.like[categoryId].categoryName] = [];
         } else {
-          let productList = [];
+          const productList = [];
 
           for (let like of uesrs.like[categoryId].likeList.slice(
             parseInt(page) * 10,
@@ -204,7 +204,7 @@ export default class UserService {
             productList.push(product);
           }
 
-          result[uesrs.like[categoryId].categoryName] = productList;
+          result[users.like[categoryId].categoryName] = productList;
         }
       }
       return result;
@@ -237,10 +237,33 @@ export default class UserService {
     }
   }
 
-  public async productListGet(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
+  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
+ 	  const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
+      try {
+
+        if(userLikeRecord === null) throw new NotFoundError('User is not exist');
+
+        const users = userLikeRecord.toObject();
+        let result: { [index: string]: number[] } = {};
+
+        for (let categoryId of Object.keys(users.like)) {
+          if (users.like[categoryId].likeList.length < 1) {
+            result[users.like[categoryId].categoryName] = [];
+          } else {
+         result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
+          }
+        }
+        return result;
+      } catch (e) {
+        this.logger.error(e);
+        throw e;
+      }
+    }
+
+  public async getProductListSortedByModDate(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
     try {
       const productArrayRecord = await this.productModel.find()
-        .in('_id', idArray).limit(4);
+        .in('_id', idArray).sort('modDate').limit(4);
 
       if (!productArrayRecord) {
         throw new NotFoundError('Product is not exist');
@@ -273,7 +296,7 @@ export default class UserService {
       let result: { [index: string]: ProductVerGridView[] } = {};
 
       for (let category of Object.keys(userLikeList)) {
-        const CategoryLikeProductList = await this.productListGet(
+        const CategoryLikeProductList = await this.getProductListSortedByModDate(
           userLikeList[category]
             .map(( likeProductId ) => likeProductId.toString()));
         result[category] = CategoryLikeProductList.products;
