@@ -131,7 +131,7 @@ export default class UserService {
       throw e;
     };
 
-    return await selectProduct(productNo.toString(), weight)
+    return await selectProduct(productNo, weight)
       .then(selectUser)
       .then(checkExist)
       .then(addWeight)
@@ -201,7 +201,7 @@ export default class UserService {
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
     try {
-      const uesrs = userLikeRecord.toObject();
+      const users = userLikeRecord.toObject();
       let result: { [index: string]: Object } = {};
 
       for (const categoryId of Object.keys(users.like)) {
