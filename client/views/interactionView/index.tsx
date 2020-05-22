@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { Types } from 'redux/ducks';
 import { bindActionCreators } from 'redux';
 import { PayloadActionCreator } from 'typesafe-actions';
+import {
+  PAGE_ADD, PRODUCT_CATEGORY, PRODUCT_PAGE_API,
+} from 'constant';
 
 interface CategoryStateIndex {
   prev: number;
@@ -44,10 +47,11 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   useEffect(() => {
     async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
       try {
-        // TODO(seogeurim) replace hard coding server URL
-        const response = await fetch(`http://localhost:5000/api/products/category/${categoryId}?page=${pageNo}&limit=10`, {
-          method: 'GET',
-        });
+        const getProductUrl = process.env.SERVER_URL + PRODUCT_PAGE_API + PRODUCT_CATEGORY;
+        const response = await fetch(`${getProductUrl}${categoryId}${PAGE_ADD}${pageNo}`,
+          {
+            method: 'GET',
+          });
         const result = await response.json();
         setProductData(result.products);
         setIsLoading(false);
