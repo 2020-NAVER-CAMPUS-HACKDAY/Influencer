@@ -45,7 +45,6 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   useEffect(() => {
     async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
       try {
-        // TODO(seogeurim) replace hard coding server URL
         const response = await fetch(`${process.env.SERVER_URL}${PRODUCTS_BY_CATEGORY_API}${categoryId}${PAGE_ADD}${pageNo}${LIMIT_ADD}10`, {
           method: 'GET',
         });

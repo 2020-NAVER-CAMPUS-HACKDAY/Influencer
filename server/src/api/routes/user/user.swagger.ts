@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-  '/api/users/like': {
+  '/api/users/likes': {
     get: {
       tags: ['User'],
       description: 'Get user liek list',
