@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { PayloadActionCreator } from 'typesafe-actions';
 import { categoryActions, CategoryProps } from 'redux/ducks/category';
 import { Types } from 'redux/ducks';
-import { CATEGORY_API } from 'constant';
+import { CATEGORY_API, CATEGORY_LEVEL } from 'constant';
 
 interface MyCategoryProps extends CategoryProps {
   categoryData: Category[];
@@ -30,7 +30,8 @@ const MyCategory: FC<MyCategoryProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   // TODO(jominjimail): for easy developing ill change it level=2 later*/}
-  const res = await fetch(`${process.env.SERVER_URL}${CATEGORY_API}`);
+  const res = await fetch(`${process.env.SERVER_URL}${CATEGORY_API}${CATEGORY_LEVEL}2`);
+  // const res = await fetch(`${process.env.SERVER_URL}${CATEGORY_API}`);
   const { categories } = await res.json();
 
   return {

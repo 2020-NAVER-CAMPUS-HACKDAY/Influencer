@@ -45,7 +45,7 @@ const InteractionButton: FC<InteractionButtonProps> = (props) => {
       && <StyledButton
         variant='contained'
         size='small'
-        onClick={(): Promise<boolean> => Router.push('/')}>
+        onClick={(): Promise<boolean> => Router.push('/my/category')}>
         <Label name='끝내기' fontSize={22} color={AppColor.WHITE} />
       </StyledButton>}
     </div>
