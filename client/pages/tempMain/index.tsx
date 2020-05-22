@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { Category } from 'interfaces/category';
 import MainCategoryView from 'views/mainCategoryView';
+import { CATEGORY_API } from 'constant';
 
 interface MyCategoryProps {
   categoryData: Category[];
@@ -19,9 +20,8 @@ const TempMain: FC<MyCategoryProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // TODO(jominjimail): replace hard coding server address with .env parameter
   // TODO(jominjimail): for easy developing ill change it level=2 later*/}
-  const res = await fetch('http://localhost:5000/api/categories?level=1');
+  const res = await fetch(`${process.env.SERVER_URL}${CATEGORY_API}`);
   const { categories } = await res.json();
 
   return {
