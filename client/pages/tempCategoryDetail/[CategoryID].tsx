@@ -22,7 +22,11 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
 
   return (
     <MainHeader>
-      <WholeCategoryName data={categoryData.value.wholeCategoryName}></WholeCategoryName>
+      <WholeCategoryName
+        names={categoryData.value.wholeCategoryName}
+        ids={categoryData.value.wholeCategoryId}
+      >
+      </WholeCategoryName>
       <div>{categoryData.categoryId}</div>
       <div>자식들</div>
       {categoryChildrenData && categoryChildrenData.map((child) => (
