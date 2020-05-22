@@ -55,12 +55,20 @@
 \
 []()
 ## 🛠 Using Technology
-* [Typescript](https://www.typescriptlang.org/)
-* [React.js](https://ko.reactjs.org/)
-* [Express](https://expressjs.com/ko/)
-* [MongoDB](https://www.mongodb.com/)
-* [Docker](https://www.docker.com/)
-* [Swagger](https://swagger.io/)
+
+
+<div align="center" style="display:flex;">
+	<img src="./README_IMG/tech.jpg" width="50%"/>
+</div>
+
+
+* Common: [Typescript](https://www.typescriptlang.org/)
+
+* Front-End: [React.js](https://ko.reactjs.org/), [Next.js](https://nextjs.org/), [Redux](https://redux.js.org/), [Styled-components](https://styled-components.com/)
+
+* Back-End: [Node.js](https://nodejs.org/ko/), [Express](https://expressjs.com/ko/), [MongoDB](https://www.mongodb.com/), [Swagger](https://swagger.io/)
+
+* Infra: [Docker](https://www.docker.com/), [NCloud](https://www.ncloud.com/)
 
 ---
 \
