@@ -1,15 +1,12 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import {
-  IUser,
-  IProduct,
-  ProductVerGridView,
-  FetchProductForGridView,
-} from '../interfaces';
+import { IUser, IProduct, ProductVerGridView, FetchProductForGridView } from '../interfaces';
 import config from '../config';
 import {
-  NotFoundError
+  BadRequestError,
+  ConflictError,
+  NotFoundError,
 } from '../modules/errors';
 
 @Service()
@@ -18,7 +15,7 @@ export default class UserService {
   private productModel: Model<IProduct & Document>;
   private logger: winston.Logger;
 
-  constructor( @Inject() container: ContainerInstance ) {
+  constructor(@Inject() container: ContainerInstance) {
     this.userModel = container.get('userModel');
     this.productModel = container.get('productModel');
     this.logger = container.get('logger');
@@ -28,18 +25,12 @@ export default class UserService {
    * @param productNo
    * @param weight
    */
-  public async addWeight(
-    productNo: string,
-    weight: number
-  ): Promise<any> {
-
-    const selectProduct = (
-      productNo: string,
-      weight: number
-    ): Promise<any> => {
-
-      return new Promise(async ( resolve, reject ) => {
-        const productRecord = await this.productModel.findOne({ _id: productNo });
+  public async addWeight(productNo: Number, weight: number): Promise<any> {
+    const selectProduct = (productNo: string, weight: number): Promise<any> => {
+      return new Promise(async (resolve, reject) => {
+        const productRecord = await this.productModel.findOne({
+          _id: productNo,
+        });
         if (!productRecord) {
           reject('Product is not exist');
         }
@@ -47,12 +38,15 @@ export default class UserService {
       });
     };
 
-    const selectUser = (
-      { productNo, productRecord, weight }: any
-    ): Promise<any> => {
-
-      return new Promise(async ( resolve, reject ) => {
-        const userRecord = await this.userModel.findOne({ userName: config.personaName });
+    const selectUser = ({
+                          productNo,
+                          productRecord,
+                          weight,
+                        }: any): Promise<any> => {
+      return new Promise(async (resolve, reject) => {
+        const userRecord = await this.userModel.findOne({
+          userName: config.personaName,
+        });
         if (!userRecord) {
           reject('User is not exist');
         }
@@ -60,16 +54,17 @@ export default class UserService {
       });
     };
 
-
-    const checkExist = (
-      { productNo, productRecord, userRecord, weight }: any
-    ): Promise<any> => {
-
-      return new Promise(async ( resolve, reject ) => {
+    const checkExist = ({
+                          productNo,
+                          productRecord,
+                          userRecord,
+                          weight,
+                        }: any): Promise<any> => {
+      return new Promise(async (resolve, reject) => {
         let products = productRecord.toObject();
         let users = userRecord.toObject();
 
-        const idx = users.prefer.findIndex(( p: any, i: any ) => {
+        const idx = users.prefer.findIndex((p: any, i: any) => {
           p.productNo === parseInt(productNo);
           return i;
         });
@@ -78,7 +73,13 @@ export default class UserService {
       });
     };
 
-    const addWeight = async ( { userRecord, products, users, idx, weight }: any ) => {
+    const addWeight = async ({
+                               userRecord,
+                               products,
+                               users,
+                               idx,
+                               weight,
+                             }: any) => {
       if (idx < 0) {
         const result = await userRecord.update({
           $push: {
@@ -109,12 +110,12 @@ export default class UserService {
       return result;
     };
 
-    const handleClicklogError = ( e: Error ) => {
+    const handleClicklogError = (e: Error) => {
       this.logger.error(e);
       throw e;
     };
 
-    return await selectProduct(productNo, weight)
+    return await selectProduct(productNo.toString(), weight)
       .then(selectUser)
       .then(checkExist)
       .then(addWeight)
@@ -125,7 +126,7 @@ export default class UserService {
    *
    * @param productNo
    */
-  public async clickLog(productNo: string): Promise<any> {
+  public async clickLog(productNo: Number): Promise<any> {
     return await this.addWeight(productNo, config.clicklogWeight);
   }
 
@@ -135,7 +136,7 @@ export default class UserService {
    * @param exist
    */
   public async setLike(
-    productNo: string,
+    productNo: Number,
     wholeCategoryId: Array<string>,
     exist: boolean,
   ): Promise<any> {
@@ -154,8 +155,9 @@ export default class UserService {
 
     try {
       if (exist) {
-        users.like[wholeCategoryId[0]].likeList =
-          users.like[wholeCategoryId[0]].likeList.filter(( l: string ) => (l !== productNo));
+        users.like[wholeCategoryId[0]].likeList = users.like[
+          wholeCategoryId[0]
+          ].likeList.filter((l: string) => l !== productNo.toString());
 
         userRecord.like = users.like;
         return await userRecord.save();
@@ -182,7 +184,7 @@ export default class UserService {
 
     try {
       const uesrs = userLikeRecord.toObject();
-      let result: { [index: string]: number[] } = {};
+      let result: { [index: string]: Object } = {};
 
       for (let categoryId of Object.keys(uesrs.like)) {
         if (uesrs.like[categoryId].likeList.length < 1) {
@@ -197,12 +199,35 @@ export default class UserService {
             const product = await this.productModel
               .findOne({ productNo: like })
               .select(
-                'productNo name productImages category salePrice saleStartDate',
+                'productNo name productImages category salePrice modDate productInfoProvidedNoticeView',
               );
             productList.push(product);
           }
 
           result[uesrs.like[categoryId].categoryName] = productList;
+        }
+      }
+      return result;
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
+    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
+    try {
+
+      if(userLikeRecord === null) throw new NotFoundError('User is not exist');
+
+      const users = userLikeRecord.toObject();
+      let result: { [index: string]: number[] } = {};
+
+      for (let categoryId of Object.keys(users.like)) {
+        if (users.like[categoryId].likeList.length < 1) {
+          result[users.like[categoryId].categoryName] = [];
+        } else {
+          result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
         }
       }
       return result;
@@ -243,7 +268,7 @@ export default class UserService {
   // TODO(daeun): add user query
   public async selectLikeListForGridView(): Promise<{ [index: string]: ProductVerGridView[] }> {
     try {
-      const userLikeList: { [index: string]: number[] } = await this.selectLikeList();
+      const userLikeList: { [index: string]: number[] } = await this.selectUserLikeList();
 
       let result: { [index: string]: ProductVerGridView[] } = {};
 
