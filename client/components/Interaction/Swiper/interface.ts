@@ -3,7 +3,7 @@ import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 
 export interface CardProps {
   productId: string;
-  onSwipeRight: (productId: string) => string;
+  onSwipeRight: (productId: string) => Promise<void>;
   onDoubleTap: (productId: string) => string;
   onSwiped: (cardIndex: number) => void;
   cardIndex: number;

@@ -10,9 +10,10 @@ const Swiper: FC<SwiperProps> = (props) => {
     products, setPage, page, isLoading, setIsLoading,
   } = props;
 
-  function handleInteraction(productId: string): string {
-    // TODO(seogeurim) : handle Interaction Log Data
-    return productId;
+  async function handleInteraction(productId: string): Promise<void> {
+    await fetch(`http://localhost:5000/api/users/prefer/${productId}`, {
+      method: 'POST',
+    });
   }
 
   function handleLike(productId: string): string {
