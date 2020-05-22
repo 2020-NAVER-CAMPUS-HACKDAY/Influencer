@@ -18,10 +18,12 @@ export interface ImageSizeProps {
   height: number;
 }
 
-export interface LikeGridViewProps {
-  itemArray: LikeGridViewItemProps[];
+export interface LikeViewProps {
   handleItemClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   categoryArray: string[];
+}
+export interface LikeGridViewProps extends LikeViewProps {
+  itemArray: LikeGridViewProps[];
 }
 
 export interface LikeGridViewItemProps {
@@ -31,6 +33,6 @@ export interface LikeGridViewItemProps {
   likeDate: string;
 }
 
-export interface LikeListCategoryProps extends LikeGridViewProps {
+export interface LikeListCategoryProps extends LikeViewProps {
   clickedCategory: string;
 }
