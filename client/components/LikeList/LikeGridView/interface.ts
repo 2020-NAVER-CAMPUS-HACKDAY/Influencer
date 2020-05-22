@@ -23,7 +23,7 @@ export interface LikeViewProps {
   categoryArray: string[];
 }
 export interface LikeGridViewProps extends LikeViewProps {
-  itemArray: LikeGridViewProps[];
+  itemArray: LikeGridViewItemProps[];
 }
 
 export interface LikeGridViewItemProps {
