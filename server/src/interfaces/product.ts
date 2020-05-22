@@ -15,6 +15,7 @@ export interface IProductDTO {
   salePrice: Number;
   productImages: Object;
   productInfoProvidedNoticeView: Object;
+  like?: Boolean;
 }
 
 export interface IProductforView {
