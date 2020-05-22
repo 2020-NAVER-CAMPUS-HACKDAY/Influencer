@@ -8,12 +8,17 @@ export interface IUser {
   prefer: Array<Prefer>
 }
 
-interface Prefer {
+export interface Prefer {
   productNo: string
   categoryId: string;
   rating: number;
   updateDe: Date;
 }
+
+export interface RecommenderResult {
+  id: string;
+  score: number;
+};
 
 interface Like {
   50000000: {

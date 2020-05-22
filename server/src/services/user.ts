@@ -6,14 +6,17 @@ import {
   IProduct,
   ProductVerGridView,
   FetchProductForGridView,
+  Prefer,
+  IProductDTO,
+  RecommenderResult
 } from '../interfaces';
 import config from '../config';
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
-
 } from '../modules/errors';
+const ContentBasedRecommender = require('content-based-recommender');
 
 @Service()
 export default class UserService {
@@ -31,12 +34,19 @@ export default class UserService {
    * @param productNo
    * @param weight
    */
-  public async addWeight(productNo: Number, weight: number): Promise<any> {
-    const selectProduct = (productNo: string, weight: number): Promise<any> => {
+  public async addWeight(
+    productNo: number,
+    weight: number
+  ): Promise<any> {
+
+    const selectProduct = (
+      productNo: number,
+      weight: number
+    ): Promise<any> => {
+
       return new Promise(async (resolve, reject) => {
-        const productRecord = await this.productModel.findOne({
-          _id: productNo,
-        });
+        const productRecord = await this.productModel.findOne({ productNo: productNo });
+
         if (!productRecord) {
           reject('Product is not exist');
         }
@@ -71,7 +81,7 @@ export default class UserService {
         let users = userRecord.toObject();
 
         const idx = users.prefer.findIndex((p: any, i: any) => {
-          p.productNo === parseInt(productNo);
+          p.productNo === productNo;
           return i;
         });
 
@@ -132,7 +142,10 @@ export default class UserService {
    *
    * @param productNo
    */
-  public async clickLog(productNo: Number): Promise<any> {
+  public async clickLog(
+    productNo: number
+  ): Promise<any> {
+
     return await this.addWeight(productNo, config.clicklogWeight);
   }
 
@@ -142,28 +155,24 @@ export default class UserService {
    * @param exist
    */
   public async setLike(
-    productNo: Number,
+    productNo: number,
     wholeCategoryId: Array<string>,
     exist: boolean,
   ): Promise<any> {
     const userRecord = await this.userModel.findOne({
       userName: config.personaName,
     });
-    const productRecord = await this.productModel.findOne({
-      productNo: parseInt(productNo),
-    });
+    const productRecord = await this.productModel.findOne({ productNo: productNo });
 
     if (!userRecord) throw new NotFoundError('User is not exist');
     if (!productRecord) throw new NotFoundError('Product is not exist');
 
     let users = userRecord.toObject();
-    let products = productRecord.toObject();
 
     try {
       if (exist) {
-        users.like[wholeCategoryId[0]].likeList = users.like[
-          wholeCategoryId[0]
-          ].likeList.filter((l: string) => l !== productNo.toString());
+        users.like[wholeCategoryId[0]].likeList =
+          users.like[wholeCategoryId[0]].likeList.filter((l: number) => (l !== productNo));
 
         userRecord.like = users.like;
         return await userRecord.save();
@@ -181,10 +190,13 @@ export default class UserService {
     return await this.addWeight(productNo, config.likeWeight);
   }
 
-  public async selectLikeList(page: string): Promise<any> {
-    const userLikeRecord = await this.userModel
-      .findOne({ userName: config.personaName })
-      .select('-prefer -updatedAt -createdAt -userName -_id');
+  public async selectLikeList(
+    page: number
+  ): Promise<any> {
+    const userLikeRecord =
+      await this.userModel
+        .findOne({ userName: config.personaName })
+        .select('-prefer -updatedAt -createdAt -userName -_id');
 
     if (!userLikeRecord) throw new NotFoundError('User is not exist');
 
@@ -192,21 +204,19 @@ export default class UserService {
       const uesrs = userLikeRecord.toObject();
       let result: { [index: string]: Object } = {};
 
-      for (let categoryId of Object.keys(uesrs.like)) {
-        if (uesrs.like[categoryId].likeList.length < 1) {
-          result[uesrs.like[categoryId].categoryName] = [];
+      for (const categoryId of Object.keys(users.like)) {
+        if (users.like[categoryId].likeList.length < 1) {
+          result[users.like[categoryId].categoryName] = [];
+
         } else {
           const productList = [];
 
-          for (let like of uesrs.like[categoryId].likeList.slice(
-            parseInt(page) * 10,
-            parseInt(page) * 10 + 10,
-          )) {
-            const product = await this.productModel
-              .findOne({ productNo: like })
-              .select(
-                'productNo name productImages category salePrice modDate productInfoProvidedNoticeView',
-              );
+          for (const like of users.like[categoryId].likeList.slice(page * 10, page * 10 + 10)) {
+            const product =
+              await this.productModel
+                .findOne({ productNo: like })
+                .select('productNo name productImages category salePrice saleStartDate')
+
             productList.push(product);
           }
 
@@ -220,28 +230,96 @@ export default class UserService {
     }
   }
 
-  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
- 	  const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
-      try {
+  public async recommendItem(
+    page: number
+  ): Promise<any> {
 
-        if(userLikeRecord === null) throw new NotFoundError('User is not exist');
+    const userRecord = await this.userModel.find();
 
-        const users = userLikeRecord.toObject();
-        let result: { [index: string]: number[] } = {};
+    if (!userRecord) throw new NotFoundError('User is not exist!');
 
-        for (let categoryId of Object.keys(users.like)) {
-          if (users.like[categoryId].likeList.length < 1) {
-            result[users.like[categoryId].categoryName] = [];
-          } else {
-         result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
-          }
-        }
-        return result;
-      } catch (e) {
-        this.logger.error(e);
-        throw e;
+    const recommender = new ContentBasedRecommender({
+      minScore: 0.1,
+      maxSimilarDocuments: 100
+    });
+
+    const addRemainder = async (remainder: number, result: Array<IProductDTO>) => {
+      const filtering = result.map((r: any) => r.productNo);
+      const productRecord =
+        await this.productModel.find()
+          .where('productNo').nin(filtering)
+          .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView')
+          .limit(remainder);
+
+      result.push(...productRecord);
+      return result;
+    };
+
+    try {
+      userRecord.forEach((user: IUser) => (user.prefer.sort((a: Prefer, b: Prefer) => b.rating - a.rating)));
+
+      const documents = userRecord.map((user: IUser) => ({ id: user.userName, content: user.prefer }));
+
+      recommender.train(documents)
+      const collaborators = recommender.getSimilarDocuments(config.personaName, 0, 10);
+      collaborators.sort((first: RecommenderResult, second: RecommenderResult) => second.score - first.score);
+
+      const result: Array<IProductDTO> = [];
+      if (collaborators.length <= page) {
+        return await addRemainder(config.pagination, result);
       }
+
+      const similarData = collaborators[page];
+      const similarRecord = await this.userModel.findOne().where('userName').equals(similarData.id);
+
+      if (!similarRecord) throw new NotFoundError('Similar is not exist!');
+
+      for (const preference of similarRecord.prefer) {
+        const productRecord =
+          await this.productModel.findOne()
+            .where('productNo').equals(preference.productNo)
+            .select('-_id name category productNo salePrice productImages productInfoProvidedNoticeView');
+
+        if (!productRecord) throw new NotFoundError('User is not exist!');
+
+        result.push(productRecord);
+      }
+
+      const remainder = config.pagination - result.length;
+      if (remainder) {
+        return await addRemainder(remainder, result);
+      }
+
+      return result;
+
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
     }
+  }
+
+  public async selectUserLikeList(): Promise<{ [index: string]: number[] }> {
+    const userLikeRecord = await this.userModel.findOne({ userName: config.personaName });
+    try {
+
+      if (userLikeRecord === null) throw new NotFoundError('User is not exist');
+
+      const users = userLikeRecord.toObject();
+      let result: { [index: string]: number[] } = {};
+
+      for (let categoryId of Object.keys(users.like)) {
+        if (users.like[categoryId].likeList.length < 1) {
+          result[users.like[categoryId].categoryName] = [];
+        } else {
+          result[users.like[categoryId].categoryName] = users.like[categoryId].likeList;
+        }
+      }
+      return result;
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
 
   public async getProductListSortedByModDate(idArray: string[]): Promise<{ products: ProductVerGridView[] }> {
     try {
@@ -252,9 +330,9 @@ export default class UserService {
         throw new NotFoundError('Product is not exist');
       }
 
-      const fetchedProducts = productArrayRecord.map(( record ) => record.toObject());
+      const fetchedProducts = productArrayRecord.map((record) => record.toObject());
 
-      const products: ProductVerGridView[] = fetchedProducts.map(( product: FetchProductForGridView ) => {
+      const products: ProductVerGridView[] = fetchedProducts.map((product: FetchProductForGridView) => {
         return {
           productId: product._id,
           imageLink: product.productImages[0].url,
@@ -265,14 +343,14 @@ export default class UserService {
 
       return { products };
 
-    } catch(e) {
+    } catch (e) {
       this.logger.error(e);
       throw e;
     }
   }
 
-  // TODO(daeun): add user query
-  public async selectLikeListForGridView(): Promise<{ [index: string]: ProductVerGridView[] }> {
+  public async selectLikeListForGridView(
+  ): Promise<{ [index: string]: ProductVerGridView[] }> {
     try {
       const userLikeList: { [index: string]: number[] } = await this.selectUserLikeList();
 
@@ -281,13 +359,13 @@ export default class UserService {
       for (let category of Object.keys(userLikeList)) {
         const CategoryLikeProductList = await this.getProductListSortedByModDate(
           userLikeList[category]
-            .map(( likeProductId ) => likeProductId.toString()));
+            .map((likeProductId) => likeProductId.toString()));
         result[category] = CategoryLikeProductList.products;
       }
 
       return result;
 
-    } catch(e) {
+    } catch (e) {
       this.logger.error(e);
       throw e;
     }

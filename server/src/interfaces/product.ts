@@ -46,3 +46,10 @@ export interface Image {
 export interface Category {
   category1Id: string;
 }
+
+export interface IProductforView {
+  productId: string;
+  productName: string;
+  productImages: Object;
+  salePrice: number;
+}

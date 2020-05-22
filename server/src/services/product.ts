@@ -117,7 +117,9 @@ export default class ProductService {
     }
   }
 
-  public async create(productDTO: IProductDTO): Promise<{ product: IProduct }> {
+  public async create(
+    productDTO: IProductDTO
+  ): Promise<{ product: IProduct }> {
     try {
       this.logger.silly('Creating user db record');
       const productRecord = await this.productModel.create({
