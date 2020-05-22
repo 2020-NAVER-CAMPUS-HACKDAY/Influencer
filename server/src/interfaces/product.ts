@@ -17,6 +17,13 @@ export interface IProductDTO {
   productInfoProvidedNoticeView: Object;
 }
 
+export interface IProductforView {
+  productId: string;
+  productName: string;
+  productImages: Object;
+  salePrice: number;
+}
+
 export interface FetchProductForGridView extends IProduct {
   modDate: Date;
   productImages: Image[];

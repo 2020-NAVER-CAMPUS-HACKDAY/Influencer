@@ -1,6 +1,6 @@
 import {
   IProduct,
-  IProductInputDTO,
+  IProductDTO,
   ProductVerGridView,
   FetchProductForGridView
 } from './product';
@@ -12,7 +12,7 @@ import {
 
 export {
   IProduct,
-  IProductInputDTO,
+  IProductDTO,
   IUser,
   UserLike,
   UserLikeListVerGrid,
