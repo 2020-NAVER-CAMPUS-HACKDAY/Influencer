@@ -95,13 +95,17 @@ export default class ProductService {
     }
   }
 
-  public async getProduct(id: string): Promise<{ product: IProductDTO }> {
+  public async getProduct(id: number): Promise<{ product: IProductDTO }> {
     try {
-      const productRecord = await this.productModel.findOne({ _id: id });
+      const productRecord = await this.productModel.findOne({
+        productNo: id,
+      });
       if (!productRecord) {
         throw new NotFoundError('Product is not exist');
       }
-      const product = productRecord.toObject();
+      let products: IProductDTO[] = [productRecord.toObject()];
+      products = await this.addLikeField(products);
+      const product = products[0];
 
       return {
         product: {
@@ -112,6 +116,7 @@ export default class ProductService {
           productImages: product.productImages,
           productInfoProvidedNoticeView:
             product.productInfoProvidedNoticeView.basic,
+          like: product.like,
         },
       };
     } catch (e) {
@@ -145,11 +150,8 @@ export default class ProductService {
         product.like = likeSet.has(product.productNo as number) ? true : false;
         return product as IProductDTO;
       });
-      console.log(products[8].like);
-      console.log(products[8]);
-      return products;
 
-      // console.log(products);
+      return products;
     } catch (e) {
       this.logger.error(e);
       throw e;
