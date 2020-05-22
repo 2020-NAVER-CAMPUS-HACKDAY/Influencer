@@ -30,7 +30,12 @@ export default class CategoryService {
       const categoryRecords = await this.categoryModel
         .find({'value.categoryLevel': categoryLevel})
 
-      const categories = categoryRecords.map((category) => category.toObject());
+      const categories = categoryRecords
+        .map((record) => record.toObject())
+        .map((category) => ({
+            categoryId: category._id,
+            value: category.value,
+        }));
       return { categories };
     } catch (e) {
       this.logger.error(e);

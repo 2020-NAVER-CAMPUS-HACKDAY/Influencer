@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import CategoryBox from 'components/CategoryBox';
 import useStyles from 'components/SelectCategory/styles';
-import { Category } from 'components/SelectCategory/types';
+import { Category } from 'interfaces/category';
 
 interface SelectCategoryProp {
   categoryData: Category[];
@@ -14,10 +14,10 @@ const SelectCategory: FC<SelectCategoryProp> = (props) => {
   const classes = useStyles();
 
   const categoryElements = categoryData.map((category) => {
-    const { _id } = category;
+    const { categoryId } = category;
     return (
       <CategoryBox
-        key={_id}
+        key={categoryId}
         category={category}
         categoryAddHandler={categoryAddHandler}
         categoryDeleteHandler={categoryDeleteHandler}
