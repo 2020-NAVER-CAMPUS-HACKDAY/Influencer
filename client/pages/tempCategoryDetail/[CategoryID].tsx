@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import { GetServerSideProps } from 'next';
-import { CategoryProps } from '../../redux/ducks/category';
-import { Category } from '../../interfaces/category';
+import { CategoryProps } from 'redux/ducks/category';
+import { Category } from 'interfaces/category';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
