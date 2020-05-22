@@ -1,22 +1,55 @@
-import React, { FC, useState } from 'react';
+import React, {
+  FC, useState, useEffect,
+} from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';
-import LikeListItem from 'components/LikeList/LikeListItem';
-import { likeListDummmyDatas, likeGridViewDummyData } from 'views/likeList/likeListDummyData';
-import { orderBy, uniq } from 'lodash';
+import LikeListComponent from 'components/LikeList';
 import TopButton from 'components/Common/TopButton';
-import LikeGridView from 'components/LikeList/LikeGridView';
-import LikeListCategory from 'components/LikeList/LikeListCategory';
-import { Category } from 'constant';
+import { Category, CategoryString, LikePropsInitialValue } from 'constant';
+import { LikeListDucksProps, LikeListProductProps, LikeListDataProps } from 'redux/ducks/Interface';
+import { getLikeListData } from 'network/productApi';
+import { AxiosResponse } from 'axios';
+import { likeListActions } from 'redux/ducks/likeList';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Types } from '../../redux/ducks';
 
 const LikeList: FC = () => {
-  const orderedLikeCategoryList = uniq(likeGridViewDummyData.map((item) => item.category)).sort();
   const [listClicked, setListClicked] = useState<boolean>(true);
   const [gridClicked, setGridClicked] = useState<boolean>(false);
+  const [clickedCategory, setClickedCategory] = useState<string>();
   const [
-    clickedCategory,
-    setClickedCategory,
-  ] = useState<string>(Category[orderedLikeCategoryList[0]]);
+    likeDataResponse,
+    setLikeDataResponse,
+  ] = useState<LikeListDataProps>(LikePropsInitialValue);
+  const [likeCategories, setLikeCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchLikeListData = async (): Promise<void> => {
+      await getLikeListData(0)
+        .then((response: AxiosResponse<LikeListProductProps>) => {
+          setLikeDataResponse(response.data.data);
+        })
+        .catch((error) => error);
+    };
+    fetchLikeListData();
+  }, []);
+
+
+  useEffect(() => {
+    const categoryArrayAndGarbage = CategoryString.map(
+      (category) => (likeDataResponse[category]?.length > 0
+        ? category
+        : 0),
+    );
+    setLikeCategories(categoryArrayAndGarbage.filter(
+      (item) => typeof item === 'string',
+    ).map((category: string) => category));
+  }, [setLikeCategories, likeDataResponse]);
+
+  useEffect(() => {
+    setClickedCategory(Category[likeCategories[0]]);
+  }, [likeCategories]);
 
   const handleListClicked = (): void => {
     if (!listClicked && gridClicked) {
@@ -36,26 +69,6 @@ const LikeList: FC = () => {
     setClickedCategory(event.target.id);
   };
 
-  const handleListItemClick = (event): void => {
-    setListClicked(true);
-    setGridClicked(false);
-    handleCategoryClick(event);
-  };
-
-  const likeListItemList = <>
-    <LikeListCategory
-      categoryArray={orderedLikeCategoryList}
-      clickedCategory={clickedCategory}
-      handleItemClick={handleCategoryClick}
-      itemArray={likeGridViewDummyData}
-    />
-    {orderBy(likeListDummmyDatas, ['likeDate'], ['desc'])
-      .filter((likeItem) => Category[likeItem.category] === clickedCategory)
-      .map((likeItem) => (
-        <LikeListItem key={likeItem.productId} item={likeItem}/>
-      ))}
-  </>;
-
   return (
     <>
       <LikeListHeader/>
@@ -65,16 +78,28 @@ const LikeList: FC = () => {
         handleListClicked={handleListClicked}
         handleGridClicked={handleGridClicked}
       />
-      {listClicked && likeListItemList}
       {
-        gridClicked && <LikeGridView
-          categoryArray={orderedLikeCategoryList}
-          itemArray={likeListDummmyDatas}
-          handleItemClick={handleListItemClick}
+        listClicked && <LikeListComponent
+          likeDataResponse={likeDataResponse}
+          handleItemClick={handleCategoryClick}
+          clickedCategory={clickedCategory}
+          categoryArray={likeCategories}
         />
       }
+      {/* TODO(daeun): combine component Grid View ver when connecting with GridView API */}
       <TopButton/>
     </>
   );
 };
-export default LikeList;
+
+export default connect<LikeListDucksProps, void>(
+  (state: Types) => ({
+    data: state.likeReducer.data,
+    pageId: state.likeReducer.pageId,
+  }),
+  (dispatch) => ({
+    fetchLikeProduct: bindActionCreators(likeListActions.fetchLikeProduct.request, dispatch),
+    setPageId: bindActionCreators(likeListActions.setPageId, dispatch),
+    setLikeProduct: bindActionCreators(likeListActions.setLikeProduct, dispatch),
+  }),
+)(LikeList);
