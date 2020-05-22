@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     borderRadius: 20,
   },
   columnDirection: {
-    display: 'flex',
+    display: 'grid',
     flexDirection: 'column',
   },
   text: {
@@ -35,10 +35,19 @@ const useStyles = makeStyles({
   },
   productText: {
     minWidth: 170,
+    maxWidth: 170,
     fontWeight: 500,
   },
   productPrice: {
     fontWeight: 'bold',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  link: {
+    textDecoration: 'none',
   },
 });
 

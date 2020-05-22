@@ -1,5 +1,5 @@
 import React, {
-  FC, useState, useEffect,
+  FC, useState, useEffect, useCallback, useRef,
 } from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';
@@ -14,12 +14,13 @@ import { AxiosResponse } from 'axios';
 import { likeListActions } from 'redux/ducks/likeList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import IntersectionObserverList from 'components/Common/IntersectionObserverList';
 import { Types } from '../../redux/ducks';
 
 const LikeList: FC = () => {
   const [listClicked, setListClicked] = useState<boolean>(true);
   const [gridClicked, setGridClicked] = useState<boolean>(false);
-  const [clickedCategory, setClickedCategory] = useState<string>();
+  const [clickedCategory, setClickedCategory] = useState<string>('');
   const [
     likeDataResponse,
     setLikeDataResponse,
@@ -29,6 +30,18 @@ const LikeList: FC = () => {
     setGridViewResponse,
   ] = useState<LikeGridViewProductProps>(LikePropsInitialValue);
   const [likeCategories, setLikeCategories] = useState<string[]>([]);
+
+  const fetchMoreLikeListData = useCallback(async (page): Promise<void> => {
+    await getLikeListData(page)
+      .then((response: AxiosResponse<LikeListProductProps>) => {
+        CategoryString.forEach((category) => {
+          if (response.data.data[category].length > 0) {
+            setLikeDataResponse(likeDataResponse[category].concat(response.data.data[category]));
+          }
+        });
+      })
+      .catch((e) => e);
+  }, [likeDataResponse]);
 
   useEffect(() => {
     const fetchLikeListData = async (): Promise<void> => {
@@ -40,7 +53,6 @@ const LikeList: FC = () => {
     };
     fetchLikeListData();
   }, []);
-
 
   useEffect(() => {
     const categoryArrayAndGarbage = CategoryString.map(
@@ -56,6 +68,7 @@ const LikeList: FC = () => {
   useEffect(() => {
     setClickedCategory(Category[likeCategories[0]]);
   }, [likeCategories]);
+
 
   const handleListClicked = (): void => {
     if (!listClicked && gridClicked) {
@@ -88,27 +101,29 @@ const LikeList: FC = () => {
 
   return (
     <>
-      <LikeListHeader/>
-      <LikeListBar
-        listClicked={listClicked}
-        gridClicked={gridClicked}
-        handleListClicked={handleListClicked}
-        handleGridClicked={handleGridClicked}
-      />
-      {
-        listClicked && <LikeListComponent
-          likeDataResponse={likeDataResponse}
-          handleItemClick={handleCategoryClick}
-          clickedCategory={clickedCategory}
-          categoryArray={likeCategories}
+      <IntersectionObserverList fetchApi={fetchMoreLikeListData}>
+        <LikeListHeader/>
+        <LikeListBar
+          listClicked={listClicked}
+          gridClicked={gridClicked}
+          handleListClicked={handleListClicked}
+          handleGridClicked={handleGridClicked}
         />
-      }
-      {gridClicked && <LikeGridView
-        categoryArray={likeCategories}
-        itemArray={gridViewResponse}
-        handleItemClick={handleListItemClick}
-      />
-      }
+        {
+          listClicked && <LikeListComponent
+            likeDataResponse={likeDataResponse}
+            handleItemClick={handleCategoryClick}
+            clickedCategory={clickedCategory}
+            categoryArray={likeCategories}
+          />
+        }
+        {gridClicked && <LikeGridView
+          categoryArray={likeCategories}
+          itemArray={gridViewResponse}
+          handleItemClick={handleListItemClick}
+        />
+        }
+      </IntersectionObserverList>
       <TopButton/>
     </>
   );
@@ -118,10 +133,11 @@ export default connect<LikeListDucksProps, void>(
   (state: Types) => ({
     data: state.likeReducer.data,
     pageId: state.likeReducer.pageId,
+    isFetchTrue: state.likeReducer.isFetchTrue,
   }),
   (dispatch) => ({
     fetchLikeProduct: bindActionCreators(likeListActions.fetchLikeProduct.request, dispatch),
-    setPageId: bindActionCreators(likeListActions.setPageId, dispatch),
     setLikeProduct: bindActionCreators(likeListActions.setLikeProduct, dispatch),
+    setFetchFalse: bindActionCreators(likeListActions.setFetchFalse, dispatch),
   }),
 )(LikeList);

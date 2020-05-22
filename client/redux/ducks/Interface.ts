@@ -63,4 +63,5 @@ export interface LikeListProductProps {
 
 export interface LikeListDucksProps extends LikeListProductProps {
   pageId: number;
+  isFetchTrue: boolean;
 }

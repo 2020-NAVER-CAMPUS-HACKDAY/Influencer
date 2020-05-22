@@ -14,11 +14,13 @@ import {
 import { AxiosResponse } from 'axios';
 import { CategoryString } from 'constant';
 import { LikeListProductProps, LikeListDucksProps } from 'redux/ducks/Interface';
+import { cloneDeep } from 'lodash';
 
 const FETCH_LIKE_PRODUCT_REQUEST = 'likeList/FETCH_LIKE_PRODUCT_REQUEST' as const;
 const FETCH_LIKE_PRODUCT_SUCCESS = 'likeList/FETCH_LIKE_PRODUCT_SUCCESS' as const;
 const FETCH_LIKE_PRODUCT = 'likeList/FETCH_LIKE_PRODUCT_FAIL' as const;
 const SET_LIKE_PRODUCT = 'likeList/SET_LIKE_PRODUCT' as const;
+const SET_FETCH_FALSE = 'likeList/SET_FETCH_FALSE' as const;
 const SET_PAGE_ID = 'likeList/SET_PAGE_ID' as const;
 
 export const likeListActions = {
@@ -28,23 +30,27 @@ export const likeListActions = {
     FETCH_LIKE_PRODUCT,
   )<number, LikeListProductProps[] | unknown, Error>(),
   setLikeProduct: createAction(SET_LIKE_PRODUCT)<LikeListProductProps>(),
+  setFetchFalse: createAction(SET_FETCH_FALSE)<boolean>(),
   setPageId: createAction(SET_PAGE_ID)<number>(),
 };
 
 export interface LikeListActionsProps {
   fetchLikeProduct: PayloadActionCreator<'likeList/FETCH_LIKE_PRODUCT_REQUEST', number>;
   setLikeProduct: PayloadActionCreator<'likeList/SET_LIKE_PRODUCT', LikeListProductProps>;
+  setFetchFalse: PayloadActionCreator<'likeList/SET_FETCH_FALSE', boolean>;
   setPageId: PayloadActionCreator<'likeList/SET_PAGE_ID', number>;
 }
 
 export type LikeListAction =
   | ActionType<typeof likeListActions.fetchLikeProduct>
   | ActionType<typeof likeListActions.setLikeProduct>
+  | ActionType<typeof likeListActions.setFetchFalse>
   | ActionType<typeof likeListActions.setPageId>;
 
 const initialState = {
   data: {},
   pageId: 0,
+  isFetchTrue: true,
 };
 
 export function* fetchLikeProductData(action): Generator<
@@ -76,9 +82,17 @@ export const likeReducer = createReducer(initialState)
       (draft) => {
         CategoryString.forEach(
           (category) => {
-            draft.data[category] = action.payload.data.data[category];
+            draft.data[category] = cloneDeep(action.payload.data.data[category]);
+            draft.pageId += 1;
           },
         );
+      },
+    ))
+  .handleAction(likeListActions.fetchLikeProduct.failure,
+    (state: LikeListDucksProps) => produce(
+      state,
+      (draft) => {
+        draft.isFetchTrue = false;
       },
     ))
   .handleAction(likeListActions.setLikeProduct,
@@ -87,7 +101,7 @@ export const likeReducer = createReducer(initialState)
       (draft) => {
         CategoryString.forEach(
           (category) => {
-            draft.data[category] = action.payload[category];
+            draft.data[category] = cloneDeep(action.payload[category]);
           },
         );
       },
@@ -96,6 +110,6 @@ export const likeReducer = createReducer(initialState)
     (state: LikeListDucksProps, action) => produce(
       state,
       (draft) => {
-        draft.pageId = action.payload;
+        draft.pageId = cloneDeep(action.payload);
       },
     ));

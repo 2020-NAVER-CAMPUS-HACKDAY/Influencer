@@ -5,8 +5,6 @@ import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import SVGButton from 'components/Common/SVGButton';
-import Delete from 'svgs/Delete';
 import { ProductDetailProps } from 'redux/ducks/Interface';
 
 const LikeListItem: FC<ProductDetailProps> = (props) => {
@@ -51,9 +49,6 @@ const LikeListItem: FC<ProductDetailProps> = (props) => {
           name={category.category1Name}
         />
       </Box>
-      <SVGButton className={classes.columnDirection}>
-        <Delete />
-      </SVGButton>
     </Box>
   );
 };

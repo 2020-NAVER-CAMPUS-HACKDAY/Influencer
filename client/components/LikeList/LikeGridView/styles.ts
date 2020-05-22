@@ -3,9 +3,7 @@ import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   root: {
-    display: 'inline-flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    display: 'inline-block',
     backgroundColor: AppColor.WHITE,
   },
   data: {
@@ -17,7 +15,9 @@ const useStyles = makeStyles({
     backgroundColor: AppColor.WHITE,
     paddingTop: 10,
     paddingLeft: 10,
+    paddingRight: 10,
     paddingBottom: 20,
+    display: 'flex',
   },
   images: {
     borderRadius: 10,
@@ -25,10 +25,12 @@ const useStyles = makeStyles({
     marginTop: 25,
     lineHeight: '1px',
     minHeight: 160,
-    maxWidth: 162,
+    maxWidth: 160,
+    minWidth: 160,
   },
-  marginLeft: {
+  marginX: {
     marginLeft: 10,
+    marginRight: 10,
   },
   label: {
     marginTop: 10,

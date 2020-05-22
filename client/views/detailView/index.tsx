@@ -20,7 +20,7 @@ const DetailView: FC<ProductProps> = (props) => {
     const searchProductItem = products.find(
       (product) => product.productNo.toString() === ProductID,
     );
-    if (searchProductItem === undefined) {
+    if (searchProductItem === undefined && ProductID !== undefined) {
       const getProductDataForId = async (): Promise<void> => {
         await getProductDataForProductId(ProductID)
           .then((response: AxiosResponse<ProductDetailProps>) => {
@@ -32,19 +32,16 @@ const DetailView: FC<ProductProps> = (props) => {
     } else {
       setDetailData(searchProductItem);
     }
-  }, [products, setDetailData, ProductID]);
+  }, [ProductID, products]);
 
   if (detailData === undefined) return <div>{NOT_FOUND}</div>;
 
   return (
     <>
       <DetailHeader productName={detailData.name}/>
-      <img
-        src={detailData.productImages[0].url}
-        width={'100%'}
-        height={detailData.productImages[0].height}
-      />
       <DetailProductInfo
+        imageURL={detailData.productImages[0].url}
+        imageHeight={detailData.productImages[0].height}
         id={detailData.productNo.toString()}
         name={detailData.name}
         price={addCommaStringFromThreeCntNum(detailData.salePrice)}

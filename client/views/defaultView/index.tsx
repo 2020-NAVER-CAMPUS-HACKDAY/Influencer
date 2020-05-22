@@ -28,10 +28,11 @@ export default connect<LikeListDucksProps, void>(
   (state: Types) => ({
     data: state.likeReducer.data,
     pageId: state.likeReducer.pageId,
+    isFetchTrue: state.likeReducer.isFetchTrue,
   }),
   (dispatch) => ({
     fetchLikeProduct: bindActionCreators(likeListActions.fetchLikeProduct.request, dispatch),
-    setPageId: bindActionCreators(likeListActions.setPageId, dispatch),
     setLikeProduct: bindActionCreators(likeListActions.setLikeProduct, dispatch),
+    setFetchFalse: bindActionCreators(likeListActions.setFetchFalse, dispatch),
   }),
 )(Home);

@@ -8,7 +8,6 @@ import { AppColor, TITLE_ADD } from 'constant';
 import clsx from 'clsx';
 import DetailInfo from 'components/Detail/DetailProductContent/DetailInfo';
 import OutlinedButton from 'components/Common/OutlinedButton';
-import Like from 'svgs/Like';
 import Share from 'svgs/Share';
 
 export interface DetailProductContentProps {
@@ -18,9 +17,10 @@ export interface DetailProductContentProps {
   country?: string;
   material?: string;
   color?: string;
+  imageURL: string;
+  imageHeight: number;
 }
 const DetailProductContent: FC<DetailProductContentProps> = (props) => {
-  const classes = useStyles();
   const {
     id,
     name,
@@ -28,7 +28,10 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
     country,
     material,
     color,
+    imageURL,
+    imageHeight,
   } = props;
+  const classes = useStyles(imageHeight);
 
   const handleShareButtonClick = (): string => {
     const url = encodeURI(encodeURIComponent(`${process.env.PROJECT_URL}${id}`));
@@ -39,6 +42,11 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
 
   return (
     <>
+      <img className={classes.image}
+        src={imageURL}
+        width={'100%'}
+        height={'400px'}
+      />
       <AppBar
         className={clsx(classes.align, classes.paddingTop)}
         backgroundColor={AppColor.WHITE}
@@ -70,7 +78,7 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
       <AppBar
         className={clsx(classes.align, classes.productDetailBar)}
         backgroundColor={AppColor.WHITE}
-        height={'195px'}
+        height={'auto'}
         isNotFixed
       >
         {country && <DetailInfo value={country} column={'제조국'}/>}
@@ -84,16 +92,11 @@ const DetailProductContent: FC<DetailProductContentProps> = (props) => {
         isNotFixed
       >
         <a href={handleShareButtonClick()} className={classes.link}>
-          <OutlinedButton className={classes.marginRight}>
+          <OutlinedButton className={classes.shareButton}>
             <Share/>
             <Label className={classes.marginLeft} name={'공유'} color={AppColor.BLACK} fontSize={20}/>
           </OutlinedButton>
         </a>
-        {/* TODO(daeun): add like Api */}
-        <OutlinedButton handleClick={(): number => 0}>
-          <Like/>
-          <Label className={classes.marginLeft} name={'찜'} color={AppColor.BLACK} fontSize={20}/>
-        </OutlinedButton>
       </AppBar>
     </>
   );

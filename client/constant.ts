@@ -19,10 +19,10 @@ export const AppColor = {
 export const CONSTANT_TAG = 24;
 
 export const GridImageSize: GridViewImageSize = {
-  FULL_IMAGE: { width: 161, height: 161 },
-  VERTICAL_HALF_IMAGE: { width: 80, height: 161 },
-  HORIZONTAL_HALF_IMAGE: { width: 161, height: 80 },
-  QUARTER_IMAGE: { width: 80, height: 80 },
+  FULL_IMAGE: { width: 155, height: 155 },
+  VERTICAL_HALF_IMAGE: { width: 77, height: 155 },
+  HORIZONTAL_HALF_IMAGE: { width: 155, height: 77 },
+  QUARTER_IMAGE: { width: 77, height: 77 },
 };
 
 
