@@ -13,20 +13,24 @@ import {
 } from 'redux-saga/effects';
 import { cloneDeep } from 'lodash';
 import { AxiosResponse } from 'axios';
-import { ProductDataProps, ProductProps } from './Interface';
-
+import { Product } from 'interfaces/product';
 
 const FETCH_AND_ADD_PRODUCT_REQUEST = 'product/FETCH_AND_ADD_PRODUCT_REQUEST' as const;
 const FETCH_AND_ADD_PRODUCT_SUCCESS = 'product/FETCH_AND_ADD_PRODUCT_SUCCESS' as const;
 const FETCH_AND_ADD_PRODUCT_FAIL = 'product/FETCH_AND_ADD_PRODUCT_FAIL' as const;
 const GET_PRODUCT_FOR_ID = 'product/GET_PRODUCT_FOR_ID' as const;
 
+export interface ProductProps {
+  products: Product[];
+  selectedProduct: Product;
+}
+
 export const productActions = {
   fetchAndAddProduct: createAsyncAction(
     FETCH_AND_ADD_PRODUCT_REQUEST,
     FETCH_AND_ADD_PRODUCT_SUCCESS,
     FETCH_AND_ADD_PRODUCT_FAIL,
-  )<number, ProductDataProps[] | unknown, Error>(),
+  )<number, Product[] | unknown, Error>(),
   getProductForId: createAction(GET_PRODUCT_FOR_ID)<number>(),
 };
 
@@ -45,13 +49,13 @@ const initialState = {
 
 export function* fetchAndAddProduct(action): Generator<
 (
-  PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_SUCCESS', ProductDataProps[] | unknown>>
+  PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_SUCCESS', Product[] | unknown>>
   | PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_FAIL', Error>>
-  | CallEffect<AxiosResponse<ProductDataProps[] | Error>>
+  | CallEffect<AxiosResponse<Product[] | Error>>
 )
 > {
   try {
-    const productArray: ProductDataProps[] | unknown = yield call(
+    const productArray: Product[] | unknown = yield call(
       ProductAPI.getProductDataArray,
       action.payload,
     );

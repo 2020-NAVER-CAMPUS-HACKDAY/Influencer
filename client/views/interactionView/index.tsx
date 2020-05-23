@@ -1,10 +1,19 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { ProductProps } from 'components/Interaction/SwiperItem/interface';
 import useStyles from 'views/interactionView/styles';
 import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
-import { Category } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
+// REDUX
+import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
+import { connect } from 'react-redux';
+import { Types } from 'redux/ducks';
+import { bindActionCreators } from 'redux';
+import { PayloadActionCreator } from 'typesafe-actions';
+import {
+  PAGE_ADD, PRODUCT_CATEGORY, PRODUCT_PAGE_API,
+} from 'constant';
 
 interface CategoryStateIndex {
   prev: number;
@@ -12,39 +21,78 @@ interface CategoryStateIndex {
   next: number;
 }
 
-interface InteractionPageProps {
-  categoryData: Category[];
-  productData: ProductProps[];
+interface InteractionPageProps extends InteractionProps{
+  setCurrentCategory: PayloadActionCreator<'interaction/SET_CURRENT_CATEGORY', Category>;
+  setPage: () => void;
+  currentCategory: Category;
+  page: number;
+  categoryArray: Category[];
 }
 
 const InteractionPage: FC<InteractionPageProps> = (props) => {
   const classes = useStyles();
-  const { categoryData, productData } = props;
+  const {
+    setCurrentCategory,
+    setPage,
+    currentCategory,
+    page,
+    categoryArray,
+  } = props;
   const [categoryState, setCategoryState] = useState<CategoryStateIndex>({
     prev: null, current: 0, next: 1,
   });
+  const [productData, setProductData] = useState<ProductProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
+      try {
+        const getProductUrl = process.env.SERVER_URL + PRODUCT_PAGE_API + PRODUCT_CATEGORY;
+        const response = await fetch(`${getProductUrl}${categoryId}${PAGE_ADD}${pageNo}`,
+          {
+            method: 'GET',
+          });
+        const result = await response.json();
+        setProductData(result.products);
+        setIsLoading(false);
+      } catch (err) {
+        setProductData([]);
+        setIsLoading(false);
+      }
+    }
+
+    fetchProductData(currentCategory.categoryId, page);
+  }, [currentCategory, page]);
 
   function handleClick(index: number): void {
     setCategoryState({ prev: index - 1, current: index, next: index + 1 });
-    // TODO(seogeurim) current index의 카테고리 id에 따른 상품 데이터 받아오기
+    setCurrentCategory(categoryArray[index]);
+    setProductData([]);
+    setIsLoading(true);
   }
 
   return (
     <div className={classes.root}>
       <MainHeader>
         <div className={classes.swiper}>
-          <Swiper products={productData} />
+          <Swiper
+            products={productData}
+            setPage={setPage}
+            page={page}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>
               <InteractionButton
-                category={categoryData[categoryState.prev]}
+                category={categoryArray[categoryState.prev]}
                 categoryIndex={categoryState.prev}
                 isPrev={true}
                 handleClick={handleClick} />
               <InteractionButton
-                category={categoryData[categoryState.current]} />
+                category={categoryArray[categoryState.current]} />
               <InteractionButton
-                category={categoryData[categoryState.next]}
+                category={categoryArray[categoryState.next]}
                 categoryIndex={categoryState.next}
                 isPrev={false}
                 handleClick={handleClick} />
@@ -56,4 +104,14 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   );
 };
 
-export default InteractionPage;
+export default connect<InteractionProps, void>(
+  (state: Types) => ({
+    currentCategory: state.interactionReducer.currentCategory,
+    page: state.interactionReducer.page,
+    categoryArray: state.categoryReducer.categoryArray,
+  }),
+  (dispatch) => ({
+    setCurrentCategory: bindActionCreators(interactionActions.setCurrentCategory, dispatch),
+    setPage: bindActionCreators(interactionActions.setPage, dispatch),
+  }),
+)(InteractionPage);

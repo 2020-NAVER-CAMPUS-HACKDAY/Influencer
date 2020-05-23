@@ -63,9 +63,14 @@ export const TITLE_ADD = '&title=';
 
 export const SHARE_TITLE = '상품';
 
-export const PRODUCT_PAGE_API = '/api/products/';
+export const PRODUCT_PAGE_API = 'products/';
 export const PAGE_ADD = '?page=';
 export const LIMIT_ADD = '&limit=';
+
+export const CATEGORY_API = 'categories/';
+export const CATEGORY_CHILDREN_API = 'children/';
+export const CATEGORY_LEVEL = '?level=';
+
 
 export const PRODUCT_LIMIT = '200';
 
