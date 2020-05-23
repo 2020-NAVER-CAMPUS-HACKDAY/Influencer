@@ -5,8 +5,10 @@ import clsx from 'clsx';
 import useStyles from './styles';
 
 interface IntersectionObserverListProps {
-  fetchApi: (page?: number) => Promise<void>;
+  fetchApi: () => Promise<void | Error>;
   className?: string;
+  firstFetchingTrue: boolean;
+  isFetchTrue: boolean;
 }
 
 const IntersectionObserverList: FC<IntersectionObserverListProps> = (
@@ -14,27 +16,28 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = (
       fetchApi,
       children,
       className,
+      firstFetchingTrue,
+      isFetchTrue,
     },
 ) => {
-  const root = useRef();
-  const target = useRef();
+  const root = useRef(null);
+  const target = useRef(null);
   const classes = useStyles();
 
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const loadItems = async (pageCount: number): Promise<void> => {
+  const loadItems = async (): Promise<void> => {
     if (loading) return;
-
-    setLoading(true);
-    await fetchApi(pageCount);
-    setLoading(false);
+    if (isFetchTrue && firstFetchingTrue) {
+      setLoading(true);
+      await fetchApi();
+      setLoading(false);
+    }
   };
 
   const onIntersect = ([{ isIntersecting }]): void => {
     if (!isIntersecting) return;
-    loadItems(page);
-    setPage(page + 1);
+    loadItems();
   };
 
   useIntersectionObserver({
@@ -45,8 +48,10 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = (
 
   return (
     <React.Fragment>
-      <div ref={root} className={classes.container}>
-        <div className={clsx(classes.wrapper, className)}>{children}</div>
+      <div className={classes.container}>
+        <div className={clsx(classes.wrapper, className)}>
+          {children}
+        </div>
       </div>
       {loading && <Loading />}
       <div ref={target} />

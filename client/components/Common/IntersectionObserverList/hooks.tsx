@@ -18,7 +18,7 @@ export const useIntersectionObserver: (
   root,
   target,
   onIntersect,
-  threshold = 1.0,
+  threshold = 0.5,
   rootMargin = '0px',
 }) => {
   useEffect(() => {
@@ -27,13 +27,12 @@ export const useIntersectionObserver: (
       rootMargin,
       threshold,
     });
-
+    const currentTarget = target.current;
     if (!target) return;
-    observer.observe(target.current);
-
-    return () => {
+    observer.observe(currentTarget);
+    return (): void => {
       if (!target) return;
-      observer.unobserve(target.current);
+      observer.unobserve(currentTarget);
     };
   }, [target, root, rootMargin, onIntersect, threshold]);
 };
