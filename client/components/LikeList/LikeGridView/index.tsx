@@ -28,7 +28,7 @@ const LikeGridView: FC<LikeGridViewProps> = (props) => {
             imageSize={getImageDataSize(itemArray[category].length, index)}
           />)}
       </div>
-      <Label className={clsx(classes.label, classes.marginX)}
+      <Label className={clsx(classes.label, classes.marginLeft)}
         name={Category[category]}
         color={AppColor.BLACK}
       />

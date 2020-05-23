@@ -30,9 +30,8 @@ export const useIntersectionObserver: (
     const currentTarget = target.current;
     if (!target) return;
     observer.observe(currentTarget);
-    return (): void => {
-      if (!target) return;
-      observer.unobserve(currentTarget);
-    };
+
+    const cleanUp = (): void => observer.unobserve(currentTarget);
+    return cleanUp;
   }, [target, root, rootMargin, onIntersect, threshold]);
 };

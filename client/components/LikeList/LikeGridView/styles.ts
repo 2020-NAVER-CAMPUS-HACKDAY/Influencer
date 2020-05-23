@@ -3,7 +3,9 @@ import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   root: {
-    display: 'inline-block',
+    display: 'inline-flex',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
     backgroundColor: AppColor.WHITE,
   },
   data: {
@@ -14,23 +16,20 @@ const useStyles = makeStyles({
   content: {
     backgroundColor: AppColor.WHITE,
     paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
     paddingBottom: 20,
-    display: 'flex',
   },
   images: {
     borderRadius: 10,
     overflow: 'hidden',
     marginTop: 25,
     lineHeight: '1px',
-    minHeight: 160,
-    maxWidth: 160,
-    minWidth: 160,
+    minHeight: 162,
+    maxWidth: 162,
+    minWidth: 162,
   },
-  marginX: {
+  marginLeft: {
     marginLeft: 10,
-    marginRight: 10,
   },
   label: {
     marginTop: 10,
@@ -38,7 +37,9 @@ const useStyles = makeStyles({
   },
   countLabel: {
     fontSize: 13,
-
+  },
+  wrapper: {
+    margin: '0 !important',
   },
 });
 
