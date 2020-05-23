@@ -5,17 +5,19 @@ import {
 import {
   productReducer,
   ProductAction,
-  ProductProps,
   fetchProductSaga,
 } from 'redux/ducks/product';
+import { fetchLikeProductDataSaga, LikeListAction, likeReducer } from 'redux/ducks/likeList';
 import { interactionReducer, InteractionAction, InteractionProps } from 'redux/ducks/interaction';
-import { authReducer, UserProps, UserAction } from 'redux/ducks/auth';
-import { categoryReducer, CategoryAction, CategoryProps } from 'redux/ducks/category';
+import { authReducer, UserProps, UserAction } from './auth';
+import { categoryReducer, CategoryAction, CategoryProps } from './category';
+import { ProductProps, LikeListDucksProps } from './Interface';
 
 export const rootReducer = combineReducers({
   authReducer,
   productReducer,
   categoryReducer,
+  likeReducer,
   interactionReducer,
 });
 
@@ -23,6 +25,7 @@ export interface Types {
   authReducer: UserProps;
   productReducer: ProductProps;
   categoryReducer: CategoryProps;
+  likeReducer: LikeListDucksProps;
   interactionReducer: InteractionProps;
 }
 
@@ -30,10 +33,12 @@ export type Actions =
   | UserAction
   | ProductAction
   | CategoryAction
+  | LikeListAction
   | InteractionAction;
 
 export function* rootSaga(): Generator<AllEffect<ForkEffect<object>>> {
   yield all([
     fork(fetchProductSaga),
+    fork(fetchLikeProductDataSaga),
   ]);
 }

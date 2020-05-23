@@ -5,7 +5,9 @@ export interface ProductDataProps {
   salePrice: number;
   productImages: ProductImageProps[];
   productInfoProvidedNoticeView: ProductInfoProvidedNoticeViewProps;
+  modeDate: Date;
 }
+
 export interface ProductDetailProps {
   product: ProductDataProps;
 }
@@ -39,4 +41,27 @@ export interface ProductInfoProvidedNoticeViewProps {
 export interface ProductProps {
   products: ProductDataProps[];
   selectedProduct: ProductDataProps;
+}
+
+export interface LikeListDataProps {
+  clothLike: ProductDataProps[];
+  accessaryLike: ProductDataProps[];
+  beautyLike: ProductDataProps[];
+  digitalLike: ProductDataProps[];
+  interialLike: ProductDataProps[];
+  babyLike: ProductDataProps[];
+  footLike: ProductDataProps[];
+  sportLike: ProductDataProps[];
+  lifeLike: ProductDataProps[];
+  leisureLike: ProductDataProps[];
+  dutyFreeLike: ProductDataProps[];
+}
+
+export interface LikeListProductProps {
+  data: LikeListDataProps;
+}
+
+export interface LikeListDucksProps extends LikeListProductProps {
+  pageId: number;
+  isFetchTrue: boolean;
 }

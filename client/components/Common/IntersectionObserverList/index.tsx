@@ -1,28 +1,33 @@
 import React, { useRef, useState, FC } from 'react';
 import { useIntersectionObserver } from 'components/Common/IntersectionObserverList/hooks';
 import Loading from 'components/Common/IntersectionObserverList/Loading';
-import useStyles from 'components/Common/IntersectionObserverList/styles';
+import clsx from 'clsx';
+import useStyles from './styles';
 
 interface IntersectionObserverListProps {
   fetchApi: (page?: number) => Promise<void>;
+  className?: string;
 }
 
-const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
-  fetchApi,
-  children,
-}) => {
-  const root = useRef<HTMLDivElement>();
-  const target = useRef<HTMLDivElement>();
+const IntersectionObserverList: FC<IntersectionObserverListProps> = (
+    {
+      fetchApi,
+      children,
+      className,
+    },
+) => {
+  const root = useRef();
+  const target = useRef();
   const classes = useStyles();
 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
 
-  const loadItems: (_page: number) => Promise<void> = async (_page: number) => {
+  const loadItems = async (pageCount: number): Promise<void> => {
     if (loading) return;
 
     setLoading(true);
-    await fetchApi(_page);
+    await fetchApi(pageCount);
     setLoading(false);
   };
 
@@ -41,7 +46,7 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
   return (
     <React.Fragment>
       <div ref={root} className={classes.container}>
-        <div className={classes.wrapper}>{children}</div>
+        <div className={clsx(classes.wrapper, className)}>{children}</div>
       </div>
       {loading && <Loading />}
       <div ref={target} />

@@ -29,6 +29,7 @@ const useStyles = makeStyles({
     justifyContent: 'flex-start',
     display: 'flex',
     paddingTop: 12,
+    paddingBottom: 30,
   },
   productDetail: {
     paddingTop: 20,
@@ -39,6 +40,12 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: 'none',
+  },
+  image: {
+    marginTop: '3.5rem',
+  },
+  shareButton: {
+    width: 200,
   },
 });
 
