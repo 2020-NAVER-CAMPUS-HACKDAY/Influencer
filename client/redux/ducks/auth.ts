@@ -2,19 +2,17 @@ import {
   createAction, createReducer, Reducer, ActionType,
 } from 'typesafe-actions';
 import produce from 'immer';
+import { User } from 'interfaces/user';
 
 // TODO(daeun): Remove sample code
 const SET_USER = 'auth/SET_USER' as const;
 
 export interface UserProps {
-  user: {
-    id: string;
-    thumbnail: string;
-  };
+  user: User;
 }
 
 export interface UserMethods {
-  setUser: (user: {id: string; thumbnail: string}) => void;
+  setUser: (user: User) => void;
 }
 
 export const AuthActions = {

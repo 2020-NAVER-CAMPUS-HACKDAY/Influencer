@@ -1,5 +1,12 @@
 import React, { FC } from 'react';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  productActions,
+  ProductActionsProps,
+  ProductProps,
+} from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
 import { PayloadAction } from 'typesafe-actions';
 import { connect } from 'react-redux';
@@ -12,7 +19,7 @@ interface DefaultProps extends LikeListDucksProps, LikeListActionsProps {
 }
 
 const Home: FC<DefaultProps> = (props) => {
-  const { fetchLikeProduct } = props;
+  const { fetchAndAddProduct, getProductForId } = props;
 
   return (
     <MainHeader>

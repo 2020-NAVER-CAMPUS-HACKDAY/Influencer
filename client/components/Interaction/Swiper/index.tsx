@@ -6,7 +6,9 @@ import SwiperItem from 'components/Interaction/SwiperItem';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
-  const { products } = props;
+  const {
+    products, setPage, page, isLoading, setIsLoading,
+  } = props;
 
   function handleInteraction(productId: string): string {
     // TODO(seogeurim) : handle Interaction Log Data
@@ -18,6 +20,15 @@ const Swiper: FC<SwiperProps> = (props) => {
     return productId;
   }
 
+  function handlePage(cardIndex: number): void {
+    if (cardIndex % 10 === 7) {
+      setIsLoading(true);
+    }
+    if (cardIndex % 10 === 9) {
+      setPage();
+    }
+  }
+
   function renderCards(): object {
     return products.map((product, index) => (
       <Card
@@ -25,8 +36,9 @@ const Swiper: FC<SwiperProps> = (props) => {
         productId={product.productId}
         onSwipeRight={handleInteraction}
         onDoubleTap={handleLike}
+        onSwiped={handlePage}
         cardIndex={index}
-        totalCard={10}
+        totalCard={page * 10}
       >
         <SwiperItem
           productData={product}
@@ -38,10 +50,15 @@ const Swiper: FC<SwiperProps> = (props) => {
   return (
     <div className={classes.containerWrapper}>
       <div className={classes.container}>
-        {renderCards()}
+        {products && renderCards()}
         <div className={classes.card_end}>
           <span>더이상 표시할 카드가 없습니다.</span>
         </div>
+        {isLoading && (
+          <div className={classes.card_end}>
+            <span>로딩 중</span>
+          </div>
+        )}
       </div>
     </div>
   );

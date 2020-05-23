@@ -46,4 +46,23 @@ export default (routes: Router) => {
       }
     }
   );
+
+  categoryRoute.get(
+    '/children/:id',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      logger.debug('GET /categories endpoint with params: %o', req.params);
+
+      try {
+        const categoryServiceInstance = Container.get(CategoryService);
+        const { categories } = await categoryServiceInstance.getChildren(
+          req.params.id as string
+        );
+        return res.status(200).json({ categories });
+      } catch (e) {
+        logger.error('🔥 error: %o', e);
+        return next(e);
+      }
+    }
+  );
 };

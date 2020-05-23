@@ -49,11 +49,38 @@ export default class CategoryService {
         if (!categoryRecord) {
           throw new NotFoundError('Category is not exist');
         }
-        const category = categoryRecord.toObject();
+        // TODO(jominjimail): is there anything better than this
+        let category = categoryRecord.toObject();
+        category['categoryId'] = category['_id'];
+        delete category['_id'];
+
         return { category };
       } catch (e) {
         this.logger.error(e);
         throw e;
       }
     }
+
+    public async getChildren(id: string): Promise<{ categories: ICategory[] }> {
+          try {
+            const categoryRecords = await this.categoryModel
+              .find({ 'value.parentCategoryId': id })
+              .limit(10);
+
+            if (!categoryRecords) {
+              throw new NotFoundError('Category is not exist');
+            }
+
+            const categories = categoryRecords
+              .map((record) => record.toObject())
+              .map((category) => ({
+                categoryId: category._id,
+                value: category.value,
+              }));
+            return { categories };
+          } catch (e) {
+            this.logger.error(e);
+            throw e;
+          }
+        }
 }
