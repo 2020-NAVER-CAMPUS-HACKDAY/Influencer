@@ -7,7 +7,7 @@ import useStyles from './styles';
 interface IntersectionObserverListProps {
   fetchApi: () => Promise<void | Error>;
   className?: string;
-  firstFetchingTrue: boolean;
+  firstFetchingTrue?: boolean;
   isFetchTrue: boolean;
 }
 
@@ -28,7 +28,7 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = (
 
   const loadItems = async (): Promise<void> => {
     if (loading) return;
-    if (isFetchTrue && firstFetchingTrue) {
+    if (isFetchTrue && (firstFetchingTrue === undefined || firstFetchingTrue)) {
       setLoading(true);
       await fetchApi();
       setLoading(false);
