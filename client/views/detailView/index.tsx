@@ -23,10 +23,11 @@ const DetailView: FC<ProductProps> = (props) => {
     if (searchProductItem === undefined && ProductID !== undefined) {
       const getProductDataForId = async (): Promise<void> => {
         await getProductDataForProductId(ProductID)
-          .then((response: AxiosResponse<ProductDetailProps>) => {
-            setDetailData(response.data.product);
-          })
-          .catch((error) => error);
+          .then(
+            (response: AxiosResponse<
+            ProductDetailProps
+            >) => setDetailData(response.data.product),
+          );
       };
       getProductDataForId();
     } else {

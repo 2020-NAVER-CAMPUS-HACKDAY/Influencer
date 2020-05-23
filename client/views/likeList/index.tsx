@@ -1,5 +1,5 @@
 import React, {
-  FC, useState, useEffect, useCallback, useRef,
+  FC, useState, useEffect, useCallback,
 } from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';

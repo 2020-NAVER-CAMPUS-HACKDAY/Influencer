@@ -64,7 +64,7 @@ export const PRODUCT_LIMIT = '200';
 
 export const NOT_FOUND = 404;
 
-export const LIKE_LIST_API = '/api/users/likes/';
+export const LIKE_LIST_API = 'users/likes/';
 export const GRID_VIEW = 'grid-view';
 export const CategoryString = [
   'clothLike',

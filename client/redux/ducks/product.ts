@@ -13,7 +13,7 @@ import {
 } from 'redux-saga/effects';
 import { cloneDeep } from 'lodash';
 import { AxiosResponse } from 'axios';
-import { ProductDataProps, ProductProps } from './Interface';
+import { Product } from 'interfaces/product';
 
 const FETCH_AND_ADD_PRODUCT_REQUEST = 'product/FETCH_AND_ADD_PRODUCT_REQUEST' as const;
 const FETCH_AND_ADD_PRODUCT_SUCCESS = 'product/FETCH_AND_ADD_PRODUCT_SUCCESS' as const;
