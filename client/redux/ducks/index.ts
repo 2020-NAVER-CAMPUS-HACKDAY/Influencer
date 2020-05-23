@@ -7,16 +7,18 @@ import {
   ProductAction,
   fetchProductSaga,
 } from 'redux/ducks/product';
-import { interactionReducer, InteractionAction, InteractionProps } from 'redux/ducks/interaction';
+import {
+  interactionReducer, InteractionAction, InteractionProps,
+} from 'redux/ducks/interaction';
 import { authReducer, UserProps, UserAction } from 'redux/ducks/auth';
 import { categoryReducer, CategoryAction, CategoryProps } from 'redux/ducks/category';
-import { likeReducer, fetchLikeProductDataSaga, LikeListAction } from 'redux/ducks/likeList';
-import { ProductProps, LikeListDucksProps } from './Interface';
-import { fetchLikeProductDataSaga, LikeListAction, likeReducer } from 'redux/ducks/likeList';
-import { interactionReducer, InteractionAction, InteractionProps } from 'redux/ducks/interaction';
-import { authReducer, UserProps, UserAction } from './auth';
-import { categoryReducer, CategoryAction, CategoryProps } from './category';
-import { ProductProps, LikeListDucksProps } from './Interface';
+import {
+  fetchLikeProductDataSaga, LikeListAction, likeReducer,
+} from 'redux/ducks/likeList';
+import {
+  ProductProps, LikeListDucksProps,
+} from './Interface';
+
 
 export const rootReducer = combineReducers({
   authReducer,
