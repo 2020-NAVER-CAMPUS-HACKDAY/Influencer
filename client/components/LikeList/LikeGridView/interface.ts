@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductDataProps } from '../../../redux/ducks/Interface';
 
 export interface ImageItemProps {
   imageSize: ImageSizeProps;
@@ -24,6 +25,13 @@ export interface LikeViewProps {
 }
 export interface LikeGridViewProps extends LikeViewProps {
   itemArray: LikeGridViewProductProps;
+}
+
+export interface LikeListProps extends LikeListCategoryProps {
+  likeList: ProductDataProps[];
+  fetchAPI: (page?: number) => Promise<void>;
+  firstFetchingTrue: boolean;
+  isFetchTrue: boolean;
 }
 
 export interface LikeGridViewItemProps {

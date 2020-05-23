@@ -1,58 +1,68 @@
 import React, {
-  FC, useState, useEffect, useCallback, useRef,
+  FC, useState, useEffect,
 } from 'react';
 import LikeListHeader from 'components/LikeList/LikeListHeader';
 import LikeListBar from 'components/LikeList/LikeListBar';
 import LikeListComponent from 'components/LikeList';
 import TopButton from 'components/Common/TopButton';
 import LikeGridView from 'components/LikeList/LikeGridView';
-import { FetchGridViewProps, LikeGridViewProductProps } from 'components/LikeList/LikeGridView/interface';
-import { Category, CategoryString, LikePropsInitialValue } from 'constant';
-import { LikeListDucksProps, LikeListProductProps, LikeListDataProps } from 'redux/ducks/Interface';
+import {
+  FetchGridViewProps,
+  LikeGridViewProductProps,
+} from 'components/LikeList/LikeGridView/interface';
+import {
+  Category, CategoryString, LikePropsInitialValue, CategoryValue,
+} from 'constant';
+import {
+  LikeListDucksProps, LikeListProductProps, LikeListDataProps, ProductDataProps,
+} from 'redux/ducks/Interface';
 import { getLikeListData, getLikeListDataVerGridView } from 'network/productApi';
 import { AxiosResponse } from 'axios';
 import { likeListActions } from 'redux/ducks/likeList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import IntersectionObserverList from 'components/Common/IntersectionObserverList';
 import { Types } from '../../redux/ducks';
 
 const LikeList: FC = () => {
   const [listClicked, setListClicked] = useState<boolean>(true);
   const [gridClicked, setGridClicked] = useState<boolean>(false);
   const [clickedCategory, setClickedCategory] = useState<string>('');
+  const [isFetchTrue, setIsFetchTrue] = useState<boolean>(true);
   const [
     likeDataResponse,
     setLikeDataResponse,
   ] = useState<LikeListDataProps>(LikePropsInitialValue);
+  const [likeDataArray, setLikeDataArray] = useState<ProductDataProps[]>();
   const [
     gridViewResponse,
     setGridViewResponse,
   ] = useState<LikeGridViewProductProps>(LikePropsInitialValue);
   const [likeCategories, setLikeCategories] = useState<string[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [firstFetchingTrue, setFirstFetchingTrue] = useState<boolean>(false);
+  const [firstCategoryFetchFalse, setFirstCategoryFetchFalse] = useState<boolean>(true);
 
-  const fetchMoreLikeListData = useCallback(async (page): Promise<void> => {
+  const fetchMoreLikeListData = async (): Promise<void> => {
     await getLikeListData(page)
       .then((response: AxiosResponse<LikeListProductProps>) => {
-        CategoryString.forEach((category) => {
-          if (response.data.data[category].length > 0) {
-            setLikeDataResponse(likeDataResponse[category].concat(response.data.data[category]));
-          }
-        });
-      })
-      .catch((e) => e);
-  }, [likeDataResponse]);
+        setLikeDataArray(likeDataArray
+          .concat(response.data.data[CategoryValue[clickedCategory]]));
+        setPage(page + 1);
+      }).catch(() => setIsFetchTrue(false));
+  };
 
   useEffect(() => {
     const fetchLikeListData = async (): Promise<void> => {
       await getLikeListData(0)
         .then((response: AxiosResponse<LikeListProductProps>) => {
           setLikeDataResponse(response.data.data);
+          setFirstFetchingTrue(true);
+          setIsFetchTrue(true);
         })
         .catch((error) => error);
     };
     fetchLikeListData();
-  }, []);
+  }, [clickedCategory]);
 
   useEffect(() => {
     const categoryArrayAndGarbage = CategoryString.map(
@@ -60,15 +70,23 @@ const LikeList: FC = () => {
         ? category
         : 0),
     );
-    setLikeCategories(categoryArrayAndGarbage.filter(
-      (item) => typeof item === 'string',
-    ).map((category: string) => category));
-  }, [setLikeCategories, likeDataResponse]);
+    if (firstCategoryFetchFalse) {
+      setLikeCategories(categoryArrayAndGarbage.filter(
+        (item) => typeof item === 'string',
+      ).map((category: string) => category));
+    }
+  }, [setLikeCategories, likeDataResponse, firstCategoryFetchFalse]);
 
   useEffect(() => {
-    setClickedCategory(Category[likeCategories[0]]);
-  }, [likeCategories]);
+    if (Category[likeCategories[0]] !== undefined && firstCategoryFetchFalse) {
+      setClickedCategory(Category[likeCategories[0]]);
+      setFirstCategoryFetchFalse(false);
+    }
+  }, [likeCategories, firstCategoryFetchFalse]);
 
+  useEffect(() => {
+    setLikeDataArray(likeDataResponse[CategoryValue[clickedCategory]]);
+  }, [clickedCategory, likeDataResponse]);
 
   const handleListClicked = (): void => {
     if (!listClicked && gridClicked) {
@@ -100,30 +118,32 @@ const LikeList: FC = () => {
   };
 
   return (
+
     <>
-      <IntersectionObserverList fetchApi={fetchMoreLikeListData}>
-        <LikeListHeader/>
-        <LikeListBar
-          listClicked={listClicked}
-          gridClicked={gridClicked}
-          handleListClicked={handleListClicked}
-          handleGridClicked={handleGridClicked}
-        />
-        {
-          listClicked && <LikeListComponent
-            likeDataResponse={likeDataResponse}
-            handleItemClick={handleCategoryClick}
-            clickedCategory={clickedCategory}
-            categoryArray={likeCategories}
-          />
-        }
-        {gridClicked && <LikeGridView
+      <LikeListHeader/>
+      <LikeListBar
+        listClicked={listClicked}
+        gridClicked={gridClicked}
+        handleListClicked={handleListClicked}
+        handleGridClicked={handleGridClicked}
+      />
+      {
+        listClicked && <LikeListComponent
+          isFetchTrue={isFetchTrue}
+          firstFetchingTrue={firstFetchingTrue}
+          likeList={likeDataArray}
+          handleItemClick={handleCategoryClick}
+          clickedCategory={clickedCategory}
           categoryArray={likeCategories}
-          itemArray={gridViewResponse}
-          handleItemClick={handleListItemClick}
+          fetchAPI={fetchMoreLikeListData}
         />
-        }
-      </IntersectionObserverList>
+      }
+      {gridClicked && <LikeGridView
+        categoryArray={likeCategories}
+        itemArray={gridViewResponse}
+        handleItemClick={handleListItemClick}
+      />
+      }
       <TopButton/>
     </>
   );
