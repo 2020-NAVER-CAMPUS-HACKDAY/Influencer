@@ -3,6 +3,7 @@ import { Container } from 'typedi';
 import winston from 'winston';
 import UserService from '../../../services/user';
 import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
+import config from '../../../config';
 
 const userRoute = Router();
 
@@ -23,6 +24,25 @@ export default (routes: Router) => {
         const result = await userServiceInstance.clickLog(Number(category3Id[category3Id.length - 1]));
 
         res.status(sc.OK).json(au.successTrue(rm.CLICK_LOG_SUCCESS, result));
+
+      } catch (e) {
+        logger.error(`🔥 error: ${e}`);
+        return next(e);
+      }
+    }
+  );
+
+  userRoute.post(
+    '/prefer/:productNo',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const logger = Container.get('logger') as winston.Logger;
+      logger.debug(`POST /user like endpoint with params ${req.params.productNo}`);
+
+      try {
+        const userServiceInstance = Container.get(UserService);
+        const result = await userServiceInstance.addWeight(Number(req.params.productNo), config.clicklogWeight);
+
+        res.status(sc.OK).json(au.successTrue(rm.LIKE_SUCCESS, result));
 
       } catch (e) {
         logger.error(`🔥 error: ${e}`);

@@ -72,6 +72,8 @@ export const CATEGORY_API = 'categories/';
 export const CATEGORY_CHILDREN_API = 'children/';
 export const CATEGORY_LEVEL = '?level=';
 
+export const USER_API = 'users/';
+export const USER_PREFER_API = 'prefer/';
 
 export const PRODUCT_LIMIT = '200';
 
