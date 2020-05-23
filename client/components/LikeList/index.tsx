@@ -1,17 +1,21 @@
 import React, { FC } from 'react';
-import { LikeListCategoryProps } from 'components/LikeList/LikeGridView/interface';
-import { LikeListDataProps } from 'redux/ducks/Interface';
+import { LikeListProps } from 'components/LikeList/LikeGridView/interface';
 import { orderBy } from 'lodash';
 import LikeListItem from 'components/LikeList/LikeListItem';
 import LikeListCategory from 'components/LikeList/LikeListCategory';
-
-interface LikeListProps extends LikeListCategoryProps {
-  likeDataResponse: LikeListDataProps;
-}
+import useStyles from 'components/LikeList/LikeGridView/styles';
+import IntersectionObserverList from 'components/Common/IntersectionObserverList';
 
 const LikeListComponent: FC<LikeListProps> = (props) => {
+  const classes = useStyles();
   const {
-    categoryArray, clickedCategory, handleItemClick, likeDataResponse,
+    categoryArray,
+    clickedCategory,
+    handleItemClick,
+    likeList,
+    fetchAPI,
+    firstFetchingTrue,
+    isFetchTrue,
   } = props;
   return (
     <>
@@ -20,14 +24,17 @@ const LikeListComponent: FC<LikeListProps> = (props) => {
         clickedCategory={clickedCategory}
         handleItemClick={handleItemClick}
       />
-      {orderBy(categoryArray.map((category) => likeDataResponse[category])
-        .filter(
-          (likeCategoryObject) => likeCategoryObject[0]
-            .category.category1Name === clickedCategory,
-        ), ['modeDate'], ['desc'])
-        .map((likeDataArray) => likeDataArray
-          .map((likeItem) => <LikeListItem key={likeItem?.productNo} product={likeItem}/>))
-      }
+      <IntersectionObserverList isFetchTrue={isFetchTrue} className={classes.wrapper}
+        firstFetchingTrue={firstFetchingTrue}
+        fetchApi={fetchAPI}
+      >
+        {
+          orderBy(likeList, ['modeDate'], ['desc'])
+            .map((likeItem) => <LikeListItem
+              key={likeItem?.productNo}
+              product={likeItem}/>)
+        }
+      </IntersectionObserverList>
     </>
   );
 };
