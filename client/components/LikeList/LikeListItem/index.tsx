@@ -23,7 +23,12 @@ const LikeListItem: FC<ProductDetailProps> = (props) => {
   const price = addCommaStringFromThreeCntNum(salePrice);
 
   return (
-    <Box className={classes.root} onClick={() => Router.push('/detail/[productid]', `/detail/${productNo}`)} >
+    <Box className={classes.root}
+      onClick={(): Promise<boolean> => Router.push(
+        '/detail/[productid]',
+        `/detail/${productNo}`,
+      )}
+    >
       <img className={clsx(classes.spacing, classes.imageWrapper)}
         src={productImages[0].url}
         width={95}
