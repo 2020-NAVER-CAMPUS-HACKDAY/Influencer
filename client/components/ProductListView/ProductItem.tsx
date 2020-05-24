@@ -1,27 +1,40 @@
 import React, { FC } from 'react';
+import Router from 'next/router';
+import Heart from 'components/Common/Heart';
 import useStyles from 'components/ProductListView/styles';
+import { Product } from 'interfaces/product';
 
-interface ProductItemProps {
-  id: number;
-  price: number;
-  name: string;
-  category: number;
-  company: string;
-  imageUri: string;
-}
-
-const ProductItem: FC<ProductItemProps> = (props) => {
+const ProductItem: FC<Product> = (props) => {
   const classes = useStyles();
+
+  const cutName = (name: string) => {
+    return name.length > 17
+      ? `${name.split('').splice(0, 17).join('')} ...`
+      : name;
+  };
+  const routeDetailPage = (e): void => {
+    Router.push(`/detail/[productid]`, `/detail/${props.productNo}`);
+  };
 
   return (
     <article className={classes.card}>
-      <div className={classes.cardPhoto}>
-        <img className={classes.image} src={props.imageUri} />
+      <div className={classes.cardPhoto} onClick={routeDetailPage}>
+        <img
+          className={classes.image}
+          src={props.productImages && props.productImages[0].url}
+        />
       </div>
       <div className={classes.cardDesc}>
-        <h2 className={classes.name}>{props.name}</h2>
-        <div className={classes.company}>{props.company}</div>
-        <div className={classes.price}>{`${props.price}원`}</div>
+        <div className={classes.title}>
+          <div className={classes.name} onClick={routeDetailPage}>
+            {cutName(props.name)}
+          </div>
+          <Heart />
+        </div>
+        <div className={classes.priceWrapper}>
+          <div className={classes.price}>{props.salePrice}</div>
+          <div className={classes.unit}>원</div>
+        </div>
       </div>
     </article>
   );
