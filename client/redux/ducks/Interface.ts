@@ -39,8 +39,8 @@ export interface ProductInfoProvidedNoticeViewProps {
 }
 
 export interface ProductProps {
-  products: ProductDataProps[];
-  selectedProduct: ProductDataProps;
+  products?: ProductDataProps[];
+  selectedProduct?: ProductDataProps;
 }
 
 export interface LikeListDataProps {

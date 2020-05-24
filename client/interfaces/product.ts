@@ -27,8 +27,9 @@ interface ProductInfoProvidedNoticeView {
 export interface Product {
   productNo: number;
   name: string;
-  category: ProductCategory;
+  category?: ProductCategory;
   salePrice: number;
   productImages: ProductImage[];
-  productInfoProvidedNoticeView: ProductInfoProvidedNoticeView;
+  productInfoProvidedNoticeView?: ProductInfoProvidedNoticeView;
+  like: boolean;
 }
