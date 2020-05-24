@@ -32,4 +32,5 @@ export interface Product {
   productImages: ProductImage[];
   productInfoProvidedNoticeView?: ProductInfoProvidedNoticeView;
   like: boolean;
+  modeDate?: Date;
 }
