@@ -3,6 +3,7 @@ import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
+import { USER_API, USER_PREFER_API } from 'constant';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
@@ -10,9 +11,10 @@ const Swiper: FC<SwiperProps> = (props) => {
     products, setPage, page, isLoading, setIsLoading,
   } = props;
 
-  function handleInteraction(productId: string): string {
-    // TODO(seogeurim) : handle Interaction Log Data
-    return productId;
+  async function handleInteraction(productId: string): Promise<void> {
+    await fetch(`${process.env.SERVER_URL}${USER_API}${USER_PREFER_API}${productId}`, {
+      method: 'POST',
+    });
   }
 
   function handleLike(productId: string): string {
