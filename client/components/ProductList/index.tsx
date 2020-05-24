@@ -22,7 +22,7 @@ const ProductList: FC<ProductProps & ProductActionsProps> = (props) => {
   return (
     <IntersectionObserver fetchApi={fetchApi} isFetchTrue={isFetchTrue}>
       {props.products.map((el) => (
-        <ProductItem {...el} />
+        <ProductItem key={el.productNo} {...el} />
       ))}
     </IntersectionObserver>
   );

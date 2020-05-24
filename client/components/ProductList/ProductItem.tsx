@@ -7,13 +7,13 @@ import { Product } from 'interfaces/product';
 const ProductItem: FC<Product> = (props) => {
   const classes = useStyles();
 
-  const cutName = (name: string) => {
-    return name.length > 17
-      ? `${name.split('').splice(0, 17).join('')} ...`
-      : name;
+  const cutName = (name: string): string => {
+    const { length } = name;
+    return length > 17 ? `${name.split('').splice(0, 17).join('')} ...` : name;
   };
-  const routeDetailPage = (e): void => {
-    Router.push(`/detail/[productid]`, `/detail/${props.productNo}`);
+
+  const routeDetailPage = (): void => {
+    Router.push('/detail/[productid]', `/detail/${props.productNo}`);
   };
 
   return (
