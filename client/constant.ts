@@ -19,12 +19,25 @@ export const AppColor = {
 export const CONSTANT_TAG = 24;
 
 export const GridImageSize: GridViewImageSize = {
-  FULL_IMAGE: { width: 155, height: 155 },
-  VERTICAL_HALF_IMAGE: { width: 77, height: 155 },
-  HORIZONTAL_HALF_IMAGE: { width: 155, height: 77 },
-  QUARTER_IMAGE: { width: 77, height: 77 },
+  FULL_IMAGE: { width: 161, height: 161 },
+  VERTICAL_HALF_IMAGE: { width: 80, height: 161 },
+  HORIZONTAL_HALF_IMAGE: { width: 161, height: 80 },
+  QUARTER_IMAGE: { width: 80, height: 80 },
 };
 
+export const CategoryValue = {
+  패션의류: 'clothLike',
+  패션잡화: 'accessaryLike',
+  '화장품/미용': 'beautyLike',
+  '디지털/가전': 'digitalLike',
+  '가구/인테리어': 'interialLike',
+  '출산/육아': 'babyLike',
+  식품: 'footLike',
+  '스포츠/레저': 'sportLike',
+  '생활/건강': 'lifeLike',
+  '여가/생활편의': 'leisureLike',
+  면세점: 'dutyFreeLike',
+};
 
 export const Category = {
   clothLike: '패션의류',

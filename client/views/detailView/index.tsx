@@ -14,15 +14,16 @@ const DetailView: FC<ProductProps> = (props) => {
   const { products } = props;
   const [detailData, setDetailData] = useState<ProductDataProps>();
   const router = useRouter();
-  const { ProductID } = router.query;
+  const { productid } = router.query;
 
   useEffect(() => {
+    if (productid === undefined) return;
     const searchProductItem = products.find(
-      (product) => product.productNo.toString() === ProductID,
+      (product) => product.productNo.toString() === productid,
     );
-    if (searchProductItem === undefined && ProductID !== undefined) {
+    if (searchProductItem === undefined) {
       const getProductDataForId = async (): Promise<void> => {
-        await getProductDataForProductId(ProductID)
+        await getProductDataForProductId(productid)
           .then(
             (response: AxiosResponse<
             ProductDetailProps
@@ -33,7 +34,7 @@ const DetailView: FC<ProductProps> = (props) => {
     } else {
       setDetailData(searchProductItem);
     }
-  }, [ProductID, products]);
+  }, [productid, products]);
 
   if (detailData === undefined) return <div>{NOT_FOUND}</div>;
 
