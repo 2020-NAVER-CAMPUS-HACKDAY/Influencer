@@ -136,7 +136,7 @@ const LikeList: FC = () => {
           handleItemClick={handleCategoryClick}
           clickedCategory={clickedCategory}
           categoryArray={likeCategories}
-          fetchAPI={fetchMoreLikeListData}
+          fetchApi={fetchMoreLikeListData}
         />
       }
       {gridClicked && <LikeGridView

@@ -1,4 +1,5 @@
 import React from 'react';
+import { IntersectionObserverListProps } from 'components/Common/IntersectionObserverList';
 import { ProductDataProps } from '../../../redux/ducks/Interface';
 
 export interface ImageItemProps {
@@ -27,11 +28,8 @@ export interface LikeGridViewProps extends LikeViewProps {
   itemArray: LikeGridViewProductProps;
 }
 
-export interface LikeListProps extends LikeListCategoryProps {
+export interface LikeListProps extends LikeListCategoryProps, IntersectionObserverListProps {
   likeList: ProductDataProps[];
-  fetchAPI: (page?: number) => Promise<void>;
-  firstFetchingTrue: boolean;
-  isFetchTrue: boolean;
 }
 
 export interface LikeGridViewItemProps {
