@@ -55,10 +55,10 @@ export default class UserService {
     };
 
     const selectUser = ({
-      productNo,
-      productRecord,
-      weight,
-    }: any): Promise<any> => {
+                          productNo,
+                          productRecord,
+                          weight,
+                        }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         const userRecord = await this.userModel.findOne({ userName: config.personaName });
         if (!userRecord) {
@@ -69,11 +69,11 @@ export default class UserService {
     };
 
     const checkExist = ({
-      productNo,
-      productRecord,
-      userRecord,
-      weight,
-    }: any): Promise<any> => {
+                          productNo,
+                          productRecord,
+                          userRecord,
+                          weight,
+                        }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         let products = productRecord.toObject();
         let users = userRecord.toObject();

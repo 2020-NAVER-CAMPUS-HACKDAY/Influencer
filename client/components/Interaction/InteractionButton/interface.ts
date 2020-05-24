@@ -1,4 +1,4 @@
-import { Category } from 'views/interactionView/interactionDummyData';
+import { Category } from 'interfaces/category';
 
 interface InteractionButtonProps {
   category: Category;

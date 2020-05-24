@@ -1,42 +1,24 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  productActions,
-  ProductActionsProps,
-  ProductProps,
-} from 'redux/ducks/product';
 import MainHeader from 'components/Main/MainHeader';
-import { PayloadAction } from 'typesafe-actions';
+import { likeListActions } from '../../redux/ducks/likeList';
+import { LikeListDucksProps } from '../../redux/ducks/Interface';
+import { Types } from '../../redux/ducks';
 
-interface DefaultProps extends ProductProps, ProductActionsProps {
-  data: string;
-}
+const Home: FC = () => (
+  <MainHeader />
+);
 
-const Home: FC<DefaultProps> = (props) => {
-  const { fetchAndAddProduct, getProductForId } = props;
-
-  return (
-    <MainHeader>
-      <div onClick={(): PayloadAction<
-      'product/FETCH_AND_ADD_PRODUCT_REQUEST',
-      number
-      > => fetchAndAddProduct(1)}>hello</div>
-      <div onClick={(): PayloadAction<
-      'product/GET_PRODUCT_FOR_ID',
-      number
-      > => getProductForId(100003)}>hi</div>
-    </MainHeader>
-  );
-};
-
-export default connect<ProductProps, void>(
-  (state: ProductProps) => ({
-    products: state.products,
-    selectedProduct: state.selectedProduct,
+export default connect<LikeListDucksProps, void>(
+  (state: Types) => ({
+    data: state.likeReducer.data,
+    pageId: state.likeReducer.pageId,
+    isFetchTrue: state.likeReducer.isFetchTrue,
   }),
   (dispatch) => ({
-    fetchAndAddProduct: bindActionCreators(productActions.fetchAndAddProduct.request, dispatch),
-    getProductForId: bindActionCreators(productActions.getProductForId, dispatch),
+    fetchLikeProduct: bindActionCreators(likeListActions.fetchLikeProduct.request, dispatch),
+    setLikeProduct: bindActionCreators(likeListActions.setLikeProduct, dispatch),
+    setFetchFalse: bindActionCreators(likeListActions.setFetchFalse, dispatch),
   }),
 )(Home);

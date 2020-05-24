@@ -11,6 +11,7 @@ import * as ProductAPI from 'network/productApi';
 import {
   call, CallEffect, ForkEffect, put, PutEffect, takeEvery,
 } from 'redux-saga/effects';
+import { cloneDeep } from 'lodash';
 import { AxiosResponse } from 'axios';
 import { Product } from 'interfaces/product';
 
@@ -83,6 +84,6 @@ export const productReducer = createReducer(initialState)
         const selectedProduct = draft.products.find(
           (product) => product.productNo === action.payload,
         );
-        draft.selectedProduct = JSON.parse(JSON.stringify(selectedProduct));
+        draft.selectedProduct = cloneDeep(selectedProduct);
       },
     ));
