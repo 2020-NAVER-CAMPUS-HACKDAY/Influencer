@@ -4,8 +4,11 @@ import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
 import { IProductDTO } from '../../../interfaces/product';
-import { StatusCode as sc, ResponseMessage as rm, AuthUtil as au } from '../../../modules/util';
-
+import {
+  StatusCode as sc,
+  ResponseMessage as rm,
+  AuthUtil as au,
+} from '../../../modules/util';
 
 const productRoute = Router();
 
@@ -36,21 +39,25 @@ export default (routes: Router) => {
     '/category/:id',
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
-      logger.debug('GET /products endpoint with params: %o query: %o', req.params, req.query);
+      logger.debug(
+        'GET /products endpoint with params: %o query: %o',
+        req.params,
+        req.query,
+      );
 
       try {
         const productServiceInstance = Container.get(ProductService);
         const { products } = await productServiceInstance.listCategory(
           req.params.id as string,
           req.query.page as string,
-          req.query.limit as string
+          req.query.limit as string,
         );
         return res.status(200).json({ products });
       } catch (e) {
         logger.error('🔥 error: %o', e);
         return next(e);
       }
-    }
+    },
   );
 
   productRoute.get(
@@ -62,7 +69,7 @@ export default (routes: Router) => {
       try {
         const productServiceInstance = Container.get(ProductService);
         const { product } = await productServiceInstance.getProduct(
-          req.params.id as string,
+          (req.params.id as unknown) as number,
         );
         return res.status(200).json({ product });
       } catch (e) {
@@ -86,7 +93,7 @@ export default (routes: Router) => {
       try {
         const productServiceInstance = Container.get(ProductService);
         const { product } = await productServiceInstance.create(
-          req.body as IProductDTO
+          req.body as IProductDTO,
         );
         return res.status(201).json({ product });
       } catch (e) {

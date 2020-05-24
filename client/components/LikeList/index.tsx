@@ -13,7 +13,7 @@ const LikeListComponent: FC<LikeListProps> = (props) => {
     clickedCategory,
     handleItemClick,
     likeList,
-    fetchAPI,
+    fetchApi,
     firstFetchingTrue,
     isFetchTrue,
   } = props;
@@ -26,7 +26,7 @@ const LikeListComponent: FC<LikeListProps> = (props) => {
       />
       <IntersectionObserverList isFetchTrue={isFetchTrue} className={classes.wrapper}
         firstFetchingTrue={firstFetchingTrue}
-        fetchApi={fetchAPI}
+        fetchApi={fetchApi}
       >
         {
           orderBy(likeList, ['modeDate'], ['desc'])

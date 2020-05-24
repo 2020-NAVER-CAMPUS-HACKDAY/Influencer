@@ -4,8 +4,8 @@ import Loading from 'components/Common/IntersectionObserverList/Loading';
 import clsx from 'clsx';
 import useStyles from './styles';
 
-interface IntersectionObserverListProps {
-  fetchApi: () => Promise<void | Error>;
+export interface IntersectionObserverListProps {
+  fetchApi: () => Promise<void>;
   className?: string;
   firstFetchingTrue?: boolean;
   isFetchTrue: boolean;
