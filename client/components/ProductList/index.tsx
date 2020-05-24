@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import IntersectionObserver from 'components/Common/IntersectionObserverList';
-import ProductItem from 'components/ProductListView/ProductItem';
+import ProductItem from 'components/ProductList/ProductItem';
 import { getProductDataArray } from 'network/productApi';
 import { connect } from 'react-redux';
 import { productActions, ProductActionsProps } from '../../redux/ducks/product';
@@ -8,7 +8,7 @@ import { ProductProps } from '../../redux/ducks/Interface';
 import { Types } from '../../redux/ducks';
 import { bindActionCreators } from 'redux';
 
-const ProductListView: FC<ProductProps & ProductActionsProps> = (props) => {
+const ProductList: FC<ProductProps & ProductActionsProps> = (props) => {
   const [page, setPage] = useState<number>(1);
   const [isFetchTrue, setIsFetchTrue] = useState<boolean>(true);
 
@@ -35,4 +35,4 @@ export default connect<ProductProps, void>(
   (dispatch) => ({
     addProducts: bindActionCreators(productActions.addProducts, dispatch),
   }),
-)(ProductListView);
+)(ProductList);

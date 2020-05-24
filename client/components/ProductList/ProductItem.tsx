@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Router from 'next/router';
 import Heart from 'components/Common/Heart';
-import useStyles from 'components/ProductListView/styles';
+import useStyles from 'components/ProductList/styles';
 import { Product } from 'interfaces/product';
 
 const ProductItem: FC<Product> = (props) => {
