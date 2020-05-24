@@ -12,14 +12,20 @@ const LikeListCategory: FC<LikeListCategoryProps> = (props) => {
     <ul className={classes.root}>
       {
         categoryArray.map(
-          (categoryId) => (
-            <li onClick={handleItemClick} id={Category[categoryId]} key={categoryId}>
-              <Label className={classes.label}
-                key = {categoryId}
-                name={Category[categoryId]}
-                color={Category[categoryId] === clickedCategory ? AppColor.GREEN : AppColor.BLACK70}
-                fontSize={16}
-              /></li>),
+          (categoryId) => <li
+            onClick={handleItemClick}
+            id={categoryId}
+            key={categoryId}
+          >
+            <Label className={classes.label}
+              key = {categoryId}
+              name={Category[categoryId]}
+              color={Category[categoryId] === clickedCategory
+                ? AppColor.GREEN
+                : AppColor.BLACK70}
+              fontSize={16}
+            />
+          </li>,
         )}
     </ul>
   );

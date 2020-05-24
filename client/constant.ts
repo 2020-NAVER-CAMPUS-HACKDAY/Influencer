@@ -19,25 +19,25 @@ export const AppColor = {
 export const CONSTANT_TAG = 24;
 
 export const GridImageSize: GridViewImageSize = {
-  FULL_IMAGE: { width: 161, height: 161 },
-  VERTICAL_HALF_IMAGE: { width: 80, height: 161 },
-  HORIZONTAL_HALF_IMAGE: { width: 161, height: 80 },
-  QUARTER_IMAGE: { width: 80, height: 80 },
+  FULL_IMAGE: { width: 155, height: 155 },
+  VERTICAL_HALF_IMAGE: { width: 77, height: 155 },
+  HORIZONTAL_HALF_IMAGE: { width: 155, height: 77 },
+  QUARTER_IMAGE: { width: 77, height: 77 },
 };
 
 
 export const Category = {
-  50000000: '패션의류',
-  50000001: '패션잡화',
-  50000002: '화장품/미용',
-  50000003: '디지털/가전',
-  50000004: '가구/인테리어',
-  50000005: '출산/육아',
-  50000006: '식품',
-  50000007: '스포츠/레저',
-  50000008: '생활/건강',
-  50000009: '여가/생활편의',
-  50000010: '면세점',
+  clothLike: '패션의류',
+  accessaryLike: '패션잡화',
+  beautyLike: '화장품/미용',
+  digitalLike: '디지털/가전',
+  interialLike: '가구/인테리어',
+  babyLike: '출산/육아',
+  footLike: '식품',
+  sportLike: '스포츠/레저',
+  lifeLike: '생활/건강',
+  leisureLike: '여가/생활편의',
+  dutyFreeLike: '면세점',
 };
 
 export const SwipeAction = {
@@ -50,10 +50,48 @@ export const TITLE_ADD = '&title=';
 
 export const SHARE_TITLE = '상품';
 
-export const PRODUCT_PAGE_API = '/api/product/';
+export const PRODUCT_PAGE_API = 'products/';
+export const PRODUCT_CATEGORY = 'category/';
 export const PAGE_ADD = '?page=';
 export const LIMIT_ADD = '&limit=';
+
+export const CATEGORY_API = 'categories/';
+export const CATEGORY_CHILDREN_API = 'children/';
+export const CATEGORY_LEVEL = '?level=';
+
+export const USER_API = 'users/';
+export const USER_PREFER_API = 'prefer/';
 
 export const PRODUCT_LIMIT = '200';
 
 export const NOT_FOUND = 404;
+
+export const LIKE_LIST_API = 'users/likes/';
+export const GRID_VIEW = 'grid-view';
+export const CategoryString = [
+  'clothLike',
+  'accessaryLike',
+  'beautyLike',
+  'digitalLike',
+  'interialLike',
+  'babyLike',
+  'footLike',
+  'sportLike',
+  'lifeLike',
+  'leisureLike',
+  'dutyFreeLike',
+];
+
+export const LikePropsInitialValue = {
+  accessaryLike: [],
+  sportLike: [],
+  leisureLike: [],
+  clothLike: [],
+  beautyLike: [],
+  digitalLike: [],
+  interialLike: [],
+  babyLike: [],
+  footLike: [],
+  lifeLike: [],
+  dutyFreeLike: [],
+};

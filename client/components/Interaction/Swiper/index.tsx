@@ -3,19 +3,32 @@ import { SwiperProps } from 'components/Interaction/Swiper/interface';
 import useStyles from 'components/Interaction/Swiper/styles';
 import Card from 'components/Interaction/Swiper/Card';
 import SwiperItem from 'components/Interaction/SwiperItem';
+import { USER_API, USER_PREFER_API } from 'constant';
 
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
-  const { products } = props;
+  const {
+    products, setPage, page, isLoading, setIsLoading,
+  } = props;
 
-  function handleInteraction(productId: string): string {
-    // TODO(seogeurim) : handle Interaction Log Data
-    return productId;
+  async function handleInteraction(productId: string): Promise<void> {
+    await fetch(`${process.env.SERVER_URL}${USER_API}${USER_PREFER_API}${productId}`, {
+      method: 'POST',
+    });
   }
 
   function handleLike(productId: string): string {
     // TODO(seogeurim) : handle Like Data
     return productId;
+  }
+
+  function handlePage(cardIndex: number): void {
+    if (cardIndex % 10 === 7) {
+      setIsLoading(true);
+    }
+    if (cardIndex % 10 === 9) {
+      setPage();
+    }
   }
 
   function renderCards(): object {
@@ -25,8 +38,9 @@ const Swiper: FC<SwiperProps> = (props) => {
         productId={product.productId}
         onSwipeRight={handleInteraction}
         onDoubleTap={handleLike}
+        onSwiped={handlePage}
         cardIndex={index}
-        totalCard={10}
+        totalCard={page * 10}
       >
         <SwiperItem
           productData={product}
@@ -38,10 +52,15 @@ const Swiper: FC<SwiperProps> = (props) => {
   return (
     <div className={classes.containerWrapper}>
       <div className={classes.container}>
-        {renderCards()}
+        {products && renderCards()}
         <div className={classes.card_end}>
           <span>더이상 표시할 카드가 없습니다.</span>
         </div>
+        {isLoading && (
+          <div className={classes.card_end}>
+            <span>로딩 중</span>
+          </div>
+        )}
       </div>
     </div>
   );

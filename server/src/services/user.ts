@@ -52,14 +52,12 @@ export default class UserService {
     };
 
     const selectUser = ({
-      productNo,
-      productRecord,
-      weight,
-    }: any): Promise<any> => {
+                          productNo,
+                          productRecord,
+                          weight,
+                        }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
-        const userRecord = await this.userModel.findOne({
-          userName: config.personaName,
-        });
+        const userRecord = await this.userModel.findOne({ userName: config.personaName });
         if (!userRecord) {
           reject('User is not exist');
         }
@@ -68,18 +66,17 @@ export default class UserService {
     };
 
     const checkExist = ({
-      productNo,
-      productRecord,
-      userRecord,
-      weight,
-    }: any): Promise<any> => {
+                          productNo,
+                          productRecord,
+                          userRecord,
+                          weight,
+                        }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         let products = productRecord.toObject();
         let users = userRecord.toObject();
 
         const idx = users.prefer.findIndex((p: any, i: any) => {
-          p.productNo === productNo;
-          return i;
+          if (p.productNo === productNo) return i;
         });
 
         resolve({ userRecord, products, users, idx, weight });
@@ -110,9 +107,7 @@ export default class UserService {
       if (users.prefer[idx].rating + weight <= 5) {
         users.prefer[idx].rating += weight;
 
-        const result = await userRecord.update({
-          prefer: users.prefer,
-        });
+        const result = await userRecord.update({ prefer: users.prefer });
         return result;
       }
 
@@ -120,6 +115,7 @@ export default class UserService {
       const result = await userRecord.update({
         prefer: users.prefer,
       });
+
       return result;
     };
 

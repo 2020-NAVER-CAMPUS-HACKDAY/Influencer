@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   content: {
     backgroundColor: AppColor.WHITE,
     paddingTop: 10,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingBottom: 20,
   },
   images: {
@@ -24,8 +24,9 @@ const useStyles = makeStyles({
     overflow: 'hidden',
     marginTop: 25,
     lineHeight: '1px',
-    minHeight: 160,
+    minHeight: 162,
     maxWidth: 162,
+    minWidth: 162,
   },
   marginLeft: {
     marginLeft: 10,
@@ -36,7 +37,9 @@ const useStyles = makeStyles({
   },
   countLabel: {
     fontSize: 13,
-
+  },
+  wrapper: {
+    margin: '0 !important',
   },
 });
 

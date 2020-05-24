@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/productInterface';
+import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/Interface';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
@@ -20,31 +20,29 @@ const DetailView: FC<ProductProps> = (props) => {
     const searchProductItem = products.find(
       (product) => product.productNo.toString() === ProductID,
     );
-    if (searchProductItem === undefined) {
+    if (searchProductItem === undefined && ProductID !== undefined) {
       const getProductDataForId = async (): Promise<void> => {
         await getProductDataForProductId(ProductID)
-          .then((response: AxiosResponse<ProductDetailProps>) => {
-            setDetailData(response.data.product);
-          })
-          .catch((error) => error);
+          .then(
+            (response: AxiosResponse<
+            ProductDetailProps
+            >) => setDetailData(response.data.product),
+          );
       };
       getProductDataForId();
     } else {
       setDetailData(searchProductItem);
     }
-  }, [products, setDetailData, ProductID]);
+  }, [ProductID, products]);
 
   if (detailData === undefined) return <div>{NOT_FOUND}</div>;
 
   return (
     <>
       <DetailHeader productName={detailData.name}/>
-      <img
-        src={detailData.productImages[0].url}
-        width={'100%'}
-        height={detailData.productImages[0].height}
-      />
       <DetailProductInfo
+        imageURL={detailData.productImages[0].url}
+        imageHeight={detailData.productImages[0].height}
         id={detailData.productNo.toString()}
         name={detailData.name}
         price={addCommaStringFromThreeCntNum(detailData.salePrice)}

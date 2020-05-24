@@ -5,26 +5,25 @@ import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import SVGButton from 'components/Common/SVGButton';
-import Delete from 'svgs/Delete';
-import { LikeListItemProps } from 'components/LikeList/LikeListItem/interface';
+import { ProductDetailProps } from 'redux/ducks/Interface';
 
-const LikeListItem: FC<LikeListItemProps> = (props) => {
+const LikeListItem: FC<ProductDetailProps> = (props) => {
   const classes = useStyles();
   const {
-    imageLink,
-    productName,
-    productCompany,
-    productPrice,
     category,
-  } = props.item;
+    productInfoProvidedNoticeView,
+    productImages,
+    name,
+    salePrice,
 
-  const price = addCommaStringFromThreeCntNum(productPrice);
+  } = props.product;
+
+  const price = addCommaStringFromThreeCntNum(salePrice);
 
   return (
     <Box className={classes.root}>
       <img className={clsx(classes.spacing, classes.imageWrapper)}
-        src={imageLink}
+        src={productImages[0].url}
         width={95}
         height={95}
       />
@@ -32,7 +31,7 @@ const LikeListItem: FC<LikeListItemProps> = (props) => {
         <Label className={clsx(classes.productText, classes.text)}
           fontSize={18}
           color={AppColor.BLACK}
-          name={productName}
+          name={name}
         />
         <Label className={clsx(classes.productPrice, classes.text)}
           fontSize={18}
@@ -42,17 +41,14 @@ const LikeListItem: FC<LikeListItemProps> = (props) => {
         <Label className={classes.text}
           fontSize={13}
           color={AppColor.BLACK70}
-          name={productCompany}
+          name={productInfoProvidedNoticeView?.제조국 ?? '비공개'}
         />
         <Label className={classes.text}
           fontSize={16}
           color={AppColor.BLACK70}
-          name={category.toString()}
+          name={category.category1Name}
         />
       </Box>
-      <SVGButton className={classes.columnDirection}>
-        <Delete />
-      </SVGButton>
     </Box>
   );
 };
