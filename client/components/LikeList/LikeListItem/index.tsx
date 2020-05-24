@@ -6,10 +6,12 @@ import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 import { ProductDetailProps } from 'redux/ducks/Interface';
+import Router from 'next/router';
 
 const LikeListItem: FC<ProductDetailProps> = (props) => {
   const classes = useStyles();
   const {
+    productNo,
     category,
     productInfoProvidedNoticeView,
     productImages,
@@ -21,7 +23,7 @@ const LikeListItem: FC<ProductDetailProps> = (props) => {
   const price = addCommaStringFromThreeCntNum(salePrice);
 
   return (
-    <Box className={classes.root}>
+    <Box className={classes.root} onClick={() => Router.push('/detail/[productid]', `/detail/${productNo}`)} >
       <img className={clsx(classes.spacing, classes.imageWrapper)}
         src={productImages[0].url}
         width={95}
