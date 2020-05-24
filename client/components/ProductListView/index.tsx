@@ -1,29 +1,38 @@
-import React, { FC } from 'react';
-import InfinityList from 'components/Common/InfinityList';
+import React, { FC, useState } from 'react';
+import IntersectionObserver from 'components/Common/IntersectionObserverList';
 import ProductItem from 'components/ProductListView/ProductItem';
+import { getProductDataArray } from 'network/productApi';
+import { connect } from 'react-redux';
+import { productActions, ProductActionsProps } from '../../redux/ducks/product';
+import { ProductProps } from '../../redux/ducks/Interface';
+import { Types } from '../../redux/ducks';
+import { bindActionCreators } from 'redux';
 
-const fakeFetch: () => Promise<object[]> = () => {
-  const imageNums = new Array(30)
-    .fill(null)
-    .map(() => (1 + Math.random() * 59).toFixed(0));
+const ProductListView: FC<ProductProps & ProductActionsProps> = (props) => {
+  const [page, setPage] = useState<number>(1);
+  const [isFetchTrue, setIsFetchTrue] = useState<boolean>(true);
 
-  return new Promise((res) => {
-    const fakeProducts = new Array(30).fill(null).map((el, i) => ({
-      imageUri: `https://naver.github.io/egjs-infinitegrid/assets/image/${imageNums[i]}.jpg`,
-      company: '꽃세상컴퍼니',
-      id: 1234563,
-      price: 3000,
-      name: '벚꽃나무1',
-      category: 50000001,
-      date: '2020-02-08T15:47:36.479+00:00',
-    }));
-
-    setTimeout(() => res(fakeProducts), 300);
-  });
+  const fetchApi = async () => {
+    const res = (await getProductDataArray(page)
+      .then((res) => res.data)
+      .catch(() => setIsFetchTrue(false))) as ProductProps;
+    props.addProducts(res.products);
+    setPage(page + 1);
+  };
+  return (
+    <IntersectionObserver fetchApi={fetchApi} isFetchTrue={isFetchTrue}>
+      {props.products.map((el) => (
+        <ProductItem {...el} />
+      ))}
+    </IntersectionObserver>
+  );
 };
 
-const ProductListView: FC = () => (
-  <InfinityList loadItems={fakeFetch} ItemComponent={ProductItem} />
-);
-
-export default ProductListView;
+export default connect<ProductProps, void>(
+  (state: Types) => ({
+    products: state.productReducer.products,
+  }),
+  (dispatch) => ({
+    addProducts: bindActionCreators(productActions.addProducts, dispatch),
+  }),
+)(ProductListView);
