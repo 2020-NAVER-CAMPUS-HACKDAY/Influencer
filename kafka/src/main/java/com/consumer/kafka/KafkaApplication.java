@@ -26,9 +26,9 @@ public class KafkaApplication {
 		configs.put("group.id", "click_log_group");
 		configs.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		configs.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-//		configs.put("enable.auto.commit", "true");
-//		configs.put("auto.commit.interval.ms", "1000");
-//		configs.put("session.timeout.ms", "30000");
+		configs.put("enable.auto.commit", "true");
+		configs.put("auto.commit.interval.ms", "1000");
+		configs.put("session.timeout.ms", "30000");
 
 		return configs;
 	}
@@ -49,11 +49,11 @@ public class KafkaApplication {
 							+ "\tkey =" + record.key()
 							+ "\tvalue =" + record.value());
 
-//					consumer.commitAsync(new OffsetCommitCallback() {
-//						@Override
-//						public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
-//						}
-//					});
+					consumer.commitAsync(new OffsetCommitCallback() {
+						@Override
+						public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
+						}
+					});
 				}
 			}
 
