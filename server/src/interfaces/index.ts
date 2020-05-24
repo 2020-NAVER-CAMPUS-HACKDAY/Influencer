@@ -1,9 +1,8 @@
 import {
   IProduct,
   IProductDTO,
-  IProductInputDTO,
   ProductVerGridView,
-  FetchProductForGridView
+  FetchProductForGridView,
 } from './product';
 
 import {
@@ -11,18 +10,19 @@ import {
   UserLike,
   UserLikeListVerGrid,
   Prefer,
-  RecommenderResult
+  RecommenderResult,
+  CategoryLike,
 } from './user';
 
 export {
   IProduct,
   IProductDTO,
-  IProductInputDTO,
   IUser,
   UserLike,
   UserLikeListVerGrid,
   ProductVerGridView,
   FetchProductForGridView,
   Prefer,
-  RecommenderResult
+  RecommenderResult,
+  CategoryLike,
 };

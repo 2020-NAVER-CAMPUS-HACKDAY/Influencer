@@ -14,7 +14,8 @@ export interface IProductDTO {
   name: String;
   salePrice: Number;
   productImages: Object;
-  productInfoProvidedNoticeView: Object;
+  productInfoProvidedNoticeView: any;
+  like?: Boolean;
 }
 
 export interface IProductforView {
