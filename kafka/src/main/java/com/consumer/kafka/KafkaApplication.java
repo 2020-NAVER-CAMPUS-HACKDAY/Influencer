@@ -13,28 +13,29 @@ import java.util.*;
 public class KafkaApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(KafkaApplication.class);
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws Exception{
 		SpringApplication.run(KafkaApplication.class, args);
+		subscribe();
 	}
 
 	private static Properties setConsumerProperty() {
 		Properties configs = new Properties();
 
-		configs.put("bootstrap.servers", "49.50.172.175:9092");
+		configs.put("bootstrap.servers", "http://49.50.166.62:9092");
 		configs.put("group.id", "click_log_group");
 		configs.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		configs.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-		configs.put("enable.auto.commit", "true");
-		configs.put("auto.commit.interval.ms", "1000");
-
-		configs.put("session.timeout.ms", "30000");
+//		configs.put("enable.auto.commit", "true");
+//		configs.put("auto.commit.interval.ms", "1000");
+//		configs.put("session.timeout.ms", "30000");
 
 		return configs;
 	}
 
 	public static void subscribe() throws Exception {
 		List<String> topicList = new ArrayList<>();
-		topicList.add("javainuse-topic");
+		topicList.add("click_log");
 
 		KafkaConsumer<String, Object> consumer = new KafkaConsumer<String, Object>(setConsumerProperty());
 		consumer.subscribe(topicList);
@@ -44,13 +45,15 @@ public class KafkaApplication {
 				ConsumerRecords<String, Object> records = consumer.poll(500);
 
 				for (ConsumerRecord<String, Object> record : records) {
-					log.info("offset = " + record.offset() + "\tkey =" + record.key() + "\tvalue =" + record.value());
+					log.info("offset = " + record.offset()
+							+ "\tkey =" + record.key()
+							+ "\tvalue =" + record.value());
 
-					consumer.commitAsync(new OffsetCommitCallback() {
-						@Override
-						public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
-						}
-					});
+//					consumer.commitAsync(new OffsetCommitCallback() {
+//						@Override
+//						public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
+//						}
+//					});
 				}
 			}
 
