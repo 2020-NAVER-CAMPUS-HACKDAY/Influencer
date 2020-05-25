@@ -70,6 +70,8 @@
 
 * Infra: [Docker](https://www.docker.com/), [NCloud](https://www.ncloud.com/)
 
+* Big-Data: [Kafka](https://kafka.apache.org/), [Elasticsearch](https://www.elastic.co/kr/elasticsearch)
+
 ---
 \
 \
@@ -133,6 +135,7 @@
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
 		"typescript": "^3.8.3"
+	}
 ```
 
 \
