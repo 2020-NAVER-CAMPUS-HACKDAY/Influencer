@@ -27,6 +27,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.0.1'
+	compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.3.2'
+
 }
 
 test {

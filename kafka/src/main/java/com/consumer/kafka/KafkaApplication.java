@@ -1,7 +1,19 @@
 package com.consumer.kafka;
 
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
+import org.apache.http.message.BasicHeader;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -64,19 +76,27 @@ public class KafkaApplication {
 					});
 				}
 
-				RestTemplate restTemplate = new RestTemplate();
+				Header[] headers = {
+						new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json"),
+						new BasicHeader("Role", "Create")
+				};
+
+				final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+				credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
+
+				RestClient restClient = RestClient
+						.builder(new HttpHost("http://49.50.172.175", 9200))
+						.setDefaultHeaders(headers)
+						.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+							public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder arg0) {
+								return arg0.setDefaultCredentialsProvider(credentialsProvider);
+							}
+						})
+						.build();
+
 				SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd");
 				Date day = new Date();
-
-				if (body.size() > 0) {
-				ResponseEntity<Void> response =
-						restTemplate.postForEntity("http://49.50.172.175:9200/influencer/click-log/" + format1.format(day), body, Void.class);
-				System.out.println(response);
-				System.out.println(body.toString());
-
-				if (response.getStatusCode() != HttpStatus.OK) System.out.println("Request Failed");
-				}
-
+				String uri = "http://49.50.172.175:9200/influencer/click-log/" + format1.format(day);
 
 			}
 
