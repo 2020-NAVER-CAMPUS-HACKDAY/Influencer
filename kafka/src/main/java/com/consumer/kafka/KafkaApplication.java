@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -37,14 +40,18 @@ public class KafkaApplication {
 		List<String> topicList = new ArrayList<>();
 		topicList.add("click_log");
 
-		KafkaConsumer<String, Object> consumer = new KafkaConsumer<String, Object>(setConsumerProperty());
+		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(setConsumerProperty());
 		consumer.subscribe(topicList);
 
 		try {
 			while (true) {
-				ConsumerRecords<String, Object> records = consumer.poll(500);
+				ConsumerRecords<String, String> records = consumer.poll(500);
 
-				for (ConsumerRecord<String, Object> record : records) {
+				String url = "49.50.172.175:9200/click-log";
+				Map<String, String> body = new HashMap<String, String>();
+
+				for (ConsumerRecord<String, String> record : records) {
+					body.put(record.key(), record.value());
 					log.info("offset = " + record.offset()
 							+ "\tkey =" + record.key()
 							+ "\tvalue =" + record.value());
@@ -55,6 +62,12 @@ public class KafkaApplication {
 						}
 					});
 				}
+
+				RestTemplate restTemplate = new RestTemplate();
+				ResponseEntity<Void> response = restTemplate.postForEntity(url, body, Void.class);
+
+				if (response.getStatusCode() == HttpStatus.OK) System.out.println("Request Successful");
+				else System.out.println("Request Failed");
 			}
 
 		} catch (Exception e) {

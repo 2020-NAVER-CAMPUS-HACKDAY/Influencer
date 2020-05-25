@@ -54,3 +54,9 @@ export interface UserLikeListVerGrid {
   category: string;
   updateDate: Date;
 }
+
+export interface UserLog {
+  userName: string;
+  type: string;
+  item: string;
+}

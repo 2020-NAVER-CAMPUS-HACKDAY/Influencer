@@ -12,6 +12,7 @@ import {
   Prefer,
   RecommenderResult,
   CategoryLike,
+  UserLog
 } from './user';
 
 export {
@@ -25,4 +26,5 @@ export {
   Prefer,
   RecommenderResult,
   CategoryLike,
+  UserLog,
 };
