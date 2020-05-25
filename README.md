@@ -5,7 +5,7 @@
 [![Typed with TypeScript](https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=555555&color=blue)](https://github.com/microsoft/TypeScript) <img src="https://camo.githubusercontent.com/567e52200713e0f0c05a5238d91e1d096292b338/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f65732d362b2d627269676874677265656e2e737667" width="45" title="ES6+">
 
 <div align="center" style="display:flex;">
-	<img src="./README_IMG/interaction.gif" width="40%"/>
+	<img src="./README_IMG/architecture.jpeg" width="60%"/>
 </div>
 
 <div align="center">

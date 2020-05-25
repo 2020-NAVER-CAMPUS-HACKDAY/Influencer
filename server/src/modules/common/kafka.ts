@@ -3,14 +3,13 @@ import { UserLog } from '../../interfaces';
 
 export default async (_id: string, contents: UserLog) => {
 
+  const id = new kafka.KeyedMessage('_id', _id);
   const userName = new kafka.KeyedMessage('userName', contents.userName);
-  const type = new kafka.KeyedMessage('type', contents.type);
   const item = new kafka.KeyedMessage('item', contents.item);
 
   const payloads = [{
     topic: 'click_log',
-    messages: [userName, type, item],
-    key: _id,
+    messages: [id, userName, item],
     timestamp: Date.now(),
   }]
 

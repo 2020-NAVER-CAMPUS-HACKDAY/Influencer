@@ -1,26 +1,13 @@
 package com.consumer.kafka;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.apache.http.message.BasicHeader;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -60,11 +47,10 @@ public class KafkaApplication {
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.poll(500);
 
-
-				Map<String, String> body = new HashMap<String, String>();
+				Map<String, String> map = new HashMap<String, String>();
 
 				for (ConsumerRecord<String, String> record : records) {
-					body.put(record.key(), record.value());
+					map.put(record.key(), record.value());
 					log.info("offset = " + record.offset()
 							+ "\tkey =" + record.key()
 							+ "\tvalue =" + record.value());
@@ -74,30 +60,35 @@ public class KafkaApplication {
 						public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
 						}
 					});
+
+					RestClient restClient = RestClient.builder(
+							new HttpHost("49.50.172.175", 9200, "http"),
+							new HttpHost("49.50.172.175", 9201, "http")).build();
+
+					Request request = new Request("POST", "/influencer/click-log");
+
+					SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String date = transFormat.format(new Date());
+
+					request.setJsonEntity("{\"updateDate\":\"" + date + "\","
+							+ "\"item\":\"" + map.get("item") + "\","
+							+ "\"userName\":\"" + map.get("userName") + "\","
+							+ "\"id\":\"" + map.get("_id") + "\"}");
+
+					Cancellable cancellable = restClient.performRequestAsync(
+							request,
+							new ResponseListener() {
+								@Override
+								public void onSuccess(Response response) {
+									System.out.println(response.toString());
+								}
+
+								@Override
+								public void onFailure(Exception exception) {
+									exception.printStackTrace();
+								}
+							});
 				}
-
-				Header[] headers = {
-						new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json"),
-						new BasicHeader("Role", "Create")
-				};
-
-				final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-				credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
-
-				RestClient restClient = RestClient
-						.builder(new HttpHost("http://49.50.172.175", 9200))
-						.setDefaultHeaders(headers)
-						.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
-							public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder arg0) {
-								return arg0.setDefaultCredentialsProvider(credentialsProvider);
-							}
-						})
-						.build();
-
-				SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd");
-				Date day = new Date();
-				String uri = "http://49.50.172.175:9200/influencer/click-log/" + format1.format(day);
-
 			}
 
 		} catch (Exception e) {

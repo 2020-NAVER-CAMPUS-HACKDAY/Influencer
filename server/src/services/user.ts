@@ -139,9 +139,16 @@ export default class UserService {
    */
   public async clickLog(productNo: number): Promise<any> {
     const userLog: UserLog = { userName: config.personaName, type: 'click_log', item: String(productNo) };
-    await kafka(config.personaId, userLog);
+    try {
+      const result = await this.addWeight(productNo, config.clicklogWeight);
+      await kafka(config.personaId, userLog);
 
-    return await this.addWeight(productNo, config.clicklogWeight);
+      return result;
+
+    } catch (e) {
+      this.logger.error(e);
+    }
+
   }
 
   /**
