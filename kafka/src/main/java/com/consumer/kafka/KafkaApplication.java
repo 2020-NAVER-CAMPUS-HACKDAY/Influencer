@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @SpringBootApplication
@@ -47,7 +48,7 @@ public class KafkaApplication {
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.poll(500);
 
-				String url = "49.50.172.175:9200/click-log";
+
 				Map<String, String> body = new HashMap<String, String>();
 
 				for (ConsumerRecord<String, String> record : records) {
@@ -64,10 +65,19 @@ public class KafkaApplication {
 				}
 
 				RestTemplate restTemplate = new RestTemplate();
-				ResponseEntity<Void> response = restTemplate.postForEntity(url, body, Void.class);
+				SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd");
+				Date day = new Date();
 
-				if (response.getStatusCode() == HttpStatus.OK) System.out.println("Request Successful");
-				else System.out.println("Request Failed");
+				if (body.size() > 0) {
+				ResponseEntity<Void> response =
+						restTemplate.postForEntity("http://49.50.172.175:9200/influencer/click-log/" + format1.format(day), body, Void.class);
+				System.out.println(response);
+				System.out.println(body.toString());
+
+				if (response.getStatusCode() != HttpStatus.OK) System.out.println("Request Failed");
+				}
+
+
 			}
 
 		} catch (Exception e) {
