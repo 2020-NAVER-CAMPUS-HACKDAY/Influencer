@@ -9,6 +9,7 @@ import {
   Prefer,
   IProductDTO,
   RecommenderResult,
+  UserLog,
 } from '../interfaces';
 import config from '../config';
 import {
@@ -17,6 +18,7 @@ import {
   NotFoundError,
 } from '../modules/errors';
 import ProductService from './product';
+import kafka from '../modules/common/kafka';
 const ContentBasedRecommender = require('content-based-recommender');
 
 @Service()
@@ -52,10 +54,10 @@ export default class UserService {
     };
 
     const selectUser = ({
-                          productNo,
-                          productRecord,
-                          weight,
-                        }: any): Promise<any> => {
+      productNo,
+      productRecord,
+      weight,
+    }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         const userRecord = await this.userModel.findOne({ userName: config.personaName });
         if (!userRecord) {
@@ -66,11 +68,11 @@ export default class UserService {
     };
 
     const checkExist = ({
-                          productNo,
-                          productRecord,
-                          userRecord,
-                          weight,
-                        }: any): Promise<any> => {
+      productNo,
+      productRecord,
+      userRecord,
+      weight,
+    }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
         let products = productRecord.toObject();
         let users = userRecord.toObject();
@@ -136,7 +138,17 @@ export default class UserService {
    * @param productNo
    */
   public async clickLog(productNo: number): Promise<any> {
-    return await this.addWeight(productNo, config.clicklogWeight);
+    const userLog: UserLog = { userName: config.personaName, type: 'click_log', item: String(productNo) };
+    try {
+      const result = await this.addWeight(productNo, config.clicklogWeight);
+      await kafka(config.personaId, userLog);
+
+      return result;
+
+    } catch (e) {
+      this.logger.error(e);
+    }
+
   }
 
   /**

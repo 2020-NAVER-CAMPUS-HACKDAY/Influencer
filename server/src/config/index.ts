@@ -16,8 +16,8 @@ export default {
   api: {
     prefix: '/api',
   },
-  personaId: process.env.PERSONA_ID,
-  personaName: process.env.PERSONA_NAME,
+  personaId: '5ebce39c2d549b3a722b7a0e',
+  personaName: '윤자이',
   pagination: 30,
   clicklogWeight: 0.3,
   likeWeight: 3.0

@@ -5,7 +5,7 @@
 [![Typed with TypeScript](https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=555555&color=blue)](https://github.com/microsoft/TypeScript) <img src="https://camo.githubusercontent.com/567e52200713e0f0c05a5238d91e1d096292b338/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f65732d362b2d627269676874677265656e2e737667" width="45" title="ES6+">
 
 <div align="center" style="display:flex;">
-	<img src="./README_IMG/interaction.gif" width="40%"/>
+	<img src="./README_IMG/architecture.jpeg" width="60%"/>
 </div>
 
 <div align="center">
@@ -23,7 +23,7 @@
 []()
 ## 🔖우리 조는 3주동안...
 
-### 500여개의 **commit**과 40여개의 **branch** 50여개의 **issue** 가 있었어요!
+#### 600여개의 **commit**과 40여개의 **branch** 50여개의 **issue** 가 있었어요!
 
 <div align="center" style="display:flex;">
 	<img src="./README_IMG/commit.png" width="70%"/>
@@ -47,6 +47,8 @@
 1. 유저가 선호하는 인터렉션 & 찜 추가 & 클릭로그를 수집
 2. 데이터에 맞게 선호하는 상품에 대한 가중치 점수를 부여
 3. 취향이 비슷한 유저를 검색 후 맞춤형 상품 추천 (collaborative filtering algorithm)
+4. Kafka로 log 데이터 전송
+5. Spring Boot Server (Kafka Consumer)에서 데이터를 로드해서 Elasticsearch에 Insert
 <div align="center" style="display:flex;">
 	<img src="./README_IMG/users.png" width="50%"/>
 </div>
@@ -69,6 +71,8 @@
 * Back-End: [Node.js](https://nodejs.org/ko/), [Express](https://expressjs.com/ko/), [MongoDB](https://www.mongodb.com/), [Swagger](https://swagger.io/)
 
 * Infra: [Docker](https://www.docker.com/), [NCloud](https://www.ncloud.com/)
+
+* Big-Data: [Kafka](https://kafka.apache.org/), [Elasticsearch](https://www.elastic.co/kr/elasticsearch)
 
 ---
 \
@@ -133,6 +137,7 @@
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
 		"typescript": "^3.8.3"
+	}
 ```
 
 \
