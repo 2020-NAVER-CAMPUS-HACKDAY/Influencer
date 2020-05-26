@@ -23,7 +23,7 @@
 []()
 ## 🔖우리 조는 3주동안...
 
-### 500여개의 **commit**과 40여개의 **branch** 50여개의 **issue** 가 있었어요!
+#### 600여개의 **commit**과 40여개의 **branch** 50여개의 **issue** 가 있었어요!
 
 <div align="center" style="display:flex;">
 	<img src="./README_IMG/commit.png" width="70%"/>
