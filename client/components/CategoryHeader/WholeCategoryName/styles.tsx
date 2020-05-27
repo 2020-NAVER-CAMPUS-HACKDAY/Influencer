@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   container: {
     background: AppColor.WHITE,
     display: 'flex',
-    height: '3rem',
+    height: '2.5rem',
     color: 'black',
   },
   inactive: {
@@ -13,6 +13,13 @@ const useStyles = makeStyles({
   },
   active: {
     color: AppColor.BLACK,
+  },
+  button: {
+    background: 'none',
+    border: 'none',
+    font: 'inherit',
+    cursor: 'pointer',
+    outline: 'inherit',
   },
 });
 
