@@ -54,7 +54,7 @@ export default class ProductService {
             product.productInfoProvidedNoticeView.basic,
         }));
 
-      products = await this.addLikeField(products);
+      await this.addLikeField(products);
 
       return { products };
     } catch (e) {
@@ -104,7 +104,7 @@ export default class ProductService {
         throw new NotFoundError('Product is not exist');
       }
       let products: IProductDTO[] = [productRecord.toObject()];
-      products = await this.addLikeField(products);
+      await this.addLikeField(products);
       const product = products[0];
 
       return {
@@ -125,7 +125,7 @@ export default class ProductService {
     }
   }
 
-  public async addLikeField(products: IProductDTO[]): Promise<IProductDTO[]> {
+  public async addLikeField(products: IProductDTO[]): Promise<void> {
     try {
       const userLikeRecord = await this.userModel
         .findOne({
@@ -146,12 +146,9 @@ export default class ProductService {
       );
       const likeSet = new Set<number>(likeList);
 
-      products = products.map((product) => {
+      for (const product of products) {
         product.like = likeSet.has(product.productNo as number) ? true : false;
-        return product as IProductDTO;
-      });
-
-      return products;
+      }
     } catch (e) {
       this.logger.error(e);
       throw e;
