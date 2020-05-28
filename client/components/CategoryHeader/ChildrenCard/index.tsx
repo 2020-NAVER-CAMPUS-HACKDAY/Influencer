@@ -1,18 +1,31 @@
 import React, { FC } from 'react';
 import useStyles from 'components/CategoryHeader/ChildrenCard/styles';
 import { Category } from 'interfaces/category';
+import Router from 'next/router';
+import clsx from 'clsx';
 
 interface ChildrenCardProps {
-  childreanData: Category[];
+  childrenData: Category[];
 }
 const ChildrenCard: FC<ChildrenCardProps> = (props) => {
-  const { childreanData } = props;
+  const { childrenData } = props;
   const classes = useStyles();
+
+  // TODO(jominjimail): duplicated function
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    const categoryId: string = event.currentTarget.value;
+    Router.push(`/tempCategoryDetail/${categoryId}`);
+  };
 
   return (
     <section className={classes.card}>
-      {childreanData.map((child) => (
-        <button key={child.categoryId} className={classes.cardContent}>
+      {childrenData.map((child) => (
+        <button
+          key={child.categoryId}
+          className={clsx(classes.button, classes.cardContent)}
+          onClick={setCategory}
+          value={child.categoryId}
+        >
           {child.value.categoryName}
         </button>
       ))}
