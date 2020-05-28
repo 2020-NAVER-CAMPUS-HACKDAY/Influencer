@@ -19,7 +19,7 @@ const LikeGridView: FC<LikeGridViewProps> = (props) => {
 
   const GridViewItem = categoryArray.map((category) => (
     <li className={classes.root} id={Category[category]} key={category} onClick={handleItemClick}>
-      <div className={clsx(classes.images)}>
+      <div id={Category[category]} className={clsx(classes.images)}>
         {itemArray[category]
           .map((item, index) => <ImageItem
             id={Category[category]}
