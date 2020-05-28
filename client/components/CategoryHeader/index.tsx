@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Category } from 'interfaces/category';
 import Router from 'next/router';
+import useStyles from 'components/CategoryHeader/styles';
+import { PublicImageCategoryPath, ImageArray, ImageExtension } from 'constant';
 
 interface CategoryHeaderProps {
   categoryData: Category[];
@@ -8,25 +10,33 @@ interface CategoryHeaderProps {
 
 const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
   const { categoryData } = props;
+  const classes = useStyles();
 
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
     Router.push(`/tempCategoryDetail/${categoryId}`);
   };
 
-  const categoryElements = categoryData.map((category) => {
+  const categoryElements = categoryData.map((category, index) => {
     const { categoryId } = category;
     return (
-      <button
-        key={categoryId}
-        onClick={setCategory}
-        value={categoryId}>{category.value.categoryName}
-      </button>
+      <div className={classes.content} key={categoryId}>
+        <button
+          className={classes.button}
+          onClick={setCategory}
+          value={categoryId}
+        >
+          <img src={`${PublicImageCategoryPath}${ImageArray[index]}${ImageExtension.PNG}`}
+            className={classes.image}
+          ></img>
+          <div>{category.value.categoryName}</div>
+        </button>
+      </div>
     );
   });
 
   return (
-    <div>
+    <div className={classes.container}>
       {categoryElements}
     </div>
   );
