@@ -155,6 +155,13 @@ export default class ProductService {
     }
   }
 
+  public changeImageUrl(products: IProductDTO[]): void {
+    for (const product of products) {
+      const index = product.productNo % 61;
+      product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
+    }
+  }
+
   public async create(productDTO: IProductDTO): Promise<{ product: IProduct }> {
     try {
       this.logger.silly('Creating user db record');
