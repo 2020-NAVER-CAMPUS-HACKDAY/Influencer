@@ -322,6 +322,7 @@ export default class UserService {
       }
 
       await this.productService.addLikeField(result);
+      this.productService.changeImageUrl(result);
 
       return result;
     } catch (e) {

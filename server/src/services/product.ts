@@ -55,6 +55,7 @@ export default class ProductService {
         }));
 
       await this.addLikeField(products);
+      this.changeImageUrl(products);
 
       return { products };
     } catch (e) {
@@ -82,12 +83,18 @@ export default class ProductService {
         .skip(skip);
       const products = productRecords
         .map((record) => record.toObject())
-        .map((product) => ({
-          productId: product._id,
-          productName: product.name,
-          productImages: product.productImages[0],
-          salePrice: Number(product.salePrice),
-        }));
+        .map((product) => {
+          const index = product.productNo % 61;
+          product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
+
+          return {
+            productId: product._id,
+            productName: product.name,
+            productImages: product.productImages[0],
+            salePrice: Number(product.salePrice),
+          };
+        });
+
       return { products };
     } catch (e) {
       this.logger.error(e);
@@ -105,6 +112,8 @@ export default class ProductService {
       }
       let products: IProductDTO[] = [productRecord.toObject()];
       await this.addLikeField(products);
+      this.changeImageUrl(products);
+
       const product = products[0];
 
       return {
