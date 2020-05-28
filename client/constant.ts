@@ -108,3 +108,23 @@ export const LikePropsInitialValue = {
   lifeLike: [],
   dutyFreeLike: [],
 };
+
+export const PublicImageCategoryPath = '/images/category/';
+
+export const ImageArray = [
+  'icon_all_108x108',
+  'icon_distilled_108x108',
+  'icon_etc_108x108',
+  'icon_fruit_liquor_108x108',
+  'icon_gift_set_108x108',
+  'icon_liqueur_108x108',
+  'icon_raspberry_108x108',
+  'icon_soju_108x108',
+  'icon_takju_108x108',
+  'icon_wine_108x108',
+  'icon_yakju_108x108',
+];
+
+export const ImageExtension = {
+  PNG: '.png',
+};
