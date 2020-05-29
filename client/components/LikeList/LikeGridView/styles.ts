@@ -3,9 +3,7 @@ import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   root: {
-    display: 'inline-flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    display: 'inline-block',
     backgroundColor: AppColor.WHITE,
   },
   data: {
