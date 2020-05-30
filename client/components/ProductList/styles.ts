@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   card: {
-    width: 230,
-    height: 375,
+    width: 250,
+    height: 372,
     margin: 0,
-    padding: '25px 15px 10px 15px',
+    padding: '25px 15px 15px 15px',
     borderRadius: 6,
     '&:hover': {
       boxShadow: '1px 1px 6px 2px rgba(0,0,0,.2)',
@@ -13,25 +13,26 @@ const useStyles = makeStyles({
     },
   },
   cardPhoto: {
-    width: 200,
-    height: 250,
+    width: 220,
+    height: 240,
     overflow: 'hidden',
     cursor: 'pointer',
   },
   image: {
-    width: 200,
-    height: 250,
+    width: 220,
+    height: 240,
   },
   cardDesc: {
     margin: 0,
     padding: 10,
   },
   title: {
-    width: 200,
+    width: 220,
     display: 'flex',
   },
   name: {
-    width: 152,
+    width: 172,
+    height: 38,
     marginRight: 8,
     fontSize: 18,
     margin: 0,
