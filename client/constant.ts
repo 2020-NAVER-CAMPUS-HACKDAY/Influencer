@@ -111,6 +111,7 @@ export const LikePropsInitialValue = {
 
 export const PublicImageCategoryPath = '/images/category/';
 
+// TODO(jominjimail): replace this array with enum type
 export const ImageArray = [
   'icon_all_108x108',
   'icon_distilled_108x108',

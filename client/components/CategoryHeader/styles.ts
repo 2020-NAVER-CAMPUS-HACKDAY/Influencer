@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
-    maxWidth: '375px',
+    maxWidth: '375',
     padding: '0 0.5rem',
   },
   content: {
