@@ -47,7 +47,7 @@ export interface ProductActionsProps {
     number
   >;
   getProductForId?: PayloadActionCreator<'product/GET_PRODUCT_FOR_ID', number>;
-  addProducts?: PayloadActionCreator<'product/ADD_PRODUCTS', any>;
+  addProducts?: PayloadActionCreator<'product/ADD_PRODUCTS', Product[]>;
 }
 
 export type ProductAction =

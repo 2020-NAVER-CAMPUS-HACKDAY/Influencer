@@ -5,10 +5,10 @@ import Label from 'components/Common/Label';
 import { AppColor } from 'constant';
 import clsx from 'clsx';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
-import { ProductDetailProps } from 'redux/ducks/Interface';
+import { ProductDetail } from 'interfaces/product';
 import Router from 'next/router';
 
-const LikeListItem: FC<ProductDetailProps> = (props) => {
+const LikeListItem: FC<ProductDetail> = (props) => {
   const classes = useStyles();
   const {
     productNo,
@@ -17,40 +17,44 @@ const LikeListItem: FC<ProductDetailProps> = (props) => {
     productImages,
     name,
     salePrice,
-
   } = props.product;
 
   const price = addCommaStringFromThreeCntNum(salePrice);
 
   return (
-    <Box className={classes.root}
-      onClick={(): Promise<boolean> => Router.push(
-        '/detail/[productid]',
-        `/detail/${productNo}`,
-      )}
+    <Box
+      className={classes.root}
+      onClick={(): Promise<boolean> =>
+        Router.push('/detail/[productid]', `/detail/${productNo}`)
+      }
     >
-      <img className={clsx(classes.spacing, classes.imageWrapper)}
+      <img
+        className={clsx(classes.spacing, classes.imageWrapper)}
         src={productImages[0].url}
         width={95}
         height={95}
       />
       <Box className={clsx(classes.spacing, classes.columnDirection)}>
-        <Label className={clsx(classes.productText, classes.text)}
+        <Label
+          className={clsx(classes.productText, classes.text)}
           fontSize={18}
           color={AppColor.BLACK}
           name={name}
         />
-        <Label className={clsx(classes.productPrice, classes.text)}
+        <Label
+          className={clsx(classes.productPrice, classes.text)}
           fontSize={18}
           color={AppColor.BLACK}
           name={price ? `${price}원` : '미정'}
         />
-        <Label className={classes.text}
+        <Label
+          className={classes.text}
           fontSize={13}
           color={AppColor.BLACK70}
           name={productInfoProvidedNoticeView?.제조국 ?? '비공개'}
         />
-        <Label className={classes.text}
+        <Label
+          className={classes.text}
           fontSize={16}
           color={AppColor.BLACK70}
           name={category.category1Name}
