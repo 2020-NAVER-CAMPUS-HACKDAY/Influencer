@@ -14,7 +14,7 @@ const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
 
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
-    Router.push(`/tempCategoryDetail/${categoryId}`);
+    Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
   const categoryElements = categoryData.map((category, index) => {
