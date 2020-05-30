@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Category } from 'interfaces/category';
 import Router from 'next/router';
-import useStyles from 'components/CategoryHeader/styles';
+import useStyles from 'components/Category/Header/styles';
 import { PublicImageCategoryPath, ImageArray, ImageExtension } from 'constant';
 
 interface CategoryHeaderProps {

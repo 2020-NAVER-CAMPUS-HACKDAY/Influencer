@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useStyles from 'components/CategoryHeader/ChildrenCard/styles';
+import useStyles from 'components/Category/ChildrenCard/styles';
 import { Category } from 'interfaces/category';
 import Router from 'next/router';
 import clsx from 'clsx';

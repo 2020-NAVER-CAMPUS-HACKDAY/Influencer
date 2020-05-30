@@ -4,8 +4,8 @@ import { GetServerSideProps } from 'next';
 import { CategoryProps } from 'redux/ducks/category';
 import { Category } from 'interfaces/category';
 import { CATEGORY_API, CATEGORY_CHILDREN_API } from 'constant';
-import ChildrenCard from 'components/CategoryHeader/ChildrenCard';
-import WholeCategoryName from 'components/CategoryHeader/WholeCategoryName';
+import ChildrenCard from 'components/Category/ChildrenCard';
+import WholeName from 'components/Category/WholeName';
 
 interface DetailCategoryProps extends CategoryProps {
   categoryData: Category;
@@ -17,11 +17,11 @@ const DetailCategory: FC<DetailCategoryProps> = (props) => {
 
   return (
     <MainHeader>
-      <WholeCategoryName
+      <WholeName
         names={categoryData.value.wholeCategoryName}
         ids={categoryData.value.wholeCategoryId}
       >
-      </WholeCategoryName>
+      </WholeName>
       <ChildrenCard childrenData={categoryChildrenData}></ChildrenCard>
     </MainHeader>
   );
