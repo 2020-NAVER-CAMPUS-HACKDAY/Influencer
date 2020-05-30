@@ -6,14 +6,14 @@ export interface Category {
     parentCategoryId?: string;
     wholeCategoryId: string;
     wholeCategoryName: string;
-    lastLevel: bool;
+    lastLevel: boolean;
   };
 }
 
 export interface CategoryDataProps {
-    category: Category;
+  category: Category;
 }
 
 export interface CategoryChildrenProps {
-    categories: Category[];
+  categories: Category[];
 }

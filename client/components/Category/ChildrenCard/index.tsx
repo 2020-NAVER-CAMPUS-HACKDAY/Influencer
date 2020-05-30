@@ -14,7 +14,7 @@ const ChildrenCard: FC<ChildrenCardProps> = (props) => {
   // TODO(jominjimail): duplicated function
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
-    Router.push(`/tempCategoryDetail/${categoryId}`);
+    Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
   return (
