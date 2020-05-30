@@ -59,7 +59,9 @@ export default class UserService {
       weight,
     }: any): Promise<any> => {
       return new Promise(async (resolve, reject) => {
-        const userRecord = await this.userModel.findOne({ userName: config.personaName });
+        const userRecord = await this.userModel.findOne({
+          userName: config.personaName,
+        });
         if (!userRecord) {
           reject('User is not exist');
         }
@@ -138,17 +140,19 @@ export default class UserService {
    * @param productNo
    */
   public async clickLog(productNo: number): Promise<any> {
-    const userLog: UserLog = { userName: config.personaName, type: 'click_log', item: String(productNo) };
+    const userLog: UserLog = {
+      userName: config.personaName,
+      type: 'click_log',
+      item: String(productNo),
+    };
     try {
       const result = await this.addWeight(productNo, config.clicklogWeight);
       await kafka(config.personaId, userLog);
 
       return result;
-
     } catch (e) {
       this.logger.error(e);
     }
-
   }
 
   /**
@@ -317,7 +321,8 @@ export default class UserService {
         result = await addRemainder(remainder, result);
       }
 
-      result = await this.productService.addLikeField(result);
+      await this.productService.addLikeField(result);
+      this.productService.changeImageUrl(result);
 
       return result;
     } catch (e) {

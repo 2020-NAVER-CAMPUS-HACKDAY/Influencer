@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import useStyles from 'components/CategoryHeader/WholeCategoryName/styles';
 import Router from 'next/router';
+import clsx from 'clsx';
 
 interface CategoryBoxProps {
   names: string;
@@ -13,6 +14,7 @@ const WholeCategoryName: FC<CategoryBoxProps> = (props) => {
   const idArray = ids.split('>');
   const lastIndex = nameArray.length - 1;
 
+  // TODO(jominjimail): duplicated function
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
     Router.push(`/tempCategoryDetail/${categoryId}`);
@@ -20,9 +22,19 @@ const WholeCategoryName: FC<CategoryBoxProps> = (props) => {
 
   const makeElement = (name, index): React.ReactElement => (
     (index === lastIndex)
-      ? <button className={classes.active} onClick={setCategory} value={idArray[index]}>
+      ? <button
+        key={index}
+        className={clsx(classes.button, classes.active)}
+        onClick={setCategory}
+        value={idArray[index]}
+      >
         {name}</button>
-      : <button className={classes.inactive} onClick={setCategory} value={idArray[index]}>
+      : <button
+        key={index}
+        className={clsx(classes.button, classes.inactive)}
+        onClick={setCategory}
+        value={idArray[index]}
+      >
         {name}</button>
   );
 

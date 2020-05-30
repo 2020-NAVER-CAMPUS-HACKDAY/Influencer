@@ -10,10 +10,10 @@ export interface IProduct {
 
 export interface IProductDTO {
   category: Object;
-  productNo: Number;
+  productNo: number;
   name: String;
   salePrice: Number;
-  productImages: Object;
+  productImages: any;
   productInfoProvidedNoticeView: any;
   like?: Boolean;
 }
