@@ -8,3 +8,7 @@ export interface Category {
     wholeCategoryName: string;
   };
 }
+
+export interface CategoryDataProps {
+    category: Category
+}
