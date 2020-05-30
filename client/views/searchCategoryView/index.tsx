@@ -1,23 +1,17 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
 import MainHeader from 'components/Main/MainHeader';
+import { useRouter } from 'next/router';
 
-interface DefaultProps {
-  data: string;
-}
-
-const Home: FC<DefaultProps> = (props) => {
-  const { data } = props;
+const Home: FC = (props) => {
+  const router = useRouter();
+  const { catId } = router.query;
 
   return (
     <MainHeader>
       <div>
-        This is Default 2 - example 1 Page.
+        This is serachCategoryView Page
       </div>
-      <Link href="/routeExample">
-        <a>back to Page</a>
-      </Link>
-      {data}
+      {catId}
     </MainHeader>
   );
 };
