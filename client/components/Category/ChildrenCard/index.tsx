@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useStyles from 'components/CategoryHeader/ChildrenCard/styles';
+import useStyles from 'components/Category/ChildrenCard/styles';
 import { Category } from 'interfaces/category';
 import Router from 'next/router';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ const ChildrenCard: FC<ChildrenCardProps> = (props) => {
   // TODO(jominjimail): duplicated function
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
-    Router.push(`/tempCategoryDetail/${categoryId}`);
+    Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
   return (

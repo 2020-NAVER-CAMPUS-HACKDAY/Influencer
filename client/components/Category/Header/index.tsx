@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Category } from 'interfaces/category';
 import Router from 'next/router';
-import useStyles from 'components/CategoryHeader/styles';
+import useStyles from 'components/Category/Header/styles';
 import { PublicImageCategoryPath, ImageArray, ImageExtension } from 'constant';
 
 interface CategoryHeaderProps {
@@ -14,7 +14,7 @@ const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
 
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
-    Router.push(`/tempCategoryDetail/${categoryId}`);
+    Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
   const categoryElements = categoryData.map((category, index) => {
