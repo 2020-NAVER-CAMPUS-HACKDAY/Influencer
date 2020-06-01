@@ -8,18 +8,19 @@ const useStyles = makeStyles({
     height: '2.5rem',
     color: 'black',
   },
-  inactive: {
-    color: AppColor.BLACK50,
-  },
-  active: {
-    color: AppColor.BLACK,
-  },
   button: {
     background: 'none',
     border: 'none',
     font: 'inherit',
     cursor: 'pointer',
     outline: 'inherit',
+  },
+  inactive: {
+    color: AppColor.BLACK50,
+  },
+  active: {
+    color: AppColor.BLACK,
+    fontWeight: 650,
   },
 });
 

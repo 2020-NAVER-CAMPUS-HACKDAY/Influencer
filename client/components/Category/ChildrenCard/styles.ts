@@ -23,6 +23,10 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     outline: 'inherit',
   },
+  highLight: {
+    color: AppColor.LIGHT_BLUE,
+    fontWeight: 650,
+  },
 });
 
 export default useStyles;
