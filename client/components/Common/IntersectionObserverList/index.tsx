@@ -11,15 +11,13 @@ export interface IntersectionObserverListProps {
   isFetchTrue: boolean;
 }
 
-const IntersectionObserverList: FC<IntersectionObserverListProps> = (
-    {
-      fetchApi,
-      children,
-      className,
-      firstFetchingTrue,
-      isFetchTrue,
-    },
-) => {
+const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
+  fetchApi,
+  children,
+  className,
+  firstFetchingTrue,
+  isFetchTrue,
+}) => {
   const root = useRef(null);
   const target = useRef(null);
   const classes = useStyles();
@@ -27,12 +25,11 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = (
   const [loading, setLoading] = useState<boolean>(false);
 
   const loadItems = async (): Promise<void> => {
-    if (loading) return;
-    if (isFetchTrue && (firstFetchingTrue === undefined || firstFetchingTrue)) {
-      setLoading(true);
-      await fetchApi();
-      setLoading(false);
-    }
+    if (loading || !isFetchTrue || firstFetchingTrue === false) return;
+
+    setLoading(true);
+    await fetchApi();
+    setLoading(false);
   };
 
   const onIntersect = ([{ isIntersecting }]): void => {
@@ -49,9 +46,7 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = (
   return (
     <React.Fragment>
       <div className={classes.container}>
-        <div className={clsx(classes.wrapper, className)}>
-          {children}
-        </div>
+        <div className={clsx(classes.wrapper, className)}>{children}</div>
       </div>
       {loading && <Loading />}
       <div ref={target} />

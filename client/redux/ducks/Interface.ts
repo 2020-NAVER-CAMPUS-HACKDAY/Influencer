@@ -1,3 +1,5 @@
+import { Product } from 'interfaces/product';
+
 export interface ProductDataProps {
   productNo: number;
   name: string;
@@ -39,8 +41,8 @@ export interface ProductInfoProvidedNoticeViewProps {
 }
 
 export interface ProductProps {
-  products: ProductDataProps[];
-  selectedProduct: ProductDataProps;
+  products?: Product[];
+  selectedProduct?: ProductDataProps;
 }
 
 export interface LikeListDataProps {
