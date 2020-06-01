@@ -10,8 +10,9 @@ interface CategoryBoxProps {
 const WholeName: FC<CategoryBoxProps> = (props) => {
   const { names, ids } = props;
   const classes = useStyles();
-  const nameArray = names.split('>');
-  const idArray = ids.split('>');
+  const SEPARATOR = '>';
+  const nameArray = names.split(SEPARATOR);
+  const idArray = ids.split(SEPARATOR);
   const lastIndex = nameArray.length - 1;
 
   // TODO(jominjimail): duplicated function
@@ -20,28 +21,26 @@ const WholeName: FC<CategoryBoxProps> = (props) => {
     Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
-  const makeElement = (name, index): React.ReactElement => (
-    (index === lastIndex)
-      ? <button
-        key={index}
-        className={clsx(classes.button, classes.active)}
-        onClick={setCategory}
-        value={idArray[index]}
-      >
-        {name}</button>
-      : <button
-        key={index}
-        className={clsx(classes.button, classes.inactive)}
-        onClick={setCategory}
-        value={idArray[index]}
-      >
-        {name}</button>
-  );
+  const makeElement = (name, index): React.ReactElement => {
+    const isLast = (index === lastIndex);
+    return (
+      <>
+        <button
+          key={index}
+          className={clsx(classes.button, isLast ? classes.active : classes.inactive)}
+          onClick={setCategory}
+          value={idArray[index]}>
+          {name}
+        </button>
+        {!isLast && <span className={classes.separator}>{SEPARATOR}</span>}
+      </>
+    );
+  };
 
   return (
-    <div className={classes.container}>
+    <section className={classes.container}>
       {nameArray.map((name, index) => makeElement(name, index))}
-    </div>
+    </section>
   );
 };
 

@@ -30,7 +30,7 @@ const ChildrenCard: FC<ChildrenCardProps> = (props) => {
       >
         {child.value.categoryName}
       </button>);
-  }
+  };
 
   return (
     <section className={classes.card}>

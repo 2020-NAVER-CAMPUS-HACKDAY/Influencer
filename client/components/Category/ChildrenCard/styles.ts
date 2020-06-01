@@ -3,10 +3,10 @@ import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
   card: {
-    display: 'flex',
     backgroundColor: AppColor.GREY,
-    minWidth: '100%',
+    display: 'flex',
     height: '2.5rem',
+    minWidth: '100%',
     overflowX: 'auto',
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -19,8 +19,8 @@ const useStyles = makeStyles({
   button: {
     background: 'none',
     border: 'none',
-    font: 'inherit',
     cursor: 'pointer',
+    font: 'inherit',
     outline: 'inherit',
   },
   highLight: {
