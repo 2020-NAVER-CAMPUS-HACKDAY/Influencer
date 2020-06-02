@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import MainHeader from 'components/Main/MainHeader';
-import CategoryHeader from 'components/CategoryHeader';
+import CategoryHeader from 'components/Category/Header';
 import { Category } from 'interfaces/category';
 
 interface MyCategoryViewProps {

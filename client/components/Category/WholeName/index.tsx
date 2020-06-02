@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useStyles from 'components/CategoryHeader/WholeCategoryName/styles';
+import useStyles from 'components/Category/WholeName/styles';
 import Router from 'next/router';
 import clsx from 'clsx';
 
@@ -7,7 +7,7 @@ interface CategoryBoxProps {
   names: string;
   ids: string;
 }
-const WholeCategoryName: FC<CategoryBoxProps> = (props) => {
+const WholeName: FC<CategoryBoxProps> = (props) => {
   const { names, ids } = props;
   const classes = useStyles();
   const nameArray = names.split('>');
@@ -17,7 +17,7 @@ const WholeCategoryName: FC<CategoryBoxProps> = (props) => {
   // TODO(jominjimail): duplicated function
   const setCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const categoryId: string = event.currentTarget.value;
-    Router.push(`/tempCategoryDetail/${categoryId}`);
+    Router.push(`/search/category?catId=${categoryId}`, undefined, { shallow: true });
   };
 
   const makeElement = (name, index): React.ReactElement => (
@@ -45,4 +45,4 @@ const WholeCategoryName: FC<CategoryBoxProps> = (props) => {
   );
 };
 
-export default WholeCategoryName;
+export default WholeName;
