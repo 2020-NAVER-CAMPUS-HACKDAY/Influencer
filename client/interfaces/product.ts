@@ -12,13 +12,13 @@ interface ProductCategory {
   categoryLevel: string;
 }
 
-interface ProductImage {
+export interface ProductImage {
   url: string;
   width: number;
   height: number;
 }
 
-interface ProductInfoProvidedNoticeView {
+export interface ProductInfoProvidedNoticeView {
   제조국?: string;
   소재?: string;
   색상?: string;
@@ -33,4 +33,13 @@ export interface Product {
   productInfoProvidedNoticeView?: ProductInfoProvidedNoticeView;
   like: boolean;
   modeDate?: Date;
+}
+
+export interface ProductDetail {
+  product: Product;
+}
+
+export interface ProductDucksProps {
+  products?: Product[];
+  selectedProduct?: Product;
 }
