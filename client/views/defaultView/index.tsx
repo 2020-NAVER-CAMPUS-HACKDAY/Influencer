@@ -7,7 +7,10 @@ import { LikeListDucksProps } from '../../redux/ducks/Interface';
 import { Types } from '../../redux/ducks';
 
 const Home: FC = () => (
-  <MainHeader />
+  <>
+    <MainHeader/>
+    <div>Home 입니다.</div>
+  </>
 );
 
 export default connect<LikeListDucksProps, void>(
