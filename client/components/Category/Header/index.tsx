@@ -20,7 +20,7 @@ const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
   const categoryElements = categoryData.map((category, index) => {
     const { categoryId } = category;
     return (
-      <div className={classes.content} key={categoryId}>
+      <div className={classes.item} key={categoryId}>
         <button
           className={classes.button}
           onClick={setCategory}
@@ -37,7 +37,12 @@ const CategoryHeader: FC<CategoryHeaderProps> = (props) => {
 
   return (
     <div className={classes.container}>
-      {categoryElements}
+      <h3 className={classes.title}>카테고리</h3>
+      <div className={classes.content}>
+        <div className={classes.items}>
+          {categoryElements}
+        </div>
+      </div>
     </div>
   );
 };
