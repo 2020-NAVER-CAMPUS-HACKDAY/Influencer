@@ -33,8 +33,10 @@ const ChildrenCard: FC<ChildrenCardProps> = (props) => {
   };
 
   return (
-    <section className={classes.card}>
-      {childrenData.map((child) => basicRender(child))}
+    <section className={classes.container}>
+      <div className={clsx(classes.card, classes.scroll)}>
+        {childrenData.map((child) => basicRender(child))}
+      </div>
     </section>
   );
 };
