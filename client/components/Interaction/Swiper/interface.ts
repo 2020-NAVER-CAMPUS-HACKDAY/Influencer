@@ -16,4 +16,5 @@ export interface SwiperProps {
   page: number;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  cardNum: number;
 }
