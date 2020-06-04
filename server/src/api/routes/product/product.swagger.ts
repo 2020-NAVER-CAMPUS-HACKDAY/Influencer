@@ -84,15 +84,6 @@ export default {
           description: `category's id`,
         },
         {
-          name: 'page',
-          in: 'query',
-          schema: {
-            type: 'integer',
-            default: 1,
-          },
-          required: false,
-        },
-        {
           name: 'limit',
           in: 'query',
           schema: {
