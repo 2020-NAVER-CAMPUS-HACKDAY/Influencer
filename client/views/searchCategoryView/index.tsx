@@ -24,27 +24,28 @@ const SearchCategoryView: FC<SearchCategoryViewProps> = (props) => {
   const router = useRouter();
   const { catId } = router.query;
   const [categoryInfo, setCategoryInfo] = useState<Category>();
-  const isLastLevel = useRef(false);
+  const [isLastLevel, setIsLastLevel] = useState<boolean>(false);
 
   useEffect(() => {
     if (catId === undefined) return;
     const fetch = async (): Promise<void> => {
-      isLastLevel.current = await getCategoryInfo(catId)
+      await getCategoryInfo(catId)
         .then(
           (response: AxiosResponse<CategoryDataProps>) => {
             setCategoryInfo(response.data.category);
+            setIsLastLevel(response.data.category.value.lastLevel);
             return response.data.category.value.lastLevel;
           },
-        );
-
-      if (!isLastLevel.current) {
-        await getCategoryChildren(catId)
-          .then(
-            (response: AxiosResponse<CategoryChildrenProps>) => {
-              setCategory(response.data.categories);
-            },
-          );
-      }
+        ).then(async (lastLevel) => {
+          if (!lastLevel) {
+            await getCategoryChildren(catId)
+              .then(
+                (response: AxiosResponse<CategoryChildrenProps>) => {
+                  setCategory(response.data.categories);
+                },
+              );
+          }
+        });
     };
     fetch();
   }, [catId, setCategory]);
@@ -61,7 +62,7 @@ const SearchCategoryView: FC<SearchCategoryViewProps> = (props) => {
       }
       <ChildrenCard
         childrenData={categoryArray}
-        isLastLevel={isLastLevel.current}
+        isLastLevel={isLastLevel}
         catId={catId}
       >
       </ChildrenCard>
