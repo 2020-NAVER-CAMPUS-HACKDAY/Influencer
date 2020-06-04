@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     height: '100%',
   },
   scroll: {
-    transform: 'translateX(-100px)'
+
   },
   cardContent: {
     padding: '0 11px',
