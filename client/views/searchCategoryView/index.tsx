@@ -1,5 +1,5 @@
 import React, {
-  FC, useEffect, useRef, useState,
+  FC, useEffect, useState,
 } from 'react';
 import MainHeader from 'components/Main/MainHeader';
 import { useRouter } from 'next/router';
