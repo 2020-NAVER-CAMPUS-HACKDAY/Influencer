@@ -76,7 +76,7 @@ export const CATEGORY_LEVEL = '?level=';
 export const USER_API = 'users/';
 export const USER_PREFER_API = 'prefer/';
 
-export const PRODUCT_LIMIT = '200';
+export const PRODUCT_LIMIT = '30';
 
 export const NOT_FOUND = 404;
 

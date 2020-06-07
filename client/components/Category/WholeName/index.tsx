@@ -10,6 +10,7 @@ interface CategoryBoxProps {
 const WholeName: FC<CategoryBoxProps> = (props) => {
   const { names, ids } = props;
   const classes = useStyles();
+  // TODO(jominjimail): remove this constant varialbe to constant.ts
   const SEPARATOR = '>';
   const nameArray = names.split(SEPARATOR);
   const idArray = ids.split(SEPARATOR);
