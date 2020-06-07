@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   container: {
     backgroundColor: AppColor.GREY,
     minWidth: '100%',
-    overflowX: 'scroll',
+    overflowX: 'hidden',
     height: '2.5rem',
     '&::-webkit-scrollbar': {
       display: 'none',
