@@ -8,7 +8,7 @@ import { USER_API, USER_PREFER_API } from 'constant';
 const Swiper: FC<SwiperProps> = (props) => {
   const classes = useStyles();
   const {
-    products, setPage, page, isLoading, setIsLoading,
+    products, setPage, page, isLoading, setIsLoading, cardNum,
   } = props;
 
   async function handleInteraction(productId: string): Promise<void> {
@@ -23,10 +23,10 @@ const Swiper: FC<SwiperProps> = (props) => {
   }
 
   function handlePage(cardIndex: number): void {
-    if (cardIndex % 10 === 7) {
+    if (cardIndex % 10 === cardNum - 3) {
       setIsLoading(true);
     }
-    if (cardIndex % 10 === 9) {
+    if (cardIndex % 10 === cardNum - 1) {
       setPage();
     }
   }

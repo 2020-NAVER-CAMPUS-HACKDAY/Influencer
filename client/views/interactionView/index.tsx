@@ -5,15 +5,13 @@ import MainHeader from 'components/Main/MainHeader';
 import Swiper from 'components/Interaction/Swiper';
 import InteractionButton from 'components/Interaction/InteractionButton';
 import { Category } from 'interfaces/category';
+import { PRODUCT_PAGE_API, PRODUCT_CATEGORY } from 'constant';
 // REDUX
 import { interactionActions, InteractionProps } from 'redux/ducks/interaction';
 import { connect } from 'react-redux';
 import { Types } from 'redux/ducks';
 import { bindActionCreators } from 'redux';
 import { PayloadActionCreator } from 'typesafe-actions';
-import {
-  PAGE_ADD, PRODUCT_CATEGORY, PRODUCT_PAGE_API,
-} from 'constant';
 
 interface CategoryStateIndex {
   prev: number;
@@ -43,17 +41,19 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
   });
   const [productData, setProductData] = useState<ProductProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [cardNum, setCardNum] = useState<number>(0);
 
   useEffect(() => {
-    async function fetchProductData(categoryId: string, pageNo: number): Promise<void> {
+    async function fetchProductData(categoryId: string): Promise<void> {
       try {
         const getProductUrl = process.env.SERVER_URL + PRODUCT_PAGE_API + PRODUCT_CATEGORY;
-        const response = await fetch(`${getProductUrl}${categoryId}${PAGE_ADD}${pageNo}`,
+        const response = await fetch(`${getProductUrl}${categoryId}`,
           {
             method: 'GET',
           });
         const result = await response.json();
         setProductData(result.products);
+        setCardNum(result.products.length);
         setIsLoading(false);
       } catch (err) {
         setProductData([]);
@@ -61,7 +61,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
       }
     }
 
-    fetchProductData(currentCategory.categoryId, page);
+    fetchProductData(currentCategory.categoryId);
   }, [currentCategory, page]);
 
   function handleClick(index: number): void {
@@ -81,6 +81,7 @@ const InteractionPage: FC<InteractionPageProps> = (props) => {
             page={page}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
+            cardNum={cardNum}
           />
           <div className={classes.footer}>
             <div className={classes.interactionButton}>

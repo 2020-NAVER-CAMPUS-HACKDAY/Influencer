@@ -64,36 +64,35 @@ export default class ProductService {
     }
   }
 
-  public async listCategory(
+  public async getCategoryProducts(
     id: string,
-    page: string = '1',
     limit: string = '10',
   ): Promise<{ products: IProductforView[] }> {
     try {
       const take = parseInt(limit, 10);
-      const skip = take * (parseInt(page, 10) - 1);
-      if (Number.isNaN(take) || Number.isNaN(skip)) {
+      if (Number.isNaN(take)) {
         throw new BadRequestError('take and limit must be number');
       }
 
-      const productRecords = await this.productModel
-        .find({ 'category.categoryId': id })
-        .select({ name: 1, productImages: 1, salePrice: 1 })
-        .limit(take)
-        .skip(skip);
-      const products = productRecords
-        .map((record) => record.toObject())
-        .map((product) => {
-          const index = product.productNo % 61;
-          product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
+      const productRecords = await this.productModel.aggregate([
+        { $match : { 'category.categoryId': id } },
+        { $project : { name: 1, productImages: 1, salePrice: 1 } },
+        { $sample : { size: take } },
+      ]);
 
-          return {
-            productId: product._id,
-            productName: product.name,
-            productImages: product.productImages[0],
-            salePrice: Number(product.salePrice),
-          };
-        });
+      const products = [];
+      for await (const product of productRecords) {
+        const index = product.productNo % 61;
+        product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
+
+        let product_result = {
+          productId: product._id,
+          productName: product.name,
+          productImages: product.productImages[0],
+          salePrice: Number(product.salePrice),
+        }
+        products.push(product_result);
+      }
 
       return { products };
     } catch (e) {
