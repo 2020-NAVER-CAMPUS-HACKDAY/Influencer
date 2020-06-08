@@ -14,10 +14,8 @@ const My: FC<MyProps> = (props) => {
 
   return (
     <>
-      <MyHeader />
-      <CategoryHeader
-        categoryData={categoryData}
-      />
+      <MyHeader/>
+      <CategoryHeader categoryData={categoryData}/>
     </>
   );
 };
