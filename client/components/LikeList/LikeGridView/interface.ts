@@ -30,7 +30,7 @@ export interface LikeGridViewProps extends LikeViewProps {
 
 export interface LikeListProps
   extends LikeListCategoryProps,
-    IntersectionObserverListProps {
+  IntersectionObserverListProps {
   likeList: Product[];
 }
 

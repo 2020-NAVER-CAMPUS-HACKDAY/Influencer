@@ -41,12 +41,12 @@ export const likeListActions = {
 
 export interface LikeListActionsProps {
   fetchLikeProduct: PayloadActionCreator<
-    'likeList/FETCH_LIKE_PRODUCT_REQUEST',
-    number
+  'likeList/FETCH_LIKE_PRODUCT_REQUEST',
+  number
   >;
   setLikeProduct: PayloadActionCreator<
-    'likeList/SET_LIKE_PRODUCT',
-    LikeListProduct
+  'likeList/SET_LIKE_PRODUCT',
+  LikeListProduct
   >;
   setFetchFalse: PayloadActionCreator<'likeList/SET_FETCH_FALSE', boolean>;
   setPageId: PayloadActionCreator<'likeList/SET_PAGE_ID', number>;
@@ -65,17 +65,17 @@ const initialState = {
 };
 
 export function* fetchLikeProductData(
-  action,
+    action,
 ): Generator<
-  | PutEffect<
-      PayloadAction<
-        'likeList/FETCH_LIKE_PRODUCT_SUCCESS',
-        LikeListProduct | unknown
-      >
+    | PutEffect<
+    PayloadAction<
+    'likeList/FETCH_LIKE_PRODUCT_SUCCESS',
+    LikeListProduct | unknown
     >
-  | PutEffect<PayloadAction<'likeList/FETCH_LIKE_PRODUCT_FAIL', Error>>
-  | CallEffect<AxiosResponse<LikeListProduct | Error>>
-> {
+    >
+    | PutEffect<PayloadAction<'likeList/FETCH_LIKE_PRODUCT_FAIL', Error>>
+    | CallEffect<AxiosResponse<LikeListProduct | Error>>
+    > {
   try {
     const likeProductData: LikeListProduct | unknown = yield call(
       ProductAPI.getLikeListData,
@@ -97,34 +97,30 @@ export function* fetchLikeProductDataSaga(): Generator<ForkEffect<never>> {
 export const likeReducer = createReducer(initialState)
   .handleAction(
     likeListActions.fetchLikeProduct.success,
-    (state: LikeListDucksProps, action) =>
-      produce(state, (draft) => {
-        CategoryString.forEach((category) => {
-          draft.data[category] = cloneDeep(action.payload.data.data[category]);
-          draft.pageId += 1;
-        });
-      }),
+    (state: LikeListDucksProps, action) => produce(state, (draft) => {
+      CategoryString.forEach((category) => {
+        draft.data[category] = cloneDeep(action.payload.data.data[category]);
+        draft.pageId += 1;
+      });
+    }),
   )
   .handleAction(
     likeListActions.fetchLikeProduct.failure,
-    (state: LikeListDucksProps) =>
-      produce(state, (draft) => {
-        draft.isFetchTrue = false;
-      }),
+    (state: LikeListDucksProps) => produce(state, (draft) => {
+      draft.isFetchTrue = false;
+    }),
   )
   .handleAction(
     likeListActions.setLikeProduct,
-    (state: LikeListDucksProps, action) =>
-      produce(state, (draft) => {
-        CategoryString.forEach((category) => {
-          draft.data[category] = cloneDeep(action.payload[category]);
-        });
-      }),
+    (state: LikeListDucksProps, action) => produce(state, (draft) => {
+      CategoryString.forEach((category) => {
+        draft.data[category] = cloneDeep(action.payload[category]);
+      });
+    }),
   )
   .handleAction(
     likeListActions.setPageId,
-    (state: LikeListDucksProps, action) =>
-      produce(state, (draft) => {
-        draft.pageId = cloneDeep(action.payload);
-      }),
+    (state: LikeListDucksProps, action) => produce(state, (draft) => {
+      draft.pageId = cloneDeep(action.payload);
+    }),
   );

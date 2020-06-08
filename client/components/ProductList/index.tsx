@@ -12,9 +12,9 @@ const ProductList: FC<ProductDucksProps & ProductActionsProps> = (props) => {
   const [page, setPage] = useState<number>(1);
   const [isFetchTrue, setIsFetchTrue] = useState<boolean>(true);
 
-  const fetchApi = async () => {
+  const fetchApi = async (): Promise<void> => {
     const res = (await getProductDataArray(page)
-      .then((res) => res.data)
+      .then((res2) => res2.data)
       .catch(() => setIsFetchTrue(false))) as ProductDucksProps;
     props.addProducts(res.products);
     setPage(page + 1);

@@ -43,8 +43,8 @@ export const productActions = {
 
 export interface ProductActionsProps {
   fetchAndAddProduct?: PayloadActionCreator<
-    'product/FETCH_AND_ADD_PRODUCT_REQUEST',
-    number
+  'product/FETCH_AND_ADD_PRODUCT_REQUEST',
+  number
   >;
   getProductForId?: PayloadActionCreator<'product/GET_PRODUCT_FOR_ID', number>;
   addProducts?: PayloadActionCreator<'product/ADD_PRODUCTS', Product[]>;
@@ -60,17 +60,17 @@ const initialState = {
 };
 
 export function* fetchAndAddProduct(
-  action,
+    action,
 ): Generator<
-  | PutEffect<
-      PayloadAction<
-        'product/FETCH_AND_ADD_PRODUCT_SUCCESS',
-        Product[] | unknown
-      >
+    | PutEffect<
+    PayloadAction<
+    'product/FETCH_AND_ADD_PRODUCT_SUCCESS',
+    Product[] | unknown
     >
-  | PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_FAIL', Error>>
-  | CallEffect<AxiosResponse<Product[] | Error>>
-> {
+    >
+    | PutEffect<PayloadAction<'product/FETCH_AND_ADD_PRODUCT_FAIL', Error>>
+    | CallEffect<AxiosResponse<Product[] | Error>>
+    > {
   try {
     const productArray: Product[] | unknown = yield call(
       ProductAPI.getProductDataArray,
@@ -92,21 +92,20 @@ export function* fetchProductSaga(): Generator<ForkEffect<never>> {
 export const productReducer = createReducer(initialState)
   .handleAction(
     productActions.fetchAndAddProduct.success,
-    (state: ProductProps, action) =>
-      produce(state, (draft) => {
-        action.payload.data.products.map((data) => draft.products.push(data));
-      }),
+    (state: ProductProps, action) => produce(state, (draft) => {
+      action.payload.data.products.map((data) => draft.products.push(data));
+    }),
   )
-  .handleAction(productActions.getProductForId, (state: ProductProps, action) =>
-    produce(state, (draft) => {
+  .handleAction(
+    productActions.getProductForId,
+    (state: ProductProps, action) => produce(state, (draft) => {
       const selectedProduct = draft.products.find(
         (product) => product.productNo === action.payload,
       );
       draft.selectedProduct = cloneDeep(selectedProduct);
     }),
   )
-  .handleAction(productActions.addProducts, (state: ProductProps, action) =>
-    produce(state, (draft) => {
+  .handleAction(productActions.addProducts,
+    (state: ProductProps, action) => produce(state, (draft) => {
       draft.products.push(...action.payload);
-    }),
-  );
+    }));

@@ -25,9 +25,7 @@ const DetailView: FC<ProductDucksProps> = (props) => {
       const getProductDataForId = async (): Promise<void> => {
         await getProductDataForProductId(
           productid,
-        ).then((response: AxiosResponse<ProductDetail>) =>
-          setDetailData(response.data.product),
-        );
+        ).then((response: AxiosResponse<ProductDetail>) => setDetailData(response.data.product));
       };
       getProductDataForId();
     } else {
