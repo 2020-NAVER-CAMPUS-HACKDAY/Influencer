@@ -21,6 +21,8 @@ const useScrollRestoration = (): void => {
       });
 
       Router.beforePopState(() => {
+        if (!cachedScrollPositions.length) return true;
+
         const [x, y] = cachedScrollPositions.pop();
         shouldScrollRestore = { x, y };
 
