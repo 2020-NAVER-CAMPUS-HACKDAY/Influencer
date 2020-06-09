@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useStyles from './styles';
+import useStyles from '../IntersectionObserverList/styles';
 
 const Loading: FC = () => {
   const classes = useStyles();
