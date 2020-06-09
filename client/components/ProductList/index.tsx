@@ -21,9 +21,15 @@ const ProductList: FC<ProductDucksProps & ProductActionsProps> = (props) => {
   };
 
   return (
-    <IntersectionObserver fetchApi={fetchApi} isFetchTrue={isFetchTrue}>
-      {props.products.map((el) => (
-        <ProductItem key={el.productNo} {...el} />
+    <IntersectionObserver
+      fetchApi={fetchApi}
+      isFetchTrue={isFetchTrue}
+      isLazyLoading
+      items={props.products}
+    >
+      {props.products.map((el, i) => (
+        // key 값으로 arr의 index 값을 넣는 건 성능 상 안 좋지만, productNo이 겹치는 게 많아서 arr의 index를 key로 할당함.
+        <ProductItem key={i} {...el} isLazy />
       ))}
     </IntersectionObserver>
   );

@@ -33,6 +33,7 @@ export interface Product {
   productInfoProvidedNoticeView?: ProductInfoProvidedNoticeView;
   like: boolean;
   modeDate?: Date;
+  isLazy?: boolean;
 }
 
 export interface ProductDetail {
