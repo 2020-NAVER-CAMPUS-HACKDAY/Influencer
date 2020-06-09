@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import { fork, all, ForkEffect, AllEffect } from 'redux-saga/effects';
+import {
+  fork, all, ForkEffect, AllEffect,
+} from 'redux-saga/effects';
 import {
   productReducer,
   ProductAction,

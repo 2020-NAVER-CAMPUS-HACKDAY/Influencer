@@ -40,13 +40,13 @@ const LikeList: FC = () => {
   );
   const [likeDataArray, setLikeDataArray] = useState<Product[]>();
   const [gridViewResponse, setGridViewResponse] = useState<
-    LikeGridViewProductProps
+  LikeGridViewProductProps
   >(LikePropsInitialValue);
   const [likeCategories, setLikeCategories] = useState<string[]>([]);
   const [page, setPage] = useState<number>(1);
   const [firstFetchingTrue, setFirstFetchingTrue] = useState<boolean>(false);
   const [firstCategoryFetchFalse, setFirstCategoryFetchFalse] = useState<
-    boolean
+  boolean
   >(true);
 
   const fetchMoreLikeListData = async (): Promise<void> => {
@@ -77,8 +77,8 @@ const LikeList: FC = () => {
   }, [clickedCategory]);
 
   useEffect(() => {
-    const categoryArrayAndGarbage = CategoryString.map((category) =>
-      likeDataResponse[category]?.length > 0 ? category : 0,
+    const categoryArrayAndGarbage = CategoryString.map(
+      (category) => (likeDataResponse[category]?.length > 0 ? category : 0),
     );
     if (firstCategoryFetchFalse) {
       setLikeCategories(

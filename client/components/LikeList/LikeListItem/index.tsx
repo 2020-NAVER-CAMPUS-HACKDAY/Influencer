@@ -24,8 +24,7 @@ const LikeListItem: FC<ProductDetail> = (props) => {
   return (
     <Box
       className={classes.root}
-      onClick={(): Promise<boolean> =>
-        Router.push('/detail/[productid]', `/detail/${productNo}`)
+      onClick={(): Promise<boolean> => Router.push('/detail/[productid]', `/detail/${productNo}`)
       }
     >
       <img
