@@ -1,6 +1,15 @@
-import React, { useRef, useState, FC } from 'react';
-import { useIntersectionObserver } from 'components/Common/IntersectionObserverList/hooks';
-import Loading from 'components/Common/IntersectionObserverList/Loading';
+import React, {
+  useRef,
+  useState,
+  FC,
+  useEffect,
+  Fragment,
+} from 'react';
+import {
+  useInfinityScrollIO,
+  useLazyLoadingIO,
+} from 'components/Common/IntersectionObserverList/hooks';
+import Loading from 'components/Common/Loading';
 import clsx from 'clsx';
 import useStyles from './styles';
 
@@ -9,6 +18,8 @@ export interface IntersectionObserverListProps {
   className?: string;
   firstFetchingTrue?: boolean;
   isFetchTrue: boolean;
+  isLazyLoading?: boolean;
+  items?: object[];
 }
 
 const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
@@ -17,11 +28,12 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
   className,
   firstFetchingTrue,
   isFetchTrue,
+  isLazyLoading,
+  items,
 }) => {
   const root = useRef(null);
   const target = useRef(null);
   const classes = useStyles();
-
   const [loading, setLoading] = useState<boolean>(false);
 
   const loadItems = async (): Promise<void> => {
@@ -37,20 +49,35 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
     loadItems();
   };
 
-  useIntersectionObserver({
-    root,
+  useInfinityScrollIO({
     target,
     onIntersect,
   });
 
+  const lazyLoadingObserver = useLazyLoadingIO({ root });
+
+  useEffect(() => {
+    if (isLazyLoading) {
+      const lazyLoading = (): void => {
+        const images = Array.from(
+          document.getElementsByClassName('lazy'),
+        );
+        images.forEach((image) => lazyLoadingObserver.observe(image));
+      };
+      lazyLoading();
+    }
+  }, [items, isLazyLoading, lazyLoadingObserver]);
+
   return (
-    <React.Fragment>
+    <Fragment>
       <div className={classes.container}>
-        <div className={clsx(classes.wrapper, className)}>{children}</div>
+        <div className={clsx(classes.wrapper, className)}>
+          {children}
+        </div>
       </div>
       {loading && <Loading />}
       <div ref={target} />
-    </React.Fragment>
+    </Fragment>
   );
 };
 
