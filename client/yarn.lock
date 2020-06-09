@@ -836,35 +836,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@egjs/component@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@egjs/component/-/component-2.1.2.tgz#c466a0a6fc6ba2d479814dcbe6ee4643c25a2e5b"
-
-"@egjs/infinitegrid@^3.6.3":
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/@egjs/infinitegrid/-/infinitegrid-3.6.3.tgz#f12f60b4d7d983a6cc0371735df69991101618cc"
-  dependencies:
-    "@egjs/component" "^2.1.2"
-    "@egjs/lazyloaded" "0.0.2"
-    "@egjs/list-differ" "^1.0.0"
-
-"@egjs/lazyloaded@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@egjs/lazyloaded/-/lazyloaded-0.0.2.tgz#1658a2188239e1c5e9dee71734830bcca6625388"
-  dependencies:
-    "@egjs/component" "^2.1.2"
-
-"@egjs/list-differ@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@egjs/list-differ/-/list-differ-1.0.0.tgz#2277aff52e3e4bd9318d5c30ffc3ba3b6216f05e"
-
-"@egjs/react-infinitegrid@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@egjs/react-infinitegrid/-/react-infinitegrid-3.0.4.tgz#9a1a59431c813a5650ba488d6d18184cdcd8aea1"
-  dependencies:
-    "@egjs/infinitegrid" "^3.6.3"
-    "@egjs/list-differ" "^1.0.0"
-
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
