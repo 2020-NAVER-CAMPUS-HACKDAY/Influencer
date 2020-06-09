@@ -1,4 +1,4 @@
-import { useEffect, MutableRefObject, useRef } from 'react';
+import { useEffect, MutableRefObject, useRef, useState } from 'react';
 
 interface Intersecting {
   isIntersecting: boolean;
@@ -37,20 +37,24 @@ export const useInfinityScrollIO: (
 
 export const useLazyLoadingIO: (
   params: IntersectionObserverParams,
-) => IntersectionObserver = ({ root, threshold = 0, rootMargin = '100px' }) => {
-  const observer = useRef(null);
+) => IntersectionObserver = ({
+  root,
+  threshold = 0,
+  rootMargin = '100px',
+}) => {
+  const [observer, setObserver] = useState<IntersectionObserver>();
 
   useEffect(() => {
     if (!root) return;
 
-    observer.current = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const lazyImage = entry.target as HTMLImageElement;
             lazyImage.src = lazyImage.dataset.src;
             lazyImage.classList.remove('lazy');
-            observer.current.unobserve(lazyImage);
+            io.unobserve(lazyImage);
           } else {
             const lazyImage = entry.target as HTMLImageElement;
             lazyImage.src = '';
@@ -64,13 +68,15 @@ export const useLazyLoadingIO: (
       },
     );
 
+    setObserver(io);
+
     const cleanUp = (): void => {
-      if (observer.current) {
-        observer.current.disconnect();
+      if (io) {
+        io.disconnect();
       }
     };
     return cleanUp;
   }, [root, rootMargin, threshold]);
 
-  return observer.current;
+  return observer;
 };

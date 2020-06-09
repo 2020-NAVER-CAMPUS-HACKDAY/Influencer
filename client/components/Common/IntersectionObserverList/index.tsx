@@ -57,6 +57,8 @@ const IntersectionObserverList: FC<IntersectionObserverListProps> = ({
   const lazyLoadingObserver = useLazyLoadingIO({ root });
 
   useEffect(() => {
+    if (!lazyLoadingObserver) return;
+
     if (isLazyLoading) {
       const lazyLoading = (): void => {
         const images = Array.from(
