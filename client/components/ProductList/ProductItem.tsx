@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import Router from 'next/router';
+import clsx from 'clsx';
 import Heart from 'components/Common/Heart';
 import useStyles from 'components/ProductList/styles';
 import { Product } from 'interfaces/product';
@@ -7,6 +8,7 @@ import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
 
 const ProductItem: FC<Product> = (props) => {
   const classes = useStyles();
+  const img = useRef(null);
 
   const cutName = (name: string): string => {
     const { length } = name;
@@ -21,8 +23,9 @@ const ProductItem: FC<Product> = (props) => {
     <article className={classes.card}>
       <div className={classes.cardPhoto} onClick={routeDetailPage}>
         <img
-          className={classes.image}
-          src={props.productImages && props.productImages[0].url}
+          ref={img}
+          className={clsx(classes.image, props.isLazy && 'lazy')}
+          data-src={props.productImages && props.productImages[0].url}
         />
       </div>
       <div className={classes.cardDesc}>
