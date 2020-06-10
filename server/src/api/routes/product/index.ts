@@ -47,9 +47,8 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { products } = await productServiceInstance.listCategory(
+        const { products } = await productServiceInstance.getCategoryProducts(
           req.params.id as string,
-          req.query.page as string,
           req.query.limit as string,
         );
         return res.status(200).json({ products });

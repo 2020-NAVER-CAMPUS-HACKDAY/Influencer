@@ -3,9 +3,10 @@ export interface ICategory {
 }
 
 export interface ICategoryValueObject {
-  categoryName: string,
-  categoryLevel: number,
-  parentCategoryId?: string,
-  wholeCategoryId: string,
-  wholeCategoryName: string,
+  categoryName: String;
+  categoryLevel: Number;
+  parentCategoryId?: String;
+  wholeCategoryId: String;
+  wholeCategoryName: String;
+  lastLevel: Boolean;
 };

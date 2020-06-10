@@ -2,15 +2,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppColor } from 'constant';
 
 const useStyles = makeStyles({
-  card: {
-    display: 'flex',
+  container: {
     backgroundColor: AppColor.GREY,
     minWidth: '100%',
+    overflowX: 'hidden',
     height: '2.5rem',
-    overflowX: 'auto',
     '&::-webkit-scrollbar': {
       display: 'none',
     },
+  },
+  card: {
+    display: 'inline-flex',
+    height: '100%',
+  },
+  scroll: {
+
   },
   cardContent: {
     padding: '0 11px',
@@ -19,9 +25,13 @@ const useStyles = makeStyles({
   button: {
     background: 'none',
     border: 'none',
-    font: 'inherit',
     cursor: 'pointer',
+    font: 'inherit',
     outline: 'inherit',
+  },
+  highLight: {
+    color: AppColor.LIGHT_BLUE,
+    fontWeight: 650,
   },
 });
 

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import DetailHeader from 'components/Detail/DetailHeader';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import { ProductProps, ProductDetailProps, ProductDataProps } from 'redux/ducks/Interface';
+import { ProductDucksProps, ProductDetail, Product } from 'interfaces/product';
 import { Types } from 'redux/ducks';
 import DetailProductInfo from 'components/Detail/DetailProductContent';
 import { addCommaStringFromThreeCntNum } from 'utils/stringUtils';
@@ -10,9 +10,9 @@ import { getProductDataForProductId } from 'network/productApi';
 import { NOT_FOUND } from 'constant';
 import { AxiosResponse } from 'axios';
 
-const DetailView: FC<ProductProps> = (props) => {
+const DetailView: FC<ProductDucksProps> = (props) => {
   const { products } = props;
-  const [detailData, setDetailData] = useState<ProductDataProps>();
+  const [detailData, setDetailData] = useState<Product>();
   const router = useRouter();
   const { productid } = router.query;
 
@@ -23,12 +23,9 @@ const DetailView: FC<ProductProps> = (props) => {
     );
     if (searchProductItem === undefined) {
       const getProductDataForId = async (): Promise<void> => {
-        await getProductDataForProductId(productid)
-          .then(
-            (response: AxiosResponse<
-            ProductDetailProps
-            >) => setDetailData(response.data.product),
-          );
+        await getProductDataForProductId(
+          productid,
+        ).then((response: AxiosResponse<ProductDetail>) => setDetailData(response.data.product));
       };
       getProductDataForId();
     } else {
@@ -40,7 +37,7 @@ const DetailView: FC<ProductProps> = (props) => {
 
   return (
     <>
-      <DetailHeader productName={detailData.name}/>
+      <DetailHeader productName={detailData.name} />
       <DetailProductInfo
         imageURL={detailData.productImages[0].url}
         imageHeight={detailData.productImages[0].height}
@@ -55,9 +52,7 @@ const DetailView: FC<ProductProps> = (props) => {
   );
 };
 
-export default connect<ProductProps, void>(
-  (state: Types) => ({
-    products: state.productReducer.products,
-    selectedProduct: state.productReducer.selectedProduct,
-  }),
-)(DetailView);
+export default connect<ProductDucksProps, void>((state: Types) => ({
+  products: state.productReducer.products,
+  selectedProduct: state.productReducer.selectedProduct,
+}))(DetailView);

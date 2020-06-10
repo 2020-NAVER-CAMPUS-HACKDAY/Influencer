@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import useStyles from './styles';
 
-const Loading: FC = () => {
+const Heart: FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.loading}>
-      <div className={classes.spinner} />
+    <div className={classes.container}>
+      <div className={classes.heart} />
     </div>
   );
 };
-export default Loading;
+export default Heart;

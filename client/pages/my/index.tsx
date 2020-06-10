@@ -1,26 +1,26 @@
 import React, { FC } from 'react';
-import { GetStaticProps } from 'next';
+import MyHeader from 'components/Main/MyHeader';
 import { Category } from 'interfaces/category';
-import MainCategoryView from 'views/mainCategoryView';
+import { GetStaticProps } from 'next';
 import { CATEGORY_API } from 'constant';
+import CategoryHeader from 'components/Category/Header';
 
-interface MyCategoryProps {
+interface MyProps {
   categoryData: Category[];
 }
 
-const TempMain: FC<MyCategoryProps> = (props) => {
+const My: FC<MyProps> = (props) => {
   const { categoryData } = props;
 
   return (
-    <MainCategoryView
-      categoryData={categoryData}
-    >
-    </MainCategoryView>
+    <>
+      <MyHeader/>
+      <CategoryHeader categoryData={categoryData}/>
+    </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // TODO(jominjimail): for easy developing ill change it level=2 later*/}
   const res = await fetch(`${process.env.SERVER_URL}${CATEGORY_API}`);
   const { categories } = await res.json();
 
@@ -31,4 +31,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default TempMain;
+export default My;

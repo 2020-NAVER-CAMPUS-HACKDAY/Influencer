@@ -2,13 +2,27 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   container: {
+    padding: '0 0.5rem',
+  },
+  title: {
+    margin: '0.7rem 0',
+  },
+  content: {
+    display: 'flex',
+    height: '17rem',
+    justifyContent: 'center',
+    maxWidth: '375px',
+    width: '100%',
+  },
+  items: {
+    alignItems: 'center',
+    background: 'white',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
-    maxWidth: '375',
-    padding: '0 0.5rem',
+    padding: '0.5rem 0',
   },
-  content: {
+  item: {
     display: 'flex',
     flexDirection: 'column',
     height: '5rem',

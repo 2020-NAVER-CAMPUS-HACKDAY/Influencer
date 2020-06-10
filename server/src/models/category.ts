@@ -14,6 +14,7 @@ const categorySchema = new Schema(
         parentCategoryId: { type: String, default : null },
         wholeCategoryId: { type: String, required: true },
         wholeCategoryName: { type: String, required: true },
+        lastLevel: {type: Boolean, required: true},
     },
   }
 );

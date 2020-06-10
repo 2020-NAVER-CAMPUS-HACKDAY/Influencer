@@ -7,6 +7,7 @@ export const AppColor = {
   PURPLE: '#827EDB',
   RED: '#ff1616',
   BLUE: '#0012c4',
+  LIGHT_BLUE: '#6877E1',
   MAIN_HEADER: 'linear-gradient(to right, #01C73B, #827EDB)',
   DETAIL_HEADER: '#8452C7',
   BLACK20: 'rgba(0, 0, 0, 0.2)',
@@ -75,7 +76,7 @@ export const CATEGORY_LEVEL = '?level=';
 export const USER_API = 'users/';
 export const USER_PREFER_API = 'prefer/';
 
-export const PRODUCT_LIMIT = '200';
+export const PRODUCT_LIMIT = '30';
 
 export const NOT_FOUND = 404;
 

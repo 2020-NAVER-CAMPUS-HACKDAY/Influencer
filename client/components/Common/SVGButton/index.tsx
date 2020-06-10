@@ -10,8 +10,11 @@ interface SVGButtonProps {
 const SVGButton: FC<SVGButtonProps> = (props) => {
   const classes = useStyles();
   const { className, handleClick, children } = props;
+
   return (
-    <button className={clsx(classes.button, className)} onClick={handleClick}>
+    <button
+      className={clsx(classes.button, className)}
+      onClick={handleClick}>
       {children}
     </button>
   );
