@@ -4,11 +4,6 @@ import winston from 'winston';
 import { celebrate, Joi } from 'celebrate';
 import ProductService from '../../../services/product';
 import { IProductDTO } from '../../../interfaces/product';
-import {
-  StatusCode as sc,
-  ResponseMessage as rm,
-  AuthUtil as au,
-} from '../../../modules/util';
 
 const productRoute = Router();
 
@@ -47,9 +42,12 @@ export default (routes: Router) => {
 
       try {
         const productServiceInstance = Container.get(ProductService);
-        const { products } = await productServiceInstance.getCategoryProducts(
+        const {
+          products,
+        } = await productServiceInstance.getCategoryProducts(
           req.params.id as string,
           req.query.limit as string,
+          req.query.page as string,
         );
         return res.status(200).json({ products });
       } catch (e) {
@@ -63,7 +61,10 @@ export default (routes: Router) => {
     '/:id',
     async (req: Request, res: Response, next: NextFunction) => {
       const logger = Container.get('logger') as winston.Logger;
-      logger.debug('GET /products endpoint with params: %o', req.params);
+      logger.debug(
+        'GET /products endpoint with params: %o',
+        req.params,
+      );
 
       try {
         const productServiceInstance = Container.get(ProductService);

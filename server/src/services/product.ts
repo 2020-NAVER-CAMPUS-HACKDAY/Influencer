@@ -1,7 +1,12 @@
 import { Service, Inject, ContainerInstance } from 'typedi';
 import { Model, Document } from 'mongoose';
 import winston from 'winston';
-import { IProduct, IProductDTO, IUser, CategoryLike } from '../interfaces';
+import {
+  IProduct,
+  IProductDTO,
+  IUser,
+  CategoryLike,
+} from '../interfaces';
 import {
   BadRequestError,
   ConflictError,
@@ -23,8 +28,8 @@ export default class ProductService {
   }
 
   public async getProducts(
-    page: string = '10',
-    limit: string = '1',
+    page: string = '1',
+    limit: string = '30',
   ): Promise<{ products: IProductDTO[] }> {
     try {
       const take = parseInt(limit, 10);
@@ -66,23 +71,29 @@ export default class ProductService {
 
   public async getCategoryProducts(
     id: string,
-    limit: string = '10',
+    limit: string = '30',
+    page: string = '1',
   ): Promise<{ products: IProductforView[] }> {
     try {
       const take = parseInt(limit, 10);
-      if (Number.isNaN(take)) {
+      const skip = take * (parseInt(page, 10) - 1);
+      if (Number.isNaN(take) || Number.isNaN(skip)) {
         throw new BadRequestError('take and limit must be number');
       }
-
+      if (take > 30) {
+        throw new BadRequestError('limit cannot exceed 30');
+      }
       const productRecords = await this.productModel.aggregate([
-        { $match : { 'category.categoryId': id } },
-        { $project : { name: 1, productImages: 1, salePrice: 1 } },
-        { $sample : { size: take } },
+        { $match: { 'category.categoryId': id } },
+        { $limit: skip + take },
+        { $skip: skip },
+        { $project: { name: 1, productImages: 1, salePrice: 1 } },
+        { $sort: { modDate: -1 } },
       ]);
 
       const products = [];
       for await (const product of productRecords) {
-        const index = product.productNo % 61;
+        const index = (parseInt(product._id) % 60) + 1;
         product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
 
         let product_result = {
@@ -90,7 +101,7 @@ export default class ProductService {
           productName: product.name,
           productImages: product.productImages[0],
           salePrice: Number(product.salePrice),
-        }
+        };
         products.push(product_result);
       }
 
@@ -101,7 +112,9 @@ export default class ProductService {
     }
   }
 
-  public async getProduct(id: number): Promise<{ product: IProductDTO }> {
+  public async getProduct(
+    id: number,
+  ): Promise<{ product: IProductDTO }> {
     try {
       const productRecord = await this.productModel.findOne({
         productNo: id,
@@ -145,7 +158,8 @@ export default class ProductService {
         throw Error();
       }
 
-      const userLike = (await userLikeRecord.toObject().like) as CategoryLike[];
+      const userLike = (await userLikeRecord.toObject()
+        .like) as CategoryLike[];
       const likeList = Object.values(userLike).reduce(
         (acc: number[], el: CategoryLike) => {
           return [...acc, ...el.likeList];
@@ -155,7 +169,9 @@ export default class ProductService {
       const likeSet = new Set<number>(likeList);
 
       for (const product of products) {
-        product.like = likeSet.has(product.productNo as number) ? true : false;
+        product.like = likeSet.has(product.productNo as number)
+          ? true
+          : false;
       }
     } catch (e) {
       this.logger.error(e);
@@ -165,12 +181,14 @@ export default class ProductService {
 
   public changeImageUrl(products: IProductDTO[]): void {
     for (const product of products) {
-      const index = product.productNo % 61;
+      const index = (product.productNo % 60) + 1;
       product.productImages[0].url = `https://naver.github.io/egjs-infinitegrid/assets/image/${index}.jpg`;
     }
   }
 
-  public async create(productDTO: IProductDTO): Promise<{ product: IProduct }> {
+  public async create(
+    productDTO: IProductDTO,
+  ): Promise<{ product: IProduct }> {
     try {
       this.logger.silly('Creating user db record');
       const productRecord = await this.productModel.create({
