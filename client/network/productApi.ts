@@ -28,3 +28,9 @@ export const getLikeListData = (
 export const getLikeListDataVerGridView = (): Promise<
 AxiosResponse<Error | FetchGridViewProps>
 > => axios.get(`${process.env.SERVER_URL}${LIKE_LIST_API}${GRID_VIEW}`);
+
+export const getProductDataArrayByCatId = (
+    pageId, catId,
+): Promise<AxiosResponse<Error | Product[]>> => axios.get(
+  `${process.env.SERVER_URL}${PRODUCT_PAGE_API}${PAGE_ADD}${pageId}${LIMIT_ADD}${PRODUCT_LIMIT}/${catId}`,
+);
