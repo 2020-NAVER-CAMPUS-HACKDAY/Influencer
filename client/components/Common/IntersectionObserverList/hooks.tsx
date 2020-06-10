@@ -1,4 +1,4 @@
-import { useEffect, MutableRefObject, useRef, useState } from 'react';
+import { useEffect, MutableRefObject, useState } from 'react';
 
 interface Intersecting {
   isIntersecting: boolean;
