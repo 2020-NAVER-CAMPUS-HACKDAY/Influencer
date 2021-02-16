@@ -2896,8 +2896,9 @@ sylvester@^0.0.12:
   integrity sha1-WohEFc0tACxX56OqyZRip1zp/bQ=
 
 systeminformation@^4.23.3:
-  version "4.26.2"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.26.2.tgz#eaeaba6244686c4ef8493103c9fef0bf25cb2534"
+  version "4.34.13"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.34.13.tgz#4d6bdf451369aa137e7b445bf700ba5b82dd6fa0"
+  integrity sha512-K3h3ofFOvXgsGAoACcGEG+T+X9Kq1xRk1bJS+p6JOd2U4mDFkIOW03u2wSCcVMuCq/NsM/piALNt1u3DrQftlw==
 
 tar-fs@^1.13.0:
   version "1.16.3"
