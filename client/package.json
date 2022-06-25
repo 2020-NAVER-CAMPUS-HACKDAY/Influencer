@@ -12,7 +12,7 @@
 		"lodash": "^4.17.15",
 		"next": "^9.3.6",
 		"next-redux-wrapper": "^6.0.0",
-		"node-fetch": "^2.6.0",
+		"node-fetch": "^2.6.7",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-gesture-responder": "^2.1.0",
