@@ -10,7 +10,7 @@
 		"dotenv": "^8.2.0",
 		"immer": "^6.0.5",
 		"lodash": "^4.17.15",
-		"next": "^9.3.6",
+		"next": "^13.0.2",
 		"next-redux-wrapper": "^6.0.0",
 		"node-fetch": "^2.6.0",
 		"react": "^16.13.1",
